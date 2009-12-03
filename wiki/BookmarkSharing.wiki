@@ -2,4 +2,8 @@
 #labels Phase-Requirements
 = Introduction =
   * Who sees what?
-  * Sharing bookmarks VS Sharing user-created resources
+  * What is it possible to bookmark - vospace locations, ftp locations?
+    * maybe the bookmarks have more precedence than the registry explorer. Do they all fit?
+  * how are these bookmarks represented?
+    * as user-created reg resources?
+    * or as magic links in the resourcefolders list?
