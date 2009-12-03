@@ -5,3 +5,6 @@
   * Message types supported
   * Launching desktop applications from browser
   * SAMP messaging to Applets
+
+Also
+  * support for vospace, or other authenticated storage from desktop applications.
