@@ -8,7 +8,9 @@
       * *We need a server*
   * PerformanceExperimentsWithGwt
   * StateOfVospaceAndCommunity
-  * StateOfSaada
-  * StateOfDalToolkit
+  * StateOfVoComponents
+ 
 
-= Design = 
+= UseCases = 
+
+  * ConsortiumScopedPublishing
