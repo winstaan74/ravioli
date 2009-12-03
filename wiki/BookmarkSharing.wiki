@@ -1,0 +1,5 @@
+#summary Sharing bookmarks between friends.
+#labels Phase-Requirements
+= Introduction =
+  * Who sees what?
+  * Sharing bookmarks VS Sharing user-created resources
