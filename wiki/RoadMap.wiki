@@ -11,13 +11,17 @@
   * StateOfVoComponents
  
 
-= Use Cases = 
-
-  * ConsortiumScopedPublishing
-  * PublicPublishing
+= Requirements / Use Cases =
+Listed in order of priority.
+ 
+  * RegistryExploration
   * ImportExport
+  * PublicPublishing
   * GroupManagement
   * BookmarkSharing
+  * ConsortiumScopedPublishing
+  * FurtherCollaborationTools
+
 
 = Design = 
   * ThinkOfaSiteName
