@@ -11,6 +11,6 @@
   * StateOfVoComponents
  
 
-= UseCases = 
+= Use Cases = 
 
   * ConsortiumScopedPublishing
