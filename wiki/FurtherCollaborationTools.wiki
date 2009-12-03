@@ -1,0 +1,9 @@
+#summary Should we add any other collaboration tools?
+#labels Phase-Requirements
+
+  * instant messaging
+  * tweets
+  * mailing list
+    * keep as separate google group
+  * whiteboard / wiki
+  * [http://wave.google.com/ Google Wave] - a blend of most of the above
