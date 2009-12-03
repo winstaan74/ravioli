@@ -6,3 +6,5 @@
 Build a basic system, to test whether our choice of database (exist), server (grails) and presentation (GWT) is efficient enough to give a slick experience in a voexplorer-like interface.
 
 In particular, we want to see a responsive UI that handles a large amount of data, incrementally updating.
+
+At first, I can develop the prototype on my own computer - but for a proper test, we need a server (ideally the production server) to deploy the prototype onto - and then see what the performance is like when access from elsewhere in the UK.
