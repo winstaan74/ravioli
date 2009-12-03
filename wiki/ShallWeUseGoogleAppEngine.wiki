@@ -19,7 +19,7 @@ From [http://code.google.com/appengine/docs/whatisgoogleappengine.html the websi
 
   The resources your application uses, such as storage and bandwidth, are measured by the gigabyte, and billed at competitive rates. You control the maximum amounts of resources your app can consume, so it always stays within your budget.
 
-Find size of registry database, work out how much data we're going to use.
+* Find size of registry database, estimage out how much data/space we're going to use.*
 
 == Architecture == 
 Application is backed by a distributed memory-cache, and a distributed datastore (NOT a relational database)
@@ -30,7 +30,7 @@ Application runs in a sandbox - for isolation, and easy distribution.
   * Application code only runs in response to a web request, a queued task, or a scheduled task, and must return response data within 30 seconds.
     * wouldn't be any good for UWS..
   * Application code can only fetch other URL on port 80
-
+  * Application code cannot create new threads
 
 == Technical Things to Consider == 
   * can an xml databse run in the restrictions of App engine?
@@ -42,7 +42,8 @@ Application runs in a sandbox - for isolation, and easy distribution.
 == Other Problems == 
   * Lock in? Only Google offers AppEngine, and so would need to re-write portions of the application if wanted to port for some reason to our own server.
     * Most of it is standard Java servlets - just the datastorage differs.
-    * using grails may hide most of this.
-= Is there other cloud alternatives? = 
+    * using Grails may hide most of this.
 
+= Is there other cloud alternatives? = 
+EC2?
 = Host-It-Ourself = 
