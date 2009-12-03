@@ -14,3 +14,8 @@
 = Use Cases = 
 
   * ConsortiumScopedPublishing
+  * PublicPublishing
+
+
+= Design = 
+  * FindAName
