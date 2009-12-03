@@ -1,0 +1,9 @@
+#summary Publishing data, private to a group.
+#labels Phase-Requirements
+= Introduction =
+
+Publishing Tables and Images just to a group
+  * registration
+  * trust of our service
+  * security of underlying data
+    * StateOfCommunityAndVospace
