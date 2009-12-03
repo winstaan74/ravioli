@@ -1,0 +1,6 @@
+#summary What framework to use for login, group management.
+#labels Phase-Implementation
+
+= Introduction =
+
+There's OpenId, Google Accounts, and probably more. Plus IVOA Accounts and communities. Need to review, see which is easy to use, easy to implement; which integrates nicely with Grails.
