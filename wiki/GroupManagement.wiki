@@ -1,0 +1,8 @@
+#summary Group creation, membership
+#labels Phase-Requirements
+
+= Introduction =
+  * Who creates groups
+  * How to join groups
+  * nesting of groups?
+  * invitations
