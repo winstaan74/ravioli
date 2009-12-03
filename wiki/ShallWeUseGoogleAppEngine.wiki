@@ -1,25 +1,48 @@
 #summary Investigation into whether GoogleAppEngine, or a departmental hosted service, would be best.
 
-= Introduction =
+= Google App Engine =
 
 [http://code.google.com/appengine/ GoogleAppEngine] allows other people to run Java or Python apps on Google's infrastructure.
 
-= Features = 
+== Features == 
 
-Hosted by google, so webapp is easy to maintain, is scalable, 
+Hosted by Google, so webapp is easy to maintain, is scalable, always available, and because of ubiquity of Google, appears local to users worldwide. 
 
-Pay for what you use - no set up fees.
+== Costs == 
 
-From the website:
+From [http://code.google.com/appengine/docs/whatisgoogleappengine.html the website]:
 
   App Engine costs nothing to get started. All applications can use up to 500 MB of storage 
   and enough CPU and bandwidth to support an efficient app serving around 5 million page 
   views a month, absolutely free. When you enable billing for your application, your free 
   limits are raised, and you only pay for resources you use above the free levels.
 
-= Restrictions = 
+  The resources your application uses, such as storage and bandwidth, are measured by the gigabyte, and billed at competitive rates. You control the maximum amounts of resources your app can consume, so it always stays within your budget.
 
-= Technical Things to Consider = 
+Find size of registry database, work out how much data we're going to use.
+
+== Architecture == 
+Application is backed by a distributed memory-cache, and a distributed datastore (NOT a relational database)
+
+== Restrictions == 
+Application runs in a sandbox - for isolation, and easy distribution.
+  * Application cannot write to local disk - must use Google store API instead.
+  * Application code only runs in response to a web request, a queued task, or a scheduled task, and must return response data within 30 seconds.
+    * wouldn't be any good for UWS..
+  * Application code can only fetch other URL on port 80
 
 
+== Technical Things to Consider == 
+  * can an xml databse run in the restrictions of App engine?
+  * can App Engine expose REST and SOAP-style webservices?
+    * yes
+  * is there any services that need to be called on ports other than 80?
+    * community? vospace ? random dal services?
+
+== Other Problems == 
+  * Lock in? Only Google offers AppEngine, and so would need to re-write portions of the application if wanted to port for some reason to our own server.
+    * Most of it is standard Java servlets - just the datastorage differs.
+    * using grails may hide most of this.
 = Is there other cloud alternatives? = 
+
+= Host-It-Ourself = 
