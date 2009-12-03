@@ -1,0 +1,6 @@
+#summary Investigate SAMP Support
+#labels Phase-Requirements
+
+  * Issues of SAMP from the browser
+  * Message types supported
+  * Launching desktop applications from browser
