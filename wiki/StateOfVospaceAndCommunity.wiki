@@ -3,7 +3,7 @@
 
 = Introduction =
 
-Investigate whether the standards, and implementations, support our ConsortiumScopedPublishingUseCase
+Investigate whether the standards, and implementations, support the usecase for  ConsortiumScopedPublishing
 
 
 = Details =
