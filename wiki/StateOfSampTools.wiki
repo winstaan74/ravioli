@@ -4,3 +4,4 @@
   * Issues of SAMP from the browser
   * Message types supported
   * Launching desktop applications from browser
+  * SAMP messaging to Applets
