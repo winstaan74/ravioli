@@ -2,7 +2,7 @@
 #labels Featured
 
 = Feasibility =
-
+What's possible?
   * ShallWeUseGoogleAppEngine
     * Nope - deploy to our own server
       * *We need a server*
@@ -27,8 +27,10 @@ Listed in order of priority.
 
 = Design = 
   * ThinkOfaSiteName
+  will be more here later, about the design of the UI.
 
 = Implementation Choices = 
   * XmlDb
   * GrailsServer
   * GoogleWebToolkit
+  * HowToManageUsers
