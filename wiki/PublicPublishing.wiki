@@ -1,0 +1,6 @@
+#summary Vanity publishing of small datasets.
+#labels Phase-Requirements
+
+= Introduction =
+
+Public publishing of tables and images.
