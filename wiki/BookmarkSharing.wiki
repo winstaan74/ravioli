@@ -2,8 +2,11 @@
 #labels Phase-Requirements
 = Introduction =
   * Who sees what?
-  * What is it possible to bookmark - vospace locations, ftp locations?
+  * What is it possible to bookmark 
+    * vospace locations, ftp locations?
+    * stored queries?
     * maybe the bookmarks have more precedence than the registry explorer. Do they all fit?
   * how are these bookmarks represented?
-    * as user-created reg resources?
+    * as user-created registry resources?
+      * means they can be filtered / shared / managed like other private resources
     * or as magic links in the resourcefolders list?
