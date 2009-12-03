@@ -5,5 +5,6 @@
   * tweets
   * mailing list
     * keep as separate google group
-  * whiteboard / wiki
+  * whiteboard / wiki 
   * [http://wave.google.com/ Google Wave] - a blend of most of the above
+  * Blogs - is this our problem?
