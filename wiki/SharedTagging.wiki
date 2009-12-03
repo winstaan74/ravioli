@@ -1,0 +1,9 @@
+#summary User Tagging / Annotating of registry resources.
+#labels Phase-Requirements
+
+= Introduction =
+Is User Tagging / Annotating / Flagging of registry resources (as seen now in voexplorer) useful?
+
+Should these annotations be shared between users?
+  * What scope - all / by group?
+  * how to determine which group the annotation belongs too
