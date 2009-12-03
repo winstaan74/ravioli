@@ -15,6 +15,7 @@
 Listed in order of priority.
  
   * RegistryExploration
+  * ResourceConsumption
   * ImportExport
   * PublicPublishing
   * GroupManagement
