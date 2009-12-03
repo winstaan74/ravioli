@@ -1,7 +1,13 @@
 #summary One-sentence summary of this page.
+#labels Phase-Requirements
 
 = Introduction =
 
 Once the registry has been explored, how are the selected resources consumed?
+  * Samp messaging
+  * integrating other websites
+  * passing to 3rd party applets
+
+Do we need to implement any 'helper apps' in webpages?
 
 = Details =
