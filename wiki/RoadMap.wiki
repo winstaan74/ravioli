@@ -24,6 +24,7 @@ Listed in order of priority.
   * ConsortiumScopedPublishing
   * SharedTagging
   * FurtherCollaborationTools
+  * RichDesktopClients
 
 
 = Design = 
