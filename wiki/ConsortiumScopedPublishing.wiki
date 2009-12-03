@@ -6,4 +6,7 @@ Publishing Tables and Images just to a group
   * registration
   * trust of our service
   * security of underlying data
-    * depends on StateOfVospaceAndCommunity
+    * depends critically on StateOfVospaceAndCommunity
+    * and a little on StateOfSampTools
+
+Maybe there's work-arounds - such as a download-from-vospace client, that runs on user's desktop?
