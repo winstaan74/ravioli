@@ -8,7 +8,8 @@
       * *We need a server*
   * PerformanceExperimentsWithGwt
   * StateOfVospaceAndCommunity
-  * StateOfVoComponents
+  * StateOfPublishingLibraries
+  * StateOfSampTools
  
 
 = Requirements / Use Cases =
