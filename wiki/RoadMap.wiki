@@ -15,7 +15,9 @@
 
   * ConsortiumScopedPublishing
   * PublicPublishing
-
+  * ImportExport
+  * GroupManagement
+  * BookmarkSharing
 
 = Design = 
-  * ThinkOfAName
+  * ThinkOfaSiteName
