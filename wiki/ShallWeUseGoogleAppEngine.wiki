@@ -1,4 +1,5 @@
 #summary Investigation into whether GoogleAppEngine, or a departmental hosted service, would be best.
+#labels Phase-Requirements
 
 = Google App Engine =
 
@@ -19,7 +20,7 @@ From [http://code.google.com/appengine/docs/whatisgoogleappengine.html the websi
 
   The resources your application uses, such as storage and bandwidth, are measured by the gigabyte, and billed at competitive rates. You control the maximum amounts of resources your app can consume, so it always stays within your budget.
 
-* Find size of registry database, estimage out how much data/space we're going to use.*
+* Find size of registry database, estimate out how much data/space we're going to use.*
 
 == Architecture == 
 Application is backed by a distributed memory-cache, and a distributed datastore (NOT a relational database)
@@ -34,6 +35,9 @@ Application runs in a sandbox - for isolation, and easy distribution.
 
 == Technical Things to Consider == 
   * can an xml databse run in the restrictions of App engine?
+    * Cant find any evidence of this. Quite doubtful
+  * can the vo tools we're integrating run in the restrictions of App engine?
+    * doubtful :(
   * can App Engine expose REST and SOAP-style webservices?
     * yes
   * is there any services that need to be called on ports other than 80?
