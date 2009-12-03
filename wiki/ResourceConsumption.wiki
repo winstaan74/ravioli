@@ -1,0 +1,7 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Once the registry has been explored, how are the selected resources consumed?
+
+= Details =
