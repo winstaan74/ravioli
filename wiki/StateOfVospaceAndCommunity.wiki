@@ -1,0 +1,13 @@
+#summary See how far along the specs and implementations for Vospace and Community are.
+#labels Phase-Requirements
+
+= Introduction =
+
+Investigate whether the standards, and implementations, support our ConsortiumScopedPublishingUseCase
+
+
+= Details =
+
+Check the IVOA standards - current, and upcoming.
+
+Check the implementations - as well as AG, are there other VOSpace implementations?
