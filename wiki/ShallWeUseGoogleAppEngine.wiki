@@ -1,0 +1,13 @@
+#summary Investigation into whether GoogleAppEngine, or a departmental hosted service, would be best.
+
+= Introduction =
+
+[http://code.google.com/appengine/ GoogleAppEngine] allows other people to run Java or Python apps on Google's infrastructure.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
