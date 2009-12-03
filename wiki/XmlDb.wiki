@@ -1,0 +1,14 @@
+#summary Which XML Database to use
+#labels Phase-Implementation
+= Introduction =
+
+I want an xml database that is queriable using [ XQuery]
+
+Suspect we should use [http://www.exist-db.org/ eXist], but where's the evidence? There's other alternatives out there - 
+  * http://basex.org/
+  * http://xml.apache.org/xindice/
+  * http://monetdb.cwi.nl/XQuery/
+  * http://www.ozone-db.org/frames/home/what.html
+  * http://modis.ispras.ru/sedna/index.html
+
+ugh! - can't find a performance / ease of use comparison anywhere.
