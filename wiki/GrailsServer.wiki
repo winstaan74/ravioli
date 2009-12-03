@@ -1,0 +1,7 @@
+#summary Notes and links for Grails
+#labels Phase-Implementation
+= Grails =
+[http://www.grails.org/ Grails] is a groovy-based rapid webapp development framework.
+
+
+= Notes = 
