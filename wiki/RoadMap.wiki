@@ -1,0 +1,14 @@
+#summary List of things to be done, the order in which to do them, and when to do them by.
+
+= Feasibility =
+
+  * ShallWeUseGoogleAppServer
+  * PerformanceExperimentsWithGwt
+  * StateOfVospaceAndCommunity
+  * StateOfSaada
+  * StateOfDalToolkit
+
+= Design = 
+
+
+
