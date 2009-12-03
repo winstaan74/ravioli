@@ -1,4 +1,4 @@
-#summary List of things to be done, the order in which to do them, and when to do them by.
+#summary List of things to be done
 #labels Featured
 
 = Feasibility =
@@ -27,3 +27,8 @@ Listed in order of priority.
 
 = Design = 
   * ThinkOfaSiteName
+
+= Implementation Choices = 
+  * XmlDb
+  * GrailsServer
+  * GoogleWebToolkit
