@@ -2,13 +2,11 @@
 
 = Feasibility =
 
-  * ShallWeUseGoogleAppServer
+  * ShallWeUseGoogleAppEngine
   * PerformanceExperimentsWithGwt
   * StateOfVospaceAndCommunity
   * StateOfSaada
   * StateOfDalToolkit
 
 = Design = 
-
-
 
