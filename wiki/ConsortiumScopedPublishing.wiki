@@ -6,4 +6,4 @@ Publishing Tables and Images just to a group
   * registration
   * trust of our service
   * security of underlying data
-    * StateOfCommunityAndVospace
+    * depends on StateOfVospaceAndCommunity
