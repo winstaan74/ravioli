@@ -12,3 +12,7 @@ Suspect we should use [http://www.exist-db.org/ eXist], but where's the evidence
   * http://modis.ispras.ru/sedna/index.html - looks like there's interest in this.
 
 ugh! - can't find a performance / ease of use comparison anywhere.
+
+= Change of Heart =
+
+I think it's going to be simpler to implement what I need using a standard text-indexing search engine over a RDBMS - mostly because there's one already integrated into Grails - the [http://www.grails.org/Searchable+Plugin Searchable] plugin (which uses the [http://lucene.apache.org/java/docs/index.html lucene] search engine)
