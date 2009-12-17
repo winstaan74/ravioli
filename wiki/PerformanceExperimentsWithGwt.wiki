@@ -8,3 +8,6 @@ Build a basic system, to test whether our choice of database (exist), server (gr
 In particular, we want to see a responsive UI that handles a large amount of data, incrementally updating.
 
 At first, I can develop the prototype on my own computer - but for a proper test, we need a server (ideally the production server) to deploy the prototype onto - and then see what the performance is like when access from elsewhere in the UK.
+
+= Developments =
+After much more reading about grails and javascriipt toolkits, I think a quicker win would be to produce a basic UI using one of the standard javascript AJAX toolkits (e.g. prototype, or yahoo UI), and see how performant this is. It's unclear to me, yet, whether we need to go for the full-blown GWT application front-end. I think I should test out the performance of the UI with a more basic toolkit first.
