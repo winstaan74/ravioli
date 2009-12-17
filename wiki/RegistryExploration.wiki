@@ -3,3 +3,12 @@
 
 = Introduction =
 A web 2.0 equivalent to the core functionality of VOExplorer.
+
+
+= Notes = 
+
+Requires a searchable registry as the back end - so maybe implementing a registry harvester is the first task, which constructs a registry resource archive.
+
+I'm unsure whether XQuery and eXist (although I'd like to play with both of them) are really needed for this. Grails very closely integrates with relational databases - if I used an xmldatabase, I'd lose a lot of this functionality (which will be important when the application comes to cover tagging / private resources / etc).
+
+Instead, I suspect the standard grails plugin [http://www.grails.org/Searchable+Plugin Searchable] provides enough functionlity to implement the registry resource archive. Doing this means we can remove the xmldb altogether. 
