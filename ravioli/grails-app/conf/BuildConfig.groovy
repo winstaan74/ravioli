@@ -18,6 +18,10 @@
 			runtime 'xalan:serializer:2.7.1'
 			runtime 'xalan:xalan:2.7.1'
 			//runtime 'net.sf.saxon:saxon:8.7'
+			
+			//test 'ant:ant-junit:1.6.5'
+			
+			compile "joda-time:joda-time:1.6"
 		}
 	}
 	

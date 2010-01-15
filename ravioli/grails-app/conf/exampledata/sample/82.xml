@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xsi:type="vr:Organisation" status="active" updated="2008-04-10T00:00:00" created="2008-04-10T00:00:00">
+  <title>JVO</title>
+  <shortName>jvo</shortName>
+  <identifier>ivo://jvo/jvo</identifier>
+  <curation>
+      <publisher>Japanese Virtual Observatory</publisher>
+      <creator>
+         <name/>
+      </creator>
+      <contributor/>
+      <contact>
+         <name>Yuji SHIRASAKI</name>
+         <email>auth-admin@jvo.nao.ac.jp</email>
+      </contact>
+  </curation>
+  <content>
+      <subject/>
+      <description>Japanese Virtual Observatory</description>
+      <referenceURL>http;//jvo.nao.ac.jp/index-e.html</referenceURL>
+      <type>Organisation</type>
+      <contentLevel>Research</contentLevel>
+  </content>
+</ri:Resource>

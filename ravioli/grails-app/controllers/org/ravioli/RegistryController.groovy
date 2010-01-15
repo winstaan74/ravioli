@@ -25,6 +25,12 @@ class RegistryController {
         redirect(action:'index')
     }
 
+    def sample = {
+		harvestService.sample();
+		redirect(action:'index')
+	}
+		
+
     /** harvest the named registry */
     def harvest = {
 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><vor:Resource xmlns:vor="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" created="2006-01-01T00:00:00" updated="2006-06-16T22:32:08" status="active" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/RegistryInterface-v1.0.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/VOResource-v1.0.xsd http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/VODataService-v1.0.xsd http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/ConeSearch-v1.0.xsd http://www.ivoa.net/xml/STC/stc-v1.30.xsd http://www.ivoa.net/xml/STC/stc-v1.30.xsd" xsi:type="vs:CatalogService">
+<title>USNO-A V2.0, A Catalog of Astrometric Standards</title>
+<shortName>usnoa2</shortName>
+<identifier>ivo://astronet.ru/cas/usnoa2</identifier>
+<curation>
+<publisher ivo-id="ivo://astronet.ru/organisation">Sternberg Astronomical Institute Virtual Observatory Project</publisher>
+<creator>
+<name>Sergey Karpov</name>
+<logo/>
+</creator>
+<date>2007-11-30</date>
+<contact>
+<name>Sergey Karpov</name>
+<email>karpov@sao.ru</email>
+</contact>
+</curation>
+<content>
+<subject>Catalogs</subject>
+<description>
+ USNO-A2.0 is a catalog  of  526,280,881  stars,  and  is  
+based  on  a re-reduction  of the Precision Measuring Machine (PMM) scans
+that were the basis for the USNO-A1.0 catalog. The major difference between
+A2.0 and A1.0 is that A1.0 used the Guide Star Catalog (Lasker et al. 1986,
+as its reference frame whereas A2.0 uses the ICRF as realized by the  USNO
+ACT  catalog  (Urban  et  al.  1997).</description>
+<referenceURL>http://vo.astronet.ru/cas/</referenceURL>
+<type>Archive</type>
+</content>
+<capability standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+<interface role="std" xsi:type="vs:ParamHTTP">
+<accessURL use="base">http://vo.astronet.ru/sai_cas/conesearch?cat=usnoa2&amp;tab=main&amp;</accessURL>
+</interface>
+<maxSR>3</maxSR>
+<maxRecords>1000000</maxRecords>
+<verbosity>false</verbosity>
+<testQuery>
+<ra>0</ra>
+<dec>0</dec>
+<sr>0.1</sr>
+</testQuery>
+</capability>
+</vor:Resource>

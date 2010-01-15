@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><vor:Resource xmlns:vor="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" created="2006-01-01T00:00:00" updated="2006-06-16T22:32:08" status="active" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/RegistryInterface-v1.0.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/VOResource-v1.0.xsd http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/VODataService-v1.0.xsd http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/ConeSearch-v1.0.xsd http://www.ivoa.net/xml/STC/stc-v1.30.xsd http://www.ivoa.net/xml/STC/stc-v1.30.xsd" xsi:type="vs:CatalogService">
+<title>The DR5 data release of SDSS</title>
+<shortName>sdssdr5-phototag</shortName>
+<identifier>ivo://astronet.ru/cas/sdssdr5-phototag</identifier>
+<curation>
+<publisher ivo-id="ivo://astronet.ru/organisation">Sternberg Astronomical Institute Virtual Observatory Project</publisher>
+<creator>
+<name>Sergey Karpov</name>
+<logo/>
+</creator>
+<date>2007-11-30</date>
+<contact>
+<name>Sergey Karpov</name>
+<email>karpov@sao.ru</email>
+</contact>
+</curation>
+<content>
+<subject>Catalogs</subject>
+<description>
+The Sloan Digital Sky Survey is a project to survey a 10000 square degree area
+on the Northern sky over a 5 year period. A dedicated 2.5m telescope is
+specially designed to take wide field (3 degrees in diameter) images using
+a 5x6 mosaic of 2048x2048 CCD, in five wavelength bands, operating in drift
+scan mode. The total raw data will exceed 40 TB. A processed subset, of
+about 1 TB in size, will consist of 1 million spectra, positions and image
+parameters for over 100 million objects, plus a mini-image centered on each
+object in every color. The data will be made available to the public after
+the completion of the survey</description>
+<referenceURL>http://vo.astronet.ru/cas/</referenceURL>
+<type>Archive</type>
+</content>
+<capability standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+<interface role="std" xsi:type="vs:ParamHTTP">
+<accessURL use="base">http://vo.astronet.ru/sai_cas/conesearch?cat=sdssdr5&amp;tab=phototag&amp;</accessURL>
+</interface>
+<maxSR>3</maxSR>
+<maxRecords>1000000</maxRecords>
+<verbosity>false</verbosity>
+<testQuery>
+<ra>0</ra>
+<dec>0</dec>
+<sr>0.1</sr>
+</testQuery>
+</capability>
+</vor:Resource>

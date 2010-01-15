@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><Resource xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xdtn="http://www.w3.org/2004/07/xpath-datatypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:xu="http://www.xmldb.org/xupdate" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xsi:type="vg:Registry" status="active" created="2005-01-07T09:00:00" updated="2005-01-07T09:00:00">
+       <title>Caltech NVO Registry</title>
+       <shortName>Carnivore</shortName>
+       <identifier>ivo://nvo.caltech/registry</identifier>
+       <curation>
+        <publisher ivo-id="ivo://nvo.caltech/CACR">Caltech Center for </publisher>
+        <creator>
+         <name>Dr Matthew J. Graham</name>
+         <logo>http://nvo.caltech.edu:8080/carnivore/images/carnivore.gif</logo>
+        </creator>
+        <date role="creation">2005-01-07</date>
+        <version/>
+        <contact>
+         <name>Dr Matthew J. Graham</name>
+         <address>CACR, Mail Code 158-79, Pasadena, CA 91125</address>
+         <email>mjg@cacr.caltech.edu</email>
+         <telephone>626 395 8030</telephone>
+        </contact>
+       </curation>
+       <content>
+        <subject>data repositories</subject>
+        <subject>digital libraries</subject>
+        <description>Carnivore is a fully-featured open source registry supporting: publishin
+g via an XForms interface, simple text querying and advanced querying using XQue
+ry and ADQL, harvesting via OAI, web services and web-based administration. It i
+s based on the eXist open source native XML database. This means that Carnivore 
+can hold any valid XML document. The publishing interface uses the Orbeon Presen
+tation Server to provide server-side XForms processing.</description>
+        <referenceURL>http://nvo.caltech.edu:8080/carnivore</referenceURL>
+        <type>Registry</type>
+        <contentLevel>Research</contentLevel>
+        <relationship>
+         <relationshipType>mirror-of</relationshipType>
+         <relatedResource/>
+        </relationship>
+       </content>
+       <capability xsi:type="vg:Harvest" standardID="ivo://ivoa.net/std/Registry">
+        <interface xsi:type="vg:OAIHTTP" role="std">
+         <accessURL>http://nvo.caltech.edu:8080/carnivore/cgi-bin/OAI-XML/carnivore/OAI.pl</accessURL>
+        </interface>
+        <interface xsi:type="vg:OAISOAP" role="std">
+         <accessURL>http://nvo.caltech.edu:8080/carnivore/services</accessURL>
+        </interface>
+        <maxRecords>0</maxRecords>
+       </capability>
+       <capability xsi:type="vg:Search" standardID="ivo://ivoa.net/std/Registry">
+        <interface xsi:type="vr:WebService" role="std">
+         <accessURL>http://nvo.caltech.edu:8080/carnivore/services</accessURL>
+        </interface>
+        <maxRecords>0</maxRecords>
+        <extensionSearchSupport>full</extensionSearchSupport>
+        <optionalProtocol>XQuery</optionalProtocol>
+       </capability>
+       <full>true</full>
+       <managedAuthority>nvo.caltech</managedAuthority>
+      </Resource>

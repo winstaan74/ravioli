@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xsi:type="vg:Authority" status="active" updated="2007-04-11T08:52:38" created="2003-01-01T00:00:00">
+   <title>The Australian Virtual Observatory Naming Authority</title>
+   <shortName>Aus-VO authority</shortName>
+   <identifier>ivo://ausvo</identifier>
+   <curation>
+      <publisher>The Australian Virtual Observatory</publisher>
+      <creator>
+         <name>The Australian Virtual Observatory</name>
+         <logo>http://www.aus-vo.org/ausvologo_small.png</logo>
+      </creator>
+      <date>2004-01-01</date>
+      <contact>
+         <name>David Barnes</name>
+         <email>barnesd@unimelb.edu.au</email>
+      </contact>
+   </curation>
+   <content>
+      <subject/>
+      <description>
+The Australian Virtual Observaotry (Aus-VO) is a collaborative project to develop virtual observatory-compliant services and tools appropriate to the Australian astronomy context.  We envisage full interoperability with our international partners in the International Virtual Observatory Alliance.
+   </description>
+      <referenceURL>http://www.aus-vo.org</referenceURL>
+      <type>Organisation</type>
+      <type>Project</type>
+      <contentLevel>General</contentLevel>
+      <contentLevel>Secondary Education</contentLevel>
+      <contentLevel>University</contentLevel>
+      <contentLevel>Research</contentLevel>
+   </content>
+   <managingOrg>The Australian Virtual Observatory</managingOrg>
+</ri:Resource>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cea="http://www.ivoa.net/xml/CEA/v1.0rc1" xmlns:va="http://www.ivoa.net/xml/VOApplication/v1.0rc1" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" created="2000-01-01T09:00:00" status="active" updated="2010-01-12T12:45:17" xsi:type="vg:Registry" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://software.astrogrid.org/schema/registry/RegistryInterface/v1.0/RegistryInterface.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd  http://www.ivoa.net/xml/VORegistry/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VORegistry/v1.0/VORegistry.xsd">
+        <title>SAO RAS Publishing Registry</title>
+        <identifier>ivo://sao.ru/org.astrogrid.registry.RegistryService</identifier>
+        <curation>
+            <publisher ivo-id="ivo://sao.ru/organisation">Special Astrophysical Observatory of RAS (SAO RAS)</publisher>
+            <creator>
+                <name>Special Astrophysical Observatory of RAS (SAO RAS)</name>
+                <logo>http://www.sao.ru/Images/saologo.gif</logo>
+            </creator>
+            <date>2009-09-21</date>
+            <version>1.0</version>
+            <contact>
+                <name>Olga Zhelenkova</name>
+                <email>zhe@sao.ru</email>
+            </contact>
+        </curation>
+        <content>
+            <subject>registry</subject>
+            <description>Astrogrid Registry</description>
+            <source format="">http://software.astrogrid.org/doc/p/registry/2009./</source>
+            <referenceURL>http://www.sao.ru/astrogrid-registry</referenceURL>
+            <type>Registry</type>
+            <contentLevel>Research</contentLevel>
+        </content>
+        <capability standardID="ivo://ivoa.net/std/Registry" xsi:type="vg:Harvest">
+            <interface role="std" xsi:type="vg:OAIHTTP">
+                <accessURL>http://www.sao.ru/astrogrid-registry/OAIHandlerv1_0</accessURL>
+            </interface>
+            <interface role="std" xsi:type="vg:OAISOAP">
+                <accessURL>http://www.sao.ru/astrogrid-registry/services/RegistryHarvestv1_0</accessURL>
+            </interface>      
+       
+            <maxRecords>0</maxRecords>
+        </capability>
+        <capability standardID="ivo://ivoa.net/std/Registry" xsi:type="vg:Search">
+            <interface role="std" xsi:type="vr:WebService">
+                <accessURL>http://www.sao.ru/astrogrid-registry/services/RegistryQueryv1_0</accessURL>
+            </interface>
+       
+            <maxRecords>200</maxRecords>
+            <extensionSearchSupport>full</extensionSearchSupport>
+            <optionalProtocol>XQuery</optionalProtocol>
+        </capability>
+        <full>true</full>
+        <managedAuthority>sao.ru</managedAuthority>
+    </ri:Resource>

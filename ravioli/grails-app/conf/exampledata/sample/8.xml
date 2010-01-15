@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xsi:type="vs:CatalogService" status="active" updated="2008-12-24T00:00:00" created="2008-12-24T00:00:00" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0  http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0  http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/v1.0 ">
+      <title>CGRO/COMPTEL Low-Level Data and Maps</title>
+      <shortName>COMPTEL</shortName>
+   
+      <identifier>ivo://nasa.heasarc/comptel</identifier>
+       
+      <curation>
+      <publisher ivo-id="ivo://nasa.heasarc/ASD">NASA/GSFC HEASARC</publisher>
+          <creator>
+                  <name>HEASARC</name>
+          </creator>
+          <contributor>
+          </contributor>
+          <date>2008-12-24</date> 
+          <contact>
+             <name>Michael Preciado</name>
+             <email>Michael.E.Preciado@nasa.gov</email>
+          </contact>
+       </curation> 
+       <content>
+        <subject>Observation</subject>
+     <description>
+
+COMPTEL is both the name of the Imaging Compton Telescope on the Compton
+Gamma Ray Observatory (CGRO) and the name of this HEASARC database table
+which allows the user to select low-level data and maps produced by this
+instrument. Much more information on the COMPTEL instrument, data products,
+and data analysis techniques can be obtained from the Compton Observatory
+Science Support Center (COSSC) web site at
+&lt;pre&gt;
+     &lt;a href="http://cossc.gsfc.nasa.gov/"&gt;http://cossc.gsfc.nasa.gov/&lt;/a&gt;
+&lt;/pre&gt;
+and from the article in Legacy No. 7 on the HEASARC CGRO Data Archive
+&lt;pre&gt;
+     &lt;a href="http://heasarc.gsfc.nasa.gov/docs/journal/cgro7.html"&gt;http://heasarc.gsfc.nasa.gov/docs/journal/cgro7.html&lt;/a&gt;
+&lt;/pre&gt;
+Interactions in COMPTEL occur in a two stage process: First, a Compton
+collision occurs in one of seven (low-Z) liquid scintillators and is usually
+then completely absorbed in one of fourteen (high-Z) NaI(Tl) scintillators.
+The unusual aspect of this detector is that the location of the gamma-ray on
+the sky is given by an annulus and not a point. The correlation of many events
+enables the localization of point sources or the creation of sky maps.
+Time-of-flight measurements, pulse shape discrimination and anti-coincidence
+shields are used to reject background events. COMPTEL has a wide field of view
+(about 1 steradian, equivalent to a FWHM of about 40 degrees), an angular
+resolution under optimal conditions of about 1 degree, and an energy resolution
+that ranges from 5-10% at 1 MeV. During Phase 1 of the CGRO mission, COMPTEL
+completed the first all-sky survey in the energy range of 0.75-30 MeV (in four
+energy bands). In addition, COMPTEL can measure energy spectra of solar flares
+or bright cosmic gamma-ray bursts between 0.1-10 MeV, and neutrons from solar
+flares.
+
+
+    </description>
+                               <source format=""/>
+     <referenceURL>http://heasarc.gsfc.nasa.gov/W3Browse/cgro/comptel.html</referenceURL>
+          <type>Archive</type>             
+          <contentLevel>Research</contentLevel>
+          <relationship>
+             <relationshipType>service-for</relationshipType>
+             <relatedResource ivo-id="ivo://nasa.heasarc/eud">NASA/GSFC Exploration of the Universe Division</relatedResource>
+          </relationship>
+       </content>
+      <capability standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+             <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="base">
+        http://heasarc.gsfc.nasa.gov/cgi-bin/vo/cone/coneGet.pl?table=comptel&amp;
+          </accessURL>
+                <queryType>GET</queryType>
+                <resultType>text/xml</resultType>
+             </interface>
+       
+          <maxSR>180</maxSR>
+          <maxRecords>99999</maxRecords>
+          <verbosity>true</verbosity>
+             <testQuery><ra>83.480000000000004</ra>
+<dec>-72.2800000000000011</dec><sr>40</sr></testQuery>
+
+       </capability>
+	<capability>
+	   <interface xsi:type="vs:ParamHTTP">
+               <accessURL use="base">
+                  http://heasarc.gsfc.nasa.gov/cgi-bin/W3Browse/getvotable.pl?name=comptel
+               </accessURL>
+               <queryType>GET</queryType>
+               <resultType>text/xml</resultType>
+           </interface>
+        </capability>
+        <capability>
+           <interface xsi:type="vr:WebBrowser">
+              <accessURL use="full">
+	          http://heasarc.gsfc.nasa.gov/cgi-bin/W3Browse/w3query.pl?tablehead=name=heasarc_comptel&amp;Action=More+Options&amp;Action=Parameter+Search&amp;ConeAdd=1
+	      </accessURL>
+           </interface>
+        </capability>
+
+      <coverage>
+          <stc:STCResourceProfile xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd">
+
+                <stc:AstroCoordSystem xlink:type="simple" xlink:href="ivo://STClib/CoordSys#UTC-ICRS-TOPO" id="_comptel_UTC-ICRS-TOPO"/>
+
+                <stc:AstroCoords coord_system_id="_comptel_UTC-ICRS-TOPO">
+                      <stc:Position1D>
+
+                            <!-- Coverage.RegionOfRegard -->
+                            <stc:Size pos_unit="deg">40</stc:Size>
+
+                      </stc:Position1D>
+                </stc:AstroCoords>
+
+                <stc:AstroCoordArea coord_system_id="_comptel_UTC-ICRS-TOPO">
+                      <stc:AllSky/>
+                </stc:AstroCoordArea>
+         </stc:STCResourceProfile>
+
+          <waveband>Gamma-ray</waveband>
+       </coverage>
+</ri:Resource>

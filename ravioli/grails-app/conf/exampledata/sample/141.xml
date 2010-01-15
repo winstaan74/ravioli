@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:osn="http://www.ivoa.net/xml/OpenSkyNode/v0.2" xmlns:sia="http://www.ivoa.net/xml/SIA/v1.0" xmlns:sla="http://www.ivoa.net/xml/SLA/v0.2" xmlns:ssa="http://www.ivoa.net/xml/SSA/v0.4" xmlns:tsa="http://www.ivoa.net/xml/TSA/v0.2" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" created="2008-10-01T00:00:00" status="active" updated="2009-04-08T12:00:00" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0                                     http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0                                     http://www.ivoa.net/xml/VORegistry/v1.0 http://www.ivoa.net/xml/VORegistry/v1.0                                     http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0                                     http://www.ivoa.net/xml/SIA/v1.0 http://www.ivoa.net/xml/SIA/v1.0                                     http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/v1.0                                     http://www.ivoa.net/xml/OpenSkyNode/v0.2 http://www.ivoa.net/xml/OpenSkyNode/v0.2                                     http://www.ivoa.net/xml/SSA/v0.4 http://www.ivoa.net/xml/SSA/v0.4                                     http://www.ivoa.net/xml/SLA/v0.2 http://esavo.esa.int/xml/SLA-v0.2.xsd                                     http://www.ivoa.net/xml/TSA/v0.2 http://esavo.esa.int/xml/TSA-v0.2.xsd" xsi:type="vg:Authority">
+        <title>European Southern Observatory</title>
+        <shortName>ESO</shortName>
+        <identifier>ivo://eso.org</identifier>
+        <curation>
+            <publisher>European Southern Observatory</publisher>
+            <creator>
+                <name>European Southern Observatory</name>
+                <logo>http://www.eso.org/i/esologo.jpg</logo>
+            </creator>
+            <contact>
+                <name/>
+                <address>Karl-Schwarzschild-Strasse 2, 85748 Garching bei Muenchen, GERMANY</address>
+                <email>archive@eso.org</email>
+            </contact>
+        </curation>
+        <content>
+            <subject/>
+            <description>The ESO/ST-ECF Science Archive is a joint collaboration of the European Organisation for Astronomical Research in the Southern Hemisphere (ESO) and the Space Telescope - European Coordinating Facility (ST-ECF). ESO observational data can be requested after the proprietary period by the astronomical community.</description>
+            <referenceURL/>
+        </content>
+        <managingOrg>European Southern Observatory</managingOrg>
+    </ri:Resource>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" created="1997-12-09T15:34:50" updated="1997-12-09T15:34:50" status="active" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0        http://www.ivoa.net/xml/VOResource/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0        http://www.ivoa.net/xml/ConeSearch/v1.0                  http://www.ivoa.net/xml/ConeSearch/v1.0">
+   <validationLevel validatedBy="ivo://CDS.VizieR">1</validationLevel>
+   <title>Orbital Elements of Minor Planets 1997 (Batrakov+ 1996)</title>
+   <shortName>I/233</shortName>
+   <identifier>ivo://CDS.VizieR/I/233</identifier>
+   <curation>
+      <publisher ivo-id="ivo://CDS">CDS</publisher>
+      <creator>
+         <name>Batrakov Yu.V., Shor V.A.</name>
+      </creator>
+      <contributor>Francois Ochsenbein [CDS]</contributor>
+      <date role="creation">1997-12-09T15:34:50</date>
+      <version>11-Jul-1996</version>
+      <contact>
+         <name>CDS support team</name>
+         <address>CDS, Observatoire de Strasbourg, 11 rue de l'Universite, F-67000 Strasbourg, France</address>
+         <email>question@simbad.u-strasbg.fr</email>
+      </contact>
+   </curation>
+   <content>
+      <subject>Planets+Asteroids</subject>
+      <description>The catalogue contains osculating elements of all permanently numbered minor planets as of November 7, 1995. The elements are given with respect to the ecliptic plane and equinox J2000 for the standard epoch JD2450800.5 = 1997 December 18.0 ET. The elements of (719) Albert which is considered to be lost are given for the epoch when the planet was discovered. The catalogue data, in general, correspond to those published in "Ephemerides of Minor Planets for 1997", St.Petersburg, 1996. Along with these data the catalogue incorporates some connected information. (C) Copyright 1996 ITA RAS </description>
+      <source format="bibcode"> </source>
+      <referenceURL>http://cdsarc.u-strasbg.fr/cgi-bin/Cat?I/233</referenceURL>
+      <type>Catalog</type>
+      <contentLevel>Research</contentLevel>
+   </content>
+   <rights>public</rights>
+   <capability>
+      <interface xsi:type="vr:WebBrowser">         <accessURL use="full">http://vizier.u-strasbg.fr/cgi-bin/VizieR-2?-source=I/233</accessURL>
+</interface>
+   </capability>
+   <capability>
+      <interface xsi:type="vs:ParamHTTP">         <accessURL use="base">http://vizier.u-strasbg.fr/viz-bin/votable/-dtd/-A?-source=I/233</accessURL>
+         <queryType>GET</queryType>
+         <resultType>text/xml+votable</resultType>
+</interface>
+   </capability>
+   <coverage>
+      <footprint>http://cdsarc.u-strasbg.fr/viz-bin/w/Footprint?-gal&amp;-z&amp;8&amp;-s&amp;sqrt&amp;catid=1233</footprint>
+   </coverage>
+   <table>      <name>I/233/catalog</name>
+      <description>The Elements</description>
+      <column>         <name>recno</name>
+         <description>Record number within the original table (starting from 1)</description>
+         <unit> </unit>
+         <ucd>meta.record</ucd>
+</column>
+      <column>         <name>Planet</name>
+         <description>[1/6678]+ Minor Planet number</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+      <column>         <name>Equinox</name>
+         <description>[2000] equinox = 2000 (2000.0)</description>
+         <unit>a</unit>
+         <ucd>time.equinox</ucd>
+</column>
+      <column>         <name>Ep</name>
+         <description>epoch (year) (1)</description>
+         <unit>"Y:M:D"</unit>
+         <ucd>time.epoch</ucd>
+</column>
+      <column>         <name>M</name>
+         <description>mean anomaly</description>
+         <unit>deg</unit>
+         <ucd>src.orbital.meanAnomaly</ucd>
+</column>
+      <column>         <name>omega</name>
+         <description>argument of perihelion</description>
+         <unit>deg</unit>
+         <ucd>src.orbital.periastron</ucd>
+</column>
+      <column>         <name>Node</name>
+         <description>node</description>
+         <unit>deg</unit>
+         <ucd>src.orbital.node</ucd>
+</column>
+      <column>         <name>i</name>
+         <description>inclination to the ecliptic</description>
+         <unit>deg</unit>
+         <ucd>src.orbital.inclination</ucd>
+</column>
+      <column>         <name>e</name>
+         <description>eccentricity</description>
+         <unit> </unit>
+         <ucd>src.orbital.eccentricity</ucd>
+</column>
+      <column>         <name>dmotion</name>
+         <description>mean daily motion</description>
+         <unit>deg/d</unit>
+         <ucd>phys.veloc.ang</ucd>
+</column>
+      <column>         <name>H</name>
+         <description>absolute magnitude, H (2)</description>
+         <unit>mag</unit>
+         <ucd>phys.magAbs;em.opt</ucd>
+</column>
+      <column>         <name>G</name>
+         <description>? slope parameter, G (2)</description>
+         <unit> </unit>
+         <ucd>stat.fit.param</ucd>
+</column>
+      <column>         <name>Nopp</name>
+         <description>number of oppositions used for improvement</description>
+         <unit> </unit>
+         <ucd>meta.number</ucd>
+</column>
+      <column>         <name>Nobs</name>
+         <description>number of observations used for improvement</description>
+         <unit> </unit>
+         <ucd>meta.number</ucd>
+</column>
+      <column>         <name>Year1</name>
+         <description>the first year of the time interval covered by the observations used for improvement</description>
+         <unit>a</unit>
+         <ucd>time.epoch</ucd>
+</column>
+      <column>         <name>Year2</name>
+         <description>the last year of the time interval covered by the observations used for improvement</description>
+         <unit>a</unit>
+         <ucd>time.epoch</ucd>
+</column>
+      <column>         <name>rms</name>
+         <description>? Mean-root-square or maximum residual (4)</description>
+         <unit>arcsec</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>Source</name>
+         <description>code for the source of elements (5)</description>
+         <unit> </unit>
+         <ucd>meta.ref</ucd>
+</column>
+      <column>         <name>Name</name>
+         <description>name or preliminary designation of the planet</description>
+         <unit> </unit>
+         <ucd>meta.id;meta.main</ucd>
+</column>
+      <column>         <name>Author</name>
+         <description>author of the elements</description>
+         <unit> </unit>
+         <ucd>meta.bib.author</ucd>
+</column>
+      <column>         <name>Unum</name>
+         <description>[0/9]? Uncertainty number (6)</description>
+         <unit> </unit>
+         <ucd>meta.code</ucd>
+</column>
+      <column>         <name>Date</name>
+         <description>six-figure code of the date when the elements have been recorded in the ITA</description>
+         <unit>"Y:M:D"</unit>
+         <ucd>time.epoch</ucd>
+</column>
+</table>
+</ri:Resource>

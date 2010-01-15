@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" created="1997-12-09T16:47:00" updated="1997-12-09T16:47:00" status="active" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0        http://www.ivoa.net/xml/VOResource/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0        http://www.ivoa.net/xml/ConeSearch/v1.0                  http://www.ivoa.net/xml/ConeSearch/v1.0">
+   <validationLevel validatedBy="ivo://CDS.VizieR">1</validationLevel>
+   <title>UV Bright Star Spectrophotometric Catalog (Jamar+, 1976)</title>
+   <shortName>III/39A</shortName>
+   <identifier>ivo://CDS.VizieR/III/39A</identifier>
+   <curation>
+      <publisher ivo-id="ivo://CDS">CDS</publisher>
+      <creator>
+         <name>Jamar C., Macau-Hercot D., Monfils A., Thompson G.I., Houziaux L., Wilson R.</name>
+      </creator>
+      <contributor>Francois Ochsenbein [CDS]</contributor>
+      <date role="creation">1997-12-09T16:47:00</date>
+      <version>03-Jan-1995</version>
+      <contact>
+         <name>CDS support team</name>
+         <address>CDS, Observatoire de Strasbourg, 11 rue de l'Universite, F-67000 Strasbourg, France</address>
+         <email>question@simbad.u-strasbg.fr</email>
+      </contact>
+   </curation>
+   <content>
+      <subject>Stars</subject>
+      <subject>Spectroscopy</subject>
+      <subject>Spectrophotometry</subject>
+      <description>This catalogue contains observations carried out by the S2/68 Ultraviolet Sky Survey Telescope (UVSST) aboard the ESRO Satellite TD-1, which measured the absolute ultraviolet flux distribution between 2740A (274nm) and 1350A (135nm). The data presented in this catalogue were obtained during the first observation period, which lasted from 19 March 1972 to 31 October 1972, and contains the brightest objects, for which the signal is good enough to give valuable spectrophotometric information. The Faint Star Catalogue, which contains the photometric data of the stars up to the limit of detectability of the instrument, is known as the "Catalogue of Ultraviolet Fluxes", by Thompson et al. (catalog &lt;II/59&gt;) The S2/68 experiment has been described by Boksenberg et al. (=1973MNRAS.163..291B) and the absolute calibration by Humphries et al. (=1976A&amp;A....49..389H). </description>
+      <source format="bibcode"> </source>
+      <referenceURL>http://cdsarc.u-strasbg.fr/cgi-bin/Cat?III/39A</referenceURL>
+      <type>Catalog</type>
+      <contentLevel>Research</contentLevel>
+   </content>
+   <rights>public</rights>
+   <capability>
+      <interface xsi:type="vr:WebBrowser">         <accessURL use="full">http://vizier.u-strasbg.fr/cgi-bin/VizieR-2?-source=III/39A</accessURL>
+</interface>
+   </capability>
+   <capability>
+      <interface xsi:type="vs:ParamHTTP">         <accessURL use="base">http://vizier.u-strasbg.fr/viz-bin/votable/-dtd/-A?-source=III/39A</accessURL>
+         <queryType>GET</queryType>
+         <resultType>text/xml+votable</resultType>
+</interface>
+   </capability>
+   <capability xsi:type="cs:ConeSearch" standardID="ivo://ivoa.net/std/ConeSearch">      <interface xsi:type="vs:ParamHTTP" role="std">         <accessURL use="base">http://vizier.u-strasbg.fr/viz-bin/votable/-A?-source=III/39A&amp;</accessURL>
+         <queryType>GET</queryType>
+         <resultType>text/xml+votable</resultType>
+</interface>
+      <maxSR>180</maxSR>
+      <maxRecords>9999</maxRecords>
+      <verbosity>true</verbosity>
+      <testQuery>
+         <ra>0.0</ra>
+         <dec>+90.0</dec>
+         <sr>0.1</sr>
+      </testQuery>
+</capability>
+   <facility>TD1</facility>
+   <coverage>
+      <footprint>http://cdsarc.u-strasbg.fr/viz-bin/w/Footprint?-gal&amp;-z&amp;8&amp;-s&amp;sqrt&amp;catid=3039</footprint>
+      <waveband>UV</waveband>
+   </coverage>
+   <table>      <name>III/39A/catalog</name>
+      <description>The spectrophotometric Catalogue</description>
+      <column>         <name>recno</name>
+         <description>Record number within the original table (starting from 1)</description>
+         <unit> </unit>
+         <ucd>meta.record</ucd>
+</column>
+      <column>         <name>UVBS</name>
+         <description>UV Bright Star number</description>
+         <unit> </unit>
+         <ucd>meta.id;meta.main</ucd>
+</column>
+      <column>         <name>HD</name>
+         <description>Henry Draper Catalog (HD) number</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+      <column>         <name>Spectra</name>
+         <description>Number of spectra averaged</description>
+         <unit> </unit>
+         <ucd>meta.number</ucd>
+</column>
+      <column>         <name>F1360</name>
+         <description>Flux at 1360 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1380</name>
+         <description>Flux at 1380 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1400</name>
+         <description>Flux at 1400 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1420</name>
+         <description>Flux at 1420 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1440</name>
+         <description>Flux at 1440 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1460</name>
+         <description>Flux at 1460 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1480</name>
+         <description>Flux at 1480 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1500</name>
+         <description>Flux at 1500 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1520</name>
+         <description>Flux at 1520 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1540</name>
+         <description>Flux at 1540 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1560</name>
+         <description>Flux at 1560 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1580</name>
+         <description>Flux at 1580 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1600</name>
+         <description>Flux at 1600 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1620</name>
+         <description>Flux at 1620 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1640</name>
+         <description>Flux at 1640 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1660</name>
+         <description>Flux at 1660 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1680</name>
+         <description>Flux at 1680 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1700</name>
+         <description>Flux at 1700 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1720</name>
+         <description>Flux at 1720 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1740</name>
+         <description>Flux at 1740 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1760</name>
+         <description>Flux at 1760 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1780</name>
+         <description>Flux at 1780 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1800</name>
+         <description>Flux at 1800 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1820</name>
+         <description>Flux at 1820 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1840</name>
+         <description>Flux at 1840 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1860</name>
+         <description>Flux at 1860 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1880</name>
+         <description>Flux at 1880 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1900</name>
+         <description>Flux at 1900 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1920</name>
+         <description>Flux at 1920 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1940</name>
+         <description>Flux at 1940 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1960</name>
+         <description>Flux at 1960 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F1980</name>
+         <description>Flux at 1980 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2000</name>
+         <description>Flux at 2000 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2020</name>
+         <description>Flux at 2020 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2040</name>
+         <description>Flux at 2040 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2060</name>
+         <description>Flux at 2060 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2080</name>
+         <description>Flux at 2080 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2100</name>
+         <description>Flux at 2100 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2120</name>
+         <description>Flux at 2120 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2140</name>
+         <description>Flux at 2140 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2160</name>
+         <description>Flux at 2160 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2180</name>
+         <description>Flux at 2180 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2200</name>
+         <description>Flux at 2200 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2220</name>
+         <description>Flux at 2220 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2240</name>
+         <description>Flux at 2240 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2260</name>
+         <description>Flux at 2260 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2280</name>
+         <description>Flux at 2280 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2300</name>
+         <description>Flux at 2300 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2320</name>
+         <description>Flux at 2320 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2340</name>
+         <description>Flux at 2340 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2360</name>
+         <description>Flux at 2360 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2380</name>
+         <description>Flux at 2380 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2400</name>
+         <description>Flux at 2400 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2420</name>
+         <description>Flux at 2420 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2440</name>
+         <description>Flux at 2440 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2460</name>
+         <description>Flux at 2460 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2480</name>
+         <description>Flux at 2480 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2500</name>
+         <description>Flux at 2500 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2520</name>
+         <description>Flux at 2520 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2540</name>
+         <description>Flux at 2540 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F2740</name>
+         <description>Flux at 2740 A (10-10erg/cm2/s/A)</description>
+         <unit>10-14W/m2/nm</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>e_F1360</name>
+         <description>RMS deviation of F1360 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1380</name>
+         <description>RMS deviation of F1380 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1400</name>
+         <description>RMS deviation of F1400 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1420</name>
+         <description>RMS deviation of F1420 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1440</name>
+         <description>RMS deviation of F1440 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1460</name>
+         <description>RMS deviation of F1460 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1480</name>
+         <description>RMS deviation of F1480 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1500</name>
+         <description>RMS deviation of F1500 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1520</name>
+         <description>RMS deviation of F1520 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1540</name>
+         <description>RMS deviation of F1540 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1560</name>
+         <description>RMS deviation of F1560 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1580</name>
+         <description>RMS deviation of F1580 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1600</name>
+         <description>RMS deviation of F1600 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1620</name>
+         <description>RMS deviation of F1620 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1640</name>
+         <description>RMS deviation of F1640 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1660</name>
+         <description>RMS deviation of F1660 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1680</name>
+         <description>RMS deviation of F1680 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1700</name>
+         <description>RMS deviation of F1700 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1720</name>
+         <description>RMS deviation of F1720 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1740</name>
+         <description>RMS deviation of F1740 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1760</name>
+         <description>RMS deviation of F1760 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1780</name>
+         <description>RMS deviation of F1780 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1800</name>
+         <description>RMS deviation of F1800 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1820</name>
+         <description>RMS deviation of F1820 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1840</name>
+         <description>RMS deviation of F1840 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1860</name>
+         <description>RMS deviation of F1860 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1880</name>
+         <description>RMS deviation of F1880 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1900</name>
+         <description>RMS deviation of F1900 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1920</name>
+         <description>RMS deviation of F1920 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1940</name>
+         <description>RMS deviation of F1940 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1960</name>
+         <description>RMS deviation of F1960 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F1980</name>
+         <description>RMS deviation of F1980 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2000</name>
+         <description>RMS deviation of F2000 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2020</name>
+         <description>RMS deviation of F2020 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2040</name>
+         <description>RMS deviation of F2040 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2060</name>
+         <description>RMS deviation of F2060 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2080</name>
+         <description>RMS deviation of F2080 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2100</name>
+         <description>RMS deviation of F2100 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2120</name>
+         <description>RMS deviation of F2120 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2140</name>
+         <description>RMS deviation of F2140 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2160</name>
+         <description>RMS deviation of F2160 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2180</name>
+         <description>RMS deviation of F2180 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2200</name>
+         <description>RMS deviation of F2200 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2220</name>
+         <description>RMS deviation of F2220 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2240</name>
+         <description>RMS deviation of F2240 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2260</name>
+         <description>RMS deviation of F2260 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2280</name>
+         <description>RMS deviation of F2280 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2300</name>
+         <description>RMS deviation of F2300 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2320</name>
+         <description>RMS deviation of F2320 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2340</name>
+         <description>RMS deviation of F2340 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2360</name>
+         <description>RMS deviation of F2360 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2380</name>
+         <description>RMS deviation of F2380 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2400</name>
+         <description>RMS deviation of F2400 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2420</name>
+         <description>RMS deviation of F2420 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2440</name>
+         <description>RMS deviation of F2440 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2460</name>
+         <description>RMS deviation of F2460 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2480</name>
+         <description>RMS deviation of F2480 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2500</name>
+         <description>RMS deviation of F2500 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2520</name>
+         <description>RMS deviation of F2520 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2540</name>
+         <description>RMS deviation of F2540 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>e_F2740</name>
+         <description>RMS deviation of F2740 (1)</description>
+         <unit>%</unit>
+         <ucd>stat.error</ucd>
+</column>
+      <column>         <name>HD2</name>
+         <description>Henry Draper Catalog (HD) number (repeated)</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+      <column>         <name>m_HD2</name>
+         <description>Additional HD IDs (given as '/n')</description>
+         <unit> </unit>
+         <ucd>meta.code.multip</ucd>
+</column>
+      <column>         <name>Flamsteed</name>
+         <description>[1/140]? Flamsteed number prefix</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+      <column>         <name>VarName</name>
+         <description>Variable star letter designation</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+      <column>         <name>Greek</name>
+         <description>[1/24]? Greek letter coded as alpha</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+      <column>         <name>GreekSup</name>
+         <description>[]? Greek letter superscript</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+      <column>         <name>m_GreekSup</name>
+         <description>[/2] Second component</description>
+         <unit> </unit>
+         <ucd>meta.code.multip</ucd>
+</column>
+      <column>         <name>Constell</name>
+         <description>Constellation abbreviation</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+      <column>         <name>RA2000</name>
+         <description>Hours RA, 2000.0</description>
+         <unit>"h:m:s"</unit>
+         <ucd>pos.eq.ra;meta.main</ucd>
+</column>
+      <column>         <name>DE2000</name>
+         <description>Sign Dec, 2000.0</description>
+         <unit>"d:m:s"</unit>
+         <ucd>pos.eq.dec;meta.main</ucd>
+</column>
+      <column>         <name>SpType</name>
+         <description>Spectral type</description>
+         <unit> </unit>
+         <ucd>src.spType</ucd>
+</column>
+      <column>         <name>LumClass</name>
+         <description>Luminosity class information</description>
+         <unit> </unit>
+         <ucd>src.class.luminosity</ucd>
+</column>
+      <column>         <name>Vmag</name>
+         <description>V magnitude in the UBV system</description>
+         <unit>mag</unit>
+         <ucd>phot.mag;em.opt.V</ucd>
+</column>
+      <column>         <name>VarFlag</name>
+         <description>[V] 'V' if star confirmed to be variable</description>
+         <unit> </unit>
+         <ucd>meta.note</ucd>
+</column>
+      <column>         <name>n_Vmag</name>
+         <description>'*' if V from HR, HD or SAO catalogues</description>
+         <unit> </unit>
+         <ucd>meta.note</ucd>
+</column>
+      <column>         <name>B-V</name>
+         <description>B-V color in the UBV system</description>
+         <unit>mag</unit>
+         <ucd>phot.color;em.opt.B;em.opt.V</ucd>
+</column>
+      <column>         <name>U-B</name>
+         <description>U-B color in the UBV system</description>
+         <unit>mag</unit>
+         <ucd>phot.color;em.opt.U;em.opt.B</ucd>
+</column>
+      <column>         <name>E(B-V)</name>
+         <description>B-V color excess, E(B-V)</description>
+         <unit>mag</unit>
+         <ucd>phot.color.excess</ucd>
+</column>
+      <column>         <name>n_E(B-V)</name>
+         <description>[*] '*' if E(B-V) extrapolated (see adc.doc)</description>
+         <unit> </unit>
+         <ucd>meta.note</ucd>
+</column>
+      <column>         <name>RotVel</name>
+         <description>Projected rotational velocity (v sin i)</description>
+         <unit>km/s</unit>
+         <ucd>phys.veloc.rotat</ucd>
+</column>
+      <column>         <name>Refs</name>
+         <description>Coded reference numbers (see adc.doc)</description>
+         <unit> </unit>
+         <ucd>meta.ref</ucd>
+</column>
+</table>
+</ri:Resource>

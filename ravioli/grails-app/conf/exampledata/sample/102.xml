@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xsi:type="vs:CatalogService" status="active" created="2007-03-14T00:00:00Z" updated="2007-03-16T06:42:40Z">
+          <validationLevel validatedBy="ivo://archive.stsci.edu/nvoregistry">2</validationLevel>
+          <title>VVDS-F02 DEEP catalog</title>
+          <shortName>VVDS_F02_DEEP</shortName>
+          <identifier>ivo://obelix.lambrate.inaf.it/vodb/cone/VVDS_F02_DEEP</identifier>
+          <curation>
+            <publisher>         INAF-IASF Milano      </publisher>
+            <creator>
+              <name>INAF-IASF Milano</name>
+            </creator>
+            <version>1.0</version>
+            <contact>
+              <name>VODB Manager</name>
+              <email>luigi@lambrate.inaf.it</email>
+            </contact>
+          </curation>
+          <content>
+            <subject>Galaxy</subject>
+            <subject>Photometry</subject>
+            <description>         This Cone Search service allows to query on the VVDS-F02-DEEP catalog         available at http://cencosw.oamp.fr. It comprises data for 8980         objects from the VVDS-F02 Deep field with IAB between 17.5 and 24, and         with spectroscopic redshift between 0 and 5. The observations, data         processing and redshift measurements have been conducted by the         French-Italian team of the VIMOS VLT Deep Survey (VVDS).      </description>
+            <referenceURL>http://cencosw.oamp.fr</referenceURL>
+            <type>Catalog</type>
+            <contentLevel>Research</contentLevel>
+          </content>
+          <capability xsi:type="cs:ConeSearch" standardID="ivo://ivoa.net/std/ConeSearch">
+            <validationLevel validatedBy="ivo://archive.stsci.edu/nvoregistry">2</validationLevel>
+            <interface xsi:type="vs:ParamHTTP" role="std">
+              <accessURL use="base">http://obelix.lambrate.inaf.it/vodb/ConeSearch?CAT=VVDS_F02_DEEP&amp;</accessURL>
+              <queryType>GET</queryType>
+            </interface>
+            <maxSR>0</maxSR>
+            <maxRecords>8980</maxRecords>
+            <verbosity>false</verbosity>
+            <testQuery>
+              <ra>102.2</ra>
+              <dec>28.5</dec>
+              <sr>0.5</sr>
+            </testQuery>
+          </capability>
+          <coverage>
+            <waveband>Optical</waveband>
+          </coverage>
+        </ri:Resource>

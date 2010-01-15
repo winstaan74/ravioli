@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:osn="http://www.ivoa.net/xml/OpenSkyNode/v0.2" xmlns:sia="http://www.ivoa.net/xml/SIA/v1.0" xmlns:sla="http://www.ivoa.net/xml/SLA/v0.2" xmlns:ssa="http://www.ivoa.net/xml/SSA/v0.4" xmlns:tsa="http://www.ivoa.net/xml/TSA/v0.2" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" created="2009-09-17T13:33:30Z" status="active" updated="2009-09-29T15:34:00Z" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0                                                                     http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0                                                                     http://www.ivoa.net/xml/VORegistry/v1.0 http://www.ivoa.net/xml/VORegistry/v1.0                                                                     http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0                                                                     http://www.ivoa.net/xml/SIA/v1.0 http://www.ivoa.net/xml/SIA/v1.0                                                                     http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/v1.0                                                                     http://www.ivoa.net/xml/OpenSkyNode/v0.2 http://www.ivoa.net/xml/OpenSkyNode/v0.2                                                                     http://www.ivoa.net/xml/SSA/v0.4 http://www.ivoa.net/xml/SSA/v0.4                                                                     http://www.ivoa.net/xml/SLA/v0.2 http://esavo.esa.int/xml/SLA-v0.2.xsd                                                                     http://www.ivoa.net/xml/TSA/v0.2 http://esavo.esa.int/xml/TSA-v0.2.xsd" xsi:type="vs:CatalogService">
+        <title>Ultraviolet photometry for IUE highly processed spectra</title>
+        <identifier>ivo://svo.cab/iue/cs</identifier>
+        <curation>
+            <publisher ivo-id="ivo://svo.cab">SVO CAB</publisher>
+            <creator>
+                <name>Morales, C., Lillo, J.</name>
+            </creator>
+            <contact>
+                <name>Enrique Solano, LAEFF Archive Support Team</name>
+                <email>esm@llaeff.inta.es</email>
+            </contact>
+        </curation>
+        <content>
+            <subject>Stars:evolution</subject>
+            <description>IUE HPDP photometry</description>
+            <referenceURL>http://svo.laeff.inta.es/</referenceURL>
+        </content>
+        <capability standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://svo.laeff.inta.es/theory/iue/cs.php</accessURL>
+            </interface>
+            <maxSR>180</maxSR>
+            <maxRecords>1000</maxRecords>
+            <verbosity>false</verbosity>
+        </capability>
+    </ri:Resource>

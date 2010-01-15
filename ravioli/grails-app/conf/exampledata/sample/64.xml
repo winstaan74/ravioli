@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" status="active" updated="2009-09-08T14:07:56.42" created="2008-10-09T12:13:27.11" xsi:type="vg:Authority">
+  <title>vo paris data centre</title>
+  <shortName>voparis</shortName>
+  <identifier>ivo://voparis.obspm</identifier>
+  <curation>
+    <publisher>Observatoire de Paris</publisher>
+    <creator>
+      <name>voparis - Observatoire de Paris</name>
+    </creator>
+    <contact>
+      <name>Pierre Le Sidaner</name>
+      <address>voparis Bat. Perrault
+77 Av Denfert Rochereau
+75014 Paris
+FRANCE</address>
+      <email>vo.paris@obspm.fr</email>
+      <telephone>00331 40512089</telephone>
+    </contact>
+  </curation>
+  <content>
+    <subject>virtual observatory</subject>
+    <description>
+      This Naming Authority is used to identify resources from voparis at
+      Observatoire de Paris....
+    </description>
+    <referenceURL>http://voparis-web.obspm.fr</referenceURL>
+    <type>Other</type>
+    <contentLevel>General</contentLevel>
+  </content>
+  <managingOrg>Observatoire de Paris</managingOrg>
+</ri:Resource>

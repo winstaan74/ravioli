@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:osn="http://www.ivoa.net/xml/OpenSkyNode/v0.2" xmlns:sia="http://www.ivoa.net/xml/SIA/v1.0" xmlns:sla="http://www.ivoa.net/xml/SLA/v0.2" xmlns:ssa="http://www.ivoa.net/xml/SSA/v0.4" xmlns:tsa="http://www.ivoa.net/xml/TSA/v0.2" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" created="2008-10-06T00:00:00" status="active" updated="2009-09-04T14:37:49Z" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0                                                                     http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0                                                                     http://www.ivoa.net/xml/VORegistry/v1.0 http://www.ivoa.net/xml/VORegistry/v1.0                                                                     http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0                                                                     http://www.ivoa.net/xml/SIA/v1.0 http://www.ivoa.net/xml/SIA/v1.0                                                                     http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/v1.0                                                                     http://www.ivoa.net/xml/OpenSkyNode/v0.2 http://www.ivoa.net/xml/OpenSkyNode/v0.2                                                                     http://www.ivoa.net/xml/SSA/v0.4 http://www.ivoa.net/xml/SSA/v0.4                                                                     http://www.ivoa.net/xml/SLA/v0.2 http://esavo.esa.int/xml/SLA-v0.2.xsd                                                                     http://www.ivoa.net/xml/TSA/v0.2 http://esavo.esa.int/xml/TSA-v0.2.xsd" xsi:type="vs:CatalogService">
+        <title>Cone Search of the SSC Interface for the 2XMMi XMM-Newton Catalogue</title>
+        <shortName>XCATDB</shortName>
+        <identifier>ivo://xcatdb/2xmmi/cs</identifier>
+        <curation>
+            <publisher>Observatory of Strasbourg, SSC Team</publisher>
+            <creator>
+                <name>SSC XMM-Newton Consortium</name>
+                <logo>http://xmmssc-www.star.le.ac.uk/Catalogue/2XMM_logo.jpg</logo>
+            </creator>
+            <contact>
+                <name>Laurent MICHEL</name>
+                <address>11 Rue de l Universite - 67000 Strasbourg - France</address>
+                <email>laurent.michel@astro.u-strasbg.fr</email>
+                <telephone>33 390 242 437</telephone>
+            </contact>
+        </curation>
+        <content>
+            <subject>2XMMi Catalogue</subject>
+            <description>2XMMi is the incremental second catalogue of serendipitous X-ray sources from the European Space Agency's (ESA) XMM-Newton observatory. The catalogue has been constructed by the XMM-Newton Survey Science Centre (SSC) on behalf of ESA. The 2XMMi catalogue has about 17% new detections as compared to the 2XMM catalogue and is the largest X-ray source catalogue ever produced, containing more than twice as many discrete sources as either the ROSAT survey or pointed catalogues. 2XMMi complements deeper Chandra and XMM-Newton small area surveys, probing a much larger sky area. The catalogue provides an effective dataset for generating large, well-defined samples of various types of astrophysical object, notably active galaxies (AGN), clusters of galaxies, interacting compact binaries and active stellar coronae, using the power of X-ray selection. The large sky area covered by the serendipitous survey also means that 2XMMi is a rich resource for exploring the variety of the X-ray source populations and identifying ra</description>
+            <referenceURL>http://xmmssc-www.star.le.ac.uk/Catalogue/xcat_public_2XMMi.html</referenceURL>
+            <type>Archive</type>
+            <contentLevel>Research</contentLevel>
+        </content>
+        <capability standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+            <interface xsi:type="vr:WebBrowser">
+                <accessURL use="full">http://xcatdb.u-strasbg.fr/2xmmi</accessURL>
+            </interface>
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://xcatdb.u-strasbg.fr/2xmmi/conesearch?collection=[CATALOGUE(CatalogueEntry)]</accessURL>
+            </interface>
+            <maxSR>1</maxSR>
+            <maxRecords>10000</maxRecords>
+            <verbosity>false</verbosity>
+        </capability>
+    </ri:Resource>

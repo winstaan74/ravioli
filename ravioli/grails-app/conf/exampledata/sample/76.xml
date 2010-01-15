@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:sn="http://www.ivoa.net/xml/SkyNode/v0.2" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" created="2008-04-10T00:00:00" updated="2008-04-10T00:00:00" status="active">
+
+  <title>The Hipparcos Main Catalogue</title>
+  <shortName>HIPPARCOS</shortName>
+
+  <identifier>ivo://jvo/vizier/I/239</identifier>
+
+  <curation>
+      <publisher>JVO</publisher>
+      <creator>
+         <name/>
+      </creator>
+      <contributor/>
+      <contact>
+         <name>Yuji SHIRASAKI</name>
+      </contact>
+  </curation>
+  <content>
+      <subject>Astrometry</subject>
+      <subject>Photometry</subject>
+      <subject>Catalogs</subject>
+      <subject>Positions</subject>
+      <subject>Stars</subject>
+      <description>The Hipparcos and Tycho Catalogues are the primary products of the
+    European Space Agency's astrometric mission, Hipparcos. The satellite,
+    which operated for four years, returned high quality scientific data
+    from November 1989 to March 1993.
+
+    Each of the catalogues contains a large quantity of very high quality
+    astrometric and photometric data. In addition there are associated
+    annexes featuring variability and double/multiple star data, and solar
+    system astrometric and photometric measurements. In the case of the
+    Hipparcos Catalogue, the principal parts are provided in both printed
+    and machine-readable form (on CDROM). In the case of the Tycho
+    Catalogue, results are provided in machine-readable form only (on
+    CDROM). Although in general only the final reduced and calibrated
+    astrometric and photometric data are provided, some auxiliary files
+    containing results from intermediate stages of the data processing, of
+    relevance for the more-specialised user, have also been retained for
+    publication. (Some, but not all, data files are available from the
+    Centre de Donnees astronomiques de Strasbourg.)
+
+    The global data analysis tasks, proceeding from nearly 1000 Gbit of
+    raw satellite data to the final catalogues, was a lengthy and complex
+    process, and was undertaken by the NDAC and FAST Consortia, together
+    responsible for the production of the Hipparcos Catalogue, and the
+    Tycho Consortium, responsible for the production of the Tycho
+    Catalogue. A fourth scientific consortium, the INCA Consortium, was
+    responsible for the construction of the Hipparcos observing programme,
+    compiling the best-available data for the selected stars before launch
+    into the Hipparcos Input Catalogue. The production of the Hipparcos
+    and Tycho Catalogues marks the formal end of the involvement in the
+    mission by the European Space Agency and the four scientific
+    consortia.
+
+    For more complete and detailed information on the data, the user is
+    advised to refer to Volume 1 ("Introduction and Guide to the Data",
+    ESA SP-1200) of the printed Hipparcos and Tycho Catalogues. The user
+    should also note that in order to convert the Double and Multiple
+    Systems (Component solutions) data file hipdmc.dat into FITS format
+    it is first necessary to filter the file according to whether the
+    entry is a component record (identified by COMP in field DCM5) or a
+    correlation record (identified by CORR in field DCM5) because of the
+    different structures of the respective records. On a Unix system this
+    can be achieved as follows:
+
+    grep COMP hipdmc.dat &gt; hdmcom.dat
+    grep CORR hipdmc.dat &gt; hdmcor.dat
+
+    The catalogue description file (this file) gives the relevant
+    information for converting the main data files, including hdmcor.dat
+    and hdmcom.dat, into FITS format.
+
+    The machine readable data files (i.e. those available on CD-ROM and
+    the subset available from the CDS) contain several extra fields in
+    addition to the data from the printed catalogue. These fields are
+    identified by the letter `M' in the data label (e.g. the field DGM1
+    contains data only available in the machine readable file
+    hipdmg.dat).</description>
+      <source>http://vizier.nao.ac.jp/viz-bin/Cat?I/239</source>
+      <referenceURL>http://vizier.nao.ac.jp/viz-bin/Cat?I/239</referenceURL>
+      <type>Catalog</type>
+      <contentLevel>Research</contentLevel>
+  </content>
+
+  <capability standardID="ivo://ivoa.net/std/OpenSkyNode" xsi:type="vr:Capability">
+      <interface version="1.0" role="std" xsi:type="vr:WebService">
+         <accessURL>http://jvo.nao.ac.jp/skynode/services/SkyNodeForHIP</accessURL>
+      </interface>
+  </capability>
+
+  <coverage>
+      <waveband>Optical</waveband>
+  </coverage>
+</ri:Resource>

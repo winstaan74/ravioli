@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" created="2007-09-24T09:06:56" status="active" updated="2007-09-24T09:06:56" xsi:type="vg:Authority" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://software.astrogrid.org/schema/registry/RegistryInterface/v1.0/RegistryInterface.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd  http://www.ivoa.net/xml/VORegistry/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VORegistry/v1.0/VORegistry.xsd">
+        <title>CASU publishing authority</title>
+        <identifier>ivo://uk.ac.cam.ast</identifier>
+        <curation>
+            <publisher>CASU</publisher>
+            <contact>
+                <name>Guy Rixon</name>
+                <email>gtr@ast.cam.ac.uk</email>
+            </contact>
+        </curation>
+        <content>
+            <subject>Authority</subject>
+            <description/>
+            <referenceURL/>
+        </content>
+        <managingOrg ivo-id="ivo://uk.ac.cam.ast/organisation"/>
+    </ri:Resource>

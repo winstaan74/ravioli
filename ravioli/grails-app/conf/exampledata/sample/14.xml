@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" created="1997-12-09T10:25:36" updated="1997-12-09T10:25:36" status="active" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0        http://www.ivoa.net/xml/VOResource/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0        http://www.ivoa.net/xml/ConeSearch/v1.0                  http://www.ivoa.net/xml/ConeSearch/v1.0">
+   <validationLevel validatedBy="ivo://CDS.VizieR">1</validationLevel>
+   <title>Results of obs with the 6-inch transit circle (Hammond+ 1927-1982)</title>
+   <shortName>I/100A</shortName>
+   <identifier>ivo://CDS.VizieR/I/100A</identifier>
+   <curation>
+      <publisher ivo-id="ivo://CDS">CDS</publisher>
+      <creator>
+         <name>Hammond J. C.</name>
+      </creator>
+      <contributor>Nancy Grace Roman [ADC/SSDOO]</contributor>
+      <date role="creation">1997-12-09T10:25:36</date>
+      <version>31-May-1996</version>
+      <contact>
+         <name>CDS support team</name>
+         <address>CDS, Observatoire de Strasbourg, 11 rue de l'Universite, F-67000 Strasbourg, France</address>
+         <email>question@simbad.u-strasbg.fr</email>
+      </contact>
+   </curation>
+   <content>
+      <subject>Positional_Data</subject>
+      <subject>Stars</subject>
+      <subject>Proper_Motions</subject>
+      <description>This catalog is a compilation of seven catalogs of positions derived from observations with the six-inch transit circle of the U. S. Naval Observatory. The observations were obtained between 1911 and 1971 and were published in the catalogs: W210, W025, W150, W250, W350, W450, and W550. Proper motions and, in most catalogs, spectral types were added from other sources. </description>
+      <source format="bibcode"> </source>
+      <referenceURL>http://cdsarc.u-strasbg.fr/cgi-bin/Cat?I/100A</referenceURL>
+      <type>Catalog</type>
+      <contentLevel>Research</contentLevel>
+   </content>
+   <rights>public</rights>
+   <capability>
+      <interface xsi:type="vr:WebBrowser">         <accessURL use="full">http://vizier.u-strasbg.fr/cgi-bin/VizieR-2?-source=I/100A</accessURL>
+</interface>
+   </capability>
+   <capability>
+      <interface xsi:type="vs:ParamHTTP">         <accessURL use="base">http://vizier.u-strasbg.fr/viz-bin/votable/-dtd/-A?-source=I/100A</accessURL>
+         <queryType>GET</queryType>
+         <resultType>text/xml+votable</resultType>
+</interface>
+   </capability>
+   <capability xsi:type="cs:ConeSearch" standardID="ivo://ivoa.net/std/ConeSearch">      <interface xsi:type="vs:ParamHTTP" role="std">         <accessURL use="base">http://vizier.u-strasbg.fr/viz-bin/votable/-A?-source=I/100A&amp;</accessURL>
+         <queryType>GET</queryType>
+         <resultType>text/xml+votable</resultType>
+</interface>
+      <maxSR>180</maxSR>
+      <maxRecords>9999</maxRecords>
+      <verbosity>true</verbosity>
+      <testQuery>
+         <ra>0.0</ra>
+         <dec>+90.0</dec>
+         <sr>0.1</sr>
+      </testQuery>
+</capability>
+   <coverage>
+      <footprint>http://cdsarc.u-strasbg.fr/viz-bin/w/Footprint?-gal&amp;-z&amp;8&amp;-s&amp;sqrt&amp;catid=1100</footprint>
+      <waveband>Optical</waveband>
+   </coverage>
+   <table>      <name>I/100A/w10</name>
+      <description>W210</description>
+      <column>         <name>recno</name>
+         <description>Record number within the original table (starting from 1)</description>
+         <unit> </unit>
+         <ucd>meta.record</ucd>
+</column>
+      <column>         <name>ID</name>
+         <description>Running number identification (in cat)</description>
+         <unit> </unit>
+         <ucd>meta.id;meta.main</ucd>
+</column>
+      <column>         <name>DM</name>
+         <description>*Durchmusterung name</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+      <column>         <name>mag</name>
+         <description>? Visual Magnitude</description>
+         <unit>mag</unit>
+         <ucd>phot.mag;em.opt.V</ucd>
+</column>
+      <column>         <name>RA1910</name>
+         <description>Right ascension hours (1910.0)</description>
+         <unit>"h:m:s"</unit>
+         <ucd>pos.eq.ra;meta.main</ucd>
+</column>
+      <column>         <name>pmRA</name>
+         <description>*Annual proper motion in right ascension</description>
+         <unit>s/a</unit>
+         <ucd>pos.pm;pos.eq.ra</ucd>
+</column>
+      <column>         <name>DE1910</name>
+         <description>Sign of declination</description>
+         <unit>"d:m:s"</unit>
+         <ucd>pos.eq.dec;meta.main</ucd>
+</column>
+      <column>         <name>pmDE</name>
+         <description>*Annual proper motion in declination</description>
+         <unit>arcsec/a</unit>
+         <ucd>pos.pm;pos.eq.dec</ucd>
+</column>
+      <column>         <name>o_RAh</name>
+         <description>Number of observations - in RA</description>
+         <unit> </unit>
+         <ucd>meta.number</ucd>
+</column>
+      <column>         <name>o_DEd</name>
+         <description>Number of observations - DEc</description>
+         <unit> </unit>
+         <ucd>meta.number</ucd>
+</column>
+      <column>         <name>EpRA</name>
+         <description>Mean date of observations - in RA</description>
+         <unit>yr</unit>
+         <ucd>time.epoch</ucd>
+</column>
+      <column>         <name>EpDE</name>
+         <description>Mean date of observations - in DEc</description>
+         <unit>yr</unit>
+         <ucd>time.epoch</ucd>
+</column>
+      <column>         <name>cat</name>
+         <description>The source catalog</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+</table>
+   <table>      <name>I/100A/w50</name>
+      <description>W150, W250, W350, W450, and W550</description>
+      <column>         <name>recno</name>
+         <description>Record number within the original table (starting from 1)</description>
+         <unit> </unit>
+         <ucd>meta.record</ucd>
+</column>
+      <column>         <name>ID</name>
+         <description>Running number identification (in cat)</description>
+         <unit> </unit>
+         <ucd>meta.id;meta.main</ucd>
+</column>
+      <column>         <name>DM</name>
+         <description>*Durchmusterung name</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+      <column>         <name>mag</name>
+         <description>? Visual Magnitude</description>
+         <unit>mag</unit>
+         <ucd>phot.mag;em.opt.V</ucd>
+</column>
+      <column>         <name>RA1950</name>
+         <description>Right ascension hours (1950.0)</description>
+         <unit>"h:m:s"</unit>
+         <ucd>pos.eq.ra;meta.main</ucd>
+</column>
+      <column>         <name>pmRA</name>
+         <description>*Annual proper motion in right ascension</description>
+         <unit>s/a</unit>
+         <ucd>pos.pm;pos.eq.ra</ucd>
+</column>
+      <column>         <name>DE1950</name>
+         <description>Sign of declination</description>
+         <unit>"d:m:s"</unit>
+         <ucd>pos.eq.dec;meta.main</ucd>
+</column>
+      <column>         <name>pmDE</name>
+         <description>*Annual proper motion in declination</description>
+         <unit>arcsec/a</unit>
+         <ucd>pos.pm;pos.eq.dec</ucd>
+</column>
+      <column>         <name>o_RAh</name>
+         <description>Number of observations - in RA</description>
+         <unit> </unit>
+         <ucd>meta.number</ucd>
+</column>
+      <column>         <name>o_DEd</name>
+         <description>Number of observations - DEc</description>
+         <unit> </unit>
+         <ucd>meta.number</ucd>
+</column>
+      <column>         <name>EpRA</name>
+         <description>Mean date of observations - in RA</description>
+         <unit>yr</unit>
+         <ucd>time.epoch</ucd>
+</column>
+      <column>         <name>EpDE</name>
+         <description>Mean date of observations - in DEc</description>
+         <unit>yr</unit>
+         <ucd>time.epoch</ucd>
+</column>
+      <column>         <name>cat</name>
+         <description>The source catalog</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+</table>
+   <table>      <name>I/100A/w25</name>
+      <description>W025</description>
+      <column>         <name>recno</name>
+         <description>Record number within the original table (starting from 1)</description>
+         <unit> </unit>
+         <ucd>meta.record</ucd>
+</column>
+      <column>         <name>ID</name>
+         <description>Running number identification (in cat)</description>
+         <unit> </unit>
+         <ucd>meta.id;meta.main</ucd>
+</column>
+      <column>         <name>DM</name>
+         <description>*Durchmusterung name</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+      <column>         <name>mag</name>
+         <description>? Visual Magnitude</description>
+         <unit>mag</unit>
+         <ucd>phot.mag;em.opt.V</ucd>
+</column>
+      <column>         <name>RA1925</name>
+         <description>Right ascension hours (1925.0)</description>
+         <unit>"h:m:s"</unit>
+         <ucd>pos.eq.ra;meta.main</ucd>
+</column>
+      <column>         <name>pmRA</name>
+         <description>*Annual proper motion in right ascension</description>
+         <unit>s/a</unit>
+         <ucd>pos.pm;pos.eq.ra</ucd>
+</column>
+      <column>         <name>DE1925</name>
+         <description>Sign of declination</description>
+         <unit>"d:m:s"</unit>
+         <ucd>pos.eq.dec;meta.main</ucd>
+</column>
+      <column>         <name>pmDE</name>
+         <description>*Annual proper motion in declination</description>
+         <unit>arcsec/a</unit>
+         <ucd>pos.pm;pos.eq.dec</ucd>
+</column>
+      <column>         <name>o_RAh</name>
+         <description>Number of observations - in RA</description>
+         <unit> </unit>
+         <ucd>meta.number</ucd>
+</column>
+      <column>         <name>o_DEd</name>
+         <description>Number of observations - DEc</description>
+         <unit> </unit>
+         <ucd>meta.number</ucd>
+</column>
+      <column>         <name>EpRA</name>
+         <description>Mean date of observations - in RA</description>
+         <unit>yr</unit>
+         <ucd>time.epoch</ucd>
+</column>
+      <column>         <name>EpDE</name>
+         <description>Mean date of observations - in DEc</description>
+         <unit>yr</unit>
+         <ucd>time.epoch</ucd>
+</column>
+      <column>         <name>cat</name>
+         <description>The source catalog</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+</table>
+</ri:Resource>

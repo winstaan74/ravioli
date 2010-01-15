@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cea="http://www.ivoa.net/xml/CEA/v1.0rc1" xmlns:va="http://www.ivoa.net/xml/VOApplication/v1.0rc1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" created="2008-02-28T16:43:15" status="active" updated="2009-09-16T16:04:57" xsi:type="vs:CatalogService" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://software.astrogrid.org/schema/registry/RegistryInterface/v1.0/RegistryInterface.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd  http://www.ivoa.net/xml/VODataService/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VODataService/v1.0/VODataService.xsd http://www.ivoa.net/xml/VOTable/v1.0 http://software.astrogrid.org/schema/vo-formats/VOTable/v1.0/VOTable.xsd http://www.ivoa.net/xml/ConeSearch/v1.0 http://software.astrogrid.org/schema/vo-resource-types/ConeSearch/v1.0/ConeSearch.xsd http://www.ivoa.net/xml/SIA/v1.0 http://software.astrogrid.org/schema/vo-resource-types/SIA/v1.0/SIA.xsd http://www.ivoa.net/xml/SSA/v0.4 http://software.astrogrid.org/schema/vo-resource-types/SSA/v0.4/SSA.xsd urn:astrogrid:schema:vo-resource-types:STAP:v1.0 http://software.astrogrid.org/schema/vo-resource-types/STAP/v1.0/STAP.xsd http://www.ivoa.net/xml/CEA/v1.0rc1 http://software.astrogrid.org/schema/vo-resource-types/CEAService/v1.0rc1/CEAService.xsd">
+        <title xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0">Chianti Data Set</title>
+        <identifier xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0">ivo://mssl.ucl.ac.uk/chianti_dsa/chianti</identifier>
+        <curation xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0">
+            <publisher>Mullard Space Science Laboratory</publisher>
+            <creator>
+                <name>Chianti</name>
+            </creator>
+            <contact>
+                <name>Kevin Benson</name>
+                <email>kmb@mssl.ucl.ac.uk</email>
+            </contact>
+        </curation>
+        <content xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0">
+            <subject>Chianti Atomic Data</subject>
+            <description>CHIANTI consists of a critically evaluated set of up-to-date atomic data</description>
+            <referenceURL>http://www.chianti.rl.ac.uk/index.html</referenceURL>
+            <type>Archive</type>
+            <contentLevel>Research</contentLevel>
+            <relationship>
+                <relationshipType>service-for</relationshipType>
+                <relatedResource>ivo://mssl.ucl.ac.uk/chianti_dsa/chianti/ceaApplication</relatedResource>
+            </relationship>
+        </content>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/CEA/v1.0" xsi:type="cea:CeaCapability">
+            <description>Access to two applications: general ADQL query, and asynchronous cone-search where relevant/enabled.</description>
+            <interface xsi:type="cea:CECInterface">
+                <accessURL use="full">http://msslxv.mssl.ucl.ac.uk/astrogrid-dsa-chianti/services/CommonExecutionConnectorService</accessURL>
+            </interface>
+            <managedApplications>
+                <ApplicationReference>ivo://mssl.ucl.ac.uk/chianti_dsa/chianti/ceaApplication</ApplicationReference>
+            </managedApplications>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#capabilities">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://msslxv.mssl.ucl.ac.uk/astrogrid-dsa-chianti/vosi/capabilities</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#availability">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://msslxv.mssl.ucl.ac.uk/astrogrid-dsa-chianti/vosi/availability</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#tables">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://msslxv.mssl.ucl.ac.uk/astrogrid-dsa-chianti/vosi/tables</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#ceaApplication">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://msslxv.mssl.ucl.ac.uk/astrogrid-dsa-chianti/vosi/ceaapplication</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <table xmlns:tab="urn:astrogrid:schema:TableMetadata">
+            <name>SpectralLines</name>
+            <description>Spectral lines part of CHIANTI</description>
+            <column>
+                <name>LINE_NUMBER</name>
+                <description>Unique identifier of the line</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>CHEMICAL_ELEMENT</name>
+                <description>Atomic Z number of the element</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>IONISATION_STAGE</name>
+                <description>Ionisation stage</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>ION_TYPE</name>
+                <description>Type of ion ('d' for dielectronic or 'n')</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>TITLE</name>
+                <description>Short description of the line</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>FINAL_LEVEL_INDEX</name>
+                <description>Index of the lower energy level</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>INITIAL_LEVEL_INDEX</name>
+                <description>Index of the upper energy level</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>TRANSITION_TYPE</name>
+                <description>Type of transition</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>WAVELENGTH_METERS</name>
+                <description>Observed vacuum wavelength (0 for 2-photon trans.; Theoretical wavel. if not available)</description>
+                <unit>m</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>THEORETICAL_WAVELENGTH</name>
+                <description>Theoretical wavelength (0 for two-photon trans.; -1 if not available)</description>
+                <unit>m</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>WEIGHTED_OSCILLATOR_STRENGTH</name>
+                <description>gf value (weighted oscill. strength, 0 if trans. is not electric-dipole allowed)</description>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>EINSTEIN_A</name>
+                <description>A-value (transition probability)</description>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>FINAL_LEVEL_CONFIGURATION</name>
+                <description>Configuration of lower level</description>
+                <unit>s-1</unit>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>FINAL_LEVEL_SPIN</name>
+                <description>Spin 2S+1 of lower level</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>FINAL_LEVEL_L</name>
+                <description>Angular momentum L of lower level</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>FINAL_LEVEL_J</name>
+                <description>Total angular momentum J of lower level</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>FINAL_LEVEL_ENERGY</name>
+                <description>Observed energy of lower level</description>
+                <unit>cm^{-1}</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>FINAL_LEVEL_THEORETICAL_ENERGY</name>
+                <description>Theoretical energy of lower level (-1 if not available)</description>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>INITIAL_LEVEL_CONFIGURATION</name>
+                <description>Configuration of upper level</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>INITIAL_LEVEL_SPIN</name>
+                <description>Spin 2S+1 of upper level</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>INITIAL_LEVEL_L</name>
+                <description>Angular momentum L of upper level</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>INITIAL_LEVEL_J</name>
+                <description>Total angular momentum J of upper level</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>INITIAL_LEVEL_ENERGY</name>
+                <description>Observed energy of upper level (-1 if not available)</description>
+                <unit>cm^{-1}</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>INITIAL_LEVEL_THEORETICAL_ENERGY</name>
+                <description>Theoretical energy  of upper level (-1 if not available)</description>
+                <unit>cm^{-1}</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>COMMENTS</name>
+                <description/>
+                <dataType arraysize="*">char</dataType>
+            </column>
+        </table>
+        <table xmlns:tab="urn:astrogrid:schema:TableMetadata">
+            <name>LineEmissivities</name>
+            <description>Values of emissivities of CHIANTI spectral lines calculated on a
+         pre-defined grid of temperature and densities.</description>
+            <column>
+                <name>LINE_NUMBER</name>
+                <description>Unique identifier of the line</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>ION_NAME</name>
+                <description>Ion name</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>CHEMICAL_ELEMENT</name>
+                <description>Atomic number Z of the element</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>IONISATION_STAGE</name>
+                <description>Ionisation stage</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>ION_TYPE</name>
+                <description>Type of ion ('d' for dielectronic or  'n')</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>FINAL_LEVEL_INDEX</name>
+                <description>Index of the lower energy level</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>INITIAL_LEVEL_INDEX</name>
+                <description>Index of the upper energy level</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>WAVELENGTH_METERS</name>
+                <description>Vacuum wavelength</description>
+                <unit>m</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>LOG_DENSITY</name>
+                <description>Log_10 electron density</description>
+                <unit>cm-3</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>LOG_TEMPERATURE</name>
+                <description>Log_10 electron temperature</description>
+                <unit>Kelvin</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>EMISSIVITY</name>
+                <description>Emissivity</description>
+                <dataType>double</dataType>
+            </column>
+        </table>
+    </ri:Resource>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xsi:type="vs:CatalogService" status="active" updated="2009-09-15T00:00:00" created="2009-09-15T00:00:00" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0  http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0  http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/v1.0 ">
+      <title>CGRO BATSE-Observed Piccinotti Sample of Active Galactic Nuclei</title>
+      <shortName>GRO/Piccinott</shortName>
+   
+      <identifier>ivo://nasa.heasarc/cbatpicagn</identifier>
+       
+      <curation>
+      <publisher ivo-id="ivo://nasa.heasarc/ASD">NASA/GSFC HEASARC</publisher>
+          <creator>
+           <name>Malizia et al.</name>
+          </creator>
+          <contributor>
+          </contributor>
+          <date>2009-09-15</date> 
+          <contact>
+             <name>Michael Preciado</name>
+             <email>Michael.E.Preciado@nasa.gov</email>
+          </contact>
+       </curation> 
+       <content>
+                <subject>AGN</subject>
+     <description>
+
+Compton Gamma-Ray Observatory (CGRO) BATSE Earth-occultation data
+have been used by Malizia et al. (1999, ApJ, 519, 637) to search for
+emission in the 20-100 keV band from all sources in the Piccinotti sample
+(Piccinotti et al. 1982, ApJ, 253, 485: the HEASARC A2PIC database),
+which represents the only complete 20-10 keV survey to date of the
+extragalactic sky down to a limiting flux of 3.1 x 10-11 ergs cm-2 s-1.
+Nearly 4 years of observations have been analyzed to reach a 5 sigma
+confidence level of about 7.8 x 10-11 ergs cm-2 s-1 in the band considered.
+Of the 36 sources in the sample, 14 have been detected above the 5 sigma
+confidence level, while marginal detection (3&lt;= sigma &lt;= 5) can be claimed
+for 13 sources; for nine objects, 2 sigma upper limits are reported. A
+comparison of BATSE results with data at higher energies is used to estimate
+the robustness of the data analysis: while the detection level of each source
+is reliable, the flux measurement may be overestimated in some sources by as
+much as 35%, probably because of incomplete data cleaning. Comparison of
+BATSE fluxes with X-ray fluxes obtained in the 2-10 keV range and averaged
+over years indicates that a canonical power law of photon index 1.7 gives a
+good description of the broadband spectra of bright active galactic nuclei
+(AGNs) and that spectral breaks preferentially occur above 100 keV.
+
+
+    </description>
+            <source format="">1999ApJ...519..637M</source>
+      <referenceURL>http://heasarc.gsfc.nasa.gov/W3Browse/cgro/cbatpicagn.html</referenceURL>
+          <type>Catalog</type>             
+          <contentLevel>Research</contentLevel>
+          <relationship>
+             <relationshipType>service-for</relationshipType>
+             <relatedResource ivo-id="ivo://nasa.heasarc/eud">NASA/GSFC Exploration of the Universe Division</relatedResource>
+          </relationship>
+       </content>
+      <capability standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+             <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="base">
+        http://heasarc.gsfc.nasa.gov/cgi-bin/vo/cone/coneGet.pl?table=cbatpicagn&amp;
+          </accessURL>
+                <queryType>GET</queryType>
+                <resultType>text/xml</resultType>
+             </interface>
+       
+          <maxSR>180</maxSR>
+          <maxRecords>99999</maxRecords>
+          <verbosity>true</verbosity>
+             <testQuery><ra>2.62889999999999979</ra>
+<dec>10.9746000000000006</dec><sr>1</sr></testQuery>
+
+       </capability>
+	<capability>
+	   <interface xsi:type="vs:ParamHTTP">
+               <accessURL use="base">
+                  http://heasarc.gsfc.nasa.gov/cgi-bin/W3Browse/getvotable.pl?name=cbatpicagn
+               </accessURL>
+               <queryType>GET</queryType>
+               <resultType>text/xml</resultType>
+           </interface>
+        </capability>
+        <capability>
+           <interface xsi:type="vr:WebBrowser">
+              <accessURL use="full">
+	          http://heasarc.gsfc.nasa.gov/cgi-bin/W3Browse/w3query.pl?tablehead=name=heasarc_cbatpicagn&amp;Action=More+Options&amp;Action=Parameter+Search&amp;ConeAdd=1
+	      </accessURL>
+           </interface>
+        </capability>
+
+      <coverage>
+          <stc:STCResourceProfile xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd">
+
+                <stc:AstroCoordSystem xlink:type="simple" xlink:href="ivo://STClib/CoordSys#UTC-ICRS-TOPO" id="_cbatpicagn_UTC-ICRS-TOPO"/>
+
+                <stc:AstroCoords coord_system_id="_cbatpicagn_UTC-ICRS-TOPO">
+                      <stc:Position1D>
+
+                            <!-- Coverage.RegionOfRegard -->
+                            <stc:Size pos_unit="deg">1</stc:Size>
+
+                      </stc:Position1D>
+                </stc:AstroCoords>
+
+                <stc:AstroCoordArea coord_system_id="_cbatpicagn_UTC-ICRS-TOPO">
+                      <stc:AllSky/>
+                </stc:AstroCoordArea>
+         </stc:STCResourceProfile>
+
+          <waveband>Gamma-ray</waveband>
+       </coverage>
+</ri:Resource>

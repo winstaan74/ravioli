@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:sn="http://www.ivoa.net/xml/SkyNode/v0.2" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" created="2008-04-10T00:00:00" updated="2008-04-10T00:00:00" status="active">
+
+  <title>UBV photometry and proper motions in M13 (Kadla, 1966)</title>
+  <shortName>Kadla1966</shortName>
+  <identifier>ivo://jvo/vizier/II/248</identifier>
+  <curation>
+      <publisher>JVO</publisher>
+      <creator>
+         <name>Kadla Z.I.</name>
+      </creator>
+      <contributor/>
+      <contact>
+         <name>Yuji SHIRASAKI</name>
+      </contact>
+  </curation>
+  <content>
+      <subject>Globular Clusters</subject>
+      <subject>Photometry</subject>
+      <subject>Proper motions</subject>
+      <description>    The first epoch plates of 8 globular clusters, available in the plate
+    collection of the Pulkovo Observatory, were taken with the normal
+    astrograph at the end of the last and beginning of this century. These
+    plates had been measured previously by N. Gamalei [1948, IzPul, 141]
+    in order to determine the proper motions of the clusters. From 40 to
+    62 stars were used for this purpose and these were assumed to be
+    cluster members on the basis of their proximity to the cluster
+    centers. The epoch differences ranged from 30 to 45 years. As this
+    time interval has now increased considerably (by about a factor of
+    two), it is planned to redetermine the proper motions of these
+    clusters, using more precise criteria for the selection of stars
+    belonging to the cluster. In the previous study (N. Gamalei [1948,
+    IzPul, 141]) only a limited number of field reference stars were
+    measured, and as more complete data on the cluster, cluster members
+    and field stars is desirable all the star images on the plates in an
+    area 80'x80' will be measured in the present program. For future
+    studies of the orbits of galactic clusters it is important that the
+    absolute proper motions be on one system and therefore special
+    attention should be devoted to this problem.
+
+    The present paper is a continuation of an investigation of M13 and
+    deals with the determination of the proper motions and U, B, V
+    magnitudes of separate stars and also a redetermination of the proper
+    motions of the cluster.
+
+    The U, B, V magnitudes of the majority of 923 stars with measured
+    proper motions were found from plates (table 2) taken with the 2 meter
+    Schmidt telescope at Tautenburg and kindly lent to us by Professor N.
+    Richter. The photoelectric standards as given by Savedoff
+    [1956AJ.....61..254S] (table 7) and also U B V magnitudes of six
+    bright field stars (table 8) observed by Mayer were used for
+    calibration. A comparison of the determined B and V magnitudes of
+    stars within an area of about 10'x10' centered on the cluster with
+    those obtained by other authors indicates that the probable external
+    errors do not exceed +/-0.03mag (table 15). However as the
+    photoelectric magnitudes of fainter field stars were not available, a
+    slight systematic error may be present in the derived magnitudes of
+    these stars.
+
+    Data on the plates used for the determination of the proper motions
+    were given in Kadla [1963AZh....40..691K]. The relative proper motion
+    of M 13, redetermined on the basis of a larger number of cluster
+    members (80 in all, measured on 4 pairs of plates with a mean epoch
+    difference equal to 61.4 years) is found to be {mu}x=+0.0008",
+    {mu}y=-0.0014" with a probable error of +/-0.0002".
+</description>
+      <source>Izv. Glav. Astron. Obs. 181, 93 (1966)</source>
+      <referenceURL>http://vizier.nao.ac.jp/viz-bin/Cat?II/248</referenceURL>
+      <type>Catalog</type>
+      <contentLevel>Research</contentLevel>
+  </content>
+
+  <capability standardID="ivo://ivoa.net/std/OpenSkyNode" xsi:type="vr:Capability">
+      <interface version="1.0" role="std" xsi:type="vr:WebService">
+         <accessURL>http://jvo.nao.ac.jp/skynode/services/SkyNodeForII248</accessURL>
+      </interface>
+  </capability>
+
+  <coverage>
+      <waveband>Optical</waveband>
+  </coverage>
+</ri:Resource>

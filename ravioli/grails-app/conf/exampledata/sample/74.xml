@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:sn="http://www.ivoa.net/xml/SkyNode/v0.2" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" created="2008-04-10T00:00:00" updated="2008-04-10T00:00:00" status="active">
+
+  <title>Stars in M13 core (Cohen+ 1997)</title>
+  <shortName>Cohen1997</shortName>
+  <identifier>ivo://jvo/vizier/J/AJ/113/669</identifier>
+
+  <curation>
+      <publisher>JVO</publisher>
+      <creator>
+         <name>Cohen R.L., Guhathakurta P., Yanny B., Schneider D.P., Bahcall J.N.</name>
+      </creator>
+      <contributor/>
+      <contact>
+         <name>Yuji SHIRASAKI</name>
+      </contact>
+  </curation>
+  <content>
+      <subject>Globular Clusters</subject>
+      <subject>Photometry</subject>
+      <description>    We study the dense core of the globular cluster Messier 13 (NGC 6205)
+    using pre-refurbishment Planetary Camera-I images obtained with the
+    Hubble Space Telescope. Short exposures (60s) through the F555W and
+    F785LP filters (similar to Johnson V and I, respectively) have been
+    used to obtain V and I photometry of 2877 stars brighter than V~20 in
+    a 1.25arcmin^2^ region of the cluster including its core and extending
+    out to r~66arcsec (2.3pc) from its center. The sample is complete to
+    V~=18.3 (the main sequence turnoff) and the 1{sigma} photometric error
+    is about 0.1mag. We find 15 blue straggler star candidates and 10
+    other possible blue stragglers in this region of M13. Their specific
+    frequency is in the range F_(BSS)=0.04-0.07, comparable to what is
+    observed near the centers of other dense clusters. A comparison
+    between M13's observed V band stellar luminosity function and a
+    theoretical model (Bergbusch &amp; Vandenberg, 1992ApJS...81..163B) for
+    the luminosity function of an old, metal-poor cluster shows that the
+    model predicts too few of the brightest red giants (V~12.5-15) by a
+    factor of two relative to subgiants/turnoff stars (&gt;6{sigma} effect).
+    The radial distributions of red giants, blue stragglers, and subgiants
+    are consistent with one another, and are well fit by a King profile of
+    core radius r_(core)_=38+/-6arcsec (90% confidence limits) or
+    1.3pc. Stars in the blue horizontal branch of M13, however, appear to
+    be centrally depleted relative to other stellar types. We combine data
+    from three dense ``King model clusters,'' M13, M3, and 47 Tuc, and two
+    post core collapse clusters, M30 and M15, and compare the
+    distributions of various stellar types as a function of
+    (r/r_(half light)_) and (r/r_(core)_). The horizontal branch stars in
+    the combined sample appear to be centrally depleted relative to the
+    giants (97% significance), this depletion is only a 1-2{sigma} effect
+    in each of the clusters taken individually. The blue stragglers in the
+    combined sample are centrally concentrated relative to the giants.
+    (Copyright) 1997 American Astronomical Society.
+</description>
+      <source>Astron. J. 113, 669 (1997)</source>
+      <referenceURL>http://vizier.nao.ac.jp/viz-bin/Cat?J/AJ/113/669</referenceURL>
+      <type>Catalog</type>
+      <contentLevel>Research</contentLevel>
+  </content>
+
+
+  <capability standardID="ivo://ivoa.net/std/OpenSkyNode" xsi:type="vr:Capability">
+      <interface version="1.0" role="std" xsi:type="vr:WebService">
+         <accessURL>http://jvo.nao.ac.jp/skynode/services/SkyNodeForAJ113_669</accessURL>
+      </interface>
+  </capability>
+
+  <coverage>
+      <waveband>Optical</waveband>
+  </coverage>
+</ri:Resource>

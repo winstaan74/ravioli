@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cea="http://www.ivoa.net/xml/CEA/v1.0" xmlns:ceab="http://www.ivoa.net/xml/CEA/base/v1.1" xmlns:ceaimpl="http://www.astrogrid.org/schema/CEAImplementation/v2.0" xmlns:ceat="http://www.ivoa.net/xml/CEA/types/v1.1" xmlns:ns4="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.ivoa.net/xml/STC/stc-v1.30.xsd" xmlns:uws="http://www.ivoa.net/xml/UWS/v0.9.1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" created="2002-01-01T12:00:00+01:00" status="active" updated="2009-09-24T15:24:08" xsi:type="cea:CeaApplication" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://software.astrogrid.org/schema/registry/RegistryInterface/v1.0/RegistryInterface.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd  http://www.ivoa.net/xml/VODataService/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VODataService/v1.0/VODataService.xsd http://www.ivoa.net/xml/VOTable/v1.0 http://software.astrogrid.org/schema/vo-formats/VOTable/v1.0/VOTable.xsd http://www.ivoa.net/xml/ConeSearch/v1.0 http://software.astrogrid.org/schema/vo-resource-types/ConeSearch/v1.0/ConeSearch.xsd http://www.ivoa.net/xml/SIA/v1.0 http://software.astrogrid.org/schema/vo-resource-types/SIA/v1.0/SIA.xsd http://www.ivoa.net/xml/SSA/v0.4 http://software.astrogrid.org/schema/vo-resource-types/SSA/v0.4/SSA.xsd urn:astrogrid:schema:vo-resource-types:STAP:v1.0 http://software.astrogrid.org/schema/vo-resource-types/STAP/v1.0/STAP.xsd http://www.ivoa.net/xml/CEA/v1.0rc1 http://software.astrogrid.org/schema/vo-resource-types/CEAService/v1.0rc1/CEAService.xsd">
+        <title>SkyBoT 2</title>
+        <shortName>SkyBoT</shortName>
+        <identifier>ivo://obspm.fr/skybot</identifier>
+        <curation>
+            <publisher>IMCCE - VO-Paris Datacentre</publisher>
+            <creator>
+                <name>J. Berthier</name>
+                <logo>http://vo.imcce.fr/webservices/share/img/logo_IMCCE-t.png</logo>
+            </creator>
+            <date>2009-09-15</date>
+            <version>2</version>
+            <contact>
+                <name>J. Berthier</name>
+                <email>berthier@imcce.fr</email>
+            </contact>
+        </curation>
+        <content>
+            <subject>solar system, ephemerides, planetary systems, asteroids, comets, planet satellites</subject>
+            <description>SkyBoT is a XML Web Service which allows to seek and identify solar system objects (planet,
+         satellites, asteroids, comets) in any field of view at a given epoch (cone-search method). It provides also 
+         a solar system object name resolver which convert the name or the designation of solar system objects 
+         into their celestial coordinates at a given epoch (resolver method).</description>
+            <referenceURL>http://vo.imcce.fr/webservices/skybot</referenceURL>
+            <type>Other</type>
+        </content>
+        <applicationDefinition>
+            <applicationType>processing</applicationType>
+            <parameters>
+                <parameterDefinition id="epoch" type="real">
+                    <name>Requested epoch</name>
+                    <description>Requested epoch of the cone-search query, expressed in Julian day</description>
+                    <ucd/>
+                    <defaultValue/>
+                </parameterDefinition>
+                <parameterDefinition id="alpha" type="real">
+                    <name>RA</name>
+                    <description>Right ascension of the field of view centre, expressed in degree</description>
+                    <ucd>pos.eq.ra;meta.main</ucd>
+                    <defaultValue/>
+                </parameterDefinition>
+                <parameterDefinition id="delta" type="real">
+                    <name>DEC</name>
+                    <description>Declination of the field of view centre, expressed in degree</description>
+                    <ucd>pos.eq.dec;meta.main</ucd>
+                    <defaultValue/>
+                </parameterDefinition>
+                <parameterDefinition id="radius" type="real">
+                    <name>Radius</name>
+                    <description>Radius of the field of view centre, expressed in arcsec</description>
+                    <ucd>pos.eq.dec;meta.main</ucd>
+                    <defaultValue>900</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="mime" type="text">
+                    <name>Output mime type</name>
+                    <description>Mime type of the output: votable | html | text</description>
+                    <ucd>pos.eq.dec;meta.main</ucd>
+                    <defaultValue>votable</defaultValue>
+                    <optionList>
+                        <optionVal>votable</optionVal>
+                        <optionVal>html</optionVal>
+                        <optionVal>text</optionVal>
+                    </optionList>
+                </parameterDefinition>
+                <parameterDefinition id="output" type="text">
+                    <name>Output parameters</name>
+                    <description>Type of output parameters: object | basic | obs | all</description>
+                    <ucd>pos.eq.dec;meta.main</ucd>
+                    <defaultValue>basic</defaultValue>
+                    <optionList>
+                        <optionVal>object</optionVal>
+                        <optionVal>basic</optionVal>
+                        <optionVal>obs</optionVal>
+                        <optionVal>all</optionVal>
+                    </optionList>
+                </parameterDefinition>
+                <parameterDefinition id="observer" type="text">
+                    <name>Observer</name>
+                    <description>IAU code of the observer location</description>
+                    <ucd>pos.eq.dec;meta.main</ucd>
+                    <defaultValue>500</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="filter" type="real">
+                    <name>Filter</name>
+                    <description>Filter on the error of position: only targets with position error (in arcsec) lesser 
+               that the given value are retrieved</description>
+                    <ucd>pos.eq.dec;meta.main</ucd>
+                    <defaultValue>120.0</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="objFilter" type="text">
+                    <name/>
+                    <description>Code composed of 0 and 1 which indicates which objects must be sought in the FOV, 
+               respectively asteroids, planets and comets (e.g. 111 to seek all Sso)</description>
+                    <ucd>pos.eq.dec;meta.main</ucd>
+                    <optionList>
+                        <optionVal>111</optionVal>
+                        <optionVal>110</optionVal>
+                        <optionVal>101</optionVal>
+                        <optionVal>011</optionVal>
+                        <optionVal>100</optionVal>
+                        <optionVal>010</optionVal>
+                        <optionVal>001</optionVal>
+                    </optionList>
+                </parameterDefinition>
+                <parameterDefinition id="response" type="text">
+                    <name>Response</name>
+                    <description/>
+                    <ucd/>
+                </parameterDefinition>
+            </parameters>
+            <interfaces>
+                <interfaceDefinition id="simple">
+                    <input>
+                        <pref minOccurs="1" ref="epoch"/>
+                        <pref minOccurs="1" ref="alpha"/>
+                        <pref minOccurs="1" ref="delta"/>
+                        <pref ref="radius"/>
+                        <pref ref="mime"/>
+                        <pref ref="output"/>
+                        <pref ref="observer"/>
+                        <pref ref="filter"/>
+                        <pref ref="objFilter"/>
+                    </input>
+                    <output>
+                        <pref ref="response"/>
+                    </output>
+                </interfaceDefinition>
+            </interfaces>
+        </applicationDefinition>
+    </ri:Resource>

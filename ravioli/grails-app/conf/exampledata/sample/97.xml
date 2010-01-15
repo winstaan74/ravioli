@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sn="http://www.ivoa.net/xml/SkyNode/v0.2" xsi:type="vs:CatalogService" status="active" created="2006-07-24T11:38:18Z" updated="2007-03-14T07:33:51Z">
+          <validationLevel validatedBy="ivo://archive.stsci.edu/nvoregistry">2</validationLevel>
+          <title>VIMOS VLT Deep Survey Public Catalogs</title>
+          <shortName>VVDS</shortName>
+          <identifier>ivo://obelix.lambrate.inaf.it/vodb/SkyNode</identifier>
+          <curation>
+            <publisher>         INAF-IASF Milano      </publisher>
+            <creator>
+              <name>INAF-IASF Milano</name>
+            </creator>
+            <contact>
+              <name>VODB Manager</name>
+              <email>luigi@lambrate.inaf.it</email>
+            </contact>
+          </curation>
+          <content>
+            <subject>Galaxy</subject>
+            <subject>Redshift</subject>
+            <subject>Magnitude</subject>
+            <description>         This SkyNode service allows to query on the VVDS catalogs available at         http://cencosw.oamp.fr.      </description>
+            <referenceURL>http://cencosw.oamp.fr</referenceURL>
+            <type>Catalog</type>
+            <contentLevel>Research</contentLevel>
+          </content>
+          <capability xsi:type="sn:OpenSkyNode" standardID="ivo://ivoa.net/std/OpenSkyNode">
+            <validationLevel validatedBy="ivo://archive.stsci.edu/nvoregistry">2</validationLevel>
+            <interface xsi:type="vr:WebService" role="std">
+              <accessURL use="full">http://obelix.lambrate.inaf.it/vodb/BasicSkyNode?WSDL</accessURL>
+            </interface>
+            <compliance>Basic</compliance>
+            <longitude>0</longitude>
+            <latitude>0</latitude>
+            <maxRecords>0</maxRecords>
+            <primaryTable>CDFS</primaryTable>
+            <primaryKey>id</primaryKey>
+          </capability>
+          <coverage>
+            <stc:STCResourceProfile xmlns="http://www.ivoa.net/xml/STC/stc-v1.30.xsd">
+              <AstroCoordSystem xlink:type="simple" xlink:href="ivo://STClib/CoordSys#UTC-FK5-TOPO" id="obelix.lambrate.inaf.it_vodb_SkyNodeUTC-FK5-TOPO"/>
+              <AstroCoords coord_system_id="obelix.lambrate.inaf.it_vodb_SkyNodeUTC-FK5-TOPO">
+                <Position1D>
+                  <!-- regionOfRegard -->
+                  <Size pos_unit="arcsec">4.16670009144582E-05</Size>
+                </Position1D>
+              </AstroCoords>
+            </stc:STCResourceProfile>
+            <waveband>Optical</waveband>
+          </coverage>
+        </ri:Resource>

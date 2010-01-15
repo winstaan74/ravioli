@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:sia="http://www.ivoa.net/xml/SIA/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" status="active" updated="2008-04-11T09:54:08.13" created="2007-09-20T12:08:35">
+   <title>Digitized Sky Survey</title>
+   <shortName>DSS ESO</shortName>
+   <identifier>ivo://archive.eso.org/dss</identifier>
+   <curation>
+      <publisher ivo-id="ivo://archive.eso.org/eso-saf">
+         European Southern Observatory - Science Archive Facility
+      </publisher>
+      <creator>
+         <name>European Southern Observatory</name>
+         <logo>http://www.eso.org/i/esologo.jpg</logo>
+      </creator>
+      <contributor>Palomar Sky Survey</contributor>
+      <contact>
+         <name>European Southern Observatory, Science Archive Facility</name>
+         <email>archive@eso.org</email>
+      </contact>
+   </curation>
+   <content>
+      <subject>Surveys</subject>
+      <subject>Stars</subject>
+      <subject>Galaxies</subject>
+      <description>
+The Online Digitized Sky Surveys (DSS1 &amp; 2) server at the
+ESO/ST-ECF Archive provides access to the CD-ROM set
+produced by the Space Telescope Science Institute through
+its Guide Star Survey group. The images of these surveys are
+based on photographic data obtained using the Oschin Schmidt
+Telescope on Palomar Mountain and the UK Schmidt
+Telescope. The plates were processed into the present
+compressed digital form with the permission of these
+institutions. The photographic plates were scanned to a
+pixel scale of about 1.7 arcseconds per pixel for the POSS,
+SERC, and Palomar Quick-V surveys, and to about 1.0
+arcseconds per pixel for the POSS-II surveys. Images of any
+part of the sky may be extracted from the DSS, in either
+FITS or GIF format.
+   </description>
+      <referenceURL>http://archive.eso.org/dss/dss</referenceURL>
+      <type>Archive</type>
+      <contentLevel>Research</contentLevel>
+   </content>
+   <capability standardID="ivo://ivoa.net/std/SIA" xsi:type="sia:SimpleImageAccess">
+      <interface role="std" xsi:type="vs:ParamHTTP">
+         <accessURL use="base">http://archive.eso.org/bin/dss_sia/dss.sia?VERSION=1.0&amp;</accessURL>
+         <queryType>GET</queryType>
+         <resultType>application/xml+votable</resultType>
+      </interface>
+      <imageServiceType>Cutout</imageServiceType>
+      <maxQueryRegionSize>
+         <long>0.66</long>
+         <lat>0.66</lat>
+      </maxQueryRegionSize>
+      <maxImageExtent>
+         <long>0.66</long>
+         <lat>0.66</lat>
+      </maxImageExtent>
+      <maxImageSize>
+         <long>3000</long>
+         <lat>3000</lat>
+      </maxImageSize>
+      <maxFileSize>20000000</maxFileSize>
+      <maxRecords>1000</maxRecords>
+      <testQuery>
+         <pos>
+            <long>120</long>
+            <lat>20</lat>
+         </pos>
+         <size>
+            <long>1</long>
+            <lat>1</lat>
+         </size>
+      </testQuery>
+   </capability>
+   <coverage>
+      <stc:STCResourceProfile xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd">
+
+         <stc:AstroCoordSystem xlink:type="simple" xlink:href="ivo://STClib/CoordSys#UTC-ICRS-TOPO" id="archive.eso.org_dss_UTC-ICRS-TOPO"/>
+
+         <stc:AstroCoordArea coord_system_id="archive.eso.org_dss_UTC-ICRS-TOPO">
+            <stc:TimeInterval>
+               <stc:StartTime>
+                  <stc:ISOTime>1984-01-01T00:00:00.0Z</stc:ISOTime>
+               </stc:StartTime>
+               <stc:StopTime>
+                  <stc:ISOTime>1999-12-31T00:00:00.0Z</stc:ISOTime>
+               </stc:StopTime>
+            </stc:TimeInterval>
+            <stc:AllSky/>
+         </stc:AstroCoordArea>
+      </stc:STCResourceProfile>
+
+      <waveband>Infrared</waveband>
+      <waveband>Optical</waveband>
+   </coverage>
+</ri:Resource>

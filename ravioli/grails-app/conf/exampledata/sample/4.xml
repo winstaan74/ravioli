@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xsi:type="vs:CatalogService" status="active" updated="2008-12-24T00:00:00" created="2008-12-24T00:00:00" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0  http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0  http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/v1.0 ">
+      <title>Chandra Serendipitous Extragalactic X-Ray Source ID (SEXSI) Optical Follow-Up</title>
+      <shortName>Chan/Seren/Opt</shortName>
+   
+      <identifier>ivo://nasa.heasarc/chansexoid</identifier>
+       
+      <curation>
+      <publisher ivo-id="ivo://nasa.heasarc/ASD">NASA/GSFC HEASARC</publisher>
+          <creator>
+            <name>Eckart et al.</name>
+          </creator>
+          <contributor>
+          </contributor>
+          <date>2008-12-24</date> 
+          <contact>
+             <name>Michael Preciado</name>
+             <email>Michael.E.Preciado@nasa.gov</email>
+          </contact>
+       </curation> 
+       <content>
+      <subject>Optical Counterpart</subject>
+     <description>
+
+The Serendipitous Extragalactic X-ray Source Identification
+(SEXSI) Program is designed to expand significantly the sample of identified
+extragalactic hard X-ray sources at intermediate fluxes, 10^-15 ergs/cm^2/s
+&lt; 2-10 keV Flux &lt;~ 10^-13 ergs/cm^2/s. SEXSI, which includes sources derived
+from more than 2 square degrees of Chandra images, provides the largest hard
+X-ray-selected sample yet studied, offering an essential complement to the
+Chandra Deep Fields (total area of 0.2 square degrees). In Eckart et al.
+(2005, Paper II) R-band optical imaging of the SEXSI fields from the Palomar
+P60 and P200, the MDM 2.4m and 1.3m, and the Keck I telescopes is described.
+The authors have identified counterparts or derived flux limits for nearly
+1000 hard X-ray sources. Using the optical images, they have derived accurate
+source positions. They have investigated correlations between optical and
+X-ray flux, and optical flux and X-ray hardness ratio. They have also studied
+the density of optical sources surrounding X-ray counterparts, as well as the
+properties of optically faint, hard X-ray sources. In Eckart et al. (2006,
+Paper III) optical spectra of 477 counterparts are presented. These spectra
+reach to R-band magnitudes of &lt;~24 and have produced idnetifications and
+redshifts for 438 hard X-ray sources. Typical completeness levels in the 27
+Chandra fields studied are 40-70%. The vast majority of the 2-10 keV
+selected sample are AGNs with redshifts between 0.1 and 3; the highest
+redshift source lies at z = 4.33.
+
+
+  This table which combines data presented in Eckart et al. (2005, 2006) has
+links to the list of SEXSI X-ray sources (the HEASARC Browse table CHANSEXSI:
+see Paper I = Harrison et al. 2003, ApJ, 596, 944).
+
+
+    </description>
+            <source format="">2006ApJS..165...19E</source>
+      <referenceURL>http://heasarc.gsfc.nasa.gov/W3Browse/chandra/chansexoid.html</referenceURL>
+          <type>Catalog</type>             
+          <contentLevel>Research</contentLevel>
+          <relationship>
+             <relationshipType>service-for</relationshipType>
+             <relatedResource ivo-id="ivo://nasa.heasarc/eud">NASA/GSFC Exploration of the Universe Division</relatedResource>
+          </relationship>
+       </content>
+      <capability standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+             <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="base">
+        http://heasarc.gsfc.nasa.gov/cgi-bin/vo/cone/coneGet.pl?table=chansexoid&amp;
+          </accessURL>
+                <queryType>GET</queryType>
+                <resultType>text/xml</resultType>
+             </interface>
+       
+          <maxSR>180</maxSR>
+          <maxRecords>99999</maxRecords>
+          <verbosity>true</verbosity>
+             <testQuery><ra>193.209416669999996</ra>
+<dec>-9.40458332999999946</dec><sr>0.0166666666666666667</sr></testQuery>
+
+       </capability>
+	<capability>
+	   <interface xsi:type="vs:ParamHTTP">
+               <accessURL use="base">
+                  http://heasarc.gsfc.nasa.gov/cgi-bin/W3Browse/getvotable.pl?name=chansexoid
+               </accessURL>
+               <queryType>GET</queryType>
+               <resultType>text/xml</resultType>
+           </interface>
+        </capability>
+        <capability>
+           <interface xsi:type="vr:WebBrowser">
+              <accessURL use="full">
+	          http://heasarc.gsfc.nasa.gov/cgi-bin/W3Browse/w3query.pl?tablehead=name=heasarc_chansexoid&amp;Action=More+Options&amp;Action=Parameter+Search&amp;ConeAdd=1
+	      </accessURL>
+           </interface>
+        </capability>
+
+      <coverage>
+          <stc:STCResourceProfile xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd">
+
+                <stc:AstroCoordSystem xlink:type="simple" xlink:href="ivo://STClib/CoordSys#UTC-ICRS-TOPO" id="_chansexoid_UTC-ICRS-TOPO"/>
+
+                <stc:AstroCoords coord_system_id="_chansexoid_UTC-ICRS-TOPO">
+                      <stc:Position1D>
+
+                            <!-- Coverage.RegionOfRegard -->
+                            <stc:Size pos_unit="deg">0.0166666666666666667</stc:Size>
+
+                      </stc:Position1D>
+                </stc:AstroCoords>
+
+                <stc:AstroCoordArea coord_system_id="_chansexoid_UTC-ICRS-TOPO">
+                      <stc:AllSky/>
+                </stc:AstroCoordArea>
+         </stc:STCResourceProfile>
+
+          <waveband>Optical</waveband>
+          <waveband>X-ray</waveband>
+       </coverage>
+</ri:Resource>

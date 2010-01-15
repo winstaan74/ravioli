@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xsi:type="vs:DataCollection" status="active" created="2004-10-01T00:00:00Z" updated="2006-06-13T06:57:22Z">
+          <validationLevel validatedBy="ivo://archive.stsci.edu/nvoregistry">2</validationLevel>
+          <title>The Catalogue of Multiple System Components</title>
+          <shortName>RVO:CatMultiSys</shortName>
+          <identifier>ivo://rvo.ru/cat/multiscomp</identifier>
+          <curation>
+            <publisher>         Astronomical Institute of the Saint-Petersburg State University (AI SPbSU)      </publisher>
+            <creator>
+              <name>Astronomical Institute of the Saint-Petersburg State University (AI SPbSU)</name>
+            </creator>
+            <version>2004-10-01</version>
+            <contact>
+              <name>Vsevolod Ivanov</name>
+              <email>viva@pobox.spbu.ru</email>
+            </contact>
+          </curation>
+          <content>
+            <subject>Stars - multiple system components</subject>
+            <description>         The catalogue contains 1581 stars - multiple system components.         Spectral class, rotational velocity and period (when known) are         indicated.      </description>
+            <referenceURL>www.astro.spbu.ru/astro/resources/vsini/VSINI.ZIP</referenceURL>
+            <type>Catalog</type>
+            <contentLevel>Research</contentLevel>
+          </content>
+        </ri:Resource>

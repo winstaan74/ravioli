@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:sn="http://www.ivoa.net/xml/SkyNode/v0.2" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" created="2008-04-10T00:00:00" updated="2008-04-10T00:00:00" status="active">
+
+  <title>Two Micron All Sky Survey</title>
+  <shortName>TWOMASS_JVO</shortName>
+  <identifier>ivo://jvo/twomass</identifier>
+
+  <curation>
+      <publisher>JVO</publisher>
+      <creator>
+         <name/>
+      </creator>
+      <contributor/>
+      <contact>
+         <name>Yuji SHIRASAKI</name>
+      </contact>
+  </curation>
+  <content>
+      <subject/>
+      <description>The Two Micron All Sky Survey (2MASS) project is designed to close the gap between our current technical capability and our knowledge of the near-infrared sky. In addition to providing a context for the interpretation of results obtained at infrared and other wavelengths, 2MASS is providing direct answers to immediate questions on the large-scale structure of the Milky Way and the Local Universe. The optimal use of the next generation of infrared space missions, such as HST/NICMOS, the Space Infrared Telescope Facility (SIRTF), and the Next Generation Space Telescope (NGST), as well as powerful ground-based facilities, such as Keck I, Keck II, and Gemini, require a new census with vastly improved sensitivity and astrometric accuracy than that previously available. To achieve these goals, 2MASS has uniformly scanned the entire sky in three near-infrared bands to detect and characterize point sources brighter than about 1 mJy in each band, with signal-to-noise ratio (SNR) greater tha</description>
+      <referenceURL/>
+  </content>
+
+  <capability standardID="ivo://ivoa.net/std/OpenSkyNode" xsi:type="vr:Capability">
+      <interface version="1.0" role="std" xsi:type="vr:WebService">
+         <accessURL>http://jvo.nao.ac.jp/skynode/services/SkyNodeForTWOMASS</accessURL>
+      </interface>
+  </capability>
+
+  <coverage>
+      <waveband>Infrared</waveband>
+  </coverage>
+
+</ri:Resource>

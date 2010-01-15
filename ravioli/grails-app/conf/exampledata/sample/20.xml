@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xsi:type="vg:Registry" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VORegistry/v1.0 http://www.ivoa.net/xml/VORegistry/v1.0" status="active" created="2007-10-04T00:00:00" updated="2008-02-19T06:00:00">      <title>VizieR publishing registry</title>
+      <shortName>VizieR_registry</shortName>
+      <identifier>ivo://CDS.VizieR/registry</identifier>
+      <curation>
+         <publisher ivo-id="ivo://CDS.VizieR">CDS VizieR service</publisher>
+         <creator>
+            <name>Sebastien Derriere</name>
+         </creator>
+         <contributor>Francois Ochsenbein</contributor>
+         <date role="creation">2007-10-04</date>
+         <date role="update">2008-02-19</date>
+         <version>1.0</version>
+         <contact>
+            <name>CDS support team</name>
+            <address>CDS, Observatoire de Strasbourg, 11 rue de l'Universite, F-67000 Strasbourg, France</address>
+            <email>question@simbad.u-strasbg.fr</email>
+         </contact>
+      </curation>
+      <content>
+         <subject>Registry</subject>
+         <description>This registry provides access to resources from the VizieR catalogues.</description>
+         <referenceURL>http://vizier.u-strasbg.fr</referenceURL>
+         <type>Organisation</type>
+         <contentLevel>Research</contentLevel>
+      </content>
+      <capability xsi:type="vg:Harvest" standardID="ivo://ivoa.net/std/Registry">         <interface xsi:type="vg:OAIHTTP" role="std" version="1.0">            <accessURL>http://cdsweb.u-strasbg.fr/reg-bin/vizier/oai.pl</accessURL>
+</interface>
+         <maxRecords>100</maxRecords>
+</capability>
+      <full>false</full>
+      <managedAuthority>CDS.VizieR</managedAuthority>
+</ri:Resource>

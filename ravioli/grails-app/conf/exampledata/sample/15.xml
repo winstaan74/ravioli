@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" created="1997-12-09T17:12:30" updated="1997-12-09T17:12:30" status="active" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0        http://www.ivoa.net/xml/VOResource/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0        http://www.ivoa.net/xml/ConeSearch/v1.0                  http://www.ivoa.net/xml/ConeSearch/v1.0">
+   <validationLevel validatedBy="ivo://CDS.VizieR">1</validationLevel>
+   <title>Absolute Calibration of Stellar Spectrophotometry (Johnson 1980)</title>
+   <shortName>II/85</shortName>
+   <identifier>ivo://CDS.VizieR/II/85</identifier>
+   <curation>
+      <publisher ivo-id="ivo://CDS">CDS</publisher>
+      <creator>
+         <name>Johnson H.L.</name>
+      </creator>
+      <contributor>Francois Ochsenbein [CDS]</contributor>
+      <date role="creation">1997-12-09T17:12:30</date>
+      <version>29-Apr-1997</version>
+      <contact>
+         <name>CDS support team</name>
+         <address>CDS, Observatoire de Strasbourg, 11 rue de l'Universite, F-67000 Strasbourg, France</address>
+         <email>question@simbad.u-strasbg.fr</email>
+      </contact>
+   </curation>
+   <content>
+      <subject>Spectrophotometry</subject>
+      <description>The catalog contains the absolute fluxes for 16 stars published in Tables 1 and 2 of Johnson (1980). The absolute calibrations were accomplished by combining the 13-color photometry calibrations of Johnson and Mitchell (1975) with spectra obtained with a Michelson spectrophotometer and covering the wavelength range 4000 to 10300 Angstroms (Johnson 1977). The agreement between the absolute calibration and another recent one based upon data for alpha Lyr and 109 Vir by Tug et al. (1977) is shown (Johnson 1980) to be quite good. The catalog includes star name, cross identifications to the numbering systems of the Bright Star Catalogue and The Henry Draper Catalogue and arrays of fluxes having the same number of elements for each of the 16 stars. </description>
+      <source format="bibcode">1980RMxAA...5...25J</source>
+      <referenceURL>http://cdsarc.u-strasbg.fr/cgi-bin/Cat?II/85</referenceURL>
+      <type>Catalog</type>
+      <contentLevel>Research</contentLevel>
+   </content>
+   <rights>public</rights>
+   <capability>
+      <interface xsi:type="vr:WebBrowser">         <accessURL use="full">http://vizier.u-strasbg.fr/cgi-bin/VizieR-2?-source=II/85</accessURL>
+</interface>
+   </capability>
+   <capability>
+      <interface xsi:type="vs:ParamHTTP">         <accessURL use="base">http://vizier.u-strasbg.fr/viz-bin/votable/-dtd/-A?-source=II/85</accessURL>
+         <queryType>GET</queryType>
+         <resultType>text/xml+votable</resultType>
+</interface>
+   </capability>
+   <coverage>
+      <footprint>http://cdsarc.u-strasbg.fr/viz-bin/w/Footprint?-gal&amp;-z&amp;8&amp;-s&amp;sqrt&amp;catid=2085</footprint>
+      <waveband>Optical</waveband>
+   </coverage>
+   <table>      <name>II/85/catalog</name>
+      <description>The Absolute fluxes of 16 stars</description>
+      <column>         <name>recno</name>
+         <description>Record number within the original table (starting from 1)</description>
+         <unit> </unit>
+         <ucd>meta.record</ucd>
+</column>
+      <column>         <name>lambda</name>
+         <description>Wavelength</description>
+         <unit>nm</unit>
+         <ucd>em.wl</ucd>
+</column>
+      <column>         <name>F01</name>
+         <description>Flux for HR 7906 = HD 196867 = alf Del</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F02</name>
+         <description>Flux for HR 5685 = HD 135742 = bet Lib</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F03</name>
+         <description>Flux for HR 4662 = HD 106625 = gam Crv</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F04</name>
+         <description>Flux for HR 6629 = HD 161868 = gam Oph</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F05</name>
+         <description>Flux for HR 4942 = HD 113791 = xi2 Cet</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F06</name>
+         <description>Flux for HR 7235 = HD 177724 = zet Aql</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F07</name>
+         <description>Flux for HR 875 = HD 18331</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F08</name>
+         <description>Flux for HR 3314 = HD 71155</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F09</name>
+         <description>Flux for HR 2491 = HD 48915 = alf CMa</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F10</name>
+         <description>Flux for HR 7001 = HD 172167 = alf Lyr</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F11</name>
+         <description>Flux for HR 8781 = HD 218045 = alf Peg</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F12</name>
+         <description>Flux for HR 4534 = HD 102647 = bet Leo</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F13</name>
+         <description>Flux for HR 1855 = HD 36512 = ups Ori</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F14</name>
+         <description>Flux for HR 8622 = HD 214680 = 10 Lac</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F15</name>
+         <description>Flux for HR 5511 = HD 130109 = 109 Vir</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+      <column>         <name>F16</name>
+         <description>Flux for HR 8634 = HD 214923 = zet Peg</description>
+         <unit>mW/m2/Hz</unit>
+         <ucd>phot.flux</ucd>
+</column>
+</table>
+</ri:Resource>

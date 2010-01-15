@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" status="active" updated="2008-12-24T00:00:00" created="2008-12-24T00:00:00" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0  http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0 ">
+      <title>ASCA Proposals</title>
+      <shortName>ASCAO</shortName>
+   
+      <identifier>ivo://nasa.heasarc/ascao</identifier>
+       
+      <curation>
+      <publisher ivo-id="ivo://nasa.heasarc/ASD">NASA/GSFC HEASARC</publisher>
+          <creator>
+                  <name>HEASARC</name>
+          </creator>
+          <contributor>
+          </contributor>
+          <date>2008-12-24</date> 
+          <contact>
+             <name>Michael Preciado</name>
+             <email>Michael.E.Preciado@nasa.gov</email>
+          </contact>
+       </curation> 
+       <content>
+      <subject>Proposed Target</subject>
+     <description>
+
+The ASCAO database contains the listing of accepted targets from all
+proposals submitted in repsonse to the ASCA Guest Observer (GO) Announcements
+of Opportunities (AOs), as well as the targets that were selected for the
+Performance Verification (PV) phase.  The current version of ASCAO includes
+all accepted targets from AOs 1 through 8.5 inclusive. Notice that, since the
+accepted targets include Priority 3 ones of which only a fraction have or will
+actually be observed, some of the listed targets in this database will never
+have been observed. To obtain more detailed information about the status of
+particular targets, please consult either the Master ASCA database table
+(ASCAMASTER) or the ASCA Observing Log database table (ASCALOG).
+
+
+    </description>
+                               <source format=""/>
+       <referenceURL>http://heasarc.gsfc.nasa.gov/W3Browse/asca/ascao.html</referenceURL>
+          <type>Archive</type>             
+          <contentLevel>Research</contentLevel>
+          <relationship>
+             <relationshipType>service-for</relationshipType>
+             <relatedResource ivo-id="ivo://nasa.heasarc/eud">NASA/GSFC Exploration of the Universe Division</relatedResource>
+          </relationship>
+       </content>
+   <capability/>
+      <coverage>
+          <stc:STCResourceProfile xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd">
+
+                <stc:AstroCoordSystem xlink:type="simple" xlink:href="ivo://STClib/CoordSys#UTC-ICRS-TOPO" id="_ascao_UTC-ICRS-TOPO"/>
+
+                <stc:AstroCoords coord_system_id="_ascao_UTC-ICRS-TOPO">
+                      <stc:Position1D>
+
+                            <!-- Coverage.RegionOfRegard -->
+                            <stc:Size pos_unit="deg">0.5</stc:Size>
+
+                      </stc:Position1D>
+                </stc:AstroCoords>
+
+                <stc:AstroCoordArea coord_system_id="_ascao_UTC-ICRS-TOPO">
+                      <stc:AllSky/>
+                </stc:AstroCoordArea>
+         </stc:STCResourceProfile>
+
+          <waveband>X-ray</waveband>
+       </coverage>
+</ri:Resource>

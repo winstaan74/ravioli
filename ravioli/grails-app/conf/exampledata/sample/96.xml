@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xsi:type="vs:DataCollection" status="active" created="1999-01-01T00:00:00Z" updated="2006-06-15T09:24:45Z">
+          <validationLevel validatedBy="ivo://archive.stsci.edu/nvoregistry">2</validationLevel>
+          <title>The Database of UV Cet type variables</title>
+          <shortName>UV Cet Database</shortName>
+          <identifier>ivo://rvo.ru/db/uvcet</identifier>
+          <curation>
+            <publisher>         Crimean Astrophysical Observatory / Stanford University      </publisher>
+            <creator>
+              <name>Roald Gershberg</name>
+            </creator>
+            <version>1999-01-01</version>
+            <contact>
+              <name>Sergey Sergeev</name>
+              <email>sergeev@crao.crimea.ua</email>
+            </contact>
+          </curation>
+          <content>
+            <subject>UV Cet type variable stars</subject>
+            <description>         The bibliography database for the UV Cet type variables      </description>
+            <referenceURL>www.crao.crimea.ua/databases/UVCet/</referenceURL>
+            <type>Bibliography</type>
+            <contentLevel>Research</contentLevel>
+          </content>
+        </ri:Resource>

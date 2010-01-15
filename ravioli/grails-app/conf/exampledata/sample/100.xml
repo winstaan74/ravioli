@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:sn="http://www.ivoa.net/xml/SkyNode/v0.2" xsi:type="vs:CatalogService" status="active" created="2004-11-22T12:22:53Z" updated="2007-02-20T09:57:39Z">
+          <validationLevel validatedBy="ivo://archive.stsci.edu/nvoregistry">2</validationLevel>
+          <title>Galaxy Evolution Explorer</title>
+          <shortName>GALEX</shortName>
+          <identifier>ivo://archive.stsci.edu/galex/SKYNODE</identifier>
+          <curation>
+            <publisher>         STScI      </publisher>
+            <creator>
+              <name>Alberto Conti</name>
+            </creator>
+            <version>V1.0</version>
+            <contact>
+              <name>Alberto Conti</name>
+              <email>archive@stsci.edu</email>
+            </contact>
+          </curation>
+          <content>
+            <subject>SkyNode</subject>
+            <subject>OpenSkyNode</subject>
+            <subject>Galaxy</subject>
+            <subject>Star</subject>
+            <subject>Evolution</subject>
+            <subject>GALEX</subject>
+            <description>         This SkyNode points to the latest public GALEX catalog data release         available at http://galex.stsci.edu/. The Galaxy Evolution Explorer         (GALEX), a NASA Small Explorer mission, is performing the first all-         sky,  deep imaging and spectroscopic ultraviolet surveys in space. The         prime  goal of GALEX is to study star formation in galaxies and its         evolution  with time.      </description>
+            <referenceURL>
+            </referenceURL>
+          </content>
+          <capability xsi:type="sn:OpenSkyNode" standardID="ivo://ivoa.net/std/OpenSkyNode">
+            <validationLevel validatedBy="ivo://archive.stsci.edu/nvoregistry">2</validationLevel>
+            <interface xsi:type="vr:WebService" role="std">
+              <accessURL use="full">http://galex.stsci.edu/skynode/ogalex/nodeb.asmx</accessURL>
+            </interface>
+            <compliance>Full</compliance>
+            <longitude>0</longitude>
+            <latitude>0</latitude>
+            <maxRecords>0</maxRecords>
+            <primaryTable>Photoprimary</primaryTable>
+            <primaryKey>objid</primaryKey>
+          </capability>
+          <coverage>
+            <waveband>UV</waveband>
+          </coverage>
+        </ri:Resource>

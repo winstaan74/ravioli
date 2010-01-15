@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cea="http://www.ivoa.net/xml/CEA/v1.0rc1" xmlns:ns1="http://www.astrogrid.org/wsdl/RegistryUpdate/v1.0" xmlns:va="http://www.ivoa.net/xml/VOApplication/v1.0rc1" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" created="2008-03-26T21:23:50" status="active" updated="2008-03-26T21:23:50" xsi:type="vs:CatalogService" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://software.astrogrid.org/schema/registry/RegistryInterface/v1.0/RegistryInterface.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd  http://www.ivoa.net/xml/VODataService/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VODataService/v1.0/VODataService.xsd http://www.ivoa.net/xml/VOTable/v1.0 http://software.astrogrid.org/schema/vo-formats/VOTable/v1.0/VOTable.xsd http://www.ivoa.net/xml/ConeSearch/v1.0 http://software.astrogrid.org/schema/vo-resource-types/ConeSearch/v1.0/ConeSearch.xsd http://www.ivoa.net/xml/SIA/v1.0 http://software.astrogrid.org/schema/vo-resource-types/SIA/v1.0/SIA.xsd http://www.ivoa.net/xml/SSA/v0.4 http://software.astrogrid.org/schema/vo-resource-types/SSA/v0.4/SSA.xsd urn:astrogrid:schema:vo-resource-types:STAP:v1.0 http://software.astrogrid.org/schema/vo-resource-types/STAP/v1.0/STAP.xsd http://www.ivoa.net/xml/CEA/v1.0rc1 http://software.astrogrid.org/schema/vo-resource-types/CEAService/v1.0rc1/CEAService.xsd">
+        <title>CHANSEXOID: Chandra Serendipitous Extragalactic X-Ray Source ID (SEXSI) Optical Follow-Up (LEDAS)</title>
+        <identifier>ivo://uk.ac.le.star.tmpledas/ledas/ledas/chansexoid</identifier>
+        <curation>
+            <publisher>LEDAS, University of Leicester</publisher>
+            <creator>
+                <name>LEDAS</name>
+            </creator>
+            <contact>
+                <name>Duncan Law-Green</name>
+                <email>dlg@star.le.ac.uk</email>
+            </contact>
+        </curation>
+        <content>
+            <subject>LEDAS</subject>
+            <subject>chansexoid</subject>
+            <description>Cone Search service for CHANSEXOID: Chandra Serendipitous Extragalactic X-Ray Source ID (SEXSI) Optical Follow-Up (LEDAS). 
+  						
+  						Part of Catalogues hosted at Leicester Database and Archive Service</description>
+            <referenceURL>http://www.ledas.ac.uk</referenceURL>
+            <type>Catalog</type>
+            <contentLevel>Research</contentLevel>
+            <relationship>
+                <relationshipType>service-for</relationshipType>
+                <relatedResource ivo-id="ivo://uk.ac.le.star.tmpledas/ledas/ledas">LEDAS</relatedResource>
+            </relationship>
+        </content>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+            <description>ledas, chansexoid: cone search</description>
+            <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://camelot.star.le.ac.uk:8080/dsa-catalog/SubmitCone?DSACAT=ledas&amp;DSATAB=chansexoid&amp;</accessURL>
+            </interface>
+            <maxSR>0.0</maxSR>
+            <maxRecords>50000</maxRecords>
+            <verbosity>false</verbosity>
+            <testQuery>
+                <ra>96.0</ra>
+                <dec>5.0</dec>
+                <sr>0.001</sr>
+            </testQuery>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#availability">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://camelot.star.le.ac.uk:8080/dsa-catalog/ledas/vosi/availability</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <table xmlns:tab="urn:astrogrid:schema:TableMetadata">
+            <name>chansexoid</name>
+            <description>CHANSEXOID: Chandra Serendipitous Extragalactic X-Ray Source ID (SEXSI) Optical Follow-Up (LEDAS)</description>
+            <column>
+                <name>name</name>
+                <description>IAU-Registered Designation of X-Ray Source (JHHMMSS.s+DDMMSS)</description>
+                <ucd>ID_MAIN</ucd>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>ra</name>
+                <description>Right Ascension</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_RA_MAIN</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>decl</name>
+                <description>Declination</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_DEC_MAIN</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>lii</name>
+                <description>Galactic Longitude</description>
+                <unit>deg</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>bii</name>
+                <description>Galactic Latitude</description>
+                <unit>deg</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>off_axis_angle</name>
+                <description>Off-Axis Angle (arcmin)</description>
+                <unit>arcmin</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>hb_flux</name>
+                <description>Unabsorbed Hard Band (2.0-10keV) Flux (erg/cm^2/s)</description>
+                <unit>erg/s/cm^2</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>hb_snr</name>
+                <description>Signal-to-Noise Ratio of the Hard Detection</description>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>hardness_ratio</name>
+                <description>Hardness Ratio</description>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>hardness_ratio_flag</name>
+                <description>Flag Indicates Hardness Ratio Is Lower Limit</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>cluster_flag</name>
+                <description>Flag Indicates Source Potentially within 1 Mpc of Known Target Cluster Center</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>optical_id_flag</name>
+                <description>Flag Indicates Information Concerning the Optical Identification</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>rc_mag</name>
+                <description>The Cousins R Magnitude</description>
+                <unit>mag</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>rc_mag_error</name>
+                <description>Error on the Cousins R Magnitude</description>
+                <unit>mag</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>image_limit_rc_mag</name>
+                <description>Limiting Cousins R Magnitude of Image</description>
+                <unit>mag</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>rc_mag_flag</name>
+                <description>Flag Indicates Cousins R Magnitude Fainter Than Image Limit</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>offset_ra</name>
+                <description>Optical Counterpart Right Ascension Offset from X-Ray Right Ascension (arcsec)</description>
+                <unit>arcsec</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>offset_dec</name>
+                <description>Optical Counterpart Declination Offset from X-Ray Declination (arcsec)</description>
+                <unit>arcsec</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>offset_total</name>
+                <description>Total Position Difference of Optical Counterpart and X-Ray Source (arcsec)</description>
+                <unit>arcsec</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>log_fx_fopt</name>
+                <description>Log of the Ratio of the X-Ray Flux to to the Optical Flux</description>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>stellarity</name>
+                <description>SExtractor Stellarity Fraction</description>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>redshift</name>
+                <description>Redshift</description>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>object_type</name>
+                <description>Object Type</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>spectral_notes</name>
+                <description>Flags Indicates Spectral Footnotes</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>log_lx</name>
+                <description>Log of the hard-band (2.0 - 10 keV) Luminosity in erg/s</description>
+                <unit>log(erg/s)</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>log_nh_flag</name>
+                <description>Flag for nH</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>log_nh</name>
+                <description>Log of Best-Fit nH from Spectral Fit</description>
+                <unit>log(cm^-2)</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>log_nh_lower_flag</name>
+                <description>Flag for Log_nH_Lower</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>log_nh_lower</name>
+                <description>One Sigma Low Value of Log_nH</description>
+                <unit>log(cm^-2)</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>log_nh_upper_flag</name>
+                <description>Flag for Log_nH_Upper</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>log_nh_upper</name>
+                <description>One Sigma High Value of Log_nH</description>
+                <unit>log(cm^-2)</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>lower_rf_wavelength</name>
+                <description>Lower Spectrum Wavelength Range</description>
+                <unit>Angstrom</unit>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>upper_rf_wavelength</name>
+                <description>Higher Spectrum Wavelength Range</description>
+                <unit>Angstrom</unit>
+                <dataType>int</dataType>
+            </column>
+        </table>
+    </ri:Resource>

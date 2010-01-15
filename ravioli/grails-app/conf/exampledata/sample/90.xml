@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cea="http://www.ivoa.net/xml/CEA/v1.0rc1" xmlns:va="http://www.ivoa.net/xml/VOApplication/v1.0rc1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" created="2008-02-29T15:22:42" status="active" updated="2009-11-03T15:09:27" xsi:type="vs:CatalogService" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://software.astrogrid.org/schema/registry/RegistryInterface/v1.0/RegistryInterface.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd  http://www.ivoa.net/xml/VODataService/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VODataService/v1.0/VODataService.xsd http://www.ivoa.net/xml/VOTable/v1.0 http://software.astrogrid.org/schema/vo-formats/VOTable/v1.0/VOTable.xsd http://www.ivoa.net/xml/ConeSearch/v1.0 http://software.astrogrid.org/schema/vo-resource-types/ConeSearch/v1.0/ConeSearch.xsd http://www.ivoa.net/xml/SIA/v1.0 http://software.astrogrid.org/schema/vo-resource-types/SIA/v1.0/SIA.xsd http://www.ivoa.net/xml/SSA/v0.4 http://software.astrogrid.org/schema/vo-resource-types/SSA/v0.4/SSA.xsd urn:astrogrid:schema:vo-resource-types:STAP:v1.0 http://software.astrogrid.org/schema/vo-resource-types/STAP/v1.0/STAP.xsd http://www.ivoa.net/xml/CEA/v1.0rc1 http://software.astrogrid.org/schema/vo-resource-types/CEAService/v1.0rc1/CEAService.xsd">
+        <title xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0">TPM N-Body DM Halo Catalogue</title>
+        <identifier xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0">ivo://uk.ac.cam.ast/tpmhalocat/tpmhalocat</identifier>
+        <curation xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0">
+            <publisher ivo-id="ivo://uk.ac.cam.ast/CASU">CASU</publisher>
+            <creator>
+                <name>Laurie Shaw</name>
+            </creator>
+            <contact>
+                <name>Nic Walton</name>
+                <email>naw@ast.cam.ac.uk</email>
+            </contact>
+        </curation>
+        <content xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0">
+            <subject/>
+            <description/>
+            <referenceURL>http://www.astrogrid.org/</referenceURL>
+            <type>Catalog</type>
+            <contentLevel>Research</contentLevel>
+            <relationship>
+                <relationshipType>service-for</relationshipType>
+                <relatedResource>ivo://uk.ac.cam.ast/tpmhalocat/tpmhalocat/ceaApplication</relatedResource>
+            </relationship>
+        </content>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://ivoa.net/std/TAP">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://cass123-zone1.ast.cam.ac.uk/TPMHaloCat/TAP</accessURL>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/CEA/v1.0" xsi:type="cea:CeaCapability">
+            <description>Access to two applications: general ADQL query, and asynchronous cone-search where relevant/enabled.</description>
+            <interface xsi:type="cea:CECInterface">
+                <accessURL use="full">http://cass123-zone1.ast.cam.ac.uk/TPMHaloCat/services/CommonExecutionConnectorService</accessURL>
+            </interface>
+            <managedApplications>
+                <ApplicationReference>ivo://uk.ac.cam.ast/tpmhalocat/ceaApplication</ApplicationReference>
+            </managedApplications>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#capabilities">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://cass123-zone1.ast.cam.ac.uk/TPMHaloCat/VOSI/capabilities</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://ivoa.net/std/VOSI#capabilities">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://cass123-zone1.ast.cam.ac.uk/TPMHaloCat/VOSI/capabilities</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#availability">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://cass123-zone1.ast.cam.ac.uk/TPMHaloCat/VOSI/availability</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://ivoa.net/std/VOSI#availability">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://cass123-zone1.ast.cam.ac.uk/TPMHaloCat/VOSI/availability</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#tables">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://cass123-zone1.ast.cam.ac.uk/TPMHaloCat/VOSI/tables</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#ceaApplication">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://cass123-zone1.ast.cam.ac.uk/TPMHaloCat/VOSI/applications</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://ivoa.net/std/Delegation">
+            <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://cass123-zone1.ast.cam.ac.uk/TPMHaloCat/delegations</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <table xmlns:tab="urn:astrogrid:schema:TableMetadata">
+            <name>clusterhalos</name>
+            <description>A catalogue of simulated dark matter cluster mass halos extracted from a
+        cosmological dark matter N-body simulation (Bode and Ostriker, 2003). Associated subhalos
+        are contained in the 'subhalos' table</description>
+            <column>
+                <name>haloID</name>
+                <description>halo ID tag</description>
+                <ucd>meta.id</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>Np</name>
+                <description>number of particles in halo</description>
+                <ucd>phys.mass;meta.num;comp.sim.particle</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>Mvir</name>
+                <description>virial mass</description>
+                <unit>solMass</unit>
+                <ucd>phys.mass;phys.virial</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Nsubs</name>
+                <description>total number of subhalos in halo</description>
+                <ucd>meta.number;src.class.subhalo</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>MassInSubs</name>
+                <description>total halo mass contained within substructure</description>
+                <unit>solMass</unit>
+                <ucd>phys.mass;src.class.halo.subhalo</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Rvir</name>
+                <description>virial Radius</description>
+                <unit>Mpc</unit>
+                <ucd>phys.size.radius;phys.virial</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>VelDisp</name>
+                <description>velocity Dispersion</description>
+                <unit>km/s</unit>
+                <ucd>phys.veloc.dispersion</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>VirialCoeff</name>
+                <description>measure of halo virialisation (see Shaw et al. 2006)</description>
+                <ucd>meta.code;phys.virial</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Spin</name>
+                <description>spin parameter</description>
+                <ucd>phys.veloc.rotat</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>AxisRatio_IntMaj</name>
+                <description>Intermediate to Major principle axis-length ratio</description>
+                <ucd>phys.size.axisRatio</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>AxisRatio_MinMaj</name>
+                <description>Minor to Major principle axis-length ratio</description>
+                <ucd>phys.size.axisRatio</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>MajAxis_x</name>
+                <description>x-component of major principle axis vector</description>
+                <unit>Mpc</unit>
+                <ucd>phys.size;pos.cartesian.x</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>MajAxis_y</name>
+                <description>y-component of major principle axis vector</description>
+                <unit>Mpc</unit>
+                <ucd>phys.size;pos.cartesian.y</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>MajAxis_z</name>
+                <description>z-component of major principle axis vector</description>
+                <unit>Mpc</unit>
+                <ucd>phys.size;pos.cartesian.z</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>MinAxis_x</name>
+                <description>x-component of minor principle axis vector</description>
+                <unit>Mpc</unit>
+                <ucd>phys.size;pos.cartesian.x</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>MinAxis_y</name>
+                <description>y-component of minor principle axis vector</description>
+                <unit>Mpc</unit>
+                <ucd>phys.size;pos.cartesian.y</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>MinAxis_z</name>
+                <description>z-component of minor principle axis vector</description>
+                <unit>Mpc</unit>
+                <ucd>phys.size;pos.cartesian.z</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>AngMom_x</name>
+                <description>x-component of angular momemtum vector</description>
+                <unit>solMass.Mpc.km/s</unit>
+                <ucd>phys.angMomentum;pos.cartesian.x</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>AngMom_y</name>
+                <description>y-component of angular momemtum vector</description>
+                <unit>solMass.Mpc.km/s</unit>
+                <ucd>phys.angMomentum;pos.cartesian.y</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>AngMom_z</name>
+                <description>z-component of angular momemtum vector</description>
+                <unit>solMass.Mpc.km/s</unit>
+                <ucd>phys.angMomentum;pos.cartesian.z</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Pos_x</name>
+                <description>x-coordinate in simulation box of halo peak density position</description>
+                <unit>Mpc</unit>
+                <ucd>pos.cartesian.x</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Pos_y</name>
+                <description>y-coordinate in simulation box of halo peak density position</description>
+                <unit>Mpc</unit>
+                <ucd>pos.cartesian.y</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Pos_z</name>
+                <description>z-coordinate in simulation box of halo peak density position</description>
+                <unit>Mpc</unit>
+                <ucd>pos.cartesian.z</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Vel_x</name>
+                <description>x-component of halo peculiar velocity</description>
+                <unit>km/s</unit>
+                <ucd>phys.veloc;pos.cartesian.x</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Vel_y</name>
+                <description>y-component of halo peculiar velocity</description>
+                <unit>km/s</unit>
+                <ucd>phys.veloc;pos.cartesian.y</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Vel_z</name>
+                <description>z-component of halo peculiar velocity</description>
+                <unit>km/s</unit>
+                <ucd>phys.veloc;pos.cartesian.z</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>MaxCircVel</name>
+                <description>maximum Circular Velocity from fit to circular velocity profile (using Stoehr,
+          2006)</description>
+                <unit>km/s</unit>
+                <ucd>phys.veloc.rotat;stat.max;stat.param.fit</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Rvmax</name>
+                <description>radius of the Maximum Circular Velocity from fit to circular velocity profile
+          (using Stoehr, 2006)</description>
+                <unit>Mpc</unit>
+                <ucd>phys.size.radius;phys.veloc.rotat;stat.max;stat.param.fit</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>CircVelChi</name>
+                <description>chi-squared goodness of fit parameter to best fit Stoehr, 2006, circular
+          velocity profile</description>
+                <ucd>stat.fit.goodness</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>NFW_rs</name>
+                <description>NFW scale radius</description>
+                <unit>Mpc</unit>
+                <ucd>phys.size.radius;stat.param.fit</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>NFW_rhos</name>
+                <description>NFW scale density</description>
+                <unit>solMass/km/Mpc/Mpc</unit>
+                <ucd>phys.density;phys.mass;stat.param.fit</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>NFW_chi</name>
+                <description>&gt;chi-squared goodness of fit parameter to best fit NFW density profile</description>
+                <ucd>stat.fit.goodness</ucd>
+                <dataType>float</dataType>
+            </column>
+        </table>
+        <table xmlns:tab="urn:astrogrid:schema:TableMetadata">
+            <name>subhalos</name>
+            <description>subhalos belonging to halos in 'clusterhalos' table</description>
+            <column>
+                <name>hostID</name>
+                <description>ID tag of host halo in 'clusterhalos' table</description>
+                <ucd>meta.id</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>subhaloID</name>
+                <description>subhalo ID tag</description>
+                <ucd>meta.id</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>parentID</name>
+                <description>ID of immediate parent halo/subhalo</description>
+                <ucd>meta.id</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>Np</name>
+                <description>number of particles in subhalo</description>
+                <ucd>phys.mass;meta.num;comp.sim.particle</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>Mass</name>
+                <description>subhalo mass</description>
+                <unit>solMass</unit>
+                <ucd>phys.mass</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Nsubs</name>
+                <description>total number of subhalos in subhalo</description>
+                <ucd>meta.number;src.class.subhalo</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>MassInSubs</name>
+                <description>total subhalo mass contained within substructure</description>
+                <unit>solMass</unit>
+                <ucd>phys.mass;src.class.halo.subhalo</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>VelDisp</name>
+                <description>velocity Dispersion</description>
+                <unit>km/s</unit>
+                <ucd>phys.veloc.dispersion</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Rad</name>
+                <description>radius</description>
+                <unit>Mpc</unit>
+                <ucd>phys.size.radius</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Spin</name>
+                <description>spin parameter</description>
+                <ucd>phys.veloc.rotat</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>AngMom_x</name>
+                <description>x-component of angular momemtum vector</description>
+                <unit>solMass.Mpc.km/s</unit>
+                <ucd>phys.angMomentum;pos.cartesian.x</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>AngMom_y</name>
+                <description>y-component of angular momemtum vector</description>
+                <unit>solMass.Mpc.km/s</unit>
+                <ucd>phys.angMomentum;pos.cartesian.y</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>AngMom_z</name>
+                <description>z-component of angular momemtum vector</description>
+                <unit>solMass.Mpc.km/s</unit>
+                <ucd>phys.angMomentum;pos.cartesian.z</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Pos_x</name>
+                <description>x-component of subhalo peak density position with respect to host halo peak
+          density position</description>
+                <unit>Mpc</unit>
+                <ucd>position.cartesian.x</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Pos_y</name>
+                <description>y-component of subhalo peak density position with respect to host halo peak
+          density position</description>
+                <unit>Mpc</unit>
+                <ucd>position.cartesian.y</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Pos_z</name>
+                <description>z-component of subhalo peak density position with respect to host halo peak
+          density position</description>
+                <unit>Mpc</unit>
+                <ucd>position.cartesian.z</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Vel_x</name>
+                <description>x-component of subhalo peculiar velocity in host halo rest frame</description>
+                <unit>km/s</unit>
+                <ucd>phys.veloc;position.cartesian.x</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Vel_y</name>
+                <description>y-component of subhalo peculiar velocity in host halo rest frame</description>
+                <unit>km/s</unit>
+                <ucd>phys.veloc;position.cartesian.y</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Vel_z</name>
+                <description>z-component of subhalo peculiar velocity in host halo rest frame</description>
+                <unit>km/s</unit>
+                <ucd>phys.veloc;position.cartesian.z</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>AxisRatio_IntMaj</name>
+                <description>Intermediate to Major principle axis-length ratio</description>
+                <ucd>phys.size.axisRatio</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>AxisRatio_MinMaj</name>
+                <description>Minor to Major principle axis-length ratio</description>
+                <ucd>phys.size.axisRatio</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>MaxCircVel</name>
+                <description>maximum Circular Velocity from fit to circular velocity profile (using Stoehr,
+          2006)</description>
+                <unit>km/s</unit>
+                <ucd>phys.veloc.rotat;stat.max;stat.param.fit</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Rvmax</name>
+                <description>radius of the Maximum Circular Velocity from fit to circular velocity profile
+          (using Stoehr, 2006)</description>
+                <unit>Mpc</unit>
+                <ucd>phys.size.radius;phys.veloc.rotat;stat.max;stat.param.fit</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>CircVelChi</name>
+                <description>chi-squared goodness of fit parameter to best fit Stoehr, 2006, circular
+          velocity profile</description>
+                <ucd>stat.fit.goodness</ucd>
+                <dataType>float</dataType>
+            </column>
+        </table>
+        <table xmlns:tab="urn:astrogrid:schema:TableMetadata">
+            <name>simparams</name>
+            <description>physical and technical parameters of LCDM N-body simulation from which halos were
+        extracted</description>
+            <column>
+                <name>omegaCDM</name>
+                <description>Dark Matter Density</description>
+                <ucd>phys.cosmology.omega;phys.matter.DM</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>omegaBaryon</name>
+                <description>Baryonic Matter Density</description>
+                <ucd>phys.cosmology.omega;phys.matter.baryon</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>omegaLambda</name>
+                <description>Dark Energy Density</description>
+                <ucd>phys.cosmology.omega;phys.darkEnergy</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>H_0</name>
+                <description>Hubble constant</description>
+                <unit>km/s/Mpc</unit>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>boxsidelength</name>
+                <description>length of simulation box side (in Mpc h^-1)</description>
+                <unit>Mpc</unit>
+                <ucd>phys.size;comp.sim.simbox</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>Np</name>
+                <description>number of particles in simulation box</description>
+                <ucd>meta.num;comp.sim.particle</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>Mp</name>
+                <description>mass of simulation particle (in Msun h^-1)</description>
+                <unit>solMass</unit>
+                <ucd>phys.mass;comp.sim.particle</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>softeninglength</name>
+                <description>softening length (in kpc h^-1)</description>
+                <unit>kpc</unit>
+                <ucd>phys.size;comp.sim.gravsoft</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>redshift</name>
+                <description>redshift of simulation snapshot</description>
+                <ucd>phys.redshift;comp.sim.snapshot</ucd>
+                <dataType>float</dataType>
+            </column>
+            <column>
+                <name>sigma_8</name>
+                <description>normalisation of the power spectrum of density fluctuations</description>
+                <dataType>float</dataType>
+            </column>
+        </table>
+    </ri:Resource>

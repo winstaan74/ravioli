@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" created="1997-12-09T16:00:04" updated="1997-12-09T16:00:04" status="active" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0        http://www.ivoa.net/xml/VOResource/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0        http://www.ivoa.net/xml/ConeSearch/v1.0                  http://www.ivoa.net/xml/ConeSearch/v1.0">
+   <validationLevel validatedBy="ivo://CDS.VizieR">1</validationLevel>
+   <title>Diffuse Interstellar Band Measurements (Snow+ 1977)</title>
+   <shortName>II/149</shortName>
+   <identifier>ivo://CDS.VizieR/II/149</identifier>
+   <curation>
+      <publisher ivo-id="ivo://CDS">CDS</publisher>
+      <creator>
+         <name>Snow Jr.T.P., York D.G., Welty D.E.</name>
+      </creator>
+      <contributor>Francois Ochsenbein [CDS]</contributor>
+      <date role="creation">1997-12-09T16:00:04</date>
+      <version>27-Feb-1997</version>
+      <contact>
+         <name>CDS support team</name>
+         <address>CDS, Observatoire de Strasbourg, 11 rue de l'Universite, F-67000 Strasbourg, France</address>
+         <email>question@simbad.u-strasbg.fr</email>
+      </contact>
+   </curation>
+   <content>
+      <subject>Interstellar_Medium</subject>
+      <subject>Spectroscopy</subject>
+      <description>This catalog contains diffuse band data collected from an exhaustive search of the literature and reduced to a common measurement system. The authors have adopted Herbig (1975ApJ...196..129H) as a standard data set for DIB measurements. </description>
+      <source format="bibcode">1977AJ.....82..113S</source>
+      <referenceURL>http://cdsarc.u-strasbg.fr/cgi-bin/Cat?II/149</referenceURL>
+      <type>Catalog</type>
+      <contentLevel>Research</contentLevel>
+   </content>
+   <rights>public</rights>
+   <capability>
+      <interface xsi:type="vr:WebBrowser">         <accessURL use="full">http://vizier.u-strasbg.fr/cgi-bin/VizieR-2?-source=II/149</accessURL>
+</interface>
+   </capability>
+   <capability>
+      <interface xsi:type="vs:ParamHTTP">         <accessURL use="base">http://vizier.u-strasbg.fr/viz-bin/votable/-dtd/-A?-source=II/149</accessURL>
+         <queryType>GET</queryType>
+         <resultType>text/xml+votable</resultType>
+</interface>
+   </capability>
+   <capability xsi:type="cs:ConeSearch" standardID="ivo://ivoa.net/std/ConeSearch">      <interface xsi:type="vs:ParamHTTP" role="std">         <accessURL use="base">http://vizier.u-strasbg.fr/viz-bin/votable/-A?-source=II/149&amp;</accessURL>
+         <queryType>GET</queryType>
+         <resultType>text/xml+votable</resultType>
+</interface>
+      <maxSR>180</maxSR>
+      <maxRecords>9999</maxRecords>
+      <verbosity>true</verbosity>
+      <testQuery>
+         <ra>0.0</ra>
+         <dec>+90.0</dec>
+         <sr>0.1</sr>
+      </testQuery>
+</capability>
+   <coverage>
+      <footprint>http://cdsarc.u-strasbg.fr/viz-bin/w/Footprint?-gal&amp;-z&amp;8&amp;-s&amp;sqrt&amp;catid=2149</footprint>
+      <waveband>Optical</waveband>
+   </coverage>
+   <table>      <name>II/149/catalog</name>
+      <description>Diffuse band data (Table III(b) of paper)</description>
+      <column>         <name>recno</name>
+         <description>Record number within the original table (starting from 1)</description>
+         <unit> </unit>
+         <ucd>meta.record</ucd>
+</column>
+      <column>         <name>Name</name>
+         <description>Designation of the star</description>
+         <unit> </unit>
+         <ucd>meta.id;meta.main</ucd>
+</column>
+      <column>         <name>GLON</name>
+         <description>? Galactic longitude (4)</description>
+         <unit>deg</unit>
+         <ucd>pos.galactic.lon</ucd>
+</column>
+      <column>         <name>GLAT</name>
+         <description>? Galactic latitude (4)</description>
+         <unit>deg</unit>
+         <ucd>pos.galactic.lat</ucd>
+</column>
+      <column>         <name>Note</name>
+         <description>[*] '*' See Note (4)</description>
+         <unit> </unit>
+         <ucd>meta.note</ucd>
+</column>
+      <column>         <name>Ac4430</name>
+         <description>? Central depth of the continuum at 4430 A (1)</description>
+         <unit>%</unit>
+         <ucd>phot.flux.density;arith.ratio</ucd>
+</column>
+      <column>         <name>W5780</name>
+         <description>? Equivalent width (in A) of 5780 A line (1)</description>
+         <unit>0.1nm</unit>
+         <ucd>spect.line.eqWidth</ucd>
+</column>
+      <column>         <name>W5797</name>
+         <description>? Equivalent width (in A) of 5797 A line (1)</description>
+         <unit>0.1nm</unit>
+         <ucd>spect.line.eqWidth</ucd>
+</column>
+      <column>         <name>W6284</name>
+         <description>? Equivalent width (in A) of 6284 A line (1)</description>
+         <unit>0.1nm</unit>
+         <ucd>spect.line.eqWidth</ucd>
+</column>
+      <column>         <name>E(B-V)</name>
+         <description>? Colour excess in the UBV system</description>
+         <unit>mag</unit>
+         <ucd>phot.color.excess</ucd>
+</column>
+      <column>         <name>lambda</name>
+         <description>? Wavelength, given in microns, at which the polarization is maximum</description>
+         <unit>um</unit>
+         <ucd>em.wl</ucd>
+</column>
+      <column>         <name>MaxPol</name>
+         <description>? Maximum value of the polarization (2)</description>
+         <unit>%</unit>
+         <ucd>phys.polarization</ucd>
+</column>
+      <column>         <name>Vmag</name>
+         <description>? Magnitude</description>
+         <unit>mag</unit>
+         <ucd>phot.mag;em.opt.V</ucd>
+</column>
+      <column>         <name>SpType</name>
+         <description>MK spectral type</description>
+         <unit> </unit>
+         <ucd>src.spType</ucd>
+</column>
+      <column>         <name>Ref1</name>
+         <description>[0/430] Reference for position, photometry and spectroscopy (3)</description>
+         <unit> </unit>
+         <ucd>meta.ref</ucd>
+</column>
+      <column>         <name>RefIDB</name>
+         <description>[1/430]? Reference for Interstellar Data (3)</description>
+         <unit> </unit>
+         <ucd>meta.ref</ucd>
+</column>
+</table>
+</ri:Resource>

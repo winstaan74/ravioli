@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><Resource xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xdtn="http://www.w3.org/2004/07/xpath-datatypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:xu="http://www.xmldb.org/xupdate" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xsi:type="vg:Authority" created="2005-01-07T09:00:00" updated="2005-01-07T09:00:00" status="active">
+       <title>Caltech NVO Registry Naming Authority</title>
+       <shortName>Carnivore auth</shortName>
+       <identifier>ivo://nvo.caltech</identifier>
+       <curation>
+        <publisher ivo-id="ivo://nvo.caltech/CACR">Caltech Center for Advanced Computing Research</publisher>
+        <creator>
+         <name>Dr Matthew J. Graham</name>
+         <logo/>
+        </creator>
+        <contributor/>
+        <date role="creation">2005-01-07</date>
+        <version/>
+        <contact>
+         <name>Dr Matthew J. Graham</name>
+         <address>CACR, Mail Code 158-79, Pasadena, CA 91125</address>
+         <email>mjg@cacr.caltech.edu</email>
+         <telephone>626 395 8030</telephone>
+        </contact>
+       </curation>
+       <content>
+        <subject>data repositories</subject>
+        <subject>digital libraries</subject>
+        <subject>grid-based processing</subject>
+        <description>This authority ID identifies VO resources maintained by the Center for Advanced Computing Research at Caltech</description>
+        <source format=""/>
+        <referenceURL>http://www.cacr.caltech.edu</referenceURL>
+        <type>Other</type>
+        <contentLevel>Research</contentLevel>
+        <relationship>
+         <relationshipType>mirror-of</relationshipType>
+         <relatedResource/>
+        </relationship>
+       </content>
+       <managingOrg ivo-id="ivo://nvo.caltech/CACR">Caltech Center for Advanced Computing Research</managingOrg>
+      </Resource>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xsi:type="vg:Registry" status="active" updated="2008-04-10T00:00:00" created="2008-04-10T00:00:00" xsi:schemaLocation="http://www.ivoa.net/xml/VOResrouce/v1.0                                  http://www.ivoa.net/xml/VOResrouce/v1.0                                  http://www.ivoa.net/xml/VORegistry/v1.0                                  http://www.ivoa.net/xml/VORegistry/v1.0                                  http://www.ivoa.net/xml/RegistryInterface/v1.0                                  http://www.ivoa.net/xml/RegistryInterface/v1.0">
+
+  <title>JVO Publishing Registry</title>
+
+  <shortName>JVO_PREG</shortName>
+
+  <identifier>ivo://jvo/publishingregistry</identifier>
+
+  <curation>
+      <publisher>Japanese Virtual Observatory</publisher>
+      <creator>
+         <name/>
+      </creator>
+      <contributor/>
+      <contact>
+         <name>Yuji SHIRASAKI</name>
+         <email>preg-admin@jvo.nao.ac.jp</email>
+      </contact>
+  </curation>
+
+  <content>
+      <subject/>
+      <description>JVO publishing regstry for VOResource v1.0</description>
+      <referenceURL>http://jvo.nao.ac.jp/publishingRegistry1.0</referenceURL>
+      <type>Registry</type>
+  </content>
+
+  <capability standardID="ivo://ivoa.net/std/Registry" xsi:type="vg:Harvest">
+    <interface version="1.0" role="std" xsi:type="vg:OAIHTTP">
+         <accessURL>http://jvo.nao.ac.jp/publishingRegistry1.0/oai.pl</accessURL>  
+    </interface>
+
+    <maxRecords>0</maxRecords>
+
+  </capability>
+
+  <full>true</full>
+
+</ri:Resource>

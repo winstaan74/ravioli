@@ -1,5 +1,7 @@
 
 package org.ravioli
+
+import java.util.Collections;
 import groovy.util.slurpersupport.GPathResult;
 import org.codehaus.groovy.grails.commons.*
 
@@ -75,7 +77,7 @@ class HarvestService {
 		regParserService.identify(reg)
 		Date now = new Date()
 		//HarvestResults hr = new HarvestResults()
-		def ids = regParserService.listIdentifiers(reg)
+		def ids = regParserService.listIdentifiers(reg,incremental)
 		ids.each { ivorn ->
 			backgroundService.execute("Harvesting " + ivorn) {
 				harvestResource(reg,ivorn)
@@ -102,6 +104,28 @@ class HarvestService {
 			r.save()
 		} else {
 			log.warn("Failed to create resource:" +  r.errors)
+		}
+	}
+	
+	/** method to harvest a sample from all known registries, for testing. */
+	def sample() {
+		// first update the list of registreis from rofr
+		readRofr()
+		File root = new File("/tmp/sample")
+		root.mkdirs();
+		// now for each registry
+		int i = 0;
+		Registry.list().each { r ->
+			def ids = regParserService.listIdentifiers(r,false); // not incremental.
+			// shuffle, and take the first 10 ids.
+			Collections.shuffle(ids)
+			int end = Math.min(ids.size(), 10)
+			ids[0..<end].each{ ivo ->
+				//String filename = 
+				i++
+				File out = new File(root,"${i}.xml")
+				out.text = regParserService.harvest(r,ivo)
+			}
 		}
 	}
 	

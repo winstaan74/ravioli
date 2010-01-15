@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:osn="http://www.ivoa.net/xml/OpenSkyNode/v0.2" xmlns:sia="http://www.ivoa.net/xml/SIA/v1.0" xmlns:sla="http://www.ivoa.net/xml/SLA/v0.2" xmlns:ssa="http://www.ivoa.net/xml/SSA/v0.4" xmlns:tsa="http://www.ivoa.net/xml/TSA/v0.2" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" created="2009-05-15T10:20:41Z" status="active" updated="2009-05-15T10:24:01Z" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0                                                                     http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0                                                                     http://www.ivoa.net/xml/VORegistry/v1.0 http://www.ivoa.net/xml/VORegistry/v1.0                                                                     http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0                                                                     http://www.ivoa.net/xml/SIA/v1.0 http://www.ivoa.net/xml/SIA/v1.0                                                                     http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/v1.0                                                                     http://www.ivoa.net/xml/OpenSkyNode/v0.2 http://www.ivoa.net/xml/OpenSkyNode/v0.2                                                                     http://www.ivoa.net/xml/SSA/v0.4 http://www.ivoa.net/xml/SSA/v0.4                                                                     http://www.ivoa.net/xml/SLA/v0.2 http://esavo.esa.int/xml/SLA-v0.2.xsd                                                                     http://www.ivoa.net/xml/TSA/v0.2 http://esavo.esa.int/xml/TSA-v0.2.xsd" xsi:type="vs:CatalogService">
+        <title>ST-ECF Hubble Space Telescope Spectra</title>
+        <shortName>ST-ECF/HST/SSA</shortName>
+        <identifier>ivo://stecf/HST/SSA</identifier>
+        <curation>
+            <publisher ivo-id="ivo://stecf">Space Telescope European Coordinating Facility</publisher>
+            <contact>
+                <name>Felix Stoehr</name>
+                <email>hst-archive [at] eso [dot] org</email>
+            </contact>
+        </curation>
+        <content>
+            <subject>NOT PROVIDED</subject>
+            <description>1D Spectra (science frames only) from the classical HST archive hosted at ST-ECF/ESO. The frames are calibrated and stored in the HST Cache for immediate access.
+
+The ST-ECF HST archive interface can be accessed at http://archive.eso.org/hst/science</description>
+            <referenceURL>http://archive.eso.org/hst/science</referenceURL>
+        </content>
+        <capability standardID="ivo://ivoa.net/std/SSA" xsi:type="ssa:SimpleSpectralAccess">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://www.stecf.org/hst-vo/hst_ssa?</accessURL>
+            </interface>
+            <complianceLevel>query</complianceLevel>
+            <dataSource>custom</dataSource>
+            <creationType>archival</creationType>
+            <maxSearchRadius>180</maxSearchRadius>
+            <maxRecords>0</maxRecords>
+            <defaultMaxRecords>0</defaultMaxRecords>
+        </capability>
+    </ri:Resource>

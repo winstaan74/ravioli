@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><Resource xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xdtn="http://www.w3.org/2004/07/xpath-datatypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:xu="http://www.xmldb.org/xupdate" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xsi:type="vr:Organisation" created="2005-01-07T09:00:00" updated="2005-01-07T09:00:00" status="active">
+       <title>Caltech Center for Advanced Computing Research</title>
+       <shortName>CACR</shortName>
+       <identifier>ivo://nvo.caltech/CACR</identifier>
+       <curation>
+        <publisher>Dr Matthew J. Graham</publisher>
+        <creator>
+         <name>Dr Matthew J. Graham</name>
+         <logo/>
+        </creator>
+        <contributor/>
+        <date role="creation">2005-01-07</date>
+        <version/>
+        <contact>
+         <name>Dr Roy Williams</name>
+         <address/>
+         <email>roy@cacr.caltech.edu</email>
+         <telephone/>
+        </contact>
+       </curation>
+       <content>
+        <subject/>
+        <description>CACR, Caltech's Center for Advanced Computing Research, exists to ensure that Caltech is at the forefront of computational science and engineering (CS&amp;E). CS&amp;E is the practice of computer based modeling, simulation and data analysis for the study of scientific phenomena and engineering designs. Computer modeling and simulation makes it possible to investigate regimes that are beyond current experimental capabilities and to study phenomena that cannot be replicated in laboratories, such as the evolution of the universe.
+CACR provides an environment that cultivates multidisciplinary collaborations. Our researchers take an applications-driven approach to CS&amp;E, and currently work with Caltech groups in applied mathematics, astronomy, biology, engineering, geophysics, and experimental physics.</description>
+        <source format=""/>
+        <referenceURL>http://www.cacr.caltech.edu</referenceURL>
+        <type>Organisation</type>
+        <contentLevel>Research</contentLevel>
+        <relationship>
+         <relationshipType>mirror-of</relationshipType>
+         <relatedResource/>
+        </relationship>
+       </content>
+       <facility/>
+       <instrument/>
+      </Resource>

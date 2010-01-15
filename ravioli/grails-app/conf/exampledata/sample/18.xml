@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" created="1997-12-09T13:38:40" updated="1997-12-09T13:38:40" status="active" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0        http://www.ivoa.net/xml/VOResource/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0        http://www.ivoa.net/xml/ConeSearch/v1.0                  http://www.ivoa.net/xml/ConeSearch/v1.0">
+   <validationLevel validatedBy="ivo://CDS.VizieR">1</validationLevel>
+   <title>The FK5 Extension of the FK4 System (Lattanzi+ 1993)</title>
+   <shortName>I/202</shortName>
+   <identifier>ivo://CDS.VizieR/I/202</identifier>
+   <curation>
+      <publisher ivo-id="ivo://CDS">CDS</publisher>
+      <creator>
+         <name>Lattanzi M.G., Taff L.G.</name>
+      </creator>
+      <contributor>N. Paul M. Kuin [NASA/NSSDC/ADC]</contributor>
+      <date role="creation">1997-12-09T13:38:40</date>
+      <version>1996-Apr-18</version>
+      <contact>
+         <name>CDS support team</name>
+         <address>CDS, Observatoire de Strasbourg, 11 rue de l'Universite, F-67000 Strasbourg, France</address>
+         <email>question@simbad.u-strasbg.fr</email>
+      </contact>
+   </curation>
+   <content>
+      <subject>Positional_Data</subject>
+      <subject>Stars</subject>
+      <subject>Proper_Motions</subject>
+      <description>The FK5 catalog was expanded from 1535 stars to include an additional 3117 stars which comprise the 'extension' to the new 'Basic' FK5, the revision of the FK4. For the basic FK5 a method of converting from the FK5 system to the FK4 system is provided in the catalog while for the Extension no algorithm was supplied. This catalog consists of two files. One file is the FK5 Extension placed at B1950.0 on the FK4 system. The second file is the FK5 Extension placed at the mean Epoch of place on the FK4 system. </description>
+      <source format="bibcode">1993AJ....105.2353L</source>
+      <referenceURL>http://cdsarc.u-strasbg.fr/cgi-bin/Cat?I/202</referenceURL>
+      <type>Catalog</type>
+      <contentLevel>Research</contentLevel>
+   </content>
+   <rights>public</rights>
+   <capability>
+      <interface xsi:type="vr:WebBrowser">         <accessURL use="full">http://vizier.u-strasbg.fr/cgi-bin/VizieR-2?-source=I/202</accessURL>
+</interface>
+   </capability>
+   <capability>
+      <interface xsi:type="vs:ParamHTTP">         <accessURL use="base">http://vizier.u-strasbg.fr/viz-bin/votable/-dtd/-A?-source=I/202</accessURL>
+         <queryType>GET</queryType>
+         <resultType>text/xml+votable</resultType>
+</interface>
+   </capability>
+   <capability xsi:type="cs:ConeSearch" standardID="ivo://ivoa.net/std/ConeSearch">      <interface xsi:type="vs:ParamHTTP" role="std">         <accessURL use="base">http://vizier.u-strasbg.fr/viz-bin/votable/-A?-source=I/202&amp;</accessURL>
+         <queryType>GET</queryType>
+         <resultType>text/xml+votable</resultType>
+</interface>
+      <maxSR>180</maxSR>
+      <maxRecords>9999</maxRecords>
+      <verbosity>true</verbosity>
+      <testQuery>
+         <ra>0.0</ra>
+         <dec>+90.0</dec>
+         <sr>0.1</sr>
+      </testQuery>
+</capability>
+   <coverage>
+      <footprint>http://cdsarc.u-strasbg.fr/viz-bin/w/Footprint?-gal&amp;-z&amp;8&amp;-s&amp;sqrt&amp;catid=1202</footprint>
+      <waveband>Optical</waveband>
+   </coverage>
+   <table>      <name>I/202/fk5e1950</name>
+      <description>FK5 Extension at B1950.0 on FK4 system</description>
+      <column>         <name>recno</name>
+         <description>Record number within the original table (starting from 1)</description>
+         <unit> </unit>
+         <ucd>meta.record</ucd>
+</column>
+      <column>         <name>FK5</name>
+         <description>FK5 Extension ID number</description>
+         <unit> </unit>
+         <ucd>meta.id;meta.main</ucd>
+</column>
+      <column>         <name>Vmag</name>
+         <description>V magnitude</description>
+         <unit>mag</unit>
+         <ucd>phot.mag;em.opt.V</ucd>
+</column>
+      <column>         <name>RAB1950</name>
+         <description>Right Ascension (B1950.0) in decimal hrs</description>
+         <unit>"h:m:s"</unit>
+         <ucd>pos.eq.ra;meta.main</ucd>
+</column>
+      <column>         <name>DEB1950</name>
+         <description>Declination (B1950.0) in decimal degrees</description>
+         <unit>deg</unit>
+         <ucd>pos.eq.dec;meta.main</ucd>
+</column>
+      <column>         <name>Epoch_RA</name>
+         <description>Mean Epoch of RA in decimal years</description>
+         <unit>yr</unit>
+         <ucd>time.epoch</ucd>
+</column>
+      <column>         <name>Epoch_DEC</name>
+         <description>Mean Epoch of DEC in decimal years</description>
+         <unit>yr</unit>
+         <ucd>time.epoch</ucd>
+</column>
+      <column>         <name>pmRA</name>
+         <description>Proper Motion in RA (B1950.0) sec/cy</description>
+         <unit>cs/yr</unit>
+         <ucd>pos.pm;pos.eq.ra</ucd>
+</column>
+      <column>         <name>pmDE</name>
+         <description>Proper Motion in DEC (B1950.0) arcsec/cy</description>
+         <unit>carcsec/yr</unit>
+         <ucd>pos.pm;pos.eq.dec</ucd>
+</column>
+</table>
+   <table>      <name>I/202/fk5emean</name>
+      <description>FK5 Extension on the FK4 B1950.0 (Mean epoch of place)</description>
+      <column>         <name>recno</name>
+         <description>Record number within the original table (starting from 1)</description>
+         <unit> </unit>
+         <ucd>meta.record</ucd>
+</column>
+      <column>         <name>FK5</name>
+         <description>FK5 Extension ID number</description>
+         <unit> </unit>
+         <ucd>meta.id;meta.main</ucd>
+</column>
+      <column>         <name>Vmag</name>
+         <description>V magnitude</description>
+         <unit>mag</unit>
+         <ucd>phot.mag;em.opt.V</ucd>
+</column>
+      <column>         <name>RAB1950</name>
+         <description>Right Ascension (B1950.0) in decimal hrs</description>
+         <unit>"h:m:s"</unit>
+         <ucd>pos.eq.ra;meta.main</ucd>
+</column>
+      <column>         <name>DEB1950</name>
+         <description>Declination (B1950.0) in decimal degrees</description>
+         <unit>deg</unit>
+         <ucd>pos.eq.dec;meta.main</ucd>
+</column>
+      <column>         <name>Epoch_RA</name>
+         <description>Mean Epoch of RA in decimal years</description>
+         <unit>yr</unit>
+         <ucd>time.epoch</ucd>
+</column>
+      <column>         <name>Epoch_DEC</name>
+         <description>Mean Epoch of DEC in decimal years</description>
+         <unit>yr</unit>
+         <ucd>time.epoch</ucd>
+</column>
+      <column>         <name>pmRA</name>
+         <description>Proper Motion in RA (B1950.0) sec/cy</description>
+         <unit>cs/yr</unit>
+         <ucd>pos.pm;pos.eq.ra</ucd>
+</column>
+      <column>         <name>pmDE</name>
+         <description>Proper Motion in DEC (B1950.0) arcsec/cy</description>
+         <unit>carcsec/yr</unit>
+         <ucd>pos.pm;pos.eq.dec</ucd>
+</column>
+</table>
+</ri:Resource>

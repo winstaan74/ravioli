@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:osn="http://www.ivoa.net/xml/OpenSkyNode/v0.2" xmlns:sia="http://www.ivoa.net/xml/SIA/v1.0" xmlns:sla="http://www.ivoa.net/xml/SLA/v0.2" xmlns:ssa="http://www.ivoa.net/xml/SSA/v0.4" xmlns:tsa="http://www.ivoa.net/xml/TSA/v0.2" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" created="2008-01-28T00:00:00" status="active" updated="2009-04-08T12:00:00" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0                                     http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0                                     http://www.ivoa.net/xml/VORegistry/v1.0 http://www.ivoa.net/xml/VORegistry/v1.0                                     http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0                                     http://www.ivoa.net/xml/SIA/v1.0 http://www.ivoa.net/xml/SIA/v1.0                                     http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/v1.0                                     http://www.ivoa.net/xml/OpenSkyNode/v0.2 http://www.ivoa.net/xml/OpenSkyNode/v0.2                                     http://www.ivoa.net/xml/SSA/v0.4 http://www.ivoa.net/xml/SSA/v0.4                                     http://www.ivoa.net/xml/SLA/v0.2 http://esavo.esa.int/xml/SLA-v0.2.xsd                                     http://www.ivoa.net/xml/TSA/v0.2 http://esavo.esa.int/xml/TSA-v0.2.xsd" xsi:type="vs:CatalogService">
+        <title>Hubble Space Telescope Faint Object Spectrograph</title>
+        <shortName>HST/FOS/SSAP</shortName>
+        <identifier>ivo://stecf/HST/FOS</identifier>
+        <curation>
+            <publisher>Space Telescope European Coordinating Facility</publisher>
+            <contributor>Alberto Micol</contributor>
+            <contact>
+                <name/>
+            </contact>
+        </curation>
+        <content>
+            <subject>Calibrated spectra of the HST/FOS spectrograph. Pointed observations.</subject>
+            <description>The Faint Object Spectrograph (FOS) was one of the 4 original axial instruments aboard the Hubble Space Telescope (HST). The FOS was designed to make spectroscopic observations of astrophysical sources from the near ultraviolet to the near infrared (1150 - 8000 Angstroms). The instrument was removed from HST during the Second Servicing Mission in February 1997. The Post-Operational Archives (POA) branch of the Space Telescope - European Coordinating Facility (ST-ECF) has taken over the main responsibility for FOS. Their web pages contain all of the information that was previously on the old STScI FOS pages, supplemented with more recent FOS news, including an improved version of the FOS calibration pipeline (POA_CALFOS), which replaces CALFOS in the standard IRAF/STSDAS FOS calibration pipeline.</description>
+            <referenceURL>http://www.stecf.org/poa/FOS/</referenceURL>
+            <contentLevel>Research</contentLevel>
+        </content>
+        <capability standardID="ivo://ivoa.net/std/SSA" xsi:type="ssa:ProtoSpectralAccess">
+            <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://archive.eso.org/bin/fos_ssap.pl</accessURL>
+            </interface>
+            <dataSource>custom</dataSource>
+            <creationType>archival</creationType>
+            <dataModel/>
+            <maxSearchRadius>180</maxSearchRadius>
+            <maxRecords>0</maxRecords>
+        </capability>
+    </ri:Resource>

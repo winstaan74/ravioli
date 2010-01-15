@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cea="http://www.ivoa.net/xml/CEA/v1.0rc1" xmlns:va="http://www.ivoa.net/xml/VOApplication/v1.0rc1" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" created="2009-09-17T16:06:25" status="active" updated="2009-10-08T12:40:35" xsi:type="vs:CatalogService" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://software.astrogrid.org/schema/registry/RegistryInterface/v1.0/RegistryInterface.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd  http://www.ivoa.net/xml/VODataService/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VODataService/v1.0/VODataService.xsd http://www.ivoa.net/xml/VOTable/v1.0 http://software.astrogrid.org/schema/vo-formats/VOTable/v1.0/VOTable.xsd http://www.ivoa.net/xml/ConeSearch/v1.0 http://software.astrogrid.org/schema/vo-resource-types/ConeSearch/v1.0/ConeSearch.xsd http://www.ivoa.net/xml/SIA/v1.0 http://software.astrogrid.org/schema/vo-resource-types/SIA/v1.0/SIA.xsd http://www.ivoa.net/xml/SSA/v0.4 http://software.astrogrid.org/schema/vo-resource-types/SSA/v0.4/SSA.xsd urn:astrogrid:schema:vo-resource-types:STAP:v1.0 http://software.astrogrid.org/schema/vo-resource-types/STAP/v1.0/STAP.xsd http://www.ivoa.net/xml/CEA/v1.0rc1 http://software.astrogrid.org/schema/vo-resource-types/CEAService/v1.0rc1/CEAService.xsd">
+        <title>Two Micron All Sky Survey (2MASS)</title>
+        <identifier>ivo://sao.ru/dsa/twomass</identifier>
+        <curation>
+            <publisher ivo-id="ivo://sao.ru">Special Astrophysical Observatory of RAS (SAO RAS)</publisher>
+            <creator>
+                <name>Special Astrophysical Observatory of RAS (SAO RAS)</name>
+                <logo>http://www.sao.ru/Images/saologo.gif</logo>
+            </creator>
+            <date>2009-09-17</date>
+            <version>1.0</version>
+            <contact>
+                <name>Vladimir Chernenkov</name>
+                <email>vch@sao.ru</email>
+            </contact>
+        </curation>
+        <content>
+            <subject>Infrared Astronomy Catalogs</subject>
+            <description>The Two Micron All Sky Survey (2MASS) will provide a uniform survey of the entire sky at three near-infrared wavebands: J(lambdaeff = 1.25 micrometers), H(lambdaeff = 1.65 micrometers), and Ks(lambdaeff = 2.16 micrometers). A major goal of the survey is to probe large scale structures in the Milky Way and in the Local Universe, exploiting the relatively high transparency of the interstellar medium in the near-infrared, and the high near-infrared luminosities of evolved low- and intermediate-mass stars.Home page at http://pegasus.phast.umass.edu/</description>
+            <source format="bibcode">2006AJ....131.1163S</source>
+            <referenceURL>http://www.ipac.caltech.edu/2mass/</referenceURL>
+            <type>Catalog</type>
+            <contentLevel>Research</contentLevel>
+            <relationship>
+                <relationshipType>service-for</relationshipType>
+                <relatedResource>ivo://sao.ru/dsa/wsdb/ceaApplication</relatedResource>
+            </relationship>
+        </content>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+            <description>twomass, twomass_psc: cone search</description>
+            <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://www.sao.ru/dsa/SubmitCone?DSACAT=wsdb&amp;DSATAB=twomass_psc&amp;</accessURL>
+            </interface>
+            <maxSR>1.0</maxSR>
+            <maxRecords>50000</maxRecords>
+            <verbosity>false</verbosity>
+            <testQuery>
+                <ra>96.0</ra>
+                <dec>5.0</dec>
+                <sr>0.01</sr>
+            </testQuery>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/CEA/v1.0" xsi:type="cea:CeaCapability">
+            <description>Access to two applications: general ADQL query, and asynchronous cone-search where relevant/enabled.</description>
+            <interface xsi:type="cea:CECInterface">
+                <accessURL use="full">http://www.sao.ru/dsa/services/CommonExecutionConnectorService</accessURL>
+            </interface>
+            <managedApplications>
+                <ApplicationReference>ivo://sao.ru/dsa/wsdb/ceaApplication</ApplicationReference>
+            </managedApplications>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#capabilities">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://www.sao.ru/dsa/wsdb/vosi/capabilities</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#availability">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://www.sao.ru/dsa/wsdb/vosi/availability</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#tables">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://www.sao.ru/dsa/wsdb/vosi/tables</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#ceaApplication">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://www.sao.ru/dsa/wsdb/vosi/ceaapplication</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://ivoa.net/std/Delegation">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://www.sao.ru/dsa/delegations</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <table xmlns:tab="urn:astrogrid:schema:TableMetadata">
+            <name>twomass_psc</name>
+            <description>The Point Source catalogue of 470,992,970 sources.</description>
+            <column>
+                <name>ra</name>
+                <description>(ra) Right ascension (J2000)</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_RA_MAIN</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>decl</name>
+                <description>(dec) Declination (J2000)</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_DEC_MAIN</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>err_maj</name>
+                <description>(err_maj) Major axis of position error ellipse</description>
+                <unit>arcsec</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>err_min</name>
+                <description>(err_min) Minor axis of position error ellipse</description>
+                <unit>arcsec</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>err_ang</name>
+                <description>[0,180] (err_ang) Position angle of error ellipse major axis (E of N)</description>
+                <unit>deg</unit>
+                <ucd>ERROR</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>designation</name>
+                <description>(designation) Source designation</description>
+                <unit>char</unit>
+                <ucd>ID_MAIN</ucd>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>j_m</name>
+                <description>(j_m) J selected default magnitude</description>
+                <unit>mag</unit>
+                <ucd>PHOT_JHN_J</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>j_cmsig</name>
+                <description>(j_cmsig) J default magnitude uncertainty</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>j_msigcom</name>
+                <description>(j_msigcom) J total magnitude uncertainty</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>j_snr</name>
+                <description>(j_snr) J Signal-to-noise ratio</description>
+                <ucd>INST_SNR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>h_m</name>
+                <description>(h_m) H selected default magnitude</description>
+                <unit>mag</unit>
+                <ucd>PHOT_JHN_H</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>h_cmsig</name>
+                <description>(h_cmsig) H default magnitude uncertainty</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>h_msigcom</name>
+                <description>(h_msigcom) H total magnitude uncertainty</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>h_snr</name>
+                <description>(h_snr) H Signal-to-noise ratio</description>
+                <ucd>INST_SNR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>k_m</name>
+                <description>(k_m) K selected default magnitude</description>
+                <unit>mag</unit>
+                <ucd>PHOT_JHN_K</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>k_cmsig</name>
+                <description>(k_cmsig) K default magnitude uncertainty</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>k_msigcom</name>
+                <description>(k_msigcom) K total magnitude uncertainty</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>k_snr</name>
+                <description>(k_snr) K Signal-to-noise ratio</description>
+                <ucd>INST_SNR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>ph_qual</name>
+                <description>(ph_qual) JHK Photometric quality flag</description>
+                <ucd>CODE_QUALITY</ucd>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>rd_flg</name>
+                <description>(rd_flg) Source of JHK default mag</description>
+                <ucd>REFER_CODE</ucd>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>bl_flg</name>
+                <description>(bl_flg) JHK components fit to source</description>
+                <ucd>CODE_MISC</ucd>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>cc_flg</name>
+                <description>(cc_flg) Artifact contamination, confusion</description>
+                <ucd>CODE_MISC</ucd>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>ndet</name>
+                <description>[0-9] (ndet) Number of aperture measurements (jjhhkk)</description>
+                <ucd>NUMBER</ucd>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>prox</name>
+                <description>Distance between source and nearest neighbour</description>
+                <unit>arcsec</unit>
+                <ucd>POS_ANG_DIST_GENERAL</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>pxpa</name>
+                <description>(pxpa) Position angle of vector from source to nearest neighbour (E of N)</description>
+                <unit>deg</unit>
+                <ucd>POS_POS-ANG</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>pxcntr</name>
+                <description>(pxcntr) Sequence number of nearest neighbour</description>
+                <ucd>ID_NUMBER</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>gal_contam</name>
+                <description>[0,2] (gal_contam) Extended source contamination</description>
+                <ucd>CODE_MISC</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>mp_flg</name>
+                <description>[0,1] (mp_flg) Association with asteroid or comet</description>
+                <ucd>CODE_MISC</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>pts_key</name>
+                <description>(pts_key) Unique source identifier in catalogue</description>
+                <ucd>ID_NUMBER</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>hemis</name>
+                <description>[ns] (hemis) Hemisphere of observation</description>
+                <ucd>OBS_CODE</ucd>
+                <dataType arraysize="1">char</dataType>
+            </column>
+            <column>
+                <name>date</name>
+                <description>(date) Observation date</description>
+                <ucd>TIME_DATE</ucd>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>scan</name>
+                <description>(scan) Scan number (within date)</description>
+                <ucd>ID_FIELD</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>glon</name>
+                <description>(glon) Galactic longitude</description>
+                <unit>deg</unit>
+                <ucd>POS_GAL_LON</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>glat</name>
+                <description>(glat) Galactic latitude</description>
+                <unit>deg</unit>
+                <ucd>POS_GAL_LAT</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>x_scan</name>
+                <description>(x_scan) Distance of source from focal plane centerline</description>
+                <unit>arcsec</unit>
+                <ucd>INST_POS</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>jdate</name>
+                <description>(jdate) Julian date of source measurement</description>
+                <unit>d</unit>
+                <ucd>TIME_DATE</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>j_psfchi</name>
+                <description>(j_psfchi) J band reduced chi2 value of fit</description>
+                <ucd>FIT_ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>h_psfchi</name>
+                <description>(h_psfchi) H band reduced chi2 value of fit</description>
+                <ucd>FIT_ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>k_psfchi</name>
+                <description>(k_psfchi) K band reduced chi2 value of fit</description>
+                <ucd>FIT_ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>j_m_stdap</name>
+                <description>(jmstdap) J standard aperture magnitude</description>
+                <unit>mag</unit>
+                <ucd>PHOT_JHN_J</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>j_msig_stdap</name>
+                <description>(jmsigstdap) error on Jstdap</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>h_m_stdap</name>
+                <description>(hmstdap) H standard aperture magnitude</description>
+                <unit>mag</unit>
+                <ucd>PHOT_JHN_H</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>h_msig_stdap</name>
+                <description>(hmsigstdap) error on Hstdap</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>k_m_stdap</name>
+                <description>(kmstdap) K standard aperture magnitude</description>
+                <unit>mag</unit>
+                <ucd>PHOT_JHN_K</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>k_msig_stdap</name>
+                <description>(kmsigstdap) error on Kstdap</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>dist_edge_ns</name>
+                <description>(distedgens) Distance from the source to the nearest North or South scan edge</description>
+                <unit>arcsec</unit>
+                <ucd>INST_PLATE_DIST</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>dist_edge_ew</name>
+                <description>(distedgeew) Distance from the source to the nearest East or West scan edge</description>
+                <unit>arcsec</unit>
+                <ucd>INST_PLATE_DIST</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>dist_edge_flg</name>
+                <description>(distedgeflg) flag indicating to which edges the edgeNS and edgeEW values refer</description>
+                <ucd>INST_POS</ucd>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>dup_src</name>
+                <description>(dup_src) Flag indicating duplicate source</description>
+                <ucd>CODE_MISC</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>use_src</name>
+                <description>(use_src) Use source flag</description>
+                <ucd>CODE_MISC</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>a</name>
+                <description>(a) Associated optical source</description>
+                <ucd>ID_CATALOG</ucd>
+                <dataType arraysize="1">char</dataType>
+            </column>
+            <column>
+                <name>dist_opt</name>
+                <description>(dist_opt) Distance to associated optical source</description>
+                <unit>arcsec</unit>
+                <ucd>POS_ANG_DIST_GENERAL</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>phi_opt</name>
+                <description>[0,360] (phi_opt) position angle from optical source to the 2MASS source position</description>
+                <unit>deg</unit>
+                <ucd>POS_POS-ANG</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>b_m_opt</name>
+                <description>(bmopt) Blue magnitude of associated optical source</description>
+                <unit>mag</unit>
+                <ucd>PHOT_PHG_B</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>vr_m_opt</name>
+                <description>(vrmopt) Visual or red mag of associated optical source</description>
+                <unit>mag</unit>
+                <ucd>PHOT_PHG_R</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>nopt_mchs</name>
+                <description>(nopt_mchs) Number of optical sources within 5arcsec</description>
+                <ucd>NUMBER</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>ext_key</name>
+                <description>(ext_key) Record Identifier in XSC</description>
+                <ucd>ID_CROSSID</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>scan_key</name>
+                <description>(scan_key) Record Identifier in the Scan Information Table</description>
+                <ucd>ID_NUMBER</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>coadd_key</name>
+                <description>(coadd_key) Record Identifier in the Atlas Image Data Table</description>
+                <ucd>ID_TABLE</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>coadd</name>
+                <description>(coadd) Sequence number of the Atlas Image</description>
+                <ucd>ID_NUMBER</ucd>
+                <dataType>int</dataType>
+            </column>
+        </table>
+    </ri:Resource>

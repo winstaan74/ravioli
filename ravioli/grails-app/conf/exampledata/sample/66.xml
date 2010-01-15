@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" status="active" updated="2008-10-24T21:27:24.94" created="2008-10-24T20:43:52.65" xsi:type="vr:Organisation">
+  <title>Stellar Department of  the Astronomical Institute of the Academy of Sciences of the Czech Republic</title>
+  <shortName>AIASCR-STEL</shortName>
+  <identifier>ivo://asu.cas.cz/stel</identifier>
+  <curation>
+    <publisher ivo-id="ivo://asu.cas.cz/stel">
+      Stelar Department of Astronomical Institute of the Academy of Sciences of the Czech Republic    </publisher>
+    <contact>
+      <name>Petr Skoda</name>
+      <address>Fricova 298, 251 65 Ondrejov, Czech Republic</address>
+      <email>skoda@sunstel.asu.cas.cz</email>
+    </contact>
+  </curation>
+  <content>
+    <subject>spectra archives</subject>
+    <description>
+      Stellar Department of the Astronomical Institute of the Czech Republic
+      operates the 2m telescope at Ondrejov observatory and manages archives of
+      middle and high resolution spectra secured by its spectrographs
+    </description>
+    <referenceURL>http://stelweb.asu.cas.cz/web/index/index-en.php</referenceURL>
+    <type>Organisation</type>
+  </content>
+</ri:Resource>

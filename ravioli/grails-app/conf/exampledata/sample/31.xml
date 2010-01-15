@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cea="http://www.ivoa.net/xml/CEA/v1.0" xmlns:ceab="http://www.ivoa.net/xml/CEA/base/v1.1" xmlns:ceaimpl="http://www.astrogrid.org/schema/CEAImplementation/v2.0" xmlns:ceat="http://www.ivoa.net/xml/CEA/types/v1.1" xmlns:ns4="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.ivoa.net/xml/STC/stc-v1.30.xsd" xmlns:uws="http://www.ivoa.net/xml/UWS/v0.9.1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" created="1999-01-01T12:00:00+01:00" status="active" updated="2009-12-11T15:18:52" xsi:type="cea:CeaApplication" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://software.astrogrid.org/schema/registry/RegistryInterface/v1.0/RegistryInterface.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd  http://www.ivoa.net/xml/VODataService/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VODataService/v1.0/VODataService.xsd http://www.ivoa.net/xml/VOTable/v1.0 http://software.astrogrid.org/schema/vo-formats/VOTable/v1.0/VOTable.xsd http://www.ivoa.net/xml/ConeSearch/v1.0 http://software.astrogrid.org/schema/vo-resource-types/ConeSearch/v1.0/ConeSearch.xsd http://www.ivoa.net/xml/SIA/v1.0 http://software.astrogrid.org/schema/vo-resource-types/SIA/v1.0/SIA.xsd http://www.ivoa.net/xml/SSA/v0.4 http://software.astrogrid.org/schema/vo-resource-types/SSA/v0.4/SSA.xsd urn:astrogrid:schema:vo-resource-types:STAP:v1.0 http://software.astrogrid.org/schema/vo-resource-types/STAP/v1.0/STAP.xsd http://www.ivoa.net/xml/CEA/v1.0rc1 http://software.astrogrid.org/schema/vo-resource-types/CEAService/v1.0rc1/CEAService.xsd">
+        <title>Meudon TITAN code</title>
+        <shortName>TITAN</shortName>
+        <identifier>ivo://obspm.fr/titan</identifier>
+        <curation>
+            <publisher>LUTH - VO-Paris Datacentre</publisher>
+            <creator>
+                <name>Anne-Marie Dumont</name>
+            </creator>
+            <date>2008-10-01</date>
+            <version>1</version>
+            <contact>
+                <name>Anne-Marie Dumont</name>
+                <email>Anne-Marie.Dumont@obspm.fr</email>
+            </contact>
+        </curation>
+        <content>
+            <subject/>
+            <description>TITAN is a computer program for calculating the interactions of a dilute plane-parallel medium with electromagnetic radiation. It includes all atomic processes: absorption, recombination, diffusion, excitation, deexcitation of atoms and ions, heating and cooling of the gas, and it solves the radiation transfer, in order to obtain the spectra reemitted by the medium. It handles plan parallel slabs in non LTE steady state, for various physical conditions and various illuminations, valid in many astrophysical situations. It is specifically designed for warm-hot (8000 to 10**8 K) and thick media (till an electron scattering optical depth of several tens) emitting and absorbing in the X-ray range (density from 10**5 to 10**14 cm-3). It computes the physical parameters, ionisation degrees, temperature, density, and the spectrum of the radiated light in each point of the slab, by solving simultaneously the ionisation equations, the equations of statistical equilibrium, the thermal equations and the radiation transfer, using iteration processes.</description>
+            <referenceURL>http://vo.obspm.fr/simulation/listecodes.html#Titan</referenceURL>
+            <type>Other</type>
+        </content>
+        <applicationDefinition>
+            <applicationType>processing</applicationType>
+            <parameters>
+                <parameterDefinition id="titre" type="text">
+                    <name>Model title</name>
+                    <description>This title will appear in the header of the output files. &lt;br&gt;Format : one line, maximum length = 78 characters.</description>
+                    <ucd/>
+                    <defaultValue>TITAN model</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="fich" type="text">
+                    <name>Model name</name>
+                    <description>This name is used as a prefix for the output files. &lt;br&gt;Format : no blanks, maximum length = 30 characters.</description>
+                    <ucd/>
+                    <defaultValue>titan_model</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="incid" type="integer">
+                    <name>incident spectrum (SED) option</name>
+                    <description>Choice of the incident Spectral Energy Distribution: &lt;br&gt;
+		 1 = Power law &lt;br&gt;
+		 2 = Blackbody &lt;br&gt;
+		 3 = Laor (1997) &lt;br&gt;
+		 4 = Cloudy AGN &lt;br&gt;
+		 5 = Netzer (1996) &lt;br&gt;
+		 6 = Krolik (1995) &lt;br&gt;
+		 7 = NGC 5548 &lt;br&gt;
+		 8 = NGC 3783 &lt;br&gt;
+		 9 = X-ray thin (Lexington 2000) &lt;br&gt;
+		 10 = Broken power law  (file with  log E(eV)  &amp;  log F&lt;sub&gt;&amp;#957;&lt;/sub&gt; at knots) &lt;br&gt;
+		 15 = File with  E(eV)  &amp;  F&lt;sub&gt;&amp;#957;&lt;/sub&gt; (erg cm&lt;sup&gt;-2&lt;/sup&gt; s&lt;sup&gt;-1&lt;/sup&gt; Hz&lt;sup&gt;-1&lt;/sup&gt;) &lt;br&gt;
+		 16 = File with  E(eV)  &amp;  &amp;#957;.F&lt;sub&gt;&amp;#957;&lt;/sub&gt; (erg cm&lt;sup&gt;-2&lt;/sup&gt; s&lt;sup&gt;-1&lt;/sup&gt;)&lt;br&gt;
+		 17 = Exponential (lower and upper) cut-off power law &lt;br&gt;</description>
+                    <ucd/>
+                    <defaultValue>1</defaultValue>
+                    <optionList>
+                        <optionVal>1</optionVal>
+                        <optionVal>2</optionVal>
+                        <optionVal>3</optionVal>
+                        <optionVal>4</optionVal>
+                        <optionVal>5</optionVal>
+                        <optionVal>6</optionVal>
+                        <optionVal>7</optionVal>
+                        <optionVal>8</optionVal>
+                        <optionVal>9</optionVal>
+                        <optionVal>10</optionVal>
+                        <optionVal>15</optionVal>
+                        <optionVal>16</optionVal>
+                        <optionVal>17</optionVal>
+                    </optionList>
+                </parameterDefinition>
+                <parameterDefinition id="irent" type="real">
+                    <name>Backwards illumination option</name>
+                    <description>Backward illumination by a Blackbody spectrum :&lt;br&gt;
+		 0 = NO &lt;br&gt;
+		 1 = YES&lt;br&gt;
+		 (Presently it is not possible to have blackbody fluxes on both sides of the slab).</description>
+                    <ucd/>
+                    <defaultValue>0</defaultValue>
+                    <optionList>
+                        <optionVal>0</optionVal>
+                        <optionVal>1</optionVal>
+                    </optionList>
+                </parameterDefinition>
+                <parameterDefinition id="fifli" type="binary">
+                    <name>Incident spectrum file</name>
+                    <description>Must be given if the "incident SED option" is 10, 15, 16.&lt;br&gt;
+		 Enter the path of the file containing the incident SED to be uploaded.&lt;br&gt; 
+		 Maximum length of the file name = 30 characters&lt;br&gt;
+		 Expected structure of the file :&lt;br&gt;
+		 - first line of the file: title, not read&lt;br&gt;
+		 - second line: number n of lines to be read &lt;br&gt;
+		 - then * if option 10, n lines with: log E in eV  blank(s) log F&lt;sub&gt;&amp;#957;&lt;/sub&gt; (for the knots) 10 lines maximum&lt;br&gt;
+		 * if option 15, n lines with: photon energy E in eV blank(s) F&lt;sub&gt;&amp;#957;&lt;/sub&gt;&lt;br&gt;
+		 * if option 16, n lines with: photon energy E in eV blank(s) &amp;#957;.F&lt;sub&gt;&amp;#957;&lt;/sub&gt;&lt;br&gt;</description>
+                    <ucd/>
+                </parameterDefinition>
+                <parameterDefinition id="flindex" type="real">
+                    <name>Power law index</name>
+                    <description>Must be given if the "incident SED option" is 1 or 17 - not used in any other SED options&lt;br&gt;
+		 &lt;b&gt;Flux index&lt;/b&gt; (&amp;#945;) of the incident spectrum power law  (F&lt;sub&gt;&amp;#957;&lt;/sub&gt; proportional to E&lt;sup&gt;-&amp;#945;&lt;/sup&gt; )</description>
+                    <ucd/>
+                    <defaultValue>1</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="hnumin" type="real">
+                    <name>Power law lower boundary</name>
+                    <description>Must be given if the "incident SED option" is 1 or 17 - not used in any other SED options&lt;br&gt;
+		 - If the "incident SED option" is 1, this value is the &lt;b&gt;lower boundary&lt;/b&gt; of the incident power law spectrum, in eV (the minimum value accepted is 0.01 eV)&lt;br&gt;
+		 - If the "incident SED option" is 17, this value is the &lt;b&gt;lower cut-off&lt;/b&gt; of the exponential cut-off power law, in eV (the spectrum is cut at 0.01 eV)</description>
+                    <ucd/>
+                    <defaultValue>1</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="hnumax" type="real">
+                    <name>Power law upper boundary</name>
+                    <description>Must be given if the "incident SED option" is 1 or 17 - not used in any other SED options&lt;br&gt;
+		 - If the "incident SED option" is 1, this value is the upper boundary of the incident power law spectrum, in eV (the maximum value accepted is 5.e5 eV)&lt;br&gt;
+		 - If the "incident SED option" is 17, this value is the upper cut-off of the exponential cut-off power law, in eV (the spectrum is cut at 5.e5 eV)</description>
+                    <ucd/>
+                    <defaultValue>1.e5</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="Tbb" type="real">
+                    <name>Blackbody temperature</name>
+                    <description>Must be given if the "incident SED option" is 2 or if the "backward illumination option" is 1 - not used in any other cases&lt;br&gt;
+		 Blackbody (incident or backward) &lt;b&gt;temperature&lt;/b&gt;, in Kelvin</description>
+                    <ucd/>
+                    <defaultValue>1e5</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="wbb" type="real">
+                    <name>Blackbody geometrical dilution factor</name>
+                    <description>Must be given if the "incident SED option" is 2 or if the "backward illumination option" is 1 - not used in any other cases&lt;br&gt;
+		 Blackbody (incident or backward) &lt;b&gt;geometrical dilution factor&lt;/b&gt;, between 0 and 1</description>
+                    <ucd/>
+                    <defaultValue>1</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="csit" type="real">
+                    <name>Ionization parameter</name>
+                    <description>Except if the incident spectrum is a blackbody, fill either the "Ionization parameter" variable &lt;b&gt;OR&lt;/b&gt; the "Incident flux at 13.6 eV" variable, &lt;b&gt;the other variable must be set to zero&lt;/b&gt;. &lt;br&gt;
+		 The &lt;b&gt;ionization parameter&lt;/b&gt; of the incident flux (in erg cm s&lt;sup&gt;-1&lt;/sup&gt;) is defined as &amp;#958; = F.4&amp;#960;/n&lt;sub&gt;0&lt;/sub&gt; &lt;br&gt;
+		 where F is the incident flux integrated over &lt;b&gt;the whole energy range&lt;/b&gt; (from 0.01 eV to 500 keV),&lt;br&gt;
+		 and n&lt;sub&gt;0&lt;/sub&gt; is the hydrogen number density at the irradiated surface of the slab.</description>
+                    <ucd/>
+                    <defaultValue>1000</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="fluxex0" type="real">
+                    <name>Incident flux at 13.6 eV</name>
+                    <description>Except if the incident spectrum is a blackbody, fill either the "Ionization parameter" variable &lt;b&gt;OR&lt;/b&gt; the "Incident flux at 13.6 eV" variable, &lt;b&gt;the other variable must be set to zero&lt;/b&gt;.&lt;br&gt;
+		 Value of the &lt;b&gt;incident flux at 13.6 eV&lt;/b&gt;, in erg cm&lt;sup&gt;-2&lt;/sup&gt; s&lt;sup&gt;-1&lt;/sup&gt; Hz&lt;sup&gt;-1&lt;/sup&gt;.&lt;br&gt;</description>
+                    <ucd/>
+                    <defaultValue>0</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="coltot" type="real">
+                    <name>Column density</name>
+                    <description>&lt;b&gt;Hydrogen column-density&lt;/b&gt; of the slab, in cm&lt;sup&gt;-2&lt;/sup&gt;.</description>
+                    <ucd/>
+                    <defaultValue>1e23</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="idens" type="integer">
+                    <name>Density variation option</name>
+                    <description>0 = constant density (fill the next variable) &lt;br&gt;
+		 1 = power law density profile (fill the 3 next variables - see further for their definition)&lt;br&gt;
+		 100 = density.given in a file  (choose then the option 11 for the variable "slab slicing option")&lt;br&gt;
+		 minimum density: 1.e5, maximum: 1.e14 in cm&lt;sup&gt;-3&lt;/sup&gt;</description>
+                    <ucd/>
+                    <defaultValue>0</defaultValue>
+                    <optionList>
+                        <optionVal>0</optionVal>
+                        <optionVal>1</optionVal>
+                        <optionVal>100</optionVal>
+                    </optionList>
+                </parameterDefinition>
+                <parameterDefinition id="densinit" type="real">
+                    <name>Density at the surface</name>
+                    <description>Hydrogen number &lt;b&gt;density&lt;/b&gt; at the illuminated surface of the slab n&lt;sub&gt;0&lt;/sub&gt;, in cm&lt;sup&gt;-3&lt;/sup&gt; &lt;br&gt;
+		 minimum density: 1.e5, maximum: 1.e14 in cm&lt;sup&gt;-3&lt;/sup&gt;.</description>
+                    <ucd/>
+                    <defaultValue>1e7</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="densex" type="real">
+                    <name>Power law density index</name>
+                    <description>If the "density variation option" is 1 :&lt;br&gt;
+		 &lt;b&gt;Index&lt;/b&gt; of the power law density profile &amp;#946; as in the formula giving the density profile:&lt;br&gt;
+		 n = n&lt;sub&gt;0&lt;/sub&gt;.[R/(R+z)]&lt;sup&gt;&amp;#946;&lt;/sup&gt; &lt;br&gt;
+		 z being 0 at the illuminated side of the slab</description>
+                    <ucd/>
+                    <defaultValue>0</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="raymin" type="real">
+                    <name>parameter R for the power law density</name>
+                    <description>If the "density variation option" is 1 :&lt;br&gt;
+		 R is the factor in cm in the formula giving the density profile : &lt;br&gt;
+		 n = n&lt;sub&gt;0&lt;/sub&gt;.[R/(R+z)]&lt;sup&gt;&amp;#946;&lt;/sup&gt; &lt;br&gt;
+		 z being 0 at the illuminated side of the slab</description>
+                    <ucd/>
+                    <defaultValue>1.e13</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="vturbkm" type="real">
+                    <name>Turbulence velocity</name>
+                    <description>Microturbulence &lt;b&gt;velocity&lt;/b&gt; taken into account in the transfer and in the line profiles, in km/s</description>
+                    <ucd/>
+                    <defaultValue>0</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="inr" type="integer">
+                    <name>Spectral line number option</name>
+                    <description>Option for the number of spectral lines used in the computations :&lt;br&gt;
+		 1 = 1023 lines  (short run option)&lt;br&gt;
+		 2 = 4141 lines  (long run option)</description>
+                    <ucd/>
+                    <defaultValue>2</defaultValue>
+                    <optionList>
+                        <optionVal>1</optionVal>
+                        <optionVal>2</optionVal>
+                    </optionList>
+                </parameterDefinition>
+                <parameterDefinition id="ab2" type="real">
+                    <name>Helium abundance</name>
+                    <description>Helium abundance with respect to Hydrogen (in number).</description>
+                    <ucd/>
+                    <defaultValue>8.5d-2</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="ab3" type="real">
+                    <name>Carbon abundance</name>
+                    <description>Carbon abundance with respect to Hydrogen (in number).</description>
+                    <ucd/>
+                    <defaultValue>3.3d-4</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="ab4" type="real">
+                    <name>Nitrogen abundance</name>
+                    <description>Nitrogen abundance with respect to Hydrogen (in number).</description>
+                    <ucd/>
+                    <defaultValue>9.1d-5</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="ab5" type="real">
+                    <name>Oxygen abundance</name>
+                    <description>Oxygen abundance with respect to Hydrogen (in number).</description>
+                    <ucd/>
+                    <defaultValue>6.6d-4</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="ab6" type="real">
+                    <name>Neon abundance</name>
+                    <description>Neon abundance with respect to Hydrogen (in number).</description>
+                    <ucd/>
+                    <defaultValue>8.3d-5</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="ab7" type="real">
+                    <name>Magnesium abundance</name>
+                    <description>Magnesium abundance with respect to Hydrogen (in number).</description>
+                    <ucd/>
+                    <defaultValue>2.6d-5</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="ab8" type="real">
+                    <name>Silicon abundance</name>
+                    <description>Silicon abundance with respect to Hydrogen (in number).</description>
+                    <ucd/>
+                    <defaultValue>3.3d-5</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="ab9" type="real">
+                    <name>Sulfur abundance</name>
+                    <description>Sulfur abundance with respect to Hydrogen (in number).</description>
+                    <ucd/>
+                    <defaultValue>1.6d-5</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="ab10" type="real">
+                    <name>Iron abundance</name>
+                    <description>Iron abundance with respect to Hydrogen (in number).</description>
+                    <ucd/>
+                    <defaultValue>3.2d-5</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="incang" type="integer">
+                    <name>Incident radiation direction</name>
+                    <description>Direction in which the incident radiation hits the slab :&lt;br&gt;
+		 0 = isotropic illumination option &lt;br&gt;
+		 1 = normal incidence&lt;br&gt;
+		 2 to 4 if the "number of directions" variable is 4, &lt;br&gt;
+		 2 to 6 if the "number of directions" variable is 6 &lt;br&gt;
+		 (see the user's guide)</description>
+                    <ucd/>
+                    <defaultValue>1</defaultValue>
+                    <optionList>
+                        <optionVal>0</optionVal>
+                        <optionVal>1</optionVal>
+                        <optionVal>2</optionVal>
+                        <optionVal>3</optionVal>
+                        <optionVal>4</optionVal>
+                        <optionVal>5</optionVal>
+                        <optionVal>6</optionVal>
+                    </optionList>
+                </parameterDefinition>
+                <parameterDefinition id="ndir" type="integer">
+                    <name>Number of directions</name>
+                    <description>&lt;b&gt;Number of directions&lt;/b&gt; taken into account in the transfer computations : &lt;br&gt;
+		 - for isotropic incident radiation option : put 1, 3, 5 or 20 &lt;br&gt;
+		 - for normal or inclined incident radiation option : put 4 or 6 (including the normal direction) &lt;br&gt;
+		 (see the user's guide for the corresponding values of the angles)</description>
+                    <ucd/>
+                    <defaultValue>4</defaultValue>
+                    <optionList>
+                        <optionVal>1</optionVal>
+                        <optionVal>3</optionVal>
+                        <optionVal>5</optionVal>
+                        <optionVal>20</optionVal>
+                        <optionVal>4</optionVal>
+                        <optionVal>6</optionVal>
+                    </optionList>
+                </parameterDefinition>
+                <parameterDefinition id="igrid" type="integer">
+                    <name>Slab slicing option</name>
+                    <description>Option for slicing the slab in small layers :&lt;br&gt;
+		 0 = layers with equal thicknesses (column-density &amp;#8804; 1.e19 cm&lt;sup&gt;-2&lt;/sup&gt;)&lt;br&gt;
+		 1 = automatic column-grid &lt;br&gt;
+		 10 = column-grid given in a file &lt;br&gt;
+		 11 = column-grid and density profile given in a file &lt;br&gt;
+		 12 = column-grid, density profile and temperature profile given in a file ( in that case there is no computation of the thermal equilibrium)</description>
+                    <ucd/>
+                    <defaultValue>1</defaultValue>
+                    <optionList>
+                        <optionVal>0</optionVal>
+                        <optionVal>1</optionVal>
+                        <optionVal>10</optionVal>
+                        <optionVal>11</optionVal>
+                        <optionVal>12</optionVal>
+                    </optionList>
+                </parameterDefinition>
+                <parameterDefinition id="nstr" type="integer">
+                    <name>Number of layers</name>
+                    <description>Must be given if the "slab slicing option" is 0, 10, 11, 12 - not used if the "slab slicing option" is 1&lt;br&gt;
+		 &lt;b&gt;Number N of layers&lt;/b&gt; (maximum 998)</description>
+                    <ucd/>
+                    <defaultValue>50</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="fimzn" type="binary">
+                    <name>File name for the slab slicing</name>
+                    <description>Must be given if the "slab slicing option" is 10, 11, 12. &lt;br&gt;
+		 Enter the path of the file containing the values of the column density for the slab slicing to be uploaded.&lt;br&gt;
+		 Maximum length of the file name = 30 characters&lt;br&gt;
+		 Expected structure of the file : &lt;br&gt;  
+		 (the columns are separated by blank(s)) &lt;br&gt;
+		 - first line of the file : title, not read&lt;br&gt;
+		 - then N lines with : &lt;br&gt;
+		 * if option 10:	one column-density (in cm&lt;sup&gt;-2&lt;/sup&gt;) per line&lt;br&gt;
+		 * if option 11:	column-density (in cm&lt;sup&gt;-2&lt;/sup&gt;)  blank(s)  density (in cm&lt;sup&gt;-3&lt;/sup&gt;)&lt;br&gt;
+		 * if option 12:	column-density (in cm&lt;sup&gt;-2&lt;/sup&gt;)  blank(s)  density (in cm&lt;sup&gt;-3&lt;/sup&gt;)  blank(s)  temperature (in K).</description>
+                    <ucd/>
+                </parameterDefinition>
+                <parameterDefinition id="Tcst" type="real">
+                    <name>Constant temperature mode</name>
+                    <description>For the computation of the &lt;b&gt;thermal equilibrium&lt;/b&gt; (standard mode) set this value to &lt;b&gt;0&lt;/b&gt; &lt;br&gt;
+		 In the constant temperature mode, give the &lt;b&gt;temperature&lt;/b&gt; value, (in Kelvin), which is kept constant along the whole slab (no computation of the thermal equilibrium)</description>
+                    <ucd/>
+                    <defaultValue>0</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="nfmax" type="real">
+                    <name>Maximum number of iterations</name>
+                    <description>Maximum number of iterations (main loops) to be performed by the code</description>
+                    <ucd/>
+                    <defaultValue>50</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="resol" type="real">
+                    <name>Output spectral resolution</name>
+                    <description>&lt;b&gt;Resolution&lt;/b&gt; &amp;#957;/d&amp;#957; in the output spectra  (d&amp;#957; is the FWHM of the line profile)</description>
+                    <ucd/>
+                    <defaultValue>100</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="ifich" type="integer">
+                    <name>Output level of information</name>
+                    <description>Level of information in the output files :&lt;br&gt;
+		 0 = main output files only &lt;br&gt;
+		 1 = outputs for intermediate iterations (every 10 iterations)</description>
+                    <ucd/>
+                    <defaultValue>0</defaultValue>
+                    <optionList>
+                        <optionVal>0</optionVal>
+                        <optionVal>1</optionVal>
+                    </optionList>
+                </parameterDefinition>
+                <parameterDefinition id="result" type="binary">
+                    <name>Results archive</name>
+                    <description>Archive containing the results files.</description>
+                    <ucd/>
+                </parameterDefinition>
+            </parameters>
+            <interfaces>
+                <interfaceDefinition id="simple">
+                    <input>
+                        <pref ref="titre"/>
+                        <pref ref="fich"/>
+                        <pref ref="incid"/>
+                        <pref ref="irent"/>
+                        <pref maxOccurs="1" minOccurs="0" ref="fifli"/>
+                        <pref ref="flindex"/>
+                        <pref ref="hnumin"/>
+                        <pref ref="hnumax"/>
+                        <pref ref="Tbb"/>
+                        <pref ref="wbb"/>
+                        <pref ref="csit"/>
+                        <pref ref="fluxex0"/>
+                        <pref ref="coltot"/>
+                        <pref ref="idens"/>
+                        <pref ref="densinit"/>
+                        <pref ref="densex"/>
+                        <pref ref="raymin"/>
+                        <pref ref="vturbkm"/>
+                        <pref ref="inr"/>
+                        <pref ref="ab2"/>
+                        <pref ref="ab3"/>
+                        <pref ref="ab4"/>
+                        <pref ref="ab5"/>
+                        <pref ref="ab6"/>
+                        <pref ref="ab7"/>
+                        <pref ref="ab8"/>
+                        <pref ref="ab9"/>
+                        <pref ref="ab10"/>
+                        <pref ref="ndir"/>
+                        <pref ref="incang"/>
+                        <pref ref="igrid"/>
+                        <pref ref="nstr"/>
+                        <pref maxOccurs="1" minOccurs="0" ref="fimzn"/>
+                        <pref ref="Tcst"/>
+                        <pref ref="nfmax"/>
+                        <pref ref="resol"/>
+                        <pref ref="ifich"/>
+                    </input>
+                    <output>
+                        <pref ref="result"/>
+                    </output>
+                </interfaceDefinition>
+            </interfaces>
+        </applicationDefinition>
+    </ri:Resource>

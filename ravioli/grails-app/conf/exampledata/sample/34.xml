@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" created="2009-09-15T12:00:00+02:00" status="active" updated="2009-09-24T20:14:30" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VODataService/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0        http://www.ivoa.net/xml/ConeSearch/v1.0                  http://www.ivoa.net/xml/ConeSearch/v1.0" xsi:type="vs:CatalogService">
+        <title>SkyBoT Service</title>
+        <shortName>SkyBoT SE</shortName>
+        <identifier>ivo://obspm.fr/imcce/skybot/service</identifier>
+        <curation>
+            <publisher ivo-id="ivo://obspm.fr/imcce">IMCCE - VO-Paris Datacentre</publisher>
+            <creator>
+                <name>J. Berthier</name>
+                <logo>http://vo.imcce.fr/webservices/share/img/logo_IMCCE-t.png</logo>
+            </creator>
+            <date role="creation">2009-09-15</date>
+            <version>2</version>
+            <contact>
+                <name>J. Berthier</name>
+                <address>IMCCE/Observatoire de Paris, 77 av. Denfert Rochereau, F-75014 Paris, France</address>
+                <email>berthier@imcce.fr</email>
+            </contact>
+        </curation>
+        <content>
+            <subject>solar system+ephemerides+planetary systems+asteroids+comets+planet
+            satellites</subject>
+            <description>SkyBoT is a XML Web Service which allows to seek and identify solar system
+            objects (planet, satellites, asteroids, comets) in any field of view at a given epoch
+            (cone-search method). It provides also a solar system object name resolver which convert
+            the name or the designation of solar system objects into their celestial coordinates at a
+            given epoch (resolver method).</description>
+            <source format="bibcode">2006ASPC..351..367B</source>
+            <referenceURL>http://vo.imcce.fr/webservices/skybot</referenceURL>
+            <type>Other</type>
+            <contentLevel>Research</contentLevel>
+        </content>
+        <capability>
+            <interface xsi:type="vr:WebBrowser">
+                <accessURL use="full">http://vo.imcce.fr/webservices/skybot/?forms</accessURL>
+            </interface>
+        </capability>
+        <capability>
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://vo.imcce.fr/webservices/skybot/skybotconesearch_query.php?</accessURL>
+                <queryType>GET</queryType>
+                <resultType>text/xml+votable</resultType>
+            </interface>
+        </capability>
+        <capability standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+            <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://vo.imcce.fr/webservices/skybot/skybotconesearch_query.php?-from=VOExplorer&amp;EPOCH=now&amp;</accessURL>
+                <queryType>GET</queryType>
+                <resultType>text/xml+votable</resultType>
+            </interface>
+            <maxSR>18000</maxSR>
+            <maxRecords>99999</maxRecords>
+            <verbosity>true</verbosity>
+            <testQuery>
+                <ra>148.67</ra>
+                <dec>+16.38</dec>
+                <sr>1</sr>
+                <extras>EPOCH=2453384.92153935181</extras>
+            </testQuery>
+        </capability>
+    </ri:Resource>

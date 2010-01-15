@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xsi:type="vr:Organisation" status="active" created="2006-01-01T00:00:00" updated="2006-01-01T00:00:00" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VORegistry/v1.0 http://www.ivoa.net/xml/VORegistry/v1.0">
+<title>Sternberg Astronomical Institute Virtual Observatory Project</title>
+<shortName>SAI VO</shortName>
+<identifier>ivo://astronet.ru/organisation</identifier>
+<curation>
+<publisher ivo-id="ivo://astronet.ru/organisation">Sternberg Astronomical Institute Virtual Observatory Project</publisher>
+<creator>
+<name>Sergey Karpov</name>
+<logo/>
+</creator>
+<date>2007-11-30</date>
+<contact>
+<name>Sergey Karpov</name>
+<email>karpov@sao.ru</email>
+</contact>
+</curation>
+<content>
+<subject>Virtual Observatory</subject>
+<description>
+Virtual Observatory project at the Sternberg Astronomical Institute
+provides public access to the growing set of astronomical services developed by the SAI RVO
+in accordance with the Virtual Observatory standards.
+</description>
+<referenceURL>http://vo.astronet.ru/about.html</referenceURL>
+<type>Organisation</type>
+</content>
+</ri:Resource>

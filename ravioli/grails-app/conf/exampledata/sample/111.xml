@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><vor:Resource xmlns:vor="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" created="2006-01-01T00:00:00" updated="2006-06-16T22:32:08" status="active" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/RegistryInterface-v1.0.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/VOResource-v1.0.xsd http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/VODataService-v1.0.xsd http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/ConeSearch-v1.0.xsd http://www.ivoa.net/xml/STC/stc-v1.30.xsd http://www.ivoa.net/xml/STC/stc-v1.30.xsd" xsi:type="vs:CatalogService">
+<title>The Tycho-2 Catalogue of the 2.5 Million Brightest Stars</title>
+<shortName>tycho2-suppl_1</shortName>
+<identifier>ivo://astronet.ru/cas/tycho2-suppl_1</identifier>
+<curation>
+<publisher ivo-id="ivo://astronet.ru/organisation">Sternberg Astronomical Institute Virtual Observatory Project</publisher>
+<creator>
+<name>Sergey Karpov</name>
+<logo/>
+</creator>
+<date>2007-11-30</date>
+<contact>
+<name>Sergey Karpov</name>
+<email>karpov@sao.ru</email>
+</contact>
+</curation>
+<content>
+<subject>Catalogs</subject>
+<description>
+
+The Tycho-2 Catalogue is an astrometric reference catalogue containing
+positions  and proper motions  as well as  two-colour photometric data
+for the 2.5 million brightest stars in the sky.  The Tycho-2 positions
+and magnitudes are  based on  precisely the  same observations  as the
+original  Tycho  Catalogue  (hereafter  Tycho-1)
+collected  by the  star mapper  of the  ESA Hipparcos  satellite,  but
+Tycho-2 is much bigger  and slightly  more precise,   owing to  a more
+advanced   reduction  technique.   Components  of  double  stars  with
+separations down to 0.8 arcsec are included. Proper motions precise to
+about 2.5 mas/yr are given as  derived  from  a  comparison  with  the
+Astrographic   Catalogue  and   143  other   ground-based  astrometric
+catalogues,  all reduced to the Hipparcos celestial coordinate system.
+Tycho-2  supersedes in most applications Tycho-1,   as well as the ACT
+and TRC catalogues based on Tycho-1.
+Supplement-1  lists stars  from the  Hipparcos and  Tycho-1 Catalogues
+which are not in Tycho-2.  Supplement-2 lists 1146 Tycho-1 stars which
+are probably either false or heavily disturbed.
+
+For more information, please consult the Tycho-2 home page:
+http://www.astro.ku.dk/~erik/Tycho-2
+
+Catalogue Characteristics:
+
+The principal characteristics of the Tycho-2 Catalogue are
+summarized below. By means of proper motions the positions
+are transferred to the year 2000.0, the epoch of the catalogue.
+The median values of internal standard errors are given.
+
+Mean satellite observation epoch      ~J1991.5
+Epoch of the Tycho-2 Catalogue         J2000.0
+Reference system                       ICRS
+  coincidence with ICRS (1)             +/-0.6 mas
+  deviation from inertial (1)           +/-0.25 mas/yr
+Number of entries                      2,539,913
+Astrometric standard errors (2)
+  V_T_ &lt; 9 mag                           7 mas
+  all stars, positions                   60 mas
+  all stars, proper motions              2.5 mas/yr
+Photometric std. errors (3) on V_T_
+  V_T_ &lt; 9 mag                           0.013 mag
+  all stars                              0.10 mag
+Star density
+  b= 0 deg                             150 stars/sq.deg.
+  b= +/-30 deg                          50 stars/sq.deg.
+  b= +/-90 deg                          25 stars/sq.deg.
+Completeness to 90 per cent            V ~ 11.5 mag
+Completeness to 99 per cent            V ~ 11.0 mag
+Number of Tycho observations           ~300 10^6^
+
+Note (1): about all 3 axes
+Note (2):
+	ratio of external to internal standard errors is ~1.0
+	for positions and for proper motions. Systematic errors
+	are less than 1 mas and 0.5 mas/yr
+Note (3):
+	ratio of photometric external to internal standard errors
+	at V_T_ &gt; 9 mag is below 1.5
+</description>
+<referenceURL>http://vo.astronet.ru/cas/</referenceURL>
+<type>Archive</type>
+</content>
+<capability standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+<interface role="std" xsi:type="vs:ParamHTTP">
+<accessURL use="base">http://vo.astronet.ru/sai_cas/conesearch?cat=tycho2&amp;tab=suppl_1&amp;</accessURL>
+</interface>
+<maxSR>3</maxSR>
+<maxRecords>1000000</maxRecords>
+<verbosity>false</verbosity>
+<testQuery>
+<ra>0</ra>
+<dec>0</dec>
+<sr>0.1</sr>
+</testQuery>
+</capability>
+</vor:Resource>

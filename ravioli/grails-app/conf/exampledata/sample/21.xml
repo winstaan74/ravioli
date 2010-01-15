@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" created="1997-12-09T15:43:41" updated="1997-12-09T15:43:41" status="active" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0        http://www.ivoa.net/xml/VOResource/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0        http://www.ivoa.net/xml/ConeSearch/v1.0                  http://www.ivoa.net/xml/ConeSearch/v1.0">
+   <validationLevel validatedBy="ivo://CDS.VizieR">1</validationLevel>
+   <title>Stellar Distribution Near SA 127, SA 141, SA 189 (Ratnatunga 1983)</title>
+   <shortName>II/121</shortName>
+   <identifier>ivo://CDS.VizieR/II/121</identifier>
+   <curation>
+      <publisher ivo-id="ivo://CDS">CDS</publisher>
+      <creator>
+         <name>Ratnatunga K.U. 1983</name>
+      </creator>
+      <contributor>C.-H. Lyu [Hughes STX/NASA] and Francois Ochsenbein [CDS]</contributor>
+      <date role="creation">1997-12-09T15:43:41</date>
+      <version>25-May-1995</version>
+      <contact>
+         <name>CDS support team</name>
+         <address>CDS, Observatoire de Strasbourg, 11 rue de l'Universite, F-67000 Strasbourg, France</address>
+         <email>question@simbad.u-strasbg.fr</email>
+      </contact>
+   </curation>
+   <content>
+      <subject> </subject>
+      <description>Photographic photometry and 1950 coordinates were determined using Automated Image location on 50 micron aperture PDS scans of the regions on UKSTU Schmidt plates. Galaxy contamination, which is small at these relatively bright apparent magnitudes, has not been removed from the images located. The image locating algorithm does not locate faint stars within 9 seconds of arc of an image of a brighter star on the plate. Assuming uniform random distributions, the estimated incompleteness is 0.5% at magnitude 15 and 2.2% at 17.5. </description>
+      <source format="bibcode"> </source>
+      <referenceURL>http://cdsarc.u-strasbg.fr/cgi-bin/Cat?II/121</referenceURL>
+      <type>Catalog</type>
+      <contentLevel>Research</contentLevel>
+   </content>
+   <rights>public</rights>
+   <capability>
+      <interface xsi:type="vr:WebBrowser">         <accessURL use="full">http://vizier.u-strasbg.fr/cgi-bin/VizieR-2?-source=II/121</accessURL>
+</interface>
+   </capability>
+   <capability>
+      <interface xsi:type="vs:ParamHTTP">         <accessURL use="base">http://vizier.u-strasbg.fr/viz-bin/votable/-dtd/-A?-source=II/121</accessURL>
+         <queryType>GET</queryType>
+         <resultType>text/xml+votable</resultType>
+</interface>
+   </capability>
+   <capability xsi:type="cs:ConeSearch" standardID="ivo://ivoa.net/std/ConeSearch">      <interface xsi:type="vs:ParamHTTP" role="std">         <accessURL use="base">http://vizier.u-strasbg.fr/viz-bin/votable/-A?-source=II/121&amp;</accessURL>
+         <queryType>GET</queryType>
+         <resultType>text/xml+votable</resultType>
+</interface>
+      <maxSR>180</maxSR>
+      <maxRecords>9999</maxRecords>
+      <verbosity>true</verbosity>
+      <testQuery>
+         <ra>0.0</ra>
+         <dec>+90.0</dec>
+         <sr>0.1</sr>
+      </testQuery>
+</capability>
+   <coverage>
+      <footprint>http://cdsarc.u-strasbg.fr/viz-bin/w/Footprint?-gal&amp;-z&amp;8&amp;-s&amp;sqrt&amp;catid=2121</footprint>
+      <waveband>Optical</waveband>
+   </coverage>
+   <table>      <name>II/121/sa127</name>
+      <description>SA 127 field</description>
+      <column>         <name>recno</name>
+         <description>Record number within the original table (starting from 1)</description>
+         <unit> </unit>
+         <ucd>meta.record</ucd>
+</column>
+      <column>         <name>RA1950</name>
+         <description>Right Ascension 1950 (hours)</description>
+         <unit>"h:m:s"</unit>
+         <ucd>pos.eq.ra;meta.main</ucd>
+</column>
+      <column>         <name>DE1950</name>
+         <description>Declination 1950 (sign)</description>
+         <unit>"d:m:s"</unit>
+         <ucd>pos.eq.dec;meta.main</ucd>
+</column>
+      <column>         <name>J</name>
+         <description>Photographic J magnitude = V + 0.841*(B-V)</description>
+         <unit>mag</unit>
+         <ucd>phot.mag;em.opt.B</ucd>
+</column>
+      <column>         <name>F</name>
+         <description>Photographic F magnitude = V - 0.605*(B-V)</description>
+         <unit>mag</unit>
+         <ucd>phot.mag;em.opt</ucd>
+</column>
+</table>
+   <table>      <name>II/121/sa189</name>
+      <description>SA 189 field</description>
+      <column>         <name>recno</name>
+         <description>Record number within the original table (starting from 1)</description>
+         <unit> </unit>
+         <ucd>meta.record</ucd>
+</column>
+      <column>         <name>RA1950</name>
+         <description>Right Ascension 1950 (hours)</description>
+         <unit>"h:m:s"</unit>
+         <ucd>pos.eq.ra;meta.main</ucd>
+</column>
+      <column>         <name>DE1950</name>
+         <description>Declination 1950 (sign)</description>
+         <unit>"d:m:s"</unit>
+         <ucd>pos.eq.dec;meta.main</ucd>
+</column>
+      <column>         <name>J</name>
+         <description>Photographic J magnitude = V + 0.841*(B-V)</description>
+         <unit>mag</unit>
+         <ucd>phot.mag;em.opt.B</ucd>
+</column>
+      <column>         <name>F</name>
+         <description>Photographic F magnitude = V - 0.605*(B-V)</description>
+         <unit>mag</unit>
+         <ucd>phot.mag;em.opt</ucd>
+</column>
+</table>
+   <table>      <name>II/121/sa141</name>
+      <description>SA 141 field</description>
+      <column>         <name>recno</name>
+         <description>Record number within the original table (starting from 1)</description>
+         <unit> </unit>
+         <ucd>meta.record</ucd>
+</column>
+      <column>         <name>RA1950</name>
+         <description>Right Ascension 1950 (hours)</description>
+         <unit>"h:m:s"</unit>
+         <ucd>pos.eq.ra;meta.main</ucd>
+</column>
+      <column>         <name>DE1950</name>
+         <description>Declination 1950 (sign)</description>
+         <unit>"d:m:s"</unit>
+         <ucd>pos.eq.dec;meta.main</ucd>
+</column>
+      <column>         <name>J</name>
+         <description>Photographic J magnitude = V + 0.841*(B-V)</description>
+         <unit>mag</unit>
+         <ucd>phot.mag;em.opt.B</ucd>
+</column>
+      <column>         <name>F</name>
+         <description>Photographic F magnitude = V - 0.605*(B-V)</description>
+         <unit>mag</unit>
+         <ucd>phot.mag;em.opt</ucd>
+</column>
+</table>
+</ri:Resource>

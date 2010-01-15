@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cea="http://www.ivoa.net/xml/CEA/v1.0" xmlns:ceab="http://www.ivoa.net/xml/CEA/base/v1.1" xmlns:ceaimpl="http://www.astrogrid.org/schema/CEAImplementation/v2.0" xmlns:ceat="http://www.ivoa.net/xml/CEA/types/v1.1" xmlns:ns4="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.ivoa.net/xml/STC/stc-v1.30.xsd" xmlns:uws="http://www.ivoa.net/xml/UWS/v0.9.1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" created="1999-01-01T00:00:00+01:00" status="deleted" updated="2008-12-09T14:08:56" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/registry/RegistryInterface/v1.0/RegistryInterface.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd  http://www.ivoa.net/xml/VODataService/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VODataService/v1.0/VODataService.xsd http://www.ivoa.net/xml/VOTable/v1.0 http://software.astrogrid.org/schema/vo-formats/VOTable/v1.0/VOTable.xsd" xsi:type="vr:Service">
+        <title>VO Paris CEC</title>
+        <shortName>VO-Paris-CEC</shortName>
+        <identifier>ivo://obspm.fr/astrogrid-cea-commandline</identifier>
+        <curation>
+            <publisher>Observatoire de Paris</publisher>
+            <creator>
+                <name>Observatoire de Paris</name>
+            </creator>
+            <date>2008-10-01</date>
+            <version>1</version>
+            <contact>
+                <name>Franck Le Petit</name>
+                <email>Franck.LePetit@obspm.fr</email>
+            </contact>
+        </curation>
+        <content>
+            <subject>service, CEA, virtual observatory</subject>
+            <description>A service in the Common Execution Architecture. This service provides one or more science applications which are separately registered. See the ManagedApplications element of this document for a list of applications</description>
+            <referenceURL>http://www.astrogrid.org/maven/docs/head/applications/</referenceURL>
+            <type>Other</type>
+        </content>
+        <capability standardID="ivo://org.astrogrid/std/CEA/v1.0" xsi:type="cea:CeaCapability">
+            <interface role="std" version="1.0" xsi:type="cea:CECInterface">
+                <accessURL>TemplateEntry</accessURL>
+            </interface>
+            <managedApplications>
+                <applicationReference>ivo://abc.de/aa</applicationReference>
+            </managedApplications>
+        </capability>
+        <capability standardID="ivo://org.astrogrid/std/CEA/v1.0" xsi:type="cea:CeaCapability">
+            <interface version="1.0" xsi:type="vr:WebService">
+                <accessURL>http://voparis-astrogrid.obspm.fr:8080/astrogrid-cea-cec//services/CommonExecutionConnectorService</accessURL>
+            </interface>
+            <managedApplications>
+                <applicationReference>ivo://obspm.fr/titan</applicationReference>
+                <applicationReference>ivo://obspm.fr/PDR_08</applicationReference>
+            </managedApplications>
+        </capability>
+    </ri:Resource>

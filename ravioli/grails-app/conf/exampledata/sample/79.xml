@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:sn="http://www.ivoa.net/xml/SkyNode/v0.2" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" created="2008-04-10T00:00:00" updated="2008-04-10T00:00:00" status="inactive">
+
+  <title>Subaru Suprime-Cam data service</title>
+
+  <shortName>SUBARU_SUP</shortName>
+
+  <identifier>ivo://jvo/subaru/spcam</identifier>
+
+  <curation>
+      <publisher>JVO</publisher>
+      <creator>
+         <name/>
+      </creator>
+      <contributor/>
+      <contact>
+         <name/>
+      </contact>
+  </curation>
+
+  <content>
+      <subject/>
+
+      <description>
+This data service provides various data related to Subaru SuprimeCam.
+      </description>
+
+      <referenceURL/>
+  </content>
+
+  <capability standardID="ivo://ivoa.net/std/OpenSkyNode" xsi:type="vr:Capability">
+      <interface version="1.0" role="std" xsi:type="vr:WebService">
+         <accessURL>http://jvo.nao.ac.jp/skynode/services/SkyNodeForSUP</accessURL>
+      </interface>
+  </capability>
+
+  <capability xsi:type="vr:Capability">
+      <interface xsi:type="vr:WebBrowser">
+         <accessURL>http://jvo.nao.ac.jp/portal/subaru.do</accessURL>
+      </interface>
+  </capability>
+
+
+
+  <facility>Subaru Telescope</facility>
+  <instrument>Suprime-Cam</instrument>
+
+  <coverage>
+      <waveband>Optical</waveband>
+  </coverage>
+
+</ri:Resource>

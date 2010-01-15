@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" created="1997-12-09T15:38:29" updated="1997-12-09T15:38:29" status="active" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0        http://www.ivoa.net/xml/VOResource/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0                  http://www.ivoa.net/xml/VODataService/v1.0        http://www.ivoa.net/xml/ConeSearch/v1.0                  http://www.ivoa.net/xml/ConeSearch/v1.0">
+   <validationLevel validatedBy="ivo://CDS.VizieR">1</validationLevel>
+   <title>Proper Motions in Cape Zone Catalogue -40/-52 (Spencer Jones H.+ 1936)</title>
+   <shortName>I/5</shortName>
+   <identifier>ivo://CDS.VizieR/I/5</identifier>
+   <curation>
+      <publisher ivo-id="ivo://CDS">CDS</publisher>
+      <creator>
+         <name>Spencer Jones H. and Jackson J.</name>
+      </creator>
+      <contributor>Julie Anne Watko [SSDOO/ADC]</contributor>
+      <date role="creation">1997-12-09T15:38:29</date>
+      <version>03-Nov-1995</version>
+      <contact>
+         <name>CDS support team</name>
+         <address>CDS, Observatoire de Strasbourg, 11 rue de l'Universite, F-67000 Strasbourg, France</address>
+         <email>question@simbad.u-strasbg.fr</email>
+      </contact>
+   </curation>
+   <content>
+      <subject>Positional_Data</subject>
+      <subject>Proper_Motions</subject>
+      <description>This catalog, listing the proper motions of 20,843 stars from the Cape Astrographic Zones, was compiled from three series of photographic plates. The plates were taken at the Royal Observatory, Cape of Good Hope, in the following years: 1892-1896, 1897-1910, 1923-1928. Data given include centennial proper motion, photographic and visual magnitude, Harvard spectral type, Cape Photographic Durchmusterung (CPD) identification, epoch, right ascension and declination for 1900. </description>
+      <source format="bibcode"> </source>
+      <referenceURL>http://cdsarc.u-strasbg.fr/cgi-bin/Cat?I/5</referenceURL>
+      <type>Catalog</type>
+      <contentLevel>Research</contentLevel>
+   </content>
+   <rights>public</rights>
+   <capability>
+      <interface xsi:type="vr:WebBrowser">         <accessURL use="full">http://vizier.u-strasbg.fr/cgi-bin/VizieR-2?-source=I/5</accessURL>
+</interface>
+   </capability>
+   <capability>
+      <interface xsi:type="vs:ParamHTTP">         <accessURL use="base">http://vizier.u-strasbg.fr/viz-bin/votable/-dtd/-A?-source=I/5</accessURL>
+         <queryType>GET</queryType>
+         <resultType>text/xml+votable</resultType>
+</interface>
+   </capability>
+   <capability xsi:type="cs:ConeSearch" standardID="ivo://ivoa.net/std/ConeSearch">      <interface xsi:type="vs:ParamHTTP" role="std">         <accessURL use="base">http://vizier.u-strasbg.fr/viz-bin/votable/-A?-source=I/5&amp;</accessURL>
+         <queryType>GET</queryType>
+         <resultType>text/xml+votable</resultType>
+</interface>
+      <maxSR>180</maxSR>
+      <maxRecords>9999</maxRecords>
+      <verbosity>true</verbosity>
+      <testQuery>
+         <ra>0.0</ra>
+         <dec>+90.0</dec>
+         <sr>0.1</sr>
+      </testQuery>
+</capability>
+   <coverage>
+      <footprint>http://cdsarc.u-strasbg.fr/viz-bin/w/Footprint?-gal&amp;-z&amp;8&amp;-s&amp;sqrt&amp;catid=1005</footprint>
+      <waveband>Optical</waveband>
+   </coverage>
+   <table>      <name>I/5/czc</name>
+      <description>The catalogue</description>
+      <column>         <name>recno</name>
+         <description>Record number within the original table (starting from 1)</description>
+         <unit> </unit>
+         <ucd>meta.record</ucd>
+</column>
+      <column>         <name>CZC</name>
+         <description>[1/20843]+ Catalogue Identification Number</description>
+         <unit> </unit>
+         <ucd>meta.id;meta.main</ucd>
+</column>
+      <column>         <name>Vmag</name>
+         <description>? Visual Magnitude</description>
+         <unit>mag</unit>
+         <ucd>phot.mag;em.opt.V</ucd>
+</column>
+      <column>         <name>RA1900</name>
+         <description>Right Ascension for 1900 hours</description>
+         <unit>"h:m:s"</unit>
+         <ucd>pos.eq.ra;meta.main</ucd>
+</column>
+      <column>         <name>DE1900</name>
+         <description>[-] Declination Sign</description>
+         <unit>"d:m:s"</unit>
+         <ucd>pos.eq.dec;meta.main</ucd>
+</column>
+      <column>         <name>Ep-1900</name>
+         <description>[-318/1156] Epoch -1900</description>
+         <unit>cyr</unit>
+         <ucd>time.epoch</ucd>
+</column>
+      <column>         <name>CPDZone</name>
+         <description>[-52/-39]? Cape Photographic Durchmusterung Zone</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+      <column>         <name>CPDNo</name>
+         <description>? Cape Photographic Durchmusterung Number</description>
+         <unit> </unit>
+         <ucd>meta.id</ucd>
+</column>
+      <column>         <name>Pmag</name>
+         <description>? Photographic Magnitude</description>
+         <unit>mag</unit>
+         <ucd>phot.mag;em.opt</ucd>
+</column>
+      <column>         <name>Sp</name>
+         <description>HD Spectral Type</description>
+         <unit> </unit>
+         <ucd>src.spType</ucd>
+</column>
+      <column>         <name>pmRAs</name>
+         <description>*? Proper Motion in RA</description>
+         <unit>ms/yr</unit>
+         <ucd>pos.pm;pos.eq.ra</ucd>
+</column>
+      <column>         <name>pmRA</name>
+         <description>*? Proper Motion in RA</description>
+         <unit>mas/yr</unit>
+         <ucd>pos.pm;pos.eq.ra</ucd>
+</column>
+      <column>         <name>pmDE</name>
+         <description>? Proper Motion in Dec</description>
+         <unit>mas/yr</unit>
+         <ucd>pos.pm;pos.eq.dec</ucd>
+</column>
+</table>
+</ri:Resource>

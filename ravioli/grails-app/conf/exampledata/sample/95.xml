@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sn="http://www.ivoa.net/xml/SkyNode/v0.2" xsi:type="vs:CatalogService" status="active" created="2006-07-18T18:19:01Z" updated="2007-04-03T19:33:03Z">
+          <validationLevel validatedBy="ivo://archive.stsci.edu/nvoregistry">2</validationLevel>
+          <title>Far Ultraviolet Spectroscopic Explorer</title>
+          <shortName>FUSE</shortName>
+          <identifier>ivo://sdss.jhu/openskynode/fuse</identifier>
+          <curation>
+            <publisher>         JHU      </publisher>
+            <creator>
+              <name>Josue Matias</name>
+            </creator>
+            <contact>
+              <name>Ani Thakar</name>
+              <email>thakar@jhu.edu</email>
+            </contact>
+          </curation>
+          <content>
+            <subject>Open SkyNode for FUSE spectra</subject>
+            <description>         This SkyNode contains some 1300 spectra exported so far in NVO format         from the MAST FUSE dataset, the remaining observations will be added         to the SkyNode as they become available (by 01/2007).  Note that the         primary table is actually "SpecObj" (spectra) but has been         aliased to "PhotoPrimary" because the Open SkyQuery interface         requires this currently (it's a bug).  FUSE is a NASA-supported         astrophysics mission that was launched on June 24, 1999, to explore         the Universe using high-resolution spectroscopy in the far-         ultraviolet. The Johns Hopkins University has the lead role in         developing and now operating the mission, in collaboration with The         University of Colorado at Boulder, The University of California at         Berkeley, international partners the Canadian Space Agency (CSA)  and         the French Space Agency (CNES), and corporate partners. FUSE is part         of NASA's  Origins Program under the auspices of NASA's Office of         Space Science.      </description>
+            <referenceURL>
+            </referenceURL>
+            <contentLevel>Research</contentLevel>
+          </content>
+          <capability xsi:type="sn:OpenSkyNode" standardID="ivo://ivoa.net/std/OpenSkyNode">
+            <validationLevel validatedBy="ivo://archive.stsci.edu/nvoregistry">2</validationLevel>
+            <interface xsi:type="vr:WebService" role="std">
+              <accessURL use="full">http://openskyquery.net/nodes/FUSE/nodeb.asmx</accessURL>
+            </interface>
+            <compliance>Full</compliance>
+            <longitude>0</longitude>
+            <latitude>0</latitude>
+            <maxRecords>0</maxRecords>
+            <primaryTable>PhotoPrimary</primaryTable>
+            <primaryKey>objID</primaryKey>
+          </capability>
+          <coverage>
+            <stc:STCResourceProfile xmlns="http://www.ivoa.net/xml/STC/stc-v1.30.xsd">
+              <AstroCoordSystem xlink:type="simple" xlink:href="ivo://STClib/CoordSys#UTC-FK5-TOPO" id="sdss.jhu_openskynode_fuseUTC-FK5-TOPO"/>
+              <AstroCoords coord_system_id="sdss.jhu_openskynode_fuseUTC-FK5-TOPO">
+                <Position1D>
+                  <!-- regionOfRegard -->
+                  <Size pos_unit="arcsec">0.800000011920929</Size>
+                </Position1D>
+              </AstroCoords>
+            </stc:STCResourceProfile>
+            <waveband>UV</waveband>
+          </coverage>
+        </ri:Resource>

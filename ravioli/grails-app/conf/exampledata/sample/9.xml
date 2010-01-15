@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xsi:type="vs:CatalogService" status="active" updated="2008-12-24T00:00:00" created="2008-12-24T00:00:00" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0  http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0  http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/v1.0 ">
+      <title>Chandra Extended Deep Field South Survey Point Source Catalog</title>
+      <shortName>ChanDFSS</shortName>
+   
+      <identifier>ivo://nasa.heasarc/chanextdfs</identifier>
+       
+      <curation>
+      <publisher ivo-id="ivo://nasa.heasarc/ASD">NASA/GSFC HEASARC</publisher>
+          <creator>
+            <name>Lehmer et al.</name>
+          </creator>
+          <contributor>
+          </contributor>
+          <date>2008-12-24</date> 
+          <contact>
+             <name>Michael Preciado</name>
+             <email>Michael.E.Preciado@nasa.gov</email>
+          </contact>
+       </curation> 
+       <content>
+      <subject>Survey Source</subject>
+     <description>
+
+This table contains the combined point-source catalogs for the
+Extended Chandra Deep Field- South (E-CDF-S) survey. The E-CDF-S consists of
+four contiguous 250 ks Chandra observations covering an approximately square
+region of total solid angle ~0.3 square degrees, which flank the existing ~1
+Ms Chandra Deep Field-South (CDF-S). The survey reaches sensitivity limits of
+~1.1 x 10^-16 and ~6.7 x 10^-16 ergs cm^-2 s^-1 for the 0.5-2.0 and 2-8 keV
+bands, respectively. 762 distinct X-ray point sources are detected within the
+E-CDF-S exposure; 589 of these sources are new (i.e., not previously
+detected in the ~1 Ms CDF-S). This brings the total number of X-ray
+point sources detected in the E-CDF-S region to 915 (via the E-CDF-S and
+~1 Ms CDF-S observations). Source positions are determined using
+matched-filter and centroiding techniques; the median positional
+uncertainty is ~0.35". The basic X-ray and optical properties of these
+sources indicate a variety of source types, although absorbed active
+galactic nuclei (AGNs) seem to dominate. In addition to the main Chandra
+catalog, this table contains the supplementary source catalog with 33
+lower-significance X-ray point sources that have bright optical
+counterparts (R &lt; 23 mag). These sources generally have X-ray-to-optical
+flux ratios expected for normal and starburst galaxies, which lack a
+strong AGN component. The basic number-count results for the main
+Chandra catalog are in good agreement with the ~1 Ms CDF-S for sources
+with 0.5-2.0 and 2-8 keV fluxes greater than 3 x 10^-16 and 1 x 10^-15 ergs
+cm^-2 s^-1, respectively.
+
+
+This HEASARC table contains 809 entries: 762 entries corresponding to the 762
+sources listed in the main catalog (Table 2 of the published paper), 14
+sources from the cross-field source list (Table 3) which give properties for
+sources which were detected in more than one observational sources, e.g.
+there are two entries for the source with source_number = 367, one
+entry coming from the main catalog, the other entry from the cross-field
+catalog, and 33 entries corresponding to the 33 sources in the supplementary,
+optically bright source catalog (Table 6). The HEASARC has created a new
+parameter called source_type to identify from which of these 3 original
+tables any given entry comes from; it is set to 'main', 'crossfield' and
+'supplement' for entries from Tables 2, 3, and 6, respectively.
+
+
+    </description>
+            <source format="">2005ApJS..161...21L</source>
+      <referenceURL>http://heasarc.gsfc.nasa.gov/W3Browse/chandra/chanextdfs.html</referenceURL>
+          <type>Catalog</type>             
+          <contentLevel>Research</contentLevel>
+          <relationship>
+             <relationshipType>service-for</relationshipType>
+             <relatedResource ivo-id="ivo://nasa.heasarc/eud">NASA/GSFC Exploration of the Universe Division</relatedResource>
+          </relationship>
+       </content>
+      <capability standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+             <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="base">
+        http://heasarc.gsfc.nasa.gov/cgi-bin/vo/cone/coneGet.pl?table=chanextdfs&amp;
+          </accessURL>
+                <queryType>GET</queryType>
+                <resultType>text/xml</resultType>
+             </interface>
+       
+          <maxSR>180</maxSR>
+          <maxRecords>99999</maxRecords>
+          <verbosity>true</verbosity>
+             <testQuery><ra>53.2166666700000022</ra>
+<dec>-28.1027222200000004</dec><sr>0.0166666666666666667</sr></testQuery>
+
+       </capability>
+	<capability>
+	   <interface xsi:type="vs:ParamHTTP">
+               <accessURL use="base">
+                  http://heasarc.gsfc.nasa.gov/cgi-bin/W3Browse/getvotable.pl?name=chanextdfs
+               </accessURL>
+               <queryType>GET</queryType>
+               <resultType>text/xml</resultType>
+           </interface>
+        </capability>
+        <capability>
+           <interface xsi:type="vr:WebBrowser">
+              <accessURL use="full">
+	          http://heasarc.gsfc.nasa.gov/cgi-bin/W3Browse/w3query.pl?tablehead=name=heasarc_chanextdfs&amp;Action=More+Options&amp;Action=Parameter+Search&amp;ConeAdd=1
+	      </accessURL>
+           </interface>
+        </capability>
+
+      <coverage>
+          <stc:STCResourceProfile xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd">
+
+                <stc:AstroCoordSystem xlink:type="simple" xlink:href="ivo://STClib/CoordSys#UTC-ICRS-TOPO" id="_chanextdfs_UTC-ICRS-TOPO"/>
+
+                <stc:AstroCoords coord_system_id="_chanextdfs_UTC-ICRS-TOPO">
+                      <stc:Position1D>
+
+                            <!-- Coverage.RegionOfRegard -->
+                            <stc:Size pos_unit="deg">0.0166666666666666667</stc:Size>
+
+                      </stc:Position1D>
+                </stc:AstroCoords>
+
+                <stc:AstroCoordArea coord_system_id="_chanextdfs_UTC-ICRS-TOPO">
+                      <stc:AllSky/>
+                </stc:AstroCoordArea>
+         </stc:STCResourceProfile>
+
+          <waveband>X-ray</waveband>
+       </coverage>
+</ri:Resource>

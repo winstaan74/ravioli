@@ -4,12 +4,12 @@ package org.ravioli
 * used to keep track of who've we've harvested from, and when.
 */
 class Registry {
-
+	
     static constraints = { // all non-nullable by default
-        ivorn(unique:true, matches:/ivo:\/\/\S+/) // must have prefix ivo://
-        endpoint(url: true)
-        lastHarvest(nullable:true)
-        manages(nullable:false)
+        ivorn unique:true, matches:/ivo:\/\/\S+/ , maxsize:200 // must have prefix ivo://
+        endpoint url: true , maxsize:400
+        lastHarvest nullable:true
+        manages  nullable:false
     }
 
 
@@ -17,6 +17,7 @@ class Registry {
     String endpoint
     String ivorn
     String name
+	Set<String> manages
     static hasMany = [manages:String] // list of authorities it manages.
 
 

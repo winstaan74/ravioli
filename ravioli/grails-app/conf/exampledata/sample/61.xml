@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:sia="http://www.ivoa.net/xml/SIA/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" status="active" updated="2007-04-11T08:52:38" created="2004-04-21T19:05:11">
+   <title>The Midcourse Space Experiment Data Atlas</title>
+   <shortName>MSX</shortName>
+   <identifier>ivo://irsa.ipac/MSX</identifier>
+   <curation>
+      <publisher ivo-id="ivo://irsa.ipac/IRSA">
+         NASA/IPAC Infrared Science Archive
+      </publisher>
+      <creator>
+         <name>Steve Price (PI, Air Force Research Laboratory); Mike Egan (AFRL); Sean Carey (Boston College); Don Mizuno (BC); Tom Kuchar (BC); Dale Sinclair (AFRL)</name>
+      </creator>
+      <contact>
+         <name>Anastasia Alexov</name>
+         <email>aalexov@ipac.caltech.edu</email>
+      </contact>
+   </curation>
+   <content>
+      <subject/>
+      <description>
+The Midcourse Space Experiment (MSX), a Ballistic Missile Defense Organization satellite, was launched in April 1996. The first ten months of the mission were devoted to mid-infrared observations with a solid hydrogen-cooled telescope. This instrument had five line-scanned focal plane arrays that spanned the spectral region from 4.2 to 26 microns.
+   </description>
+      <referenceURL>http://irsa.ipac.caltech.edu/data/MSX</referenceURL>
+      <type>Archive</type>
+      <contentLevel>Research</contentLevel>
+   </content>
+   <capability standardID="ivo://ivoa.net/std/SIA" xsi:type="sia:SimpleImageAccess">
+      <interface role="std" xsi:type="vs:ParamHTTP">
+         <accessURL use="base">http://irsa.ipac.caltech.edu/cgi-bin/Atlas/nph-atlas?mission=MSX&amp;hdr_location=%5CMSXDataPath%5C&amp;SIAP_ACTIVE=1&amp;collection_desc=The+Midcourse+Space+Experiment+%28MSX%29&amp;</accessURL>
+         <queryType>GET</queryType>
+         <resultType>application/xml+votable</resultType>
+      </interface>
+      <imageServiceType>Atlas</imageServiceType>
+      <maxQueryRegionSize>
+         <long>12.5</long>
+         <lat>12.5</lat>
+      </maxQueryRegionSize>
+      <maxImageExtent>
+         <long>12.5</long>
+         <lat>12.5</lat>
+      </maxImageExtent>
+      <maxImageSize>
+         <long>6400</long>
+         <lat>6400</lat>
+      </maxImageSize>
+      <maxFileSize>147000000</maxFileSize>
+      <maxRecords>500</maxRecords>
+      <testQuery>
+         <pos>
+            <long>120</long>
+            <lat>20</lat>
+         </pos>
+         <size>
+            <long>1</long>
+            <lat>1</lat>
+         </size>
+      </testQuery>
+   </capability>
+   <coverage>
+      <waveband>Infrared</waveband>
+   </coverage>
+</ri:Resource>

@@ -14,12 +14,11 @@ import javax.xml.transform.*;
 import javax.xml.transform.stax.*;
 import javax.xml.transform.stream.*;
 
-
 /**
  *
- * @author noel
+ * @author noel 
  */
-class RegParserService {
+class RegParserService  {
 	
 	boolean transactional = false
 	
@@ -129,7 +128,7 @@ class RegParserService {
 	 @param processor - a closure to process for each
 	 item - will be passed a map of parsed items
 	 */
-	private void doParseRofr(GPathResult xml, Closure processor) {
+	public void doParseRofr(GPathResult xml, Closure processor) {
 		xml.ListRecords.record.metadata.
 		Resource.findAll{it.'@xsi:type' =~ 'Registry'}.
 		each { r ->

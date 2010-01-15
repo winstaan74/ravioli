@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:sn="http://www.ivoa.net/xml/SkyNode/v0.2" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:type="vs:CatalogService" created="2008-04-10T00:00:00" updated="2008-04-10T00:00:00" status="active">
+
+  <title>HST photometry of M4 (Ibata+, 1999)</title>
+  <shortName>Ibata1999</shortName>
+  <identifier>ivo://jvo/vizier/J/ApJS/120/265</identifier>
+
+  <curation>
+      <publisher>JVO</publisher>
+      <creator>
+         <name>Ibata R.A., Richer H.B., Fahlman G.G., Bolte M., Bond H.E., Hesser J.E., Pryor C., Stetson P.B.</name>
+      </creator>
+      <contributor/>
+      <contact>
+         <name>Yuji SHIRASAKI</name>
+      </contact>
+  </curation>
+  <content>
+      <subject>Globular Clusters</subject>
+      <subject>Photometry</subject>
+      <description>    This paper presents a detailed description of the acquisition and
+    processing of a large body of imaging data for three fields in the
+    globular cluster M4 taken with the Wide Field and Planetary Camera 2
+    aboard the Hubble Space Telescope. Analysis with the ALLFRAME package
+    yielded the deepest photometry yet obtained for this cluster. The
+    resulting data set for 4708 stars (positions and calibrated photometry
+    in V, I, and, in two fields, U) spanning approximately six cluster
+    core radii is presented. The scientific analysis is deferred to three
+    companion papers, which investigate the significant white dwarf
+    population discovered and the main-sequence population.
+</description>
+      <source>Astrophys. J. Suppl. Ser. 120, 265 (1999)</source>
+      <referenceURL>http://vizier.nao.ac.jp/viz-bin/Cat?J/ApJS/120/265</referenceURL>
+      <type>Catalog</type>
+      <contentLevel>Research</contentLevel>
+  </content>
+
+  <capability standardID="ivo://ivoa.net/std/OpenSkyNode" xsi:type="vr:Capability">
+      <interface version="1.0" role="std" xsi:type="vr:WebService">
+         <accessURL>http://jvo.nao.ac.jp/skynode/services/SkyNodeForAPJS120_265</accessURL>
+      </interface>
+  </capability>
+
+  <coverage>
+      <waveband>Optical</waveband>
+  </coverage>
+</ri:Resource>

@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?><rs:Resource xmlns:rs="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cea="http://www.ivoa.net/xml/CEA/v1.0rc1" xmlns:ceab="http://www.ivoa.net/xml/CEA/base/v1.0" xmlns:impl="http://www.astrogrid.org/schema/CEAImplementation/v1.0" xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v0.1" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" created="1999-01-01T00:00:00" status="deleted" updated="2008-10-16T14:45:25" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/registry/RegistryInterface/v1.0/RegistryInterface.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd  http://www.ivoa.net/xml/VODataService/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VODataService/v1.0/VODataService.xsd http://www.ivoa.net/xml/VOTable/v1.0 http://software.astrogrid.org/schema/vo-formats/VOTable/v1.0/VOTable.xsd" xsi:type="cea:CeaApplication">
+        <title>Meudon PDR code</title>
+        <shortName>Meudon PDR code</shortName>
+        <identifier>ivo://obspm.fr/pdr</identifier>
+        <curation>
+            <publisher ivo-id="ivo://voparis.obspm">voparis</publisher>
+            <creator>
+                <name ivo-id="ivo://voparis.obspm">voparis</name>
+                <logo>??</logo>
+            </creator>
+            <date role="representative">2004-03-26</date>
+            <version>1.0</version>
+            <contact>
+                <name>Pierre Le Sidaner</name>
+                <email>vo.paris@obspm.fr</email>
+            </contact>
+        </curation>
+        <content>
+            <subject>PhotoDissociation Region (PDR) model for simulation of interstelar medium</subject>
+            <description>The Meudon PDR code is a tool to model the physics and the chemistry of interstellar gas at stationnary state. It considers a stationnary plan-parallel slab of gas and dust illuminated by a UV radiation field and solves radiative transfer, thermal balance and chemistry. It is then possible to deduce column densities and emissivities to compare to observations. The exact physics in the code is described on our website.</description>
+            <referenceURL>http://aristote.obspm.fr/MIS</referenceURL>
+            <type>Other</type>
+        </content>
+        <applicationDefinition>
+            <parameters>
+                <parameterDefinition id="radp" type="real">
+                    <name>Scaling factor of the radiation field (right side)</name>
+                    <description>UV field scaling factor on the right side of the cloud (back of the cloud). To get a semi-infinite cloud choose 0 and do not introduce a star on the right side of the cloud.</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>1.00E+00</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="rrr" type="real">
+                    <name>R = Av / E(B-V)</name>
+                    <description>Ratio between visual extinction and reddening. This value is linked to the choice of the ligne of sight. Typical value for the Galaxy is 3.1</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>3.10</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="ifisob" type="boolean">
+                    <name>Isobaric Model</name>
+                    <description>If checked, pressure will be kept constant at the value in the next field (density and temperature will vary accordingly)</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>false</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="rgrmin" type="real">
+                    <name>Minimum grain radius</name>
+                    <description>Minimal radius of dust grains in cm ; Typical value: 3.0E-7 cm</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>3.00E-07</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="iforh2" type="text">
+                    <name>H2 formation model on dust grains</name>
+                    <description>Control the distribution of energy during H2 formation on dust ; Recommended value: internal energy is 1/3 of formation energy  (that is to say 17249 K)</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>0</defaultValue>
+                    <optionList>
+                        <optionVal>0</optionVal>
+                        <optionVal>1</optionVal>
+                        <optionVal>2</optionVal>
+                        <optionVal>3</optionVal>
+                    </optionList>
+                </parameterDefinition>
+                <parameterDefinition id="itrfer" type="text">
+                    <name>UV Radiative transfer</name>
+                    <description>0 : FKG for all lines, 1 : Approximation, 2 : Exact radiative transfer. For cases 1 and 2, FGK will be used for H2 levels above the J levels given in next field</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>0</defaultValue>
+                    <optionList>
+                        <optionVal>0</optionVal>
+                        <optionVal>1</optionVal>
+                        <optionVal>2</optionVal>
+                    </optionList>
+                </parameterDefinition>
+                <parameterDefinition id="densh" type="real">
+                    <name>Initial density (cm-3)</name>
+                    <description>Density of the cloud in cm-3 defined as nH = n(H) + 2 n(H_2)</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>1.00E+03</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="modele" type="binary">
+                    <name>Results file</name>
+                    <description/>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>dcl_3</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="alb" type="real">
+                    <name>Dust albedo</name>
+                    <description>Dust albedo ; Typical value: 0.42</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>4.20E-01</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="gratio" type="real">
+                    <name>Dust to gas mass ratio</name>
+                    <description>Mgrain / Mgas ; Typical value 0.01</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>1.00E-02</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="ieqth" type="boolean">
+                    <name>Thermal equilibrium</name>
+                    <description>check this field to solve thermal balance ; if uncheked, temperature will be fixed to the value in the next field</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>true</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="Avmax" type="real">
+                    <name>Av integration limit</name>
+                    <description>Maximum visual extinction up to which the calculation is done. Controls the size of the cloud</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>1.00E+00</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="presse" type="real">
+                    <name>Initial Pressure (cm-3 K)</name>
+                    <description>Used only for isobaric models ; Pressure (P = nH * T,  in cm-3 K) is kept constant at this value.</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>6.00E+03</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="fmrc" type="real">
+                    <name>Ionization rate by cosmic rays</name>
+                    <description>Cosmic rays flux in 10E-17 ionization per hydrogen atom per second. Typical value is between 1 and 5.</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>5.00E+00</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="istic" type="integer">
+                    <name>H2 sticking model on dust</name>
+                    <description>Choice between different H sticking models ; Recommended value: 4 (follows prescriptions by Flower and Pineau des Forets, 1998, MNRAS, 297, 1182)</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>4</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="ichh2" type="text">
+                    <name>Model for H+H2 collisions</name>
+                    <description>Model for the collision rates H + H2 ; Typical value is Flower et al. with reactive collisions from Schofield</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>2</defaultValue>
+                    <optionList>
+                        <optionVal>0</optionVal>
+                        <optionVal>1</optionVal>
+                        <optionVal>2</optionVal>
+                        <optionVal>3</optionVal>
+                    </optionList>
+                </parameterDefinition>
+                <parameterDefinition id="srcpp" type="text">
+                    <name>External radiation source (type spectral)</name>
+                    <description>Add to the UV field the radiation field of a star (black body) of the specified spectral type. To not add a star, put any spectral type and write 0 in the next field.</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>A 1</defaultValue>
+                    <optionList>
+                        <optionVal>O 3</optionVal>
+                        <optionVal>O 5</optionVal>
+                        <optionVal>O 8</optionVal>
+                        <optionVal>B 0</optionVal>
+                        <optionVal>B 1</optionVal>
+                        <optionVal>B 3</optionVal>
+                        <optionVal>B 5</optionVal>
+                        <optionVal>B 8</optionVal>
+                        <optionVal>A 0</optionVal>
+                        <optionVal>A 1</optionVal>
+                        <optionVal>A 5</optionVal>
+                        <optionVal>G 2</optionVal>
+                        <optionVal>M 5</optionVal>
+                        <optionVal>B 5 I</optionVal>
+                        <optionVal>A 0 I</optionVal>
+                        <optionVal>A 5 I</optionVal>
+                    </optionList>
+                </parameterDefinition>
+                <parameterDefinition id="radm" type="real">
+                    <name>Scaling factor of the radiation field (left side)</name>
+                    <description>UV field scaling factor on the left side of the cloud (observer's side); Standard UV field is the value given by Draine (1978) ApJS 36, 595. Typical values go from 1 for a diffuse cloud to 10E5-6 for a PDR near a young star.</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>1.00E+00</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="gg" type="real">
+                    <name>&lt;cos(theta)&gt; (diffusion) - Ici E-G</name>
+                    <description>Anisotropy factor for diffusion by dust defined as &amp;lt;cos(theta)&amp;gt; ; Typical value: 0.6</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>6.00E-01</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="alpgr" type="real">
+                    <name>Index of grain size distribution</name>
+                    <description>alpha : Exponent for the slope of the grain size distribution. Grains size distribution is assumed to follow Mathis's law : dn(a) proportional to a^(-alpha)*da  with dn(a) the density (in cm-3) of dust grains having a radius between a and a+da. Mathis et al. (1996) value is alpha=3.5</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>3.50E+00</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="d_sour" type="real">
+                    <name>Distance of the source (pc)</name>
+                    <description>Distance of the star to the cloud in parsecs: d = 0 : no star ; d &amp;lt; 0 : star radiation field added on the observer's side ; d &amp;gt; 0 : star radiation field added on the back side of the cloud</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>0.00E+00</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="vturb" type="real">
+                    <name>Turbulent velocity for Doppler broadening (km s-1)</name>
+                    <description>Turbulent velocity in km s-1 used for doppler broadening</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>2.00E+00</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="dernier_binaire.bin" type="binary">
+                    <name>dernier_binaire.bin</name>
+                    <description/>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue/>
+                </parameterDefinition>
+                <parameterDefinition id="chimie" type="binary">
+                    <name>Chemistry file</name>
+                    <description>Name of the chemistry file to use. If no chemistry file is given then default chemistry file, Drcnosd.chi, is used</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue/>
+                </parameterDefinition>
+                <parameterDefinition id="avant_dernier_binaire.bin" type="binary">
+                    <name>avant_dernier_binaire.bin</name>
+                    <description/>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue/>
+                </parameterDefinition>
+                <parameterDefinition id="tgaz" type="real">
+                    <name>Initial temperature (in Kelvin)</name>
+                    <description>Temperature of the cloud if thermal balance is not solved ; If thermal balance is solved, this value is the initial guess for the temperature at the edge (in this case it has just an effect on the speed for convergence at the first iteration)</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>1.00E+02</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="cdunit" type="real">
+                    <name>NH / E(B-V) (cm-2 mag-1)</name>
+                    <description>Ratio [N(H) + 2*N(H_2)] / E(B-V) in atoms cm-2 mag-1 ; Typical value is 5.8E-21 (Bohlin et al. 1978, ApJ, 224, 132)</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>5.80E+21</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="rgrmax" type="real">
+                    <name>Maximum grain radius</name>
+                    <description>Maximum radius of dust grains in cm ; Typical value: 3.0E-5 cm</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>3.00E-05</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="los_ext" type="text">
+                    <name>Line of sight</name>
+                    <description>Name of the studied line of sight. Example: HD73882, Orion_Bar, ... This parameter controls which extinction curve is used. If the extinction curve for your specific line of sight is not included the standard curve for Galaxy is used. Typical value : Galaxy</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>Galaxy</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="l0h2" type="integer">
+                    <name>Maximum H2 levels</name>
+                    <description>Number of ro-vibrationnal levels of H2 used in the computation ; Typical value is 150. High temperature may require higher value (computing time is then increase)  ; Maximum value is 318 (v= 4, J=29, E = 56641.590 K)</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>150</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="ifafm" type="integer">
+                    <name>Number of global iterations</name>
+                    <description>Number of iterations on the whole cloud before the program stops. ; The value to give depends on the problem. ; Typical value is 10 but for very diffuse clouds it can be far more. ; A result file is generated after each iteration. You MUST check that all the quantities you are interested in have converged between the two last files. If not, you have to relaunch the program with a higher number of iterations.</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>10</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="jfgkh2" type="integer">
+                    <name>Use FGK approximation for J &gt;= jfgkh2</name>
+                    <description>Full radiative transfer in H2 lines with J lower than the value in this field are computed. ; FGK approximation is used for H2 levels with J &amp;gt;= to this value. Full radiative transfer means that the absorption in the lines from these levels is taken into account in the radiative transfer equation. Values above 0 will give a physicaly more precise result but it will increase dramaticaly computing time.</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>0</defaultValue>
+                </parameterDefinition>
+                <parameterDefinition id="rhogr" type="real">
+                    <name>Grain volumic mass (g/cm3)</name>
+                    <description>Grain volumic mass in (g cm-3) ; Typical value: 3.0</description>
+                    <unit/>
+                    <ucd/>
+                    <defaultValue>3.00E+00</defaultValue>
+                </parameterDefinition>
+            </parameters>
+            <interfaces>
+                <interfaceDefinition id="simple">
+                    <input>
+                        <pref maxOccurs="1" minOccurs="1" ref="chimie"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="ifafm"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="Avmax"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="densh"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="radm"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="radp"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="srcpp"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="d_sour"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="fmrc"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="ieqth"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="tgaz"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="ifisob"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="presse"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="vturb"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="itrfer"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="jfgkh2"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="l0h2"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="ichh2"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="los_ext"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="rrr"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="cdunit"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="alb"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="gg"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="gratio"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="rhogr"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="alpgr"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="rgrmin"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="rgrmax"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="iforh2"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="istic"/>
+                    </input>
+                    <output>
+                        <pref maxOccurs="1" minOccurs="1" ref="dernier_binaire.bin"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="avant_dernier_binaire.bin"/>
+                        <pref maxOccurs="1" minOccurs="1" ref="modele"/>
+                    </output>
+                </interfaceDefinition>
+            </interfaces>
+        </applicationDefinition>
+    </rs:Resource>

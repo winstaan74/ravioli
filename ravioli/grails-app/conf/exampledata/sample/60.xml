@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xsi:type="vs:CatalogService" status="active" updated="2008-04-29T14:52:02.49" created="2007-07-26T23:22:21">
+   <title>The NASA/IPAC Extragalactic Database</title>
+   <shortName>NED_derived</shortName>
+   <identifier>ivo://ned.ipac/Derived_Values_For_Object</identifier>
+   <curation>
+      <publisher ivo-id="ivo://ned.ipac/NED">
+         The NASA/IPAC Extragalactic Database
+      </publisher>
+      <contact>
+         <name>Olga Pevunova</name>
+         <email>olga@ipac.caltech.edu</email>
+      </contact>
+   </curation>
+   <content>
+      <subject/>
+      <description>
+NED is built around a master list of extragalactic objects for which cross-identifications of names have been established, accurate positions and redshifts entered to the extent possible, and some basic data collected. Bibliographic references relevant to individual objects have been compiled, and abstracts of extragalactic interest are kept on line. Detailed and referenced photometry, position, and redshift data, have been taken from large compilations and from the literature. NED also includes images for over 773,000 extragalactic objects from 2MASS, from the literature, and from the Digitized Sky Survey. NED's data and references are being continually updated, with revised versions being put on-line every 2-3 months.
+   </description>
+      <referenceURL>http://nedwww.ipac.caltech.edu/help/objresult_help.html</referenceURL>
+      <type>Archive</type>
+      <type>Bibliography</type>
+      <type>Catalog</type>
+      <type>Journal</type>
+      <type>Survey</type>
+      <type>Education</type>
+      <type>Outreach</type>
+      <type>EPOResource</type>
+      <type>BasicData</type>
+      <type>Historical</type>
+      <contentLevel>University</contentLevel>
+      <contentLevel>Research</contentLevel>
+   </content>
+   <capability>
+      <interface xsi:type="vs:ParamHTTP">
+         <accessURL use="dir">http://nedwww.ipac.caltech.edu/cgi-bin/nph-objsearch?of=xml_derved&amp;objname=n34</accessURL>
+         <queryType>GET</queryType>
+         <resultType>application/xml+votable</resultType>
+         <param use="required">
+            <name>of</name>
+            <description>Output Format for Table of Derived Velocities, Distances and Scales, based on redshift for the Object = xml_derved</description>
+            <dataType>string</dataType>
+         </param>
+         <param use="required">
+            <name>objname</name>
+            <description>Object Name, example: ngc1234</description>
+            <dataType>string</dataType>
+         </param>
+      </interface>
+   </capability>
+</ri:Resource>

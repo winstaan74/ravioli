@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:osn="http://www.ivoa.net/xml/OpenSkyNode/v0.2" xmlns:sia="http://www.ivoa.net/xml/SIA/v1.0" xmlns:sla="http://www.ivoa.net/xml/SLA/v0.2" xmlns:ssa="http://www.ivoa.net/xml/SSA/v0.4" xmlns:tsa="http://www.ivoa.net/xml/TSA/v0.2" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" created="2008-10-01T00:00:00" status="active" updated="2009-05-04T10:30:01Z" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0                                                                     http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0                                                                     http://www.ivoa.net/xml/VORegistry/v1.0 http://www.ivoa.net/xml/VORegistry/v1.0                                                                     http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0                                                                     http://www.ivoa.net/xml/SIA/v1.0 http://www.ivoa.net/xml/SIA/v1.0                                                                     http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/v1.0                                                                     http://www.ivoa.net/xml/OpenSkyNode/v0.2 http://www.ivoa.net/xml/OpenSkyNode/v0.2                                                                     http://www.ivoa.net/xml/SSA/v0.4 http://www.ivoa.net/xml/SSA/v0.4                                                                     http://www.ivoa.net/xml/SLA/v0.2 http://esavo.esa.int/xml/SLA-v0.2.xsd                                                                     http://www.ivoa.net/xml/TSA/v0.2 http://esavo.esa.int/xml/TSA-v0.2.xsd" xsi:type="vs:CatalogService">
+        <title>ESO Image Service</title>
+        <shortName>ESO_SIAP</shortName>
+        <identifier>ivo://eso.org/siap</identifier>
+        <curation>
+            <publisher ivo-id="ivo://eso.org">ESO</publisher>
+            <contact>
+                <name>NOT PROVIDED</name>
+            </contact>
+        </curation>
+        <content>
+            <subject>Stars, Galaxies</subject>
+            <subject>NOT PROVIDED</subject>
+            <description>This service provides access to science ready images and preview graphics from the Science Archive Facility of the European Southern Observatory. Note that raw files are accessible to registered users only and therefore are not available through the SIA v1 protocol. As a special feature, and provided that WCS information is sufficient, this service returns instrumental footprint overlays http://www.ivoa.net/Documents/latest/Footprint.html which are supported by certain archive browsers such as VirGO.</description>
+            <referenceURL>http://archive.eso.org/cms/tools-documentation/which-data-are-available/</referenceURL>
+            <type>Archive</type>
+            <contentLevel>Research</contentLevel>
+        </content>
+        <capability standardID="ivo://ivoa.net/std/SIA" xsi:type="sia:SimpleImageAccess">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://archive.eso.org/apps/siaserver/EsoProxySiap?</accessURL>
+            </interface>
+            <imageServiceType>Pointed</imageServiceType>
+            <maxQueryRegionSize>
+                <long>360</long>
+                <lat>180</lat>
+            </maxQueryRegionSize>
+            <maxImageExtent>
+                <long>2</long>
+                <lat>2</lat>
+            </maxImageExtent>
+            <maxImageSize>
+                <long>10000</long>
+                <lat>10000</lat>
+            </maxImageSize>
+            <maxFileSize>1000000000</maxFileSize>
+            <maxRecords>40000</maxRecords>
+        </capability>
+    </ri:Resource>

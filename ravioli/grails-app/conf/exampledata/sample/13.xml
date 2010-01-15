@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xsi:type="vs:CatalogService" status="active" updated="2008-12-24T00:00:00" created="2008-12-24T00:00:00" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0  http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0  http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/v1.0 ">
+      <title>EXOSAT CMA Images for Each Pointing</title>
+      <shortName>CMAIMAGE</shortName>
+   
+      <identifier>ivo://nasa.heasarc/cmaimage</identifier>
+       
+      <curation>
+      <publisher ivo-id="ivo://nasa.heasarc/ASD">NASA/GSFC HEASARC</publisher>
+          <creator>
+                  <name>HEASARC</name>
+          </creator>
+          <contributor>
+          </contributor>
+          <date>2008-12-24</date> 
+          <contact>
+             <name>Michael Preciado</name>
+             <email>Michael.E.Preciado@nasa.gov</email>
+          </contact>
+       </curation> 
+       <content>
+              <subject>Image</subject>
+     <description>
+
+This database table contains the images from two EXOSAT LE telescopes with
+the channel multiplier array (CMA) detectors in the focal plane. The
+CMA/telescope combination covers the 0.05-2.5 keV energy range with a field
+of view of 2 degrees and an on-axis angular resolution of 24 arc seconds
+(HEW). The detectors had no intrinsic spectral capabilities; however,
+different filters were used to make broad band measurements. The most
+commonly used were Thin Lexan (number 7), Aluminum-Parylene (number 6) and
+Boron (number 8). An image was generated for each filter used during an
+observation.
+
+
+    </description>
+                               <source format=""/>
+      <referenceURL>http://heasarc.gsfc.nasa.gov/W3Browse/exosat/cmaimage.html</referenceURL>
+          <type>Archive</type>             
+          <contentLevel>Research</contentLevel>
+          <relationship>
+             <relationshipType>service-for</relationshipType>
+             <relatedResource ivo-id="ivo://nasa.heasarc/eud">NASA/GSFC Exploration of the Universe Division</relatedResource>
+          </relationship>
+       </content>
+      <capability standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+             <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="base">
+        http://heasarc.gsfc.nasa.gov/cgi-bin/vo/cone/coneGet.pl?table=cmaimage&amp;
+          </accessURL>
+                <queryType>GET</queryType>
+                <resultType>text/xml</resultType>
+             </interface>
+       
+          <maxSR>180</maxSR>
+          <maxRecords>99999</maxRecords>
+          <verbosity>true</verbosity>
+             <testQuery><ra>10.7790366199999994</ra>
+<dec>-79.2962458199999958</dec><sr>1</sr></testQuery>
+
+       </capability>
+	<capability>
+	   <interface xsi:type="vs:ParamHTTP">
+               <accessURL use="base">
+                  http://heasarc.gsfc.nasa.gov/cgi-bin/W3Browse/getvotable.pl?name=cmaimage
+               </accessURL>
+               <queryType>GET</queryType>
+               <resultType>text/xml</resultType>
+           </interface>
+        </capability>
+        <capability>
+           <interface xsi:type="vr:WebBrowser">
+              <accessURL use="full">
+	          http://heasarc.gsfc.nasa.gov/cgi-bin/W3Browse/w3query.pl?tablehead=name=heasarc_cmaimage&amp;Action=More+Options&amp;Action=Parameter+Search&amp;ConeAdd=1
+	      </accessURL>
+           </interface>
+        </capability>
+
+      <coverage>
+          <stc:STCResourceProfile xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd">
+
+                <stc:AstroCoordSystem xlink:type="simple" xlink:href="ivo://STClib/CoordSys#UTC-ICRS-TOPO" id="_cmaimage_UTC-ICRS-TOPO"/>
+
+                <stc:AstroCoords coord_system_id="_cmaimage_UTC-ICRS-TOPO">
+                      <stc:Position1D>
+
+                            <!-- Coverage.RegionOfRegard -->
+                            <stc:Size pos_unit="deg">1</stc:Size>
+
+                      </stc:Position1D>
+                </stc:AstroCoords>
+
+                <stc:AstroCoordArea coord_system_id="_cmaimage_UTC-ICRS-TOPO">
+                      <stc:AllSky/>
+                </stc:AstroCoordArea>
+         </stc:STCResourceProfile>
+
+          <waveband>X-ray</waveband>
+       </coverage>
+</ri:Resource>

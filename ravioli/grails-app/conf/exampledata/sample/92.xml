@@ -1,0 +1,943 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cea="http://www.ivoa.net/xml/CEA/v1.0rc1" xmlns:va="http://www.ivoa.net/xml/VOApplication/v1.0rc1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" created="2008-01-03T12:22:22" status="active" updated="2008-04-02T14:20:57" xsi:type="vs:CatalogService" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://software.astrogrid.org/schema/registry/RegistryInterface/v1.0/RegistryInterface.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd  http://www.ivoa.net/xml/VODataService/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VODataService/v1.0/VODataService.xsd http://www.ivoa.net/xml/VOTable/v1.0 http://software.astrogrid.org/schema/vo-formats/VOTable/v1.0/VOTable.xsd http://www.ivoa.net/xml/ConeSearch/v1.0 http://software.astrogrid.org/schema/vo-resource-types/ConeSearch/v1.0/ConeSearch.xsd http://www.ivoa.net/xml/SIA/v1.0 http://software.astrogrid.org/schema/vo-resource-types/SIA/v1.0/SIA.xsd http://www.ivoa.net/xml/SSA/v0.4 http://software.astrogrid.org/schema/vo-resource-types/SSA/v0.4/SSA.xsd urn:astrogrid:schema:vo-resource-types:STAP:v1.0 http://software.astrogrid.org/schema/vo-resource-types/STAP/v1.0/STAP.xsd http://www.ivoa.net/xml/CEA/v1.0rc1 http://software.astrogrid.org/schema/vo-resource-types/CEAService/v1.0rc1/CEAService.xsd">
+        <title xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0">IPHAS IDR: service</title>
+        <identifier xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0">ivo://uk.ac.cam.ast/iphas-dsa-catalog/IDR</identifier>
+        <curation xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0">
+            <publisher>Cambridge Astronomy Survey Unit</publisher>
+            <creator>
+                <name>INT/WFC Photometric Halpha Survey (IPHAS)</name>
+            </creator>
+            <contact>
+                <name>Eduardo Gonzalez-Solares</name>
+                <email>eglez@ast.cam.ac.uk</email>
+            </contact>
+        </curation>
+        <content xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0">
+            <subject>IPHAS</subject>
+            <description>IPHAS is a survey of the northern galactic plane in r, i and Halpha using the INT/WFC. For more details about the survey and the data release see Drew et al. 2005 and Gonzalez-Solares et al. 2007.</description>
+            <referenceURL>http://www.iphas.org/idr</referenceURL>
+            <type>Catalog</type>
+            <contentLevel>Research</contentLevel>
+            <relationship xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0">
+                <relationshipType>service-for</relationshipType>
+                <relatedResource>ivo://uk.ac.cam.ast/iphas-dsa-catalog/IDR/ceaApplication</relatedResource>
+            </relationship>
+        </content>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+            <description>IDR, ChipsAll: cone search</description>
+            <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://casu.ast.cam.ac.uk/ag/iphas-dsa/SubmitCone?DSACAT=IDR&amp;DSATAB=ChipsAll&amp;</accessURL>
+            </interface>
+            <maxSR>10.0</maxSR>
+            <maxRecords>999999999</maxRecords>
+            <verbosity>false</verbosity>
+            <testQuery>
+                <ra>96.0</ra>
+                <dec>5.0</dec>
+                <sr>0.001</sr>
+            </testQuery>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+            <description>IDR, FieldsAll: cone search</description>
+            <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://casu.ast.cam.ac.uk/ag/iphas-dsa/SubmitCone?DSACAT=IDR&amp;DSATAB=FieldsAll&amp;</accessURL>
+            </interface>
+            <maxSR>10.0</maxSR>
+            <maxRecords>999999999</maxRecords>
+            <verbosity>false</verbosity>
+            <testQuery>
+                <ra>96.0</ra>
+                <dec>5.0</dec>
+                <sr>0.001</sr>
+            </testQuery>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+            <description>IDR, PhotoObj: cone search</description>
+            <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://casu.ast.cam.ac.uk/ag/iphas-dsa/SubmitCone?DSACAT=IDR&amp;DSATAB=PhotoObj&amp;</accessURL>
+            </interface>
+            <maxSR>10.0</maxSR>
+            <maxRecords>999999999</maxRecords>
+            <verbosity>false</verbosity>
+            <testQuery>
+                <ra>96.0</ra>
+                <dec>5.0</dec>
+                <sr>0.001</sr>
+            </testQuery>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+            <description>IDR, PhotoObjBest: cone search</description>
+            <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://casu.ast.cam.ac.uk/ag/iphas-dsa/SubmitCone?DSACAT=IDR&amp;DSATAB=PhotoObjBest&amp;</accessURL>
+            </interface>
+            <maxSR>10.0</maxSR>
+            <maxRecords>999999999</maxRecords>
+            <verbosity>false</verbosity>
+            <testQuery>
+                <ra>96.0</ra>
+                <dec>5.0</dec>
+                <sr>0.001</sr>
+            </testQuery>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+            <description>IDR, Emitters: cone search</description>
+            <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://casu.ast.cam.ac.uk/ag/iphas-dsa/SubmitCone?DSACAT=IDR&amp;DSATAB=Emitters&amp;</accessURL>
+            </interface>
+            <maxSR>10.0</maxSR>
+            <maxRecords>999999999</maxRecords>
+            <verbosity>false</verbosity>
+            <testQuery>
+                <ra>96.0</ra>
+                <dec>5.0</dec>
+                <sr>0.001</sr>
+            </testQuery>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/CEA/v1.0" xsi:type="cea:CeaCapability">
+            <description>Access to two applications: general ADQL query, and asynchronous cone-search where relevant/enabled.</description>
+            <interface xsi:type="cea:CECInterface">
+                <accessURL use="full">http://casu.ast.cam.ac.uk/ag/iphas-dsa/services/CommonExecutionConnectorService</accessURL>
+            </interface>
+            <managedApplications>
+                <ApplicationReference>ivo://uk.ac.cam.ast/iphas-dsa-catalog/IDR/ceaApplication</ApplicationReference>
+            </managedApplications>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#capabilities">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://casu.ast.cam.ac.uk/ag/iphas-dsa/IDR/vosi/capabilities</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#availability">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://casu.ast.cam.ac.uk/ag/iphas-dsa/IDR/vosi/availability</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#tables">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://casu.ast.cam.ac.uk/ag/iphas-dsa/IDR/vosi/tables</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <capability xmlns:cap="urn:astrogrid:schema:Capabilities" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" standardID="ivo://org.astrogrid/std/VOSI/v0.3#ceaApplication">
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="full">http://casu.ast.cam.ac.uk/ag/iphas-dsa/IDR/vosi/ceaapplication</accessURL>
+                <queryType>GET</queryType>
+                <resultType>application/xml</resultType>
+            </interface>
+        </capability>
+        <table xmlns:tab="urn:astrogrid:schema:TableMetadata">
+            <name>ChipsAll</name>
+            <description>This table contains the CCD information. Each observation here records the CCD information, also referred to as the Data Quality Control in formation since it provides the seeing, ellipticity, magnitude zero point, mangnitude limit, exposure time, astrometry, etc.</description>
+            <column>
+                <name>chipID</name>
+                <description>chip ID</description>
+                <ucd>ID_MAIN</ucd>
+                <dataType>long</dataType>
+            </column>
+            <column>
+                <name>runno</name>
+                <description>Run number</description>
+                <ucd>OBS_RUN</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>ra</name>
+                <description>R.A. of centre of chip</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_RA_MAIN</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>dec</name>
+                <description>Declination of centre of chip</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_DEC_MAIN</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>naxis1</name>
+                <description>Dimension of CCD across first axis</description>
+                <unit>pixel</unit>
+                <ucd>INST_DET_SIZE</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>naxis2</name>
+                <description>Dimension of CCD across second axis</description>
+                <unit>pixel</unit>
+                <ucd>INST_DET_SIZE</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>chipno</name>
+                <description>CCD number</description>
+                <dataType>short</dataType>
+            </column>
+            <column>
+                <name>mjd</name>
+                <description>MJD of observation</description>
+                <unit>day</unit>
+                <ucd>TIME_DATE</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>magzpt</name>
+                <description>Magnitude zero point</description>
+                <unit>mag</unit>
+                <ucd>PHOT_MAG_ZERO</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>magzrr</name>
+                <description>Magnitude zero point error</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>extinct</name>
+                <description>Extinction</description>
+                <unit>mag</unit>
+                <ucd>PHOT_EXTINCTION_TOTAL</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>airmass</name>
+                <description>Airmass</description>
+                <ucd>PHOT_ATM_AIRMASS</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>exptime</name>
+                <description>Exposure time</description>
+                <unit>second</unit>
+                <ucd>TIME_EXPTIME</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>night</name>
+                <description>Night of observation</description>
+                <ucd>TIME_DATE</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>dateobs</name>
+                <description>Date of observation</description>
+                <ucd>TIME_DATE</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>band</name>
+                <description>Filter of observation</description>
+                <ucd>OBS_BAND</ucd>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>maglim</name>
+                <description>Magnitude limit</description>
+                <unit>mag</unit>
+                <ucd>PHOT_MAG_LIMIT</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>seeing</name>
+                <description>Seeing</description>
+                <unit>arcsec</unit>
+                <ucd>OBS_CONDITIONS</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>elliptic</name>
+                <description>Ellipticity</description>
+                <ucd>PHYS_ELLIPTICITY</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>cd1_1</name>
+                <description>WCS CD11</description>
+                <unit>deg/pixel</unit>
+                <ucd>POS_GENERAL</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>cd1_2</name>
+                <description>WCS CD12</description>
+                <unit>deg/pixel</unit>
+                <ucd>POS_GENERAL</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>cd2_1</name>
+                <description>WCS CD21</description>
+                <unit>deg/pixel</unit>
+                <ucd>POS_GENERAL</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>cd2_2</name>
+                <description>WCS CD22</description>
+                <unit>deg/pixel</unit>
+                <ucd>POS_GENERAL</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>crval1</name>
+                <description>R.A. of reference position</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_RA</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>crval2</name>
+                <description>Dec of reference position</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_DEC</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>crpix1</name>
+                <description>X value of reference position</description>
+                <unit>pixel</unit>
+                <ucd>POS_GENERAL</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>crpix2</name>
+                <description>Y value of reference position</description>
+                <unit>pixel</unit>
+                <ucd>POS_GENERAL</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>percorr</name>
+                <description>Sky correction</description>
+                <unit>mag</unit>
+                <ucd>REDUCT_PARAM</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>apcor</name>
+                <description>Aperture correction</description>
+                <unit>mag</unit>
+                <ucd>REDUCT_PARAM</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>skylevel</name>
+                <description>Sky level</description>
+                <unit>count</unit>
+                <ucd>OBS_PARAM</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>skynoise</name>
+                <description>Sky rms</description>
+                <unit>count</unit>
+                <ucd>OBS_PARAM</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>nobj</name>
+                <description>Number of objects detected</description>
+                <ucd>OBS_OTHER</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>field_id</name>
+                <description>Id of field</description>
+                <ucd>OBS_ID</ucd>
+                <dataType>long</dataType>
+            </column>
+            <column>
+                <name>glon</name>
+                <description>Galactic longitude</description>
+                <unit>deg</unit>
+                <ucd>POS_GAL_LON</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>glat</name>
+                <description>Galactic latitude</description>
+                <unit>deg</unit>
+                <ucd>POS_GAL_LAT</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>ebv</name>
+                <description>Extinction</description>
+                <ucd>PHOT_EXTINCTION_TOTAL</ucd>
+                <dataType>float</dataType>
+            </column>
+        </table>
+        <table xmlns:tab="urn:astrogrid:schema:TableMetadata">
+            <name>FieldsAll</name>
+            <description>This is the pointings table containing information for each pointing.</description>
+            <column>
+                <name>fieldID</name>
+                <description>Field ID</description>
+                <ucd>ID_MAIN</ucd>
+                <dataType>long</dataType>
+            </column>
+            <column>
+                <name>onoff</name>
+                <description>Field on/off status.</description>
+                <dataType>short</dataType>
+            </column>
+            <column>
+                <name>fieldno</name>
+                <description>Field number</description>
+                <ucd>ID_FIELD</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>ra</name>
+                <description>R.A. of centre of field</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_RA_MAIN</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>dec</name>
+                <description>Dec of centre of field</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_DEC_MAIN</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>glon</name>
+                <description>Galactic longitude of centre of field</description>
+                <unit>deg</unit>
+                <ucd>POS_GAL_LON</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>glat</name>
+                <description>Galactic latitude of centre of field</description>
+                <unit>deg</unit>
+                <ucd>POS_GAL_LAT</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>ra_min</name>
+                <description/>
+                <unit>deg</unit>
+                <ucd>POS_EQ_RA</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>ra_max</name>
+                <description/>
+                <unit>deg</unit>
+                <ucd>POS_EQ_RA</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>dec_min</name>
+                <description/>
+                <unit>deg</unit>
+                <ucd>POS_EQ_DEC</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>dec_max</name>
+                <description/>
+                <unit>deg</unit>
+                <ucd>POS_EQ_DEC</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>nobj</name>
+                <description>Number of objects detected</description>
+                <ucd>OBS_OTHER</ucd>
+                <dataType>int</dataType>
+            </column>
+        </table>
+        <table xmlns:tab="urn:astrogrid:schema:TableMetadata">
+            <name>PhotoObj</name>
+            <description>This table contains the measured quantities for all the objects. Includes magnitudes.</description>
+            <column>
+                <name>objID</name>
+                <description>Object ID</description>
+                <ucd>ID_MAIN</ucd>
+                <dataType>long</dataType>
+            </column>
+            <column>
+                <name>ra</name>
+                <description>R.A. of object</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_RA_MAIN</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>dec</name>
+                <description>Declination of object</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_DEC_MAIN</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>glon</name>
+                <description>Galactic longitude</description>
+                <unit>deg</unit>
+                <ucd>POS_GAL_LON</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>glat</name>
+                <description>Galactic latitude</description>
+                <unit>deg</unit>
+                <ucd>POS_GAL_LAT</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>chipno</name>
+                <description>Chip number</description>
+                <ucd>ID_IDENTIFIER</ucd>
+                <dataType>short</dataType>
+            </column>
+            <column>
+                <name>coremag_r</name>
+                <description>Magnitude in r band</description>
+                <unit>mag</unit>
+                <ucd>PHOT_MAG_R</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremag_i</name>
+                <description>Magnitude in i band</description>
+                <unit>mag</unit>
+                <ucd>PHOT_MAG_I</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremag_ha</name>
+                <description>Magnitude in Halpha</description>
+                <unit>mag</unit>
+                <ucd>PHOT_MAG_OPTICAL</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremagerr_r</name>
+                <description>Magnitide error r band</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremagerr_i</name>
+                <description>Magnitude error in i band</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremagerr_ha</name>
+                <description>Magnitude error in Halpha band</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>class_r</name>
+                <description>Star/Galaxy classification in r band</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>class_i</name>
+                <description>Star/Galaxy classification in i band</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>class_ha</name>
+                <description>Star/Galaxy classification in Halpha band</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>ellipt_r</name>
+                <description>Ellipticity in r band</description>
+                <ucd>PHYS_ELLIPTICITY</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>ellipt_i</name>
+                <description>Ellipticity in i band</description>
+                <ucd>PHYS_ELLIPTICITY</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>ellipt_ha</name>
+                <description>Ellipticity Halpha band</description>
+                <ucd>PHYS_ELLIPTICITY</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>posang_r</name>
+                <description>Position angle in r band</description>
+                <unit>deg</unit>
+                <ucd>POS_POS_ANG</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>posang_i</name>
+                <description>Position angle in i band</description>
+                <unit>deg</unit>
+                <ucd>POS_POS-ANG</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>posang_ha</name>
+                <description>Position angle in Halpha band</description>
+                <unit>deg</unit>
+                <ucd>POS_POS-ANG</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>class_flag</name>
+                <description>Combined star/galaxy classification flag</description>
+                <dataType>short</dataType>
+            </column>
+            <column>
+                <name>ellipt_flag</name>
+                <description>Ellipticity flag</description>
+                <dataType>short</dataType>
+            </column>
+            <column>
+                <name>seeing_flag</name>
+                <description>Seeing flag</description>
+                <dataType>short</dataType>
+            </column>
+            <column>
+                <name>photom_flag</name>
+                <description>Photometric flag</description>
+                <dataType>short</dataType>
+            </column>
+            <column>
+                <name>best_flag</name>
+                <description>Best flag</description>
+                <dataType>short</dataType>
+            </column>
+            <column>
+                <name>cx</name>
+                <description/>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>cy</name>
+                <description/>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>cz</name>
+                <description/>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>chip_r_id</name>
+                <description>Chip ID in r band</description>
+                <ucd>ID_IDENTIFIER</ucd>
+                <dataType>long</dataType>
+            </column>
+            <column>
+                <name>chip_i_id</name>
+                <description>Chip ID in i band</description>
+                <ucd>ID_IDENTIFIER</ucd>
+                <dataType>long</dataType>
+            </column>
+            <column>
+                <name>chip_ha_id</name>
+                <description>Chip ID in Halpha band</description>
+                <ucd>ID_IDENTIFIER</ucd>
+                <dataType>long</dataType>
+            </column>
+            <column>
+                <name>field_id</name>
+                <description>Field ID</description>
+                <ucd>ID_IDENTIFIER</ucd>
+                <dataType>long</dataType>
+            </column>
+        </table>
+        <table xmlns:tab="urn:astrogrid:schema:TableMetadata">
+            <name>PhotoObjBest</name>
+            <description>Main photometric object table.</description>
+            <column>
+                <name>objID</name>
+                <description>Object ID</description>
+                <ucd>ID_MAIN</ucd>
+                <dataType>long</dataType>
+            </column>
+            <column>
+                <name>ra</name>
+                <description>R.A. of object</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_RA_MAIN</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>dec</name>
+                <description>Declination of object</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_DEC_MAIN</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>glon</name>
+                <description>Galactic longitude of object</description>
+                <unit>deg</unit>
+                <ucd>POS_GAL_LON</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>glat</name>
+                <description>Galactic latitude of object</description>
+                <unit>deg</unit>
+                <ucd>POS_GAL_LAT</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>chipno</name>
+                <description>Chip number</description>
+                <ucd>ID_IDENTIFIER</ucd>
+                <dataType>short</dataType>
+            </column>
+            <column>
+                <name>coremag_r</name>
+                <description>Magnitude in r band</description>
+                <unit>mag</unit>
+                <ucd>PHOT_MAG_R</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremag_i</name>
+                <description>Magnitude in i band</description>
+                <unit>mag</unit>
+                <ucd>PHOT_MAG_I</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremag_ha</name>
+                <description>Magnitude in Halpha band</description>
+                <unit>mag</unit>
+                <ucd>PHOT_MAG_OPTICAL</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremagerr_r</name>
+                <description>Magnitide error in r band</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremagerr_i</name>
+                <description>Magnitude error in i band</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremagerr_ha</name>
+                <description>Magnitude error in Halpha band</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>class_r</name>
+                <description>Star/Galaxy classification in r band</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>class_i</name>
+                <description>Star/Galaxy classification in i band</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>class_ha</name>
+                <description>Star/Galaxy classification in Halpha band</description>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>ellipt_r</name>
+                <description>Ellipticity in r band</description>
+                <ucd>PHYS_ELLIPTICITY</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>ellipt_i</name>
+                <description>Ellipticity in i band</description>
+                <ucd>PHYS_ELLIPTICITY</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>ellipt_ha</name>
+                <description>Ellipticity in Halpha band</description>
+                <ucd>PHYS_ELLIPTICITY</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>posang_r</name>
+                <description>Position angle in r band</description>
+                <unit>deg</unit>
+                <ucd>POS_POS-ANG</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>posang_i</name>
+                <description>Position angle in i band</description>
+                <unit>deg</unit>
+                <ucd>POS_POS-ANG</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>posang_ha</name>
+                <description>Position angle in Halpha band</description>
+                <unit>deg</unit>
+                <ucd>POS_POS-ANG</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>class_flag</name>
+                <description>Combined star/galaxy classification flag</description>
+                <dataType>short</dataType>
+            </column>
+            <column>
+                <name>ellipt_flag</name>
+                <description>Ellipticity flag</description>
+                <dataType>short</dataType>
+            </column>
+            <column>
+                <name>seeing_flag</name>
+                <description>Seeing flag</description>
+                <dataType>short</dataType>
+            </column>
+            <column>
+                <name>chip_r_id</name>
+                <description>Chip ID in r band</description>
+                <dataType>long</dataType>
+            </column>
+            <column>
+                <name>chip_i_id</name>
+                <description>Chip ID in i band</description>
+                <dataType>long</dataType>
+            </column>
+            <column>
+                <name>chip_ha_id</name>
+                <description>Chip IDin Halpha band</description>
+                <dataType>long</dataType>
+            </column>
+            <column>
+                <name>field_id</name>
+                <description>Field ID</description>
+                <ucd>ID_FIELD</ucd>
+                <dataType>long</dataType>
+            </column>
+        </table>
+        <table xmlns:tab="urn:astrogrid:schema:TableMetadata">
+            <name>tGetNearbyObj</name>
+            <description>Helper table to perform cone searches</description>
+            <column>
+                <name>objID</name>
+                <description>ID_MAIN</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>ra</name>
+                <description/>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>dec</name>
+                <description/>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>r</name>
+                <description/>
+                <dataType>double</dataType>
+            </column>
+        </table>
+        <table xmlns:tab="urn:astrogrid:schema:TableMetadata">
+            <name>Emitters</name>
+            <description>Catalogue of Halpha emitters from Witham et al. 2007 (arXiv:0712.0988)</description>
+            <column>
+                <name>id</name>
+                <description>ID number</description>
+                <ucd>ID_MAIN</ucd>
+                <dataType>int</dataType>
+            </column>
+            <column>
+                <name>object</name>
+                <description>Object name</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>ra</name>
+                <description>R.A. (J2000)</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_RA_MAIN</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>dec</name>
+                <description>Dec (J2000)</description>
+                <unit>deg</unit>
+                <ucd>POS_EQ_DEC_MAIN</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremag_r</name>
+                <description>Magnitude in r band</description>
+                <unit>mag</unit>
+                <ucd>PHOT_MAG_R</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremagerr_r</name>
+                <description>Magnitude error in r band</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremag_ri</name>
+                <description>Colour r-i</description>
+                <unit>mag</unit>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremagerr_ri</name>
+                <description>Error in colour r-i</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremag_rha</name>
+                <description>Colour r-Ha</description>
+                <unit>mag</unit>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>coremagerr_rha</name>
+                <description>Error in colour r-Ha</description>
+                <unit>mag</unit>
+                <ucd>ERROR</ucd>
+                <dataType>double</dataType>
+            </column>
+            <column>
+                <name>flag</name>
+                <description>Flag</description>
+                <dataType arraysize="*">char</dataType>
+            </column>
+            <column>
+                <name>simbad</name>
+                <description>Simbad match</description>
+                <ucd>ID_OTHER</ucd>
+                <dataType arraysize="*">char</dataType>
+            </column>
+        </table>
+    </ri:Resource>

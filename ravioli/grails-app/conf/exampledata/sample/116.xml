@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" created="2008-03-04T12:29:40" status="active" updated="2008-03-04T12:29:40" xsi:type="vg:Authority" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://software.astrogrid.org/schema/registry/RegistryInterface/v1.0/RegistryInterface.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd  http://www.ivoa.net/xml/VORegistry/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VORegistry/v1.0/VORegistry.xsd">
+        <title>Madrigal</title>
+        <identifier>ivo://madrigal.haystack.mit.edu</identifier>
+        <curation>
+            <publisher>Millstone Hill</publisher>
+            <contact>
+                <name>Bill Rideout</name>
+                <email>brideout@haystack.mit.edu</email>
+            </contact>
+        </curation>
+        <content>
+            <subject>Authority</subject>
+            <description>Madrigal</description>
+            <referenceURL>http://madrigal.haystack.mit.edu/madrigal</referenceURL>
+        </content>
+        <managingOrg ivo-id="ivo://mssl.ucl.ac.uk/organisation"/>
+    </ri:Resource>

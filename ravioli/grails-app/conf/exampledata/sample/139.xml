@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:osn="http://www.ivoa.net/xml/OpenSkyNode/v0.2" xmlns:sia="http://www.ivoa.net/xml/SIA/v1.0" xmlns:sla="http://www.ivoa.net/xml/SLA/v0.2" xmlns:ssa="http://www.ivoa.net/xml/SSA/v0.4" xmlns:tsa="http://www.ivoa.net/xml/TSA/v0.2" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" created="2007-10-03T00:00:00" status="inactive" updated="2009-05-25T09:55:18Z" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0                                                                     http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0                                                                     http://www.ivoa.net/xml/VORegistry/v1.0 http://www.ivoa.net/xml/VORegistry/v1.0                                                                     http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0                                                                     http://www.ivoa.net/xml/SIA/v1.0 http://www.ivoa.net/xml/SIA/v1.0                                                                     http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/v1.0                                                                     http://www.ivoa.net/xml/OpenSkyNode/v0.2 http://www.ivoa.net/xml/OpenSkyNode/v0.2                                                                     http://www.ivoa.net/xml/SSA/v0.4 http://www.ivoa.net/xml/SSA/v0.4                                                                     http://www.ivoa.net/xml/SLA/v0.2 http://esavo.esa.int/xml/SLA-v0.2.xsd                                                                     http://www.ivoa.net/xml/TSA/v0.2 http://esavo.esa.int/xml/TSA-v0.2.xsd" xsi:type="vs:CatalogService">
+        <title>Cone Search with Cross Links of the SSC Interface for the XMM-Newton Catalogue</title>
+        <shortName>XCATDB</shortName>
+        <identifier>ivo://xcatdb/2xmm/cs/withcorr</identifier>
+        <curation>
+            <publisher>Observatory of Strasbourg, SSC Team</publisher>
+            <creator>
+                <name>SSC XMM-Newton Consortium</name>
+                <logo>http://xmmssc-www.star.le.ac.uk/Catalogue/2XMM_logo.jpg</logo>
+            </creator>
+            <contact>
+                <name>Laurent MICHEL</name>
+                <address>11 Rue de l Universite - 67000 Strasbourg - France</address>
+                <email>laurent.michel@astro.u-strasbg.fr</email>
+                <telephone>33 390 242 437</telephone>
+            </contact>
+        </curation>
+        <content>
+            <subject>2XMM Catalogue</subject>
+            <subject>NOT PROVIDED</subject>
+            <description>The 2XMM catalogue provides an effective dataset for generating large, well-defined samples of various types of astrophysical object, notably active galaxies (AGN), clusters of galaxies, interacting compact binaries and active stellar coronae, using the power of X-ray selection. The large sky area covered by the serendipitous survey also means that 2XMM is a rich resource for exploring the variety of the X-ray source populations and identifying rare source types. The catalogue contains source detections drawn from 3491 XMM-Newton EPIC observations made between 2000 February 3 and 2007 March 31; all datasets were publicly available by 2007 May 01 but not all public observations are included in this catalogue. The catalogue contains 246897 X-ray source detections which relate to 191870 unique X-ray sources. (see http://xmmssc-www.star.le.ac.uk/Catalogue/2XMM/) The XCATDB interface is design to process complex queries including multiple constraints on cross-correlated couterparts. This cone search includes point</description>
+            <referenceURL>http://xmmssc-www.star.le.ac.uk/Catalogue/2XMM/</referenceURL>
+            <type>Archive</type>
+            <contentLevel>Research</contentLevel>
+        </content>
+        <capability standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+            <interface xsi:type="vr:WebBrowser">
+                <accessURL use="full">http://xcatdb.u-strasbg.fr/2xmm</accessURL>
+            </interface>
+            <interface xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://xcatdb.u-strasbg.fr/2xmm/catentries</accessURL>
+            </interface>
+            <maxSR>1</maxSR>
+            <maxRecords>10000</maxRecords>
+            <verbosity>false</verbosity>
+        </capability>
+    </ri:Resource>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:osn="http://www.ivoa.net/xml/OpenSkyNode/v0.2" xmlns:sia="http://www.ivoa.net/xml/SIA/v1.0" xmlns:sla="http://www.ivoa.net/xml/SLA/v0.2" xmlns:ssa="http://www.ivoa.net/xml/SSA/v0.4" xmlns:tsa="http://www.ivoa.net/xml/TSA/v0.2" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" created="2008-03-03T00:00:00" status="active" updated="2009-04-08T12:00:00" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0                                     http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0                                     http://www.ivoa.net/xml/VORegistry/v1.0 http://www.ivoa.net/xml/VORegistry/v1.0                                     http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0                                     http://www.ivoa.net/xml/SIA/v1.0 http://www.ivoa.net/xml/SIA/v1.0                                     http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/v1.0                                     http://www.ivoa.net/xml/OpenSkyNode/v0.2 http://www.ivoa.net/xml/OpenSkyNode/v0.2                                     http://www.ivoa.net/xml/SSA/v0.4 http://www.ivoa.net/xml/SSA/v0.4                                     http://www.ivoa.net/xml/SLA/v0.2 http://esavo.esa.int/xml/SLA-v0.2.xsd                                     http://www.ivoa.net/xml/TSA/v0.2 http://esavo.esa.int/xml/TSA-v0.2.xsd" xsi:type="vs:CatalogService">
+        <title>SIAP Service Hubble Space Telescope preview images</title>
+        <shortName>HST/SIAP/PREVIEW</shortName>
+        <identifier>ivo://stecf/HST/PREVIEW</identifier>
+        <curation>
+            <publisher>STECF</publisher>
+            <date role="representative">2005-01-01</date>
+            <contact>
+                <name>Diego Sforna</name>
+                <address>ST-ECF Archive Group c/o ESO Karl Schwarzschild strasse 2 85748 Garching bei Munchen Germany</address>
+                <email>dsforna@eso.org</email>
+            </contact>
+        </curation>
+        <content>
+            <subject/>
+            <description>SIAP service for HST preview images. Supported instruments: WFPC2 ACS NICMOS FOC.</description>
+            <referenceURL>http://archive.eso.org/archive/hst/siap1.0/preview/index.html</referenceURL>
+            <type>Archive</type>
+        </content>
+        <capability standardID="ivo://ivoa.net/std/SIA" xsi:type="sia:SimpleImageAccess">
+            <interface role="std" xsi:type="vs:ParamHTTP">
+                <accessURL use="base">http://archive.eso.org/archive/hst/siap1.0/preview/siap_cgi.pl?</accessURL>
+                <resultType>application/xml+votable</resultType>
+            </interface>
+            <imageServiceType>Pointed</imageServiceType>
+            <maxQueryRegionSize>
+                <long>360</long>
+                <lat>180</lat>
+            </maxQueryRegionSize>
+            <maxImageExtent>
+                <long>360</long>
+                <lat>180</lat>
+            </maxImageExtent>
+            <maxImageSize>
+                <long>4096</long>
+                <lat>4096</lat>
+            </maxImageSize>
+            <maxFileSize>10000000</maxFileSize>
+            <maxRecords>1000</maxRecords>
+        </capability>
+    </ri:Resource>

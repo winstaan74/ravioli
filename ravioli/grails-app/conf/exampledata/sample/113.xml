@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><vor:Resource xmlns:vor="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0" xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" created="2006-01-01T00:00:00" updated="2006-06-16T22:32:08" status="active" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/RegistryInterface-v1.0.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/VOResource-v1.0.xsd http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/VODataService-v1.0.xsd http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/ConeSearch-v1.0.xsd http://www.ivoa.net/xml/STC/stc-v1.30.xsd http://www.ivoa.net/xml/STC/stc-v1.30.xsd" xsi:type="vs:CatalogService">
+<title>Third U.S. Naval Observatory CCD Astrograph Catalog (UCAC3)</title>
+<shortName>ucac3</shortName>
+<identifier>ivo://astronet.ru/cas/ucac3</identifier>
+<curation>
+<publisher ivo-id="ivo://astronet.ru/organisation">Sternberg Astronomical Institute Virtual Observatory Project</publisher>
+<creator>
+<name>Sergey Karpov</name>
+<logo/>
+</creator>
+<date>2007-11-30</date>
+<contact>
+<name>Sergey Karpov</name>
+<email>karpov@sao.ru</email>
+</contact>
+</curation>
+<content>
+<subject>Catalogs</subject>
+<description>
+
+UCAC3 is a compiled, all-sky star catalog covering mainly the 8 to 16
+magnitude range in a single bandpass between V and R. Positional
+errors are about 15 to 20 mas for stars in the 10 to 14 mag range.
+It is supplemented by proper motions and SuperCosmos and 2MASS
+photometric data, as well as various flags.
+
+The proper motions of bright stars are based on about 140 catalogs,
+including Hipparcos and Tycho, as well as all catalogs used for the
+Tycho-2 proper motion construction. Proper motions of faint stars are
+based on a re-reduction of early epoch SPM data (-90 to -10 deg Dec)
+plus Schmidt plate data from the SuperCosmos project (down weighted
+due to systematic errors of order 100 mas). The proper motions of
+faint stars (R &lt;= 13.5) therefore should be used with caution. The
+unpublished plate measure data from the AGK2, the Hamburg Zone
+Astrograph, the USNO Black Birch Astrograph, and the Lick Astrograph
+have considerably contributed to improve proper motions for stars
+mainly in the 10 to 14 mag range (down to the UCAC3 limit for Lick
+data); however, these data do not cover all sky.
+
+UCAC3 features a number of major differences with respect to UCAC2:
+ - complete sky coverage
+ - re-reduction of the pixel data with better modeling
+ - double stars are resolved to the limit of the data
+ - significantly improved photometry from CCD data
+ - slightly deeper limiting magnitude with larger number of stars/area
+ - reduced systematic errors of CCD observations
+ - the addition of several new catalogs for improved proper motions
+ - photometry in the B, R, and I bands from the SuperCosmos project
+ - minor planet observations have been sorted out
+ - identification of more high proper motion stars
+ - match with 2MASS extended sources and LEDA galaxies
+
+Additional details will be published in the upcoming release paper
+(Zacharias et al. 2009) and in several technical papers describing
+details of the reduction procedures and results. For the latest
+updates see http://www.usno.navy.mil/usno/astrometry .
+</description>
+<referenceURL>http://vo.astronet.ru/cas/</referenceURL>
+<type>Archive</type>
+</content>
+<capability standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+<interface role="std" xsi:type="vs:ParamHTTP">
+<accessURL use="base">http://vo.astronet.ru/sai_cas/conesearch?cat=ucac3&amp;tab=main&amp;</accessURL>
+</interface>
+<maxSR>3</maxSR>
+<maxRecords>1000000</maxRecords>
+<verbosity>false</verbosity>
+<testQuery>
+<ra>0</ra>
+<dec>0</dec>
+<sr>0.1</sr>
+</testQuery>
+</capability>
+</vor:Resource>

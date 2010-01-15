@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cea="http://www.ivoa.net/xml/CEA/v1.0rc1" xmlns:va="http://www.ivoa.net/xml/VOApplication/v1.0rc1" xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" created="2000-01-01T09:00:00" status="active" updated="2010-01-13T16:44:26" xsi:type="vg:Authority" xsi:schemaLocation="http://www.ivoa.net/xml/RegistryInterface/v1.0 http://software.astrogrid.org/schema/registry/RegistryInterface/v1.0/RegistryInterface.xsd http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd  http://www.ivoa.net/xml/VORegistry/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VORegistry/v1.0/VORegistry.xsd">
+        <title>Special Astrophysical Observatory of RAS (SAO RAS)</title>
+        <identifier>ivo://sao.ru</identifier>
+        <curation>
+            <publisher>Special Astrophysical Observatory of RAS (SAO RAS)</publisher>
+            <contact>
+                <name>Olga Zhelenkova</name>
+                <email>zhe@sao.ru</email>
+            </contact>
+        </curation>
+        <content>
+            <subject>Authority</subject>
+            <description>Special Astrophysical Observatory of RAS (SAO RAS) Public Registry</description>
+            <referenceURL>http://www.sao.ru/astrogrid-registry</referenceURL>
+            <type>Registry</type>
+            <contentLevel>Research</contentLevel>
+        </content>
+        <managingOrg ivo-id="ivo://sao.ru/organisation"/>
+    </ri:Resource>
