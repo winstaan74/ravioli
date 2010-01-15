@@ -54,7 +54,8 @@ class RegParserServiceUnitTests extends GrailsUnitTestCase {
 		assertTrue(url3.startsWith(url1))
 	}
 	
-
+	final int REG_COUNT = 16;
+	
     void testParseRofr() {
 		String url = this.class.getResource("rofrRegistries.xml").toString()
 		Registry r = new Registry(endpoint:url,ivorn:'ivo://ivoa.net/rofr')
@@ -73,6 +74,7 @@ class RegParserServiceUnitTests extends GrailsUnitTestCase {
 			assertTrue (it.endpoint instanceof String)
         }
         assertTrue (callCount > 0)
+		assertEquals(REG_COUNT,callCount)
     }
 	
 	void testPassWrongRegIntoParseRofr() {
@@ -97,6 +99,7 @@ class RegParserServiceUnitTests extends GrailsUnitTestCase {
 			assertTrue(r.validate())
 		}
 		assertTrue (callCount > 0)
+		assertEquals(REG_COUNT,callCount)
 	}
 	
 	void testListIdentifiers() {
