@@ -65,7 +65,8 @@ import groovy.util.XmlSlurper;
 
 ])
 class Resource {
-
+	
+	def transient xmlService  // reference to xml service.
 	static constraints = {
 		ivorn(unique:true, matches:/ivo:\/\/\S+/,maxsize:200) // must have prefix ivo://
 		title(nullable:true,maxsize:500)
@@ -73,6 +74,7 @@ class Resource {
 		modified(nullable:true)
 		xml(nullable:false,blank:false)		
 	}
+	static transients = ['xmlService']
 
 	public final static String SHORTNAME_XPATH = '/node()/shortName'
 	public final static String SOURCE_XPATH = '/node()/content/source'
@@ -149,17 +151,14 @@ class Resource {
 	public String stripXML() {
 		return xpathList("//@*|//text()").join(' ')
 	}
-	
+
 	/** evaluate an xpath over the xml body of this resource
 	 * and return a single value, or null if no match.
 	 * @param path
 	 * @return
 	 */
-	public String xpath(String path) {
-		def xp = XPathFactory.newInstance().newXPath();
-		def is = new InputSource(new StringReader(this.xml))
-		def r =  xp.evaluate(path,is)
-		return r.size() == 0 ? null : r;
+	public  String xpath(String path) {
+		return xmlService.xpath(this.xml,path)
 	}
 	
 	/** evaluate an xpath over the xml body of this resource
@@ -167,12 +166,11 @@ class Resource {
 	 * @param path
 	 * @return
 	 */
-	public List xpathList(String path) {
-		def xp = XPathFactory.newInstance().newXPath();
-		def is = new InputSource(new StringReader(this.xml))
-		def nodes =  xp.evaluate(path,is, XPathConstants.NODESET)
-		return nodes*.nodeValue
+	public  List xpathList(String path) {
+		return xmlService.xpathList(this.xml,path)
 	}
+	
+
 	
 		
 /*

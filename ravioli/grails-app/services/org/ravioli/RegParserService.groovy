@@ -1,5 +1,7 @@
 
 
+
+
 /*
  * Handles the parsing of harvesting responses.
  * 
@@ -9,10 +11,7 @@
 
 package org.ravioli
 import groovy.util.slurpersupport.GPathResult
-import javax.xml.stream.*;
-import javax.xml.transform.*;
-import javax.xml.transform.stax.*;
-import javax.xml.transform.stream.*;
+import java.io.Writer;
 
 /**
  *
@@ -20,6 +19,7 @@ import javax.xml.transform.stream.*;
  */
 class RegParserService  {
 	
+	def xmlService // link to xml parsing support.
 	boolean transactional = false
 	
 	
@@ -78,30 +78,28 @@ class RegParserService  {
 			<xsl:template match="/">
 				<xsl:copy-of select="//node()[local-name() = 'Resource']"/>
 			</xsl:template>
-			<!--
-			<xsl:template match="@*|node()">  
-				<xsl:copy>    
-					<xsl:apply-templates select="@*|node()"/>  
-				</xsl:copy>
-			</xsl:template>
-			-->
 		</xsl:stylesheet>
 			'''.trim()
-		Writer output
-		Reader style
-		try {
-			url.withInputStream{ is ->
-				output = new StringWriter();
-				style = new StringReader(xslt)
-				def transformer = TransformerFactory.newInstance().newTransformer(new StreamSource(style))
-				transformer.transform(new StreamSource(is),new StreamResult(output))
-				
-			}
-		} finally {
-			output?.close()
-			style?.close()
+		Writer output = new StringWriter();
+		output.withWriter {
+			xmlService.transform(xslt,url,output)
 		}
-		return output?.toString()
+		return output.toString();
+//		Writer output
+//		Reader style
+//		try {
+//			url.withInputStream{ is ->
+//				output = new StringWriter();
+//				style = new StringReader(xslt)
+//				def transformer = TransformerFactory.newInstance().newTransformer(new StreamSource(style))
+//				transformer.transform(new StreamSource(is),new StreamResult(output))
+//				
+//			}
+//		} finally {
+//			output?.close()
+//			style?.close()
+//		}
+//		return output?.toString()
 	}
 	
 	/** take care of constructing the query - either incrmental, or no */

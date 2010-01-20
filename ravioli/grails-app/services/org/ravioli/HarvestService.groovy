@@ -5,7 +5,7 @@ import java.util.Collections;
 import groovy.util.slurpersupport.GPathResult;
 import org.codehaus.groovy.grails.commons.*
 
-class HarvestResults {
+public class HarvestResults {
  int created;
  int modified;
  def errors = []

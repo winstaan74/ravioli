@@ -96,6 +96,7 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 			</element>
 			'''
 		Resource r = new Resource(xml:inputXML)
+		r.xmlService = new XmlService();
 		String output = r.stripXML()
 		assertNotNull output
 		[
@@ -109,7 +110,7 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 				}
 	}
 	
-	//@todo add unit tests for some other resources that exercise different parts of the data model
+	//we could add unit tests for some other resources that exercise different parts of the data model
 	// eg waveband..
 	// exercised in resource integration test, so maybe not so much of a problem.
 	
@@ -119,6 +120,7 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 		URL u = this.class.getResource("trimmedRegResource.xml")
 		
 		Resource r = Resource.buildResource(u.text)
+		r.xmlService = new XmlService()
 		assertTrue r.validate();
 		
 		assertEquals('RofR',r.xpath(Resource.SHORTNAME_XPATH))

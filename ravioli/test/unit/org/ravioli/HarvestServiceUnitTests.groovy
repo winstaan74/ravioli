@@ -120,6 +120,7 @@ class HarvestServiceUnitTests extends GrailsUnitTestCase {
 			assertEquals(ivorn,ivo)
 			assertEquals(rofr,r)
 			def real = new RegParserService()
+			real.xmlService = new XmlService()
 			return real.harvest(r,ivo)
 			
 		}
@@ -147,6 +148,7 @@ class HarvestServiceUnitTests extends GrailsUnitTestCase {
 			assertEquals(ivorn,ivo)
 			assertEquals(rofr,r)
 			def real = new RegParserService()
+			real.xmlService = new XmlService()
 			return real.harvest(r,ivo)
 			
 		}

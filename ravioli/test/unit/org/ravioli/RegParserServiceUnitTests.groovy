@@ -9,6 +9,7 @@ class RegParserServiceUnitTests extends GrailsUnitTestCase {
         super.setUp()
 		mockLogging(RegParserService)
 		parser = new RegParserService()
+		parser.xmlService = new XmlService()
     }
 
     protected void tearDown() {

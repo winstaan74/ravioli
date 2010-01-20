@@ -68,6 +68,21 @@
 			<location>/Users/noel/.grails/1.1.2/projects/ravioli/plugins/mail-0.9/src/groovy</location>
 		</link>
 		<link>
+			<name>navigation-1.1.1-grails-app-i18n</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/navigation-1.1.1/grails-app/i18n</location>
+		</link>
+		<link>
+			<name>navigation-1.1.1-grails-app-services</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/navigation-1.1.1/grails-app/services</location>
+		</link>
+		<link>
+			<name>navigation-1.1.1-grails-app-taglib</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/navigation-1.1.1/grails-app/taglib</location>
+		</link>
+		<link>
 			<name>nimble-0.3-SNAPSHOT-grails-app-conf</name>
 			<type>2</type>
 			<location>/Users/noel/.grails/1.1.2/projects/ravioli/plugins/nimble-0.3-SNAPSHOT/grails-app/conf</location>

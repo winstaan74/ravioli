@@ -2,16 +2,19 @@ package org.ravioli
 
 import grails.test.*
 
-class ResourceControllerTests extends ControllerUnitTestCase {
+class RegistryControllerIntegrationTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
+		controller = new RegistryController()
     }
 
     protected void tearDown() {
         super.tearDown()
     }
-
-    void testSomething() {
+	
+	def controller
+	
+    void testNothing() {
 
     }
 }

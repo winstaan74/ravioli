@@ -258,7 +258,6 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 		expect(1) 
 	}
 	
-	//@todo implement curation axis.
 	void testCuration() {
 		search('curation:Graham')
 		expect(1)
