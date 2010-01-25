@@ -1,15 +1,13 @@
 
 package org.ravioli
 
-import java.util.Collections;
-import groovy.util.slurpersupport.GPathResult;
 import org.codehaus.groovy.grails.commons.*
 
 public class HarvestResults {
- int created;
- int modified;
- def errors = []
- 
+	int created;
+	int modified;
+	def errors = []
+	
 }
 
 
@@ -32,7 +30,7 @@ class HarvestService {
 		Registry rofr = Registry.findByIvorn("ivo://ivoa.net/rofr")
 		// lets check that we can identify the rofr
 		regParserService.identify(rofr) // will throw if not matching.
-		Date now = new Date();
+		Date now = new Date(); //@todo do something with this date.
 		HarvestResults hr = new HarvestResults()
 		regParserService.parseRofr(rofr) { map ->
 			//first create a Registry object form the map, to see if 
@@ -42,8 +40,8 @@ class HarvestService {
 				def err = trial.errors
 				// harrumph - doesn't work - id may not be unique.. work around this..
 				if (! (err.errorCount == 1 
-						&& err.fieldError.field == 'ivorn' 
-						&& err.fieldError.code == 'unique'
+				&& err.fieldError.field == 'ivorn' 
+				&& err.fieldError.code == 'unique'
 				)) { 	
 					hr.errors.add(trial.errors)
 					log.warn( "Failed to create registry: " + trial.errors )
@@ -72,18 +70,29 @@ class HarvestService {
 	 * populating the resources table
 	 * @param r
 	 */
-	def harvest(Registry reg, incremental = true) {
+	HarvestResults harvest(Registry reg, incremental = true) {
 		// first check that we can identify the registry correctly.
 		regParserService.identify(reg)
 		Date now = new Date()
-		//HarvestResults hr = new HarvestResults()
+		HarvestResults hr = new HarvestResults()
 		def ids = regParserService.listIdentifiers(reg,incremental)
+		log.info "Harvesting from ${reg.ivorn}, ${ids?.size()} changes found"
+		// compute how many of these id's we've already seen.
+		// and dispatch a background service to harvest that id.
 		ids.each { ivorn ->
+			def c = Resource.findByIvorn(ivorn)
+			if (c) { // already exists
+				hr.modified++
+			} else {
+				hr.created++
+			}
 			backgroundService.execute("Harvesting " + ivorn) {
 				harvestResource(reg,ivorn)
 			}
 		}
-		//return hr // will have nonsense in it for now.
+		// now update the date of last harvest. (even though the harvest is still progressing now..
+		reg.lastHarvest = now;
+		return hr 
 		
 	}
 	
@@ -91,19 +100,26 @@ class HarvestService {
 	 * 
 	 */
 	def harvestResource(Registry reg, String ivorn) {
-		String xml = regParserService.harvest(reg,ivorn)
-		// see if it exists first..
-		Resource r = Resource.findByIvorn(ivorn)
-		if (r == null) { // it's a new one.
-			r = Resource.buildResource(xml,ivorn)
-		} else { // update an existing one.
-			r.updateFields(xml)
-		}
-		
-		if (r.validate()) {
-			r.save()
-		} else {
-			log.warn("Failed to create resource:" +  r.errors)
+		try {
+			log.info "Fetching ${ivorn} from ${reg.ivorn}"
+			String xml = regParserService.harvest(reg,ivorn)
+			// see if it exists first..
+			Resource r = Resource.findByIvorn(ivorn)
+			if (r == null) { // it's a new one.
+				r = Resource.buildResource(xml,ivorn)
+				log.info("Created resource for ${ivorn}")
+			} else { // update an existing one.
+				r.updateFields(xml)
+				log.info "Updated resource for ${ivorn}"
+			}
+			
+			if (r.validate()) {
+				r.save()
+			} else {
+				log.error "Failed to save ${ivorn}: ${r?.errors}"
+			}
+		} catch (e) {
+			log.error "Exception when harvesting ${ivorn} from ${reg.ivorn}",e
 		}
 	}
 	

@@ -27,4 +27,13 @@ class ResourceControllerUnitTests extends ControllerUnitTestCase {
 		//assertTrue model.containsKey('searchResult')
 		assertNotNull model.searchError
 	}
+	
+	void testRewriteQuery() {
+		def s = "foo bar choo"
+		assertEquals s,controller.rewriteQuery(s)
+		
+		assertEquals('identifier:org.astrogrid/foo'
+				, controller.rewriteQuery('identifier:ivo://org.astrogrid/foo'))
+		
+	}
 }

@@ -11,7 +11,6 @@
 
 package org.ravioli
 import groovy.util.slurpersupport.GPathResult
-import java.io.Writer;
 
 /**
  *
@@ -85,21 +84,6 @@ class RegParserService  {
 			xmlService.transform(xslt,url,output)
 		}
 		return output.toString();
-//		Writer output
-//		Reader style
-//		try {
-//			url.withInputStream{ is ->
-//				output = new StringWriter();
-//				style = new StringReader(xslt)
-//				def transformer = TransformerFactory.newInstance().newTransformer(new StreamSource(style))
-//				transformer.transform(new StreamSource(is),new StreamResult(output))
-//				
-//			}
-//		} finally {
-//			output?.close()
-//			style?.close()
-//		}
-//		return output?.toString()
 	}
 	
 	/** take care of constructing the query - either incrmental, or no */

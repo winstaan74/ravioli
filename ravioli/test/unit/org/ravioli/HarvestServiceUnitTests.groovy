@@ -35,12 +35,16 @@ class HarvestServiceUnitTests extends GrailsUnitTestCase {
 	
 	
 	void testHarvest() {
+		Resource existing = new Resource(ivorn:'ivo://foo.bar.choo')
+		mockDomain(Resource, [existing])
+		mockLogging(HarvestService)
+		Date now = new Date()
 		Registry r = new Registry()
 		parserControl.demand.identify() {reg ->
 			assertSame(r,reg)
 		}
-		def ids = ['ivo://foo.bar.choo','ivo://ibble.wibble/woo']
-		parserControl.demand.listIdentifiers {reg ->
+		def ids = [existing.ivorn,'ivo://ibble.wibble/woo']
+		parserControl.demand.listIdentifiers {reg, inc ->
 			assertSame r,reg
 			return ids
 		}
@@ -49,8 +53,12 @@ class HarvestServiceUnitTests extends GrailsUnitTestCase {
 			}
 		hs.regParserService = parserControl.createMock()
 		hs.backgroundService = backgroundControl.createMock()
-		hs.harvest( r)
+		HarvestResults result = hs.harvest( r)
 		parserControl.verify()
+		backgroundControl.verify()
+		assertTrue now <= r.lastHarvest
+		assertEquals 1, result.modified
+		assertEquals 1, result.created
 		
 	}
 	

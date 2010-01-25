@@ -71,6 +71,12 @@ log4j = {
 //	debug 'org.codehaus.groovy.grails.plugins.searchable'
 }
 
+////Navigation - additional menus
+navigation.admin = [
+	[controller:'admins', title:'Administer']
+	 ,[controller:'buildInfo', title:'Build Info']
+	]
+
 
 ///// Task Queue Config
 backgroundThread {
@@ -78,6 +84,9 @@ backgroundThread {
 	threadCount = 5 // Number of threads processing background tasks.
 	tasksPerDrain = 100 // See Note
 }
+
+//// Mail config.
+///TODO configure the mail.
 
 
 //Ravioli Application Configuration

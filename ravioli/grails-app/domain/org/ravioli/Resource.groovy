@@ -4,9 +4,7 @@ package org.ravioli
 
 import org.joda.time.DateTime;
 import javax.xml.xpath.*;
-import org.xml.sax.InputSource;
 import org.compass.annotations.*
-import groovy.util.XmlSlurper;
 
 /**
  * 
