@@ -53,11 +53,6 @@
 			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/hibernate-1.2.0/grails-app/i18n</location>
 		</link>
 		<link>
-			<name>jetty-1.2-SNAPSHOT-src-groovy</name>
-			<type>2</type>
-			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/jetty-1.2-SNAPSHOT/src/groovy</location>
-		</link>
-		<link>
 			<name>mail-0.9-grails-app-services</name>
 			<type>2</type>
 			<location>/Users/noel/.grails/1.1.2/projects/ravioli/plugins/mail-0.9/grails-app/services</location>

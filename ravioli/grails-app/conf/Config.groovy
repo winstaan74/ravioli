@@ -85,6 +85,9 @@ backgroundThread {
 	tasksPerDrain = 100 // See Note
 }
 
+// json output
+grails.json.legacy.builder=false
+
 //// Mail config.
 ///TODO configure the mail.
 

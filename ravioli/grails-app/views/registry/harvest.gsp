@@ -9,7 +9,7 @@
 	<g:form action='harvest'>
 		Harvest from :<g:select name="harvestId" 
 			from='${org.ravioli.Registry.list() }'
-			optionKey='id'
+			optionKey='ivorn'
 			optionValue='name'
 			noSelection='${['null':'Choose a registry'] }'
 			/>

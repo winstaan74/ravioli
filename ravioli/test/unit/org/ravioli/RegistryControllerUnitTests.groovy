@@ -12,9 +12,6 @@ class RegistryControllerUnitTests extends ControllerUnitTestCase {
         super.tearDown()
     }
 	
-	void testNothing() {
-	}
-	
 	def harvestControl
 	
 	void testIndex() {

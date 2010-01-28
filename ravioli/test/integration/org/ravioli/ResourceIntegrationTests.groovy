@@ -60,7 +60,7 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 	
 	/** test for general search - make sure something is working */
 	void testSearchingForResources() {
-		assertEquals(10,Resource.list().size());
+		assertEquals(11,Resource.list().size());
 			
 		search("Ultraviolet"); // 95
 		assertEquals(1,sr.total);
@@ -149,7 +149,7 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 	
 	void testDesciption() {
 		search("description:*")
-		expect(9)
+		expect(10)
 		
 		// lets find the one lacking a description
 		search("NOT (description:*)") // should have thought this would work, but it doesn't.
@@ -285,21 +285,56 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 	
 	void testCreated() {
 		search("created:*")
-		expect(10) // created is mandatory.
+		expect(11) // created is mandatory.
 		
 		search("created:[2008-1-1 TO 2008-12-30]")
-		expect(5)
+		expect(6)
 		
 		search("created:[2006-1-1 TO now]")
-		expect(7)		
+		expect(8)		
 	}
 	
 	void testModified() {
 		search("modified:*")
-		expect(10)
+		expect(11)
 		
 		search("modified:[2008-1-1 TO 2008-12-30]")
-		expect(5)
+		expect(6)
+	}
+	
+	void testName() {
+		// expect same results as for shortname and title..
+		search("name:glimpse")
+		contains(GLIM)
+		search("name:fuse")
+		expect(FUSE)
+	}
+	
+	void testUcd() {
+		search('ucd:*')
+		expectSome()
+		search('ucd:POS_EQ_RA_MAIN')
+		expectSome()
+	}
+	void testCol() {
+		search('col:*')
+		expectSome()
+		search('col:ra')
+		expectSome()
+	}
+	void testType() {
+		// capability
+		search("type:SIA")
+		expectSome() // works, as SIA is a fragment of the standardID
+		
+		//contettype
+		search('type:Archive')
+		expectSome()
+		
+		// resource type
+		search('type:CatalogService')
+		expectSome()
+		
 	}
 	
 }

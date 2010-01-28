@@ -123,18 +123,17 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 		r.xmlService = new XmlService()
 		assertTrue r.validate();
 		
-		assertEquals('RofR',r.xpath(Resource.SHORTNAME_XPATH))
+		assertEquals('RofR',r.shortname)
 		
-		assertNull(r.xpath(Resource.SOURCE_XPATH))
+		assertNull(r.source)
 		
 		// 
-		def descr = r.xpath(Resource.DESCRIPTION_XPATH)
-		assertTrue(descr.trim().startsWith('This is a spec'))
+		assertTrue(r.description.startsWith('This is a spec'))
 
-		assertEquals("vg:Registry",r.xpath(Resource.RESOURCETYPE_XPATH))
+		assertEquals("vg:Registry",r.resourcetype)
 
 
-		def subj = r.xpathList(r.SUBJECT_XPATH)
+		def subj = r.subject
 		assertNotNull subj
 		assertEquals 2,subj.size()
 		assertTrue subj.contains('virtual observatory')
@@ -143,9 +142,9 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 			assertTrue (it instanceof String )
 		}
 		
-		assertEquals(0,r.xpathList(r.WAVEBAND_XPATH).size())
+		assertEquals(0,r.waveband.size())
 
-		def cap = r.xpathList(r.CAPABILITY_XPATH)
+		def cap = r.capability
 		assertEquals 2, cap.size()
 		assertTrue(cap.contains('vg:Harvest'))
 		assertTrue(cap.contains('ivo://ivoa.net/std/Registry'))
@@ -153,12 +152,12 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 			assertTrue (it instanceof String)
 		}
 		
-		def curation = r.xpathList(r.CURATION_XPATH) // check this along with subsets below.
+		def curation = r.curation 
 		curation.each {
 				assertTrue (it instanceof String)
 		}
 		
-		def creator = r.xpathList(r.CREATOR_XPATH)
+		def creator = r.creator
 		assertEquals 1, creator.size()
 		assertTrue creator.contains('Raymond Plante')
 		assertTrue curation.contains('Raymond Plante')
@@ -167,7 +166,7 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 			
 		}
 		
-		def publisher = r.xpathList(r.PUBLISHER_XPATH)
+		def publisher = r.publisher
 		assertEquals 2, publisher.size()
 		assertTrue publisher.contains("ivo://ivoa.net/IVOA")
 		assertTrue curation.contains("ivo://ivoa.net/IVOA")		
@@ -179,7 +178,34 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 			assertTrue(it instanceof String) 
 		}
 		
+		assertNotNull r.ucd
+		assertTrue r.ucd.isEmpty()
 		
+		assertNotNull r.col
+		assertTrue r.col.isEmpty()
+		
+		assertTrue r.name.contains(r.title)
+		assertTrue r.name.contains(r.shortname)
+		
+		assertTrue r.level.isEmpty()
+		
+		assertEquals("Registry", r.contenttype)
+		
+		
+	}
+	
+	void testMethodMissing() {
+		mockForConstraintsTests(Resource)
+		URL u = this.class.getResource("trimmedRegResource.xml")
+		
+		Resource r = Resource.buildResource(u.text)
+		r.xmlService = new XmlService()
+		assertTrue r.validate();
+		
+		shouldFail(MissingPropertyException){
+			r.unknown
+		}
+	
 	}
 	
 }

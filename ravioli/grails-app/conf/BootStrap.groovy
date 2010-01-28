@@ -1,4 +1,3 @@
-import org.mortbay.log.Log;
 
 import org.springframework.context.ApplicationContext;
 import org.codehaus.groovy.grails.commons.*
@@ -25,7 +24,7 @@ class BootStrap {
 			
 			case Environment.TEST: // integration tests.
 				populateRegistries()
-				populateResources([5,15,25,35,45,55,65,75,85,95]) // smaller set of resources.
+				populateResources([5,15,25,35,45,55,65,75,85,95,92]) // smaller set of resources.
 			
 			case Environment.PRODUCTION:
 			// no special setup.

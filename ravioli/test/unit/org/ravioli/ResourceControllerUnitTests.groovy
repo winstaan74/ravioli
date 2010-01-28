@@ -5,11 +5,13 @@ import grails.test.*
 class ResourceControllerUnitTests extends ControllerUnitTestCase {
     protected void setUp() {
         super.setUp()
+		
     }
 
     protected void tearDown() {
         super.tearDown()
     }
+	
 
     void testSearchNoParams() {
     	this.controller.params.q = ""
@@ -18,22 +20,42 @@ class ResourceControllerUnitTests extends ControllerUnitTestCase {
     }
 	
 	void testSearch() {
-		mockDomain(Resource)
+		Resource r = new Resource()
 		this.controller.params.q = "observatory"
+		
+		def resourceControl = mockFor(Resource)
+		resourceControl.demand.static.searchEvery() {s,p -> // it's a static - how do I do that?
+			assertEquals(controller.params.q,s)
+			return [r]
+		}
+		
 		def model = this.controller.search()
-		// this always fails - as mockDomain doesn't create the dynamic 'search' method.
-		// treat it as an error and check that this is being returned anyhow.
+
 		assertFalse model.isEmpty()
-		//assertTrue model.containsKey('searchResult')
-		assertNotNull model.searchError
+		assertTrue model.containsKey('searchResult')
+		def sr = model.searchResult
+		assertEquals(1,sr.size())
+		assertSame(r,sr[0])
 	}
 	
-	void testRewriteQuery() {
-		def s = "foo bar choo"
-		assertEquals s,controller.rewriteQuery(s)
+	void testSearchWithTransformedQuery() {
+		Resource r = new Resource()
+		this.controller.params.q = "fred AND ivo://foo.bar.choo"
 		
-		assertEquals('identifier:org.astrogrid/foo'
-				, controller.rewriteQuery('identifier:ivo://org.astrogrid/foo'))
+		def resourceControl = mockFor(Resource)
+		resourceControl.demand.static.searchEvery() {s,p -> // it's a static - how do I do that?
+			assertEquals('fred AND //foo.bar.choo',s)
+			return [r]
+		}
 		
+		def model = this.controller.search()
+		
+		assertFalse model.isEmpty()
+		assertTrue model.containsKey('searchResult')
+		def sr = model.searchResult
+		assertEquals(1,sr.size())
+		assertSame(r,sr[0])
 	}
+	
+	
 }

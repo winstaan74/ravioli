@@ -12,9 +12,6 @@ class ResourceControllerIntegrationTests extends GrailsUnitTestCase {
         super.tearDown()
     }
 
-    void testSomething() {
-
-    }
 	
 	def controller
 	

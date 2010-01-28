@@ -1,5 +1,4 @@
 
-
 package org.ravioli
 
 import org.joda.time.DateTime;
@@ -29,38 +28,47 @@ import org.compass.annotations.*
 @Searchable
 @SearchableDynamicMetaDatas(value=[
 @SearchableDynamicMetaData(name="shortname",converter="groovy"
-			, expression="data.xpath(data.SHORTNAME_XPATH)" )
+			, expression="data.shortname" )
 			
 ,@SearchableDynamicMetaData(name='description', converter='groovy'
-			, expression="data.xpath(data.DESCRIPTION_XPATH)" )
+			, expression="data.description" )
 			
 ,@SearchableDynamicMetaData(name='source', converter='groovy', excludeFromAll=ExcludeFromAll.YES
-			, expression="data.xpath(data.SOURCE_XPATH)" )
+			, expression="data.source" )
 			
 ,@SearchableDynamicMetaData(name='resourcetype', converter='groovy', excludeFromAll=ExcludeFromAll.YES
-		, expression="data.xpath(data.RESOURCETYPE_XPATH)" )
+		, expression="data.resourcetype" )
 
 ,@SearchableDynamicMetaData(name="all", converter="groovy", excludeFromAll=ExcludeFromAll.YES
 			,expression="data.stripXML()" )
 
 ,@SearchableDynamicMetaData(name="subject", converter="groovy"
-			,expression="data.xpathList(data.SUBJECT_XPATH)" )
+			,expression="data.subject" )
 
 ,@SearchableDynamicMetaData(name="waveband", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-		,expression="data.xpathList(data.WAVEBAND_XPATH)" )
+		,expression="data.waveband" )
 		
 ,@SearchableDynamicMetaData(name="capability", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-		,expression="data.xpathList(data.CAPABILITY_XPATH)" )
+		,expression="data.capability" )
 		
 ,@SearchableDynamicMetaData(name="creator", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-		,expression="data.xpathList(data.CREATOR_XPATH)" )
+		,expression="data.creator" )
 		
 ,@SearchableDynamicMetaData(name="curation", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-		,expression="data.xpathList(data.CURATION_XPATH)" )
+		,expression="data.curation" )
 		
 ,@SearchableDynamicMetaData(name="publisher", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-		,expression="data.xpathList(data.PUBLISHER_XPATH)" )
+		,expression="data.publisher" )
 
+,@SearchableDynamicMetaData(name="name", converter="groovy", excludeFromAll=ExcludeFromAll.YES
+		,expression="data.name" )
+
+,@SearchableDynamicMetaData(name="ucd", converter="groovy", excludeFromAll=ExcludeFromAll.YES
+,expression="data.ucd" )
+,@SearchableDynamicMetaData(name="col", converter="groovy", excludeFromAll=ExcludeFromAll.YES
+,expression="data.col" )
+,@SearchableDynamicMetaData(name="type", converter="groovy", excludeFromAll=ExcludeFromAll.YES
+,expression="data.type" )
 ])
 class Resource {
 	
@@ -74,17 +82,35 @@ class Resource {
 	}
 	static transients = ['xmlService']
 
-	public final static String SHORTNAME_XPATH = '/node()/shortName'
-	public final static String SOURCE_XPATH = '/node()/content/source'
-	public final static String DESCRIPTION_XPATH = '/node()/content/description'
-	public final static String RESOURCETYPE_XPATH = '/node()/@*[local-name() = "type"]' // work around for namespace - trying to get to xsi:type
-		
-	public final static String SUBJECT_XPATH = '/node()/content/subject/text()'
-	public final static String WAVEBAND_XPATH = '/node()/coverage/waveband/text()'
-	public final static String CAPABILITY_XPATH= '/node()/capability/@standardID|/node()/capability/@*[local-name() = "type"]'
-	public final static String CREATOR_XPATH = '/node()/curation/creator/name/text() | /node()/curation/creator/@ivo-id'
-	public final static String CURATION_XPATH = '/node()/curation//text() | /node()/curation//@*'
-	public final static String PUBLISHER_XPATH = '/node()/curation/publisher/text() | /node()/curation/publisher/@ivo-id'
+	private final static Map DYNAMIC_PROPERTIES = [
+	       shortname:'/node()/shortName'
+	       ,description:'/node()/content/description'
+		   , source:'/node()/content/source'
+		   , resourcetype: '/node()/@*[local-name() = "type"]'
+		   , contenttype: '/node()/content/type/text()' // text() necessary, as used as part of a dynamic list defn below.
+	]
+
+	private final static Map DYNAMIC_LISTS = [
+		subject: '/node()/content/subject/text()'
+		,waveband: '/node()/coverage/waveband/text()'
+		,capability: '/node()/capability/@standardID|/node()/capability/@*[local-name() = "type"]'
+		,creator: '/node()/curation/creator/name/text() | /node()/curation/creator/@ivo-id'
+		, curation: '/node()/curation//text() | /node()/curation//@*'
+		, publisher: '/node()/curation/publisher/text() | /node()/curation/publisher/@ivo-id'
+		, name: '/node()/shortName/text() | /node()/title/text()' 
+		, col: '/node()/catalog/table/column/name/text() | /node()/table/column/name/text()'
+		, ucd: '/node()/catalog/table/column/ucd/text() | /node()/table/column/ucd/text()'
+		, level: '/node()/content/contentLevel/text()' // don't have an index for this
+			//future: validationLevel?
+		]
+
+	static { // this is defined in terms of other ones - so do it after the map creation
+		// so we can refer to the map.
+		DYNAMIC_LISTS.type = DYNAMIC_LISTS.capability + 
+		" | " + DYNAMIC_PROPERTIES.contenttype +
+		" | " + DYNAMIC_PROPERTIES.resourcetype
+	}
+
 		@SearchableId(excludeFromAll=ExcludeFromAll.YES)
 		Long id
 	//vodesktop default becomes lucene's 'all'
@@ -146,7 +172,7 @@ class Resource {
 	/** access the stripped version of xml - no tags, just body content 
 	 * and id values
 	 */
-	public String stripXML() {
+	private String stripXML() {
 		return xpathList("//@*|//text()").join(' ')
 	}
 
@@ -155,7 +181,7 @@ class Resource {
 	 * @param path
 	 * @return
 	 */
-	public  String xpath(String path) {
+	private  String xpath(String path) {
 		return xmlService.xpath(this.xml,path)
 	}
 	
@@ -164,35 +190,41 @@ class Resource {
 	 * @param path
 	 * @return
 	 */
-	public  List xpathList(String path) {
+	private  List xpathList(String path) {
 		return xmlService.xpathList(this.xml,path)
 	}
 	
-
+	/** utility to provide convenient access to xpath-defined fields
+	 * means we can adjust the implementation later, without letting the details leak out.
+	 * @param name
+	 * @return
+	 */
+	def propertyMissing(String name) {
+		def xp = DYNAMIC_PROPERTIES[name]
+		if(xp) {
+			// cache the method impleemntaiton, so it will be called more efficiently next time.
+			Resource.metaClass."$name" = { ->  xpath(xp)?.trim() }
+			return xpath(xp)?.trim()
+		} else {
+			xp = DYNAMIC_LISTS[name]
+			if (xp) {
+				Resource.metaClass."$name" = {-> xpathList(xp) }
+				return xpathList(xp) 
+			}
+		}
+		throw new MissingPropertyException(name)
+	}
+	
+	/** search functionality*/
+	/** rewrite query to remove all references to 'ivo://' */
+	public static String rewriteQuery(String s) {
+		return s?.replaceAll('ivo:', '')
+	}
 	
 		
 /*
  *Other Search positions used by voexplorer
- * '*' - present in smartlist building ui
- * '+' - present in filterwheels
- * @ - incorporated into this code.
- 
-		targets.put("name",new String[] {"$r/shortName","$r/title"});
-		//deprecated - prefer resourcetype or capability.
-		targets.put("type", new String[] {
-		        "$r/@xsi:type"
-		        ,"$r/content/type"
-		        ,"$r/capability/@xsi:type"
-		 //drags in too much cruft.       ,"$r/capability/@standardID"
-		        });
-		targets.put("level", new String[] {"$r/content/contentLevel"});
-		targets.put("col",     new String[]{
-                "$r/catalog/table/column/name",
-                "$r/table/column/name"});
-	+	targets.put("ucd",		 new String[]{
-		        "$r/catalog/table/column/ucd",
-		        "$r/table/column/ucd"});
-        ALSO
+
         + serviceType - specific to SIAP
         + tag - anns, retitles, flags.
 	}
@@ -203,21 +235,10 @@ class Resource {
         - contrubutor, contact/name
         - annotations.
         - waveband
+    - maybe this should be our definition of the main index??
 
     System Filter - xsiType, capability.
         - might be a bit tricky to implement. we'll see.
-
-    Program Code
-        - might require access to a few other fields
-            - access url, for example.
-            - could always use XPATH / XQuery parsing to get to these.
-            - they're projections, not queries.
-        - presentation
-            - use xslt over the whole lot.
-            
-    Q - how to represent resources? As an inheritance tree again?
-            - naah. it wasn't that nice.
-            -
 
 */
 

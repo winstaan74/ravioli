@@ -54,7 +54,7 @@ public class NimbleSecurityFilters extends grails.plugins.nimble.security.Nimble
         }
 
         // This should be extended as the application adds more administrative functionality
-        administration(controller: "(admins|user|group|role|registry|buildInfo)") {
+        administration(controller: "(admins|user|group|role|registry|resource|buildInfo)") {
             before = {
                 accessControl {
                     role(AdminsService.ADMIN_ROLE)

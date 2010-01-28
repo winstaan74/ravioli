@@ -30,7 +30,7 @@ class HarvestService {
 		Registry rofr = Registry.findByIvorn("ivo://ivoa.net/rofr")
 		// lets check that we can identify the rofr
 		regParserService.identify(rofr) // will throw if not matching.
-		Date now = new Date(); //@todo do something with this date.
+		Date now = new Date(); 
 		HarvestResults hr = new HarvestResults()
 		regParserService.parseRofr(rofr) { map ->
 			//first create a Registry object form the map, to see if 
