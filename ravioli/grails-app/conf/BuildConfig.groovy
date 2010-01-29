@@ -15,13 +15,14 @@
 		dependencies {
 			// specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 			// runtime 'com.mysql:mysql-connector-java:5.1.5'
-			runtime 'xalan:serializer:2.7.1'
-			runtime 'xalan:xalan:2.7.1'
+			//runtime 'xalan:serializer:2.7.1'
+			//runtime 'xalan:xalan:2.7.1'
 			//runtime 'net.sf.saxon:saxon:8.7'
 			
 			//test 'ant:ant-junit:1.6.5'
 			
 			compile "joda-time:joda-time:1.6"
+			runtime 'com.mysql:mysql-connector-java:5.1.10'
 		}
 	}
 	
