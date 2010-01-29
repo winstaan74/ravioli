@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title><g:layoutTitle default="Ravioli" /></title>
+        <title>Ravioli &raquo; <g:layoutTitle /></title>
         <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}" />
         <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
         <g:layoutHead />
@@ -26,9 +26,11 @@
         	<nav:render group="admin"/><nav:renderSubItems group="admin" />
         	</n:isAdministrator>
         </div>	
+        <!--  unused
         <div id="menu-div">
         	<nav:render group="tabs" /><nav:renderSubItems group="tabs" />
         </div>
+        -->
         <!-- we already have a flash, elsewhere - leave this off for now
         <g:if test="${flash.message }">
   			<div id="flash">

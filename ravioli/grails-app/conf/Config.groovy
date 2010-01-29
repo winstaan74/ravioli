@@ -5,7 +5,8 @@
 //                             "classpath:${appName}-config.groovy",
 //                             "file:${userHome}/.grails/${appName}-config.properties",
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
-
+// load sensitive config - e.g. passwords - from a file in home directory. - not managed by svn
+grails.config.location = ["file:${userHome}/grails-config.groovy"]
 // if(System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
@@ -35,8 +36,12 @@ grails.enable.native2ascii = true
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {
+		//@todo fill this in when we know.
         grails.serverURL = "http://www.changeme.com"
     }
+	beta {
+		grails.serverURL = 'http://astrogrid.roe.ac.uk:8080/${appName}'
+	}
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
     }
@@ -89,8 +94,43 @@ backgroundThread {
 grails.json.legacy.builder=false
 
 //// Mail config.
-///TODO configure the mail.
+//environments {
+//	beta {
+//		grails.mail {
+//			//@todo configure.
+//			host = "smtp.gmail.com"
+//			port = 465
+//			username = "youracount@gmail.com"
+//			password = "yourpassword"
+//			props = ["mail.smtp.auth":"true", 					   
+//					"mail.smtp.socketFactory.port":"465",
+//					"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+//					"mail.smtp.socketFactory.fallback":"false"]
+//		}
+//	}
+//	production {
+//		grails.mail {
+//			//@todo configure.
+//			jndiName = ""
+//		}
+//	}
+//}
 
+///TOMCAT configuration
+environments {
+	beta {
+		tomcat.deploy.username="noel"
+		tomcat.deploy.url="http://astrogrid.roe.ac.uk/manager"
+	}
+	
+	production {
+		tomcat.deploy {
+			username="noel"
+			password=""
+			//url="http://localhost:8080/manager"
+		}
+	}
+}
 
 //Ravioli Application Configuration
 ///////////////////////////

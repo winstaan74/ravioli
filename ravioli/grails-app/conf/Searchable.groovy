@@ -160,9 +160,18 @@ environments {
         }
     }
 
-    production {
+    beta {
         searchable {
             // add your production settings here
+			compassConnection = new File(
+					"/var/astrogrid/noel/searchable-index/${grailsEnv}/${appName}"
+					).absolutePath
         }
     }
+	
+	production {
+		searchable {
+			//@todo configure location of search index.
+		}
+	}
 }

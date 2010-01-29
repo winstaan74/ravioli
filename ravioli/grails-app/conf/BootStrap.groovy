@@ -26,9 +26,7 @@ class BootStrap {
 				populateRegistries()
 				populateResources([5,15,25,35,45,55,65,75,85,95,92]) // smaller set of resources.
 			
-			case Environment.PRODUCTION:
-			// no special setup.
-			break
+			// no special config for beta or production environments.
 		}
 	}
 	/** load resources from disk
