@@ -6,7 +6,7 @@ import grails.util.Environment;
 import groovy.util.XmlParser;
 
 import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes;
-
+import org.ravioli.Registry;
 
 class BootStrap {
 	

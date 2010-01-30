@@ -23,6 +23,7 @@ import grails.plugins.nimble.core.Role
 import grails.plugins.nimble.core.Group
 import grails.plugins.nimble.core.AdminsService
 import grails.plugins.nimble.core.UserService
+import org.ravioli.User;
 
 /*
  * Allows applications using Nimble to undertake process at BootStrap that are related to Nimbe provided objects
