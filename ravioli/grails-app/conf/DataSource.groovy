@@ -23,25 +23,25 @@ environments {
 			url = "jdbc:hsqldb:mem:testDb"
 		}
 	}
-//	beta {
-//		dataSource {
-//			pooled = true
-//			dbCreate = "update"
-//			driverClassName = "com.mysql.jdbc.Driver"
-//			url = "jdbc:mysql://localhost/ravioli"
-//			username="ravioli"
-//			password="rice473_role"
-//		}
-//	}
-	
 	beta {
 		dataSource {
-			//jndiName = // lookup a jndi datasource, rather than define here?
-			jndiName = 'java:comp/env/jdbc/ravioli'
-			dbCreate = 'update'
-			pooled=false
+			pooled = true
+			dbCreate = "update"
+			driverClassName = "com.mysql.jdbc.Driver"
+			url = "jdbc:mysql://localhost/ravioli"
+			username="ravioli"
+			password="rice473_role"
 		}
 	}
+	
+//	beta {
+//		dataSource {
+//			//jndiName = // lookup a jndi datasource, rather than define here?
+//			jndiName = 'java:comp/env/jdbc/ravioli'
+//			dbCreate = 'update'
+//			pooled=false
+//		}
+//	}
 	
 	production {
 		dataSource {
