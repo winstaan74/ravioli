@@ -116,21 +116,6 @@ grails.json.legacy.builder=false
 //	}
 //}
 
-///TOMCAT configuration
-environments {
-	beta {
-		tomcat.deploy.username="noel"
-		tomcat.deploy.url="http://astrogrid.roe.ac.uk/manager"
-	}
-	
-	production {
-		tomcat.deploy {
-			username="noel"
-			password=""
-			//url="http://localhost:8080/manager"
-		}
-	}
-}
 
 //Ravioli Application Configuration
 ///////////////////////////

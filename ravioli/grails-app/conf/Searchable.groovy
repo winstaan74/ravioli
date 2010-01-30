@@ -171,7 +171,8 @@ environments {
 	
 	production {
 		searchable {
-			//@todo configure location of search index.
+			//to be defined.
 		}
 	}
+	
 }

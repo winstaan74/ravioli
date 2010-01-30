@@ -23,20 +23,27 @@ environments {
 			url = "jdbc:hsqldb:mem:testDb"
 		}
 	}
+//	beta {
+//		dataSource {
+//			pooled = true
+//			dbCreate = "update"
+//			driverClassName = "com.mysql.jdbc.Driver"
+//			url = "jdbc:mysql://localhost/ravioli"
+//			username="ravioli"
+//		}
+//	}
+	
 	beta {
 		dataSource {
-			pooled = true
-			dbCreate = "update"
-			driverClassName = "com.mysql.jdbc.Driver"
-			url = "jdbc:mysql://localhost/ravioli"
-			username="ravioli"
+			//jndiName = // lookup a jndi datasource, rather than define here?
+			jndiName = 'java:comp/env/ravioli'
+			dbCreate = 'update'
 		}
 	}
 	
 	production {
 		dataSource {
-			//@todo configure this when we know.
-			//jndiName = // lookup a jndi datasource, rather than define here?
+			// to be defined.
 		}
 	}
 }
