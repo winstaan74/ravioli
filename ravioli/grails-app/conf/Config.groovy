@@ -5,8 +5,7 @@
 //                             "classpath:${appName}-config.groovy",
 //                             "file:${userHome}/.grails/${appName}-config.properties",
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
-// load sensitive config - e.g. passwords - from a file in home directory. - not managed by svn
-grails.config.location = ["file:${userHome}/grails-config.groovy"]
+
 // if(System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
