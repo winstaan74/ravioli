@@ -25,8 +25,9 @@ class BootStrap {
 			case Environment.TEST: // integration tests.
 				populateRegistries()
 				populateResources([5,15,25,35,45,55,65,75,85,95,92]) // smaller set of resources.
-			
-			// no special config for beta or production environments.
+				break;
+			default:
+				populateRegistries()
 		}
 	}
 	/** load resources from disk
