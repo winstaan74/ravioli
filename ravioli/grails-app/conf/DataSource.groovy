@@ -36,8 +36,9 @@ environments {
 	beta {
 		dataSource {
 			//jndiName = // lookup a jndi datasource, rather than define here?
-			jndiName = 'java:comp/env/ravioli'
+			jndiName = 'jdbc/ravioli'
 			dbCreate = 'update'
+			pooled=false
 		}
 	}
 	
