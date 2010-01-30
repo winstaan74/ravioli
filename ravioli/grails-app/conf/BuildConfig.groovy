@@ -16,8 +16,8 @@
 			// specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 			
 			// thought these were needed - seems not. guess they come with j1.6
-			//runtime 'xalan:serializer:2.7.1'
-			//runtime 'xalan:xalan:2.7.1'
+			runtime 'xalan:serializer:2.7.1'
+			runtime 'xalan:xalan:2.7.1'
 			//runtime 'net.sf.saxon:saxon:8.7'
 			
 			//test 'ant:ant-junit:1.6.5'
