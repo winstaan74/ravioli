@@ -27,12 +27,12 @@ class HarvestService {
 	 *otherwise,  will harvest all.
 	 */
 	HarvestResults readRofr(boolean incremental= true) {
-		Registry rofr = Registry.findByIvorn("ivo://ivoa.net/rofr")
+		Registry reg = Registry.findByIvorn("ivo://ivoa.net/rofr")
 		// lets check that we can identify the rofr
-		regParserService.identify(rofr) // will throw if not matching.
+		regParserService.identify(reg) // will throw if not matching.
 		Date now = new Date(); 
 		HarvestResults hr = new HarvestResults()
-		regParserService.parseRofr(rofr) { map ->
+		regParserService.parseRofr(reg) { map ->
 			//first create a Registry object form the map, to see if 
 			// it\s valid...
 			Registry trial = new Registry(map)
@@ -61,7 +61,7 @@ class HarvestService {
 			}
 			
 		}
-		
+		Rofr rofr = Rofr.getInstance()
 		rofr.lastHarvest = now;
 		return hr;
 	}
@@ -72,7 +72,11 @@ class HarvestService {
 	 */
 	HarvestResults harvest(Registry reg, incremental = true) {
 		// first check that we can identify the registry correctly.
-		regParserService.identify(reg)
+		try {
+			regParserService.identify(reg)
+		} catch (IdentifyException e) {
+			log.warn("Registry ${e.expected} reports itself to be ${e.reported} - proceeding")
+		}
 		Date now = new Date()
 		HarvestResults hr = new HarvestResults()
 		def ids = regParserService.listIdentifiers(reg,incremental)

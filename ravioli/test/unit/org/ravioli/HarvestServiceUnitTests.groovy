@@ -15,6 +15,7 @@ class HarvestServiceUnitTests extends GrailsUnitTestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		mockLogging(HarvestService)
+		mockLogging(RegParserService)
 		mockForConstraintsTests Registry
 		parserControl = mockFor(RegParserService)
 		hs = new HarvestService()
@@ -64,8 +65,9 @@ class HarvestServiceUnitTests extends GrailsUnitTestCase {
 	
 	void testReadRofr() {
 		Registry rofr = new Registry(ivorn:'ivo://ivoa.net/rofr') 
-		assertNull rofr.lastHarvest
+		Rofr rofrDate = new Rofr()
 		Date now = new Date()
+		mockDomain(Rofr,[rofrDate])
 		mockForConstraintsTests(Registry)
 		mockDomain(Registry,[
 		                     rofr
@@ -112,11 +114,15 @@ class HarvestServiceUnitTests extends GrailsUnitTestCase {
 		assertEquals(2,bar.manages.size())		
 		assertEquals(now,bar.lastHarvest) // verify that this field has _not_ been updated
 		
-		// check rofr is still htere, and harvest date is updated.
+		// check rofr is still htere, and harvest date on it is unchanged
+		// instead, harvest data should be recorded on rofrDate
 		Registry rofr1 = Registry.findByIvorn('ivo://ivoa.net/rofr')
 		assertNotNull(rofr1)
-		assertNotNull(rofr1.lastHarvest)
-		assertTrue(rofr1.lastHarvest > now)
+		assertNull(rofr1.lastHarvest)
+
+		//
+		assertNotNull rofrDate.lastHarvest
+		assertTrue(rofrDate.lastHarvest > now)
 	}
 	
 	void testHarvestNewResource() {

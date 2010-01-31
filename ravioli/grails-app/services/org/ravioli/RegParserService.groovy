@@ -21,14 +21,22 @@ class RegParserService  {
 	def xmlService // link to xml parsing support.
 	boolean transactional = false
 	
-	
+	/** log an url and it's content, if log.debug level is enabled.. */
+	private void debugUrl(def url) {
+		if (log.debugEnabled) {
+			log.debug url
+			log.debug new URL(url).text
+		}
+	}
 	
 	/** identify the registry - ie.
 	 harvest it's id record, and verify it matches
 	 what we've got */
 	String identify(Registry r) {
 		log.info("Checking Identity of ${r.ivorn}")
-		def xml = new XmlSlurper().parse(r.endpoint + "?verb=Identify")
+		def url = r.endpoint + "?verb=Identify"
+		debugUrl(url)
+		def xml = new XmlSlurper().parse(url)
 		def reportedIvorn = parseIdentify(xml)
 		log.info("Reports itself to be '${reportedIvorn}'" )
 		if (reportedIvorn == null || reportedIvorn.trim() != r.ivorn) {
@@ -42,13 +50,15 @@ class RegParserService  {
 	 * @param rofr - must be rofr.
 	 */
 	void parseRofr(Registry rofr,incremental=true,Closure processor) {
+		log.info("Parsing Rofr")
 		if (rofr.ivorn !='ivo://ivoa.net/rofr') {
 			throw new IllegalArgumentException(rofr?.ivorn)
 		}
-		
-		def url= constructQuery(rofr,incremental);
-		
+
+		def url= constructRofrQuery(rofr,incremental);
+		debugUrl(url)
 		def xml = new XmlSlurper().parse(url)	
+		log.debug "Passing to processor"
 		doParseRofr(xml,processor);
 		
 	}
@@ -59,9 +69,15 @@ class RegParserService  {
 	 * @return list of uri-string.
 	 */
 	def listIdentifiers(Registry reg, incremental=true) {
-		def url = constructQuery(reg,incremental,"?verb=ListIdentifiers&metadataPrefix=ivo_vor&set=ivo_managed");
+		log.info("Listing Identifier for ${reg.ivorn}, ${incremental}")
+		def url = constructListQuery(reg,incremental);
+		debugUrl(url)
 		def xml = new XmlSlurper().parse(url)
-		return xml.ListIdentifiers.header.identifier*.text()
+		def result =  xml.ListIdentifiers.header.identifier*.text()
+		if (log.debugEnabled) {
+			log.debug (result.dump())
+		}
+		return result
 	}
 	/** harvest a record from a registry 
 	 * 
@@ -70,8 +86,9 @@ class RegParserService  {
 	 * @preturn the GPath of the Resource document, for further processing. - i.e result will have name() == 'Resource'
 	 */
 	String harvest(Registry reg, String ivorn) {
-		URL url = new URL(reg.endpoint + "?verb=GetRecord&metadataPrefix=ivo_vor&identifier=" + ivorn)
-
+		log.info "Harvesting ${ivorn} from ${reg.ivorn}"
+		def url = reg.endpoint + "?verb=GetRecord&metadataPrefix=ivo_vor&identifier=" + ivorn
+		debugUrl(url)
 		def xslt = '''
 		<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 			<xsl:template match="/">
@@ -81,17 +98,28 @@ class RegParserService  {
 			'''.trim()
 		Writer output = new StringWriter();
 		output.withWriter {
-			xmlService.transform(xslt,url,output)
+			xmlService.transform(xslt,new URL(url),output)
 		}
 		return output.toString();
 	}
 	
-	/** take care of constructing the query - either incrmental, or no */
-	String constructQuery(Registry rofr, incremental=true,query= "?verb=ListRecords&metadataPrefix=ivo_vor&set=ivoa_publishers") {
-		String url = rofr.endpoint + query
+	/** construct the reg of reg list records query. - either incrmental, or no */
+	private String constructRofrQuery(Registry r, incremental=true,query= "?verb=ListRecords&metadataPrefix=ivo_vor&set=ivoa_publishers") {
+		String url = r.endpoint + query
+		def rofr = Rofr.getInstance()
 		if(incremental && rofr.lastHarvest) { // can onlly incremntal harvest if asked, and we've got a date
 			
 			url += "&from=" + rofr.lastHarvest.format("yyyy-MM-dd'T'HH:MM:ss'Z'")
+		}
+		return url;
+	}
+	
+	/** consturct a listId query - either incrmental, or no */
+	private String constructListQuery(Registry r, incremental=true,query= "?verb=ListIdentifiers&metadataPrefix=ivo_vor&set=ivo_managed") {
+		String url = r.endpoint + query
+		if(incremental && r.lastHarvest) { // can onlly incremntal harvest if asked, and we've got a date
+			
+			url += "&from=" + r.lastHarvest.format("yyyy-MM-dd'T'HH:MM:ss'Z'")
 		}
 		return url;
 	}

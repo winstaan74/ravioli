@@ -12,18 +12,18 @@
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
 grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
-                      xml: ['text/xml', 'application/xml'],
-                      text: 'text/plain',
-                      js: 'text/javascript',
-                      rss: 'application/rss+xml',
-                      atom: 'application/atom+xml',
-                      css: 'text/css',
-                      csv: 'text/csv',
-                      all: '*/*',
-                      json: ['application/json','text/json'],
-                      form: 'application/x-www-form-urlencoded',
-                      multipartForm: 'multipart/form-data'
-                    ]
+		xml: ['text/xml', 'application/xml'],
+		text: 'text/plain',
+		js: 'text/javascript',
+		rss: 'application/rss+xml',
+		atom: 'application/atom+xml',
+		css: 'text/css',
+		csv: 'text/csv',
+		all: '*/*',
+		json: ['application/json','text/json'],
+		form: 'application/x-www-form-urlencoded',
+		multipartForm: 'multipart/form-data'
+		]
 // The default codec used to encode data with ${}
 grails.views.default.codec="none" // none, html, base64
 grails.views.gsp.encoding="UTF-8"
@@ -34,52 +34,110 @@ grails.enable.native2ascii = true
 
 // set per-environment serverURL stem for creating absolute links
 environments {
-    production {
+	production {
 		//@todo fill this in when we know.
-        grails.serverURL = "http://www.changeme.com"
-    }
+		grails.serverURL = "http://www.changeme.com"
+	}
 	beta {
 		grails.serverURL = 'http://astrogrid.roe.ac.uk:8080/${appName}'
 	}
-    development {
-        grails.serverURL = "http://localhost:8080/${appName}"
-    }
-    test {
-        grails.serverURL = "http://localhost:8080/${appName}"
-    }
-
-}
-
-// log4j configuration
-log4j = {
-    // Example of changing the log pattern for the default console
-    // appender:
-    //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
-
-    error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
-	       'org.codehaus.groovy.grails.web.pages', //  GSP
-	       'org.codehaus.groovy.grails.web.sitemesh', //  layouts
-	       'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-	       'org.codehaus.groovy.grails.web.mapping', // URL mapping
-	       'org.codehaus.groovy.grails.commons', // core / classloading
-	       'org.codehaus.groovy.grails.plugins', // plugins
-	       'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
-	       'org.springframework',
-	       'org.hibernate'
-
-    warn   'org.mortbay.log'
+	development {
+		grails.serverURL = "http://localhost:8080/${appName}"
+	}
+	test {
+		grails.serverURL = "http://localhost:8080/${appName}"
+	}
 	
-//	debug 'org.codehaus.groovy.grails.plugins.searchable'
 }
+
+// log4j configuration for deployment servers.
+environments {
+
+	beta {
+		log4j = {
+			appenders {
+				rollingFile name:'harvest', file:"${userHome}/tomcat/logs/ravioli-harvest.log", maxFileSize:1024
+				rollingFile name:'ravioli', file:"${userHome}/tomcat/logs/ravioli.log", maxFileSize:1024	
+			}
+		}
+	}
+	production {
+		//@todo configure this.
+	}
+}
+//defalt logging conf, for devel and test
+log4j = {
+	appenders {
+		console name:'stdout', layout: pattern(conversionPattern:'%d [%t] %-5p %c{2} %x - %m%n')
+		file name:'harvest', file:"harvest.log", layout: xml
+		file name:'ravioli', file:"ravioli.log" 	
+	}
+	
+	debug harvest: 'grails.app.service.org.ravioli.RegParserService'
+	debug harvest: 'grails.app.service.org.ravioli.HarvestService'
+//	debug harvest: 'grails.app.controller.org.ravioli.RegistryController'
+	
+	error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
+	'org.codehaus.groovy.grails.web.pages', //  GSP
+	'org.codehaus.groovy.grails.web.sitemesh', //  layouts
+	'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+	'org.codehaus.groovy.grails.web.mapping', // URL mapping
+	'org.codehaus.groovy.grails.commons', // core / classloading
+	'org.codehaus.groovy.grails.plugins', // plugins
+	'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
+	'org.springframework',
+	'org.hibernate'
+	warn   'org.mortbay.log'
+	
+	root {
+		info 'ravioli'
+		error 'stdout'
+		//debug 'ravioliDebug'
+		additivity = true
+	}		
+	//	debug 'org.codehaus.groovy.grails.plugins.searchable'
+}
+
+//log4j configuration for deployment servers.
+environments {	
+	beta {
+		log4j = {
+			appenders {
+				rollingFile name:'harvest', file:"${userHome}/tomcat/logs/ravioli-harvest.log", maxFileSize:1024
+				rollingFile name:'ravioli', file:"${userHome}/tomcat/logs/ravioli.log", maxFileSize:1024		
+			}
+			info harvest: 'grails.app.service.org.ravioli.RegParserService'
+			info harvest: 'grails.app.service.org.ravioli.HarvestService'
+			error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
+					'org.codehaus.groovy.grails.web.pages', //  GSP
+					'org.codehaus.groovy.grails.web.sitemesh', //  layouts
+					'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+					'org.codehaus.groovy.grails.web.mapping', // URL mapping
+					'org.codehaus.groovy.grails.commons', // core / classloading
+					'org.codehaus.groovy.grails.plugins', // plugins
+					'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
+					'org.springframework',
+					'org.hibernate'
+			warn   'org.mortbay.log'
+			
+			root {
+				error 'ravioli'
+				//debug 'ravioliDebug'
+				additivity = true
+			}	
+		}
+	}
+	production {
+		//@todo configure this.
+	}
+}
+
 
 ////Navigation - additional menus
 navigation.admin = [
-	[controller:'admins', title:'Administer']
-	 ,[controller:'buildInfo', title:'Build Info']
-	]
+		[controller:'admins', title:'Administer']
+		,[controller:'buildInfo', title:'Build Info']
+		]
 
 
 ///// Task Queue Config
@@ -121,4 +179,3 @@ grails.json.legacy.builder=false
 
 // the service endpoint of the registry of registries.
 ravioli.rofr.endpoint="http://rofr.ivoa.net/cgi-bin/oai.pl"
-     

@@ -28,6 +28,21 @@
 			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/background-thread-1.3/src/java</location>
 		</link>
 		<link>
+			<name>bubbling-2.1.1-grails-app-i18n</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/bubbling-2.1.1/grails-app/i18n</location>
+		</link>
+		<link>
+			<name>bubbling-2.1.1-grails-app-taglib</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/bubbling-2.1.1/grails-app/taglib</location>
+		</link>
+		<link>
+			<name>bubbling-2.1.1-src-groovy</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/bubbling-2.1.1/src/groovy</location>
+		</link>
+		<link>
 			<name>build-info-1.0-grails-app-controllers</name>
 			<type>2</type>
 			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/build-info-1.0/grails-app/controllers</location>
@@ -46,6 +61,31 @@
 			<name>functional-test-1.2.7-src-groovy</name>
 			<type>2</type>
 			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/functional-test-1.2.7/src/groovy</location>
+		</link>
+		<link>
+			<name>grails-ui-1.2-SNAPSHOT-grails-app-conf</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/grails-ui-1.2-SNAPSHOT/grails-app/conf</location>
+		</link>
+		<link>
+			<name>grails-ui-1.2-SNAPSHOT-grails-app-i18n</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/grails-ui-1.2-SNAPSHOT/grails-app/i18n</location>
+		</link>
+		<link>
+			<name>grails-ui-1.2-SNAPSHOT-grails-app-services</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/grails-ui-1.2-SNAPSHOT/grails-app/services</location>
+		</link>
+		<link>
+			<name>grails-ui-1.2-SNAPSHOT-grails-app-taglib</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/grails-ui-1.2-SNAPSHOT/grails-app/taglib</location>
+		</link>
+		<link>
+			<name>grails-ui-1.2-SNAPSHOT-src-groovy</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/grails-ui-1.2-SNAPSHOT/src/groovy</location>
 		</link>
 		<link>
 			<name>hibernate-1.2.0-grails-app-i18n</name>
@@ -138,6 +178,21 @@
 			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/nimble-0.4-SNAPSHOT/src/java</location>
 		</link>
 		<link>
+			<name>pretty-time-0.3-grails-app-i18n</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/pretty-time-0.3/grails-app/i18n</location>
+		</link>
+		<link>
+			<name>pretty-time-0.3-grails-app-taglib</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/pretty-time-0.3/grails-app/taglib</location>
+		</link>
+		<link>
+			<name>pretty-time-0.3-src-groovy</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/pretty-time-0.3/src/groovy</location>
+		</link>
+		<link>
 			<name>quartz-0.4.1-grails-app-conf</name>
 			<type>2</type>
 			<location>/Users/noel/.grails/1.1.2/projects/ravioli/plugins/quartz-0.4.1/grails-app/conf</location>
@@ -226,6 +281,21 @@
 			<name>tomcat-1.2.0-src-groovy</name>
 			<type>2</type>
 			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/tomcat-1.2.0/src/groovy</location>
+		</link>
+		<link>
+			<name>yui-2.7.0.1-grails-app-i18n</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/yui-2.7.0.1/grails-app/i18n</location>
+		</link>
+		<link>
+			<name>yui-2.7.0.1-grails-app-taglib</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/yui-2.7.0.1/grails-app/taglib</location>
+		</link>
+		<link>
+			<name>yui-2.7.0.1-src-groovy</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/yui-2.7.0.1/src/groovy</location>
 		</link>
 	</linkedResources>
 </projectDescription>

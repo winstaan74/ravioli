@@ -34,32 +34,59 @@ class RegParserServiceUnitTests extends GrailsUnitTestCase {
     }
 	
 	
-	void testConstructQuery() {
+	void testConstructListQuery() {
 		def url = "http://rofr.ivoa.net/cgi-bin/oai.pl" 
 		Registry r = new Registry(endpoint:url,ivorn:'ivo://ivoa.net/rofr')
 		// not incremental
-		def url1 = parser.constructQuery(r,false)
+		def url1 = parser.constructListQuery(r,false)
 		assertNotNull(url1)
 		assertTrue(url != url1)
 		assertTrue(url1.startsWith(url))
 		
 		// incremental, no date
-		def url2 = parser.constructQuery(r)
+		def url2 = parser.constructListQuery(r)
 		assertEquals(url1,url2)
 		
 		// increental, date provided.
 		Date now = new Date()
 		r.lastHarvest = now
-		def url3 = parser.constructQuery(r)
+		def url3 = parser.constructListQuery(r)
 		assertTrue(url1 != url3)
 		assertTrue(url3.startsWith(url1))
 	}
+	
+	void testConstructRofrQuery() {
+		Rofr rofr = new Rofr()
+		mockDomain(Rofr,[rofr])
+		def url = "http://rofr.ivoa.net/cgi-bin/oai.pl" 
+		Registry r = new Registry(endpoint:url,ivorn:'ivo://ivoa.net/rofr')
+		// not incremental
+		def url1 = parser.constructRofrQuery(r,false)
+		assertNotNull(url1)
+		assertTrue(url != url1)
+		assertTrue(url1.startsWith(url))
+		
+		// incremental, no date
+		def url2 = parser.constructRofrQuery(r)
+		assertEquals(url1,url2)
+		
+		// increental, date provided.
+		Date now = new Date()
+		rofr.lastHarvest = now
+		def url3 = parser.constructRofrQuery(r)
+		assertTrue(url1 != url3)
+		assertTrue(url3.startsWith(url1))
+	}
+	
+	
 	
 	final int REG_COUNT = 16;
 	
     void testParseRofr() {
 		String url = this.class.getResource("rofrRegistries.xml").toString()
 		Registry r = new Registry(endpoint:url,ivorn:'ivo://ivoa.net/rofr')
+		Rofr rofr = new Rofr()
+		mockDomain(Rofr,[rofr])
         def callCount = 0
         String id = parser.parseRofr(r) {
             callCount ++
@@ -91,6 +118,7 @@ class RegParserServiceUnitTests extends GrailsUnitTestCase {
 	/** test we can create a registry object from each one*/
 	void testCreateRegistryObjectsFromRofr() {
 		mockForConstraintsTests Registry;
+		mockDomain Rofr, [new Rofr()]
 		String url = this.class.getResource("rofrRegistries.xml").toString()
 		Registry ro = new Registry(endpoint:url,ivorn:'ivo://ivoa.net/rofr')
 		def callCount = 0

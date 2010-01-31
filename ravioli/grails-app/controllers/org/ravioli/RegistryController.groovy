@@ -52,8 +52,9 @@ class RegistryController {
 		if (! harvestId) {
 			return [:]
 		}
-		def incremental = params.containsKey('incremental') ?
-			params.incremental : true
+		// incremental is a checkbox value - is either there (checked), or is not.
+		boolean incremental = params.incremental ? true : false; // converts from groovy truth to flag.
+		log.debug(params.dump())
 		Registry r = Registry.findByIvorn(harvestId)
 		if (r) {
 			def hr = harvestService.harvest(r,incremental)
