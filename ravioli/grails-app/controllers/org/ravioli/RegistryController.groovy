@@ -14,7 +14,7 @@ class RegistryController {
 	, [action:'harvest', title:'Harvest a registry']					
 	, [action:'updateRofr',title:'Update list of registries']
 	, [action:'reloadRofr',title:'Reload list of registries']
-	, [action:'sample',title:'Grab a sample of resources']
+	//, [action:'sample',title:'Grab a sample of resources']
 	]
 	]
 	]
@@ -40,10 +40,10 @@ class RegistryController {
 		redirect(action:'list')
 	}
 	
-	def sample = {
-		harvestService.sample();
-		redirect(action:'index')
-	}
+//	def sample = {
+//		harvestService.sample();
+//		redirect(action:'index')
+//	}
 	
 	
 	/** harvest the named registry */
@@ -58,7 +58,7 @@ class RegistryController {
 		Registry r = Registry.findByIvorn(harvestId)
 		if (r) {
 			def hr = harvestService.harvest(r,incremental)
-			flash.message = "Started harvesting from ${r.name} - fetching ${hr.created} new resources, ${hr.modified} modified resources"
+			flash.message = "Started harvesting from ${r.name} - deleted ${hr.deleted} resources, fetching ${hr.created} new resources, ${hr.modified} modified resources"
 			redirect(action:'list') 
 		} else {
 			flash.message = "Unknown registry ${harvestId}"

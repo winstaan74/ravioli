@@ -84,13 +84,13 @@
 <setSpec>Registry:Publishers</setSpec>
 <setSpec>ivoa_publishers</setSpec>
 </header>
-<header>
+<header status='deleted'>
 <identifier>ivo://org.gavo.dc/static/registryrecs/registry.rr</identifier>
 <datestamp>2009-02-24T09:40:43Z</datestamp>
 <setSpec>Registry:Publishers</setSpec>
 <setSpec>ivoa_publishers</setSpec>
 </header>
-<header>
+<header status='other'>
 <identifier>ivo://esavo/registry</identifier>
 <datestamp>2009-03-09T12:00:00Z</datestamp>
 <setSpec>Registry:Publishers</setSpec>

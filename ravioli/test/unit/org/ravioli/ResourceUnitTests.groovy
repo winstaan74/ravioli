@@ -41,6 +41,15 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 		assertEquals('nullable',r.errors['created'])
 		r.created = new Date()
 		
+		
+		assertEquals('nullable',r.errors['status'])
+		
+		r.status = 'deleted' // still invalid..
+		assertFalse r.validate()
+		assertEquals('matches',r.errors['status'])
+
+		r.status = 'active' //now valid.
+
 		if (! r.validate()) {
 			r.errors.each {println it}
 		}
@@ -191,7 +200,7 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 		
 		assertEquals("Registry", r.contenttype)
 		
-		
+		assertEquals 'active', r.status
 	}
 	
 	void testMethodMissing() {

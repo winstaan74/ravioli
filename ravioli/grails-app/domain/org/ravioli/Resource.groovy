@@ -79,6 +79,7 @@ class Resource {
 		created(nullable:false)
 		modified(nullable:true)
 		xml(nullable:false,blank:false)		
+		status(matches:'active') // enforce a constant.
 	}
 	static transients = ['xmlService']
 
@@ -121,6 +122,8 @@ class Resource {
 		
 		// not searchable - accesses the content through 'all" defined using stripXML
 		String xml 
+		
+		String status // not searchable.
 
 		@SearchableProperty(boost=2.0f)
 		String title //$r/title
@@ -158,7 +161,7 @@ class Resource {
 		}
 		
 		this.title = gp.title?.text()?.trim()
-		
+		this.status = gp.'@status'.text()
 		// using joda time here, as it has the correct parsing built in.
 		this.created = new DateTime(gp.'@created'.text()).toDate();
 		try {

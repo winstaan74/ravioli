@@ -134,14 +134,82 @@ class RegParserServiceUnitTests extends GrailsUnitTestCase {
 	void testListIdentifiers() {
 		String url = this.class.getResource("listIdentifiers.xml").toString()
 		Registry ro = new Registry(endpoint:url,ivorn:'ivo://ivoa.net/rofr')
-		def l = parser.listIdentifiers(ro)
-		assertNotNull l
-		assertTrue l.size > 0
+		def r = parser.listIdentifiers(ro)
+		assertNotNull r
+		assertEquals 16,r.totalSize
+		assertNull r.resumptionToken
+		def l = r.ids
 		l.each {
-			assertTrue (it instanceof String)
-			assertTrue(it.startsWith("ivo://"))			
+			assertTrue (it instanceof Map)
+			assertTrue(it.ivorn.startsWith("ivo://"))
+			assertTrue(it.deleted instanceof Boolean)
 			}
+		def f = l.findAll{it.deleted}
+		assertEquals 1, f.size()
+		assertEquals 'ivo://org.gavo.dc/static/registryrecs/registry.rr',f[0].ivorn
 	}
+	
+	void testConstructResumeListQuery() {
+		String url = 'http://www.slashdot.org/foo'
+		Registry ro = new Registry(endpoint:url)
+		// kinds of token seen in the wild.
+		// does this work, considering the spaces?? seems to.
+		def tokens = ['1264903361556:200:203: : :ivo_managed:ivo_vor','ivo_managed!!!ivo_vor!1']
+		tokens.each {
+			def u = parser.constructResumeListQuery(ro,it)
+			// just verify it's created a valid URL
+			URL u1 = new URL(u);
+			assertEquals u, u1.toString()
+			println u1
+		}
+	}
+	
+	/** test for the different variants of resumption token */
+	void testParseResumptionToken() {
+		// test for invalid input
+		def xml = new XmlSlurper().parseText( "<foo><bar stuff=''/></foo>")
+		shouldFail(AssertionError) {
+			parser.parseResumptionToken(xml.bar)
+		}
+		// test for document not containing a r.t.
+		xml = new XmlSlurper().parseText( "<foo><bar stuff=''/></foo>")
+		def r = parser.parseResumptionToken(xml.resumptionToken)
+		assertNotNull(r)
+		assertNull r.totalSize
+		assertNull r.resumptionToken
+
+		// test for size, and token
+		xml = new XmlSlurper().parseText (
+				"<foo><resumptionToken completeListSize='22'>atoken</resumptionToken></foo>"
+		)
+		r = parser.parseResumptionToken(xml.resumptionToken)
+		assertEquals "atoken", r.resumptionToken
+		assertEquals 22, r.totalSize
+		
+		// test for token with no size
+		xml = new XmlSlurper().parseText (
+				"<foo><resumptionToken >atoken</resumptionToken></foo>"
+				)
+		r = parser.parseResumptionToken(xml.resumptionToken)
+		assertEquals "atoken", r.resumptionToken
+		assertNull r.totalSize
+		
+		// test for size, with no token - 2 variants.
+		xml = new XmlSlurper().parseText (
+				"<foo><resumptionToken completeListSize='22'></resumptionToken></foo>"
+				)
+		r = parser.parseResumptionToken(xml.resumptionToken)
+		assertNull r.resumptionToken
+		assertEquals 22, r.totalSize
+		
+		xml = new XmlSlurper().parseText (
+				"<foo><resumptionToken completeListSize='22'/></foo>"
+				)
+		r = parser.parseResumptionToken(xml.resumptionToken)
+		assertNull r.resumptionToken
+		assertEquals 22, r.totalSize
+	}
+	
 	
 	void testHarvest() {
 		String url = this.class.getResource("registryResource.xml").toString()

@@ -54,7 +54,7 @@ class RegParserService  {
 		if (rofr.ivorn !='ivo://ivoa.net/rofr') {
 			throw new IllegalArgumentException(rofr?.ivorn)
 		}
-
+		
 		def url= constructRofrQuery(rofr,incremental);
 		debugUrl(url)
 		def xml = new XmlSlurper().parse(url)	
@@ -66,19 +66,63 @@ class RegParserService  {
 	/** list identifiers of resoruces owned by this registry
 	 * 
 	 * @param reg the owning registry.
-	 * @return list of uri-string.
+	 * @return Map structure, with the fields 
+	 * resumptionToken - null, or string to use to resume
+	 * result - list of maps of identifier and deleted flag.
 	 */
 	def listIdentifiers(Registry reg, incremental=true) {
 		log.info("Listing Identifier for ${reg.ivorn}, ${incremental}")
 		def url = constructListQuery(reg,incremental);
+		return parseListIdentifiers(url)
+	}
+	
+	def listResumedIdentifiers(Registry reg, String token) {
+		log.info("Resuming List Identifier for ${reg.ivorn}")
+		def url = constructResumeListQuery(reg,token)
+		return parseListIdentifiers(url)
+	}
+	
+	private String constructResumeListQuery(Registry reg, String token) {
+		return reg.endpoint + "?verb=ListIdentifiers&resumptionToken=" + token
+	}
+	
+	private parseListIdentifiers(String url) {
 		debugUrl(url)
 		def xml = new XmlSlurper().parse(url)
-		def result =  xml.ListIdentifiers.header.identifier*.text()
+		def ids = xml.ListIdentifiers.header.collect { h->
+			[
+			ivorn: h.identifier.text()
+			, deleted: h.'@status' == 'deleted' 
+			]
+		}
+		def result = parseResumptionToken(xml.ListIdentifiers.resumptionToken)
+		result.ids = ids
 		if (log.debugEnabled) {
 			log.debug (result.dump())
 		}
 		return result
 	}
+	
+	/** helper method - expects to be passed the xml of the resumption token element, 
+	 * and returns a map of the parsed bits.
+	 * @param xml
+	 * @return
+	 */
+	private Map parseResumptionToken(def resumptionToken) {
+		assert resumptionToken.name() == 'resumptionToken',"input must be the resumption token, but was ${resumptionToken.dump()}"
+		def sz
+		try {
+			sz = resumptionToken?.'@completeListSize'?.toInteger() 
+		} catch (NumberFormatException e) {
+			// no matter.
+		}
+		def rt = resumptionToken?.text().trim()
+		return [
+		        resumptionToken: rt ?: null // takes empty string to null
+		        ,totalSize: sz
+		]
+	}
+	
 	/** harvest a record from a registry 
 	 * 
 	 * @param reg registry to harvest from

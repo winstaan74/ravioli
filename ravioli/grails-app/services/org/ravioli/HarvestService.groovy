@@ -6,6 +6,7 @@ import org.codehaus.groovy.grails.commons.*
 public class HarvestResults {
 	int created;
 	int modified;
+	int deleted;
 	def errors = []
 	
 }
@@ -79,25 +80,66 @@ class HarvestService {
 		}
 		Date now = new Date()
 		HarvestResults hr = new HarvestResults()
-		def ids = regParserService.listIdentifiers(reg,incremental)
-		log.info "Harvesting from ${reg.ivorn}, ${ids?.size()} changes found"
-		// compute how many of these id's we've already seen.
-		// and dispatch a background service to harvest that id.
-		ids.each { ivorn ->
-			def c = Resource.findByIvorn(ivorn)
-			if (c) { // already exists
-				hr.modified++
-			} else {
-				hr.created++
-			}
-			backgroundService.execute("Harvesting " + ivorn) {
-				harvestResource(reg,ivorn)
-			}
+		def result = regParserService.listIdentifiers(reg,incremental)
+		if (result.totalSize) {
+			log.info "Harvesting from ${reg.ivorn}, ${result.totalSize} changes found"
+		} else if (result.resumptionToken) {
+			log.info "Harvesting from ${reg.ivorn}, over ${result.ids?.size()} changes found"
+		} else {
+			log.info "Harvesting from ${reg.ivorn}, ${result.ids?.size()} changes found"
 		}
 		// now update the date of last harvest. (even though the harvest is still progressing now..
 		reg.lastHarvest = now;
-		return hr 
-		
+		// compute how many of these id's we've already seen.
+		// and dispatch a background service to harvest that id.
+		result.ids?.each { 
+			def c = Resource.findByIvorn(it.ivorn)
+			if (it.deleted) {
+				hr.deleted++
+				if (c) {
+					c.delete()
+				}
+			} else {
+				if (c) { // already exists
+					hr.modified++
+				} else {
+					hr.created++
+				}
+				backgroundService.execute("Harvesting " + it.ivorn) {
+					harvestResource(reg,it.ivorn)
+				}
+			}
+		}
+		// now need to check for a resumption token..
+		if (result.resumptionToken) {
+			backgroundService.execute("Resuming List of ${reg.ivorn}") {
+				harvestResumption(reg,result.resumptionToken)
+			}
+		}
+		return hr 	
+	}
+	
+	/** recursive function that takes care of harvesting the remaining pages */
+	private void harvestResumption(Registry reg, String token) {
+		def result = regParserService.listResumedIdentifiers(reg,token)
+		// it's a cut-down version of the processing in ListIdentifiers, with less logging / progress tracking
+		result.ids?.each {
+			if (it.deleted) {
+				def c = Resource.findByIvorn(it.ivorn)
+				if (c) {
+					c.delete()
+				}
+			} else {
+				backgroundService.execute("Harvesting " + it.ivorn) {
+					harvestResource(reg,it.ivorn)
+				}	
+			}
+		}
+		if (result.resumptionToken) {
+			backgroundService.execute("Resuming List of ${reg.ivorn}") {
+				harvestResumption(reg,result.resumptionToken)
+			}
+		}
 	}
 	
 	/** harvest a resource and ingest it into our database 
@@ -111,44 +153,56 @@ class HarvestService {
 			Resource r = Resource.findByIvorn(ivorn)
 			if (r == null) { // it's a new one.
 				r = Resource.buildResource(xml,ivorn)
+				// check it's an active resource
+				if (r.status != 'active') {
+					log.info("Resource ${ivorn} is not active : ${r.status} - discarding");
+					return; // not been saved yet - just bail out.
+				}
 				log.info("Created resource for ${ivorn}")
 			} else { // update an existing one.
 				r.updateFields(xml)
-				log.info "Updated resource for ${ivorn}"
+				if (r.status != 'active') {
+					log.info("Previously active resource ${ivorn} is now ${r.status} - deleting");
+					r.delete()
+					return
+				} else {
+					log.info "Updated resource for ${ivorn}"
+				}
 			}
 			
-			if (r.validate()) {
+			if (r.validate() ) {
 				r.save()
 			} else {
 				log.error "Failed to save ${ivorn}: ${r?.errors}"
 			}
 		} catch (e) {
 			log.error "Exception when harvesting ${ivorn} from ${reg.ivorn}",e
+			e.printStackTrace();
 		}
 	}
-	
-	/** method to harvest a sample from all known registries, for testing. */
-	def sample() {
-		// first update the list of registreis from rofr
-		readRofr()
-		File root = new File("/tmp/sample")
-		root.mkdirs();
-		// now for each registry
-		int i = 0;
-		Registry.list().each { r ->
-			def ids = regParserService.listIdentifiers(r,false); // not incremental.
-			// shuffle, and take the first 10 ids.
-			Collections.shuffle(ids)
-			int end = Math.min(ids.size(), 10)
-			ids[0..<end].each{ ivo ->
-				//String filename = 
-				i++
-				File out = new File(root,"${i}.xml")
-				out.text = regParserService.harvest(r,ivo)
-			}
-		}
-	}
-	
+//	
+//	/** method to harvest a sample from all known registries, for testing. */
+//	def sample() {
+//		// first update the list of registreis from rofr
+//		readRofr()
+//		File root = new File("/tmp/sample")
+//		root.mkdirs();
+//		// now for each registry
+//		int i = 0;
+//		Registry.list().each { r ->
+//			def ids = regParserService.listIdentifiers(r,false); // not incremental.
+//			// shuffle, and take the first 10 ids.
+//			Collections.shuffle(ids)
+//			int end = Math.min(ids.size(), 10)
+//			ids[0..<end].each{ ivo ->
+//				//String filename = 
+//				i++
+//				File out = new File(root,"${i}.xml")
+//				out.text = regParserService.harvest(r,ivo)
+//			}
+//		}
+//	}
+//	
 	
 	
 	

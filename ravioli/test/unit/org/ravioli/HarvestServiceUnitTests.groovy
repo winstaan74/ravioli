@@ -37,20 +37,30 @@ class HarvestServiceUnitTests extends GrailsUnitTestCase {
 	
 	void testHarvest() {
 		Resource existing = new Resource(ivorn:'ivo://foo.bar.choo')
-		mockDomain(Resource, [existing])
+		Resource deleteable = new Resource(ivorn:'ivo://delete.me')
+		mockDomain(Resource, [existing,deleteable])
 		mockLogging(HarvestService)
 		Date now = new Date()
 		Registry r = new Registry()
 		parserControl.demand.identify() {reg ->
 			assertSame(r,reg)
 		}
-		def ids = [existing.ivorn,'ivo://ibble.wibble/woo']
+		def ids = [[ivorn:existing.ivorn, deleted:false]
+		            ,[ivorn:'ivo://ibble.wibble/woo', deleted:false]
+		             ,[ivorn:deleteable.ivorn, deleted:true]
+		              ]
 		parserControl.demand.listIdentifiers {reg, inc ->
 			assertSame r,reg
-			return ids
+			return [
+			        resumptionToken: "foo"
+					,totalSize: ids.size()
+			        ,ids:ids
+			]
 		}
 		
-		backgroundControl.demand.execute(2..2) { msg, clos ->
+		// we only see harvest demands for the undeleted resources..
+		// plus the recursive call to harvest the remainder.
+		backgroundControl.demand.execute(3..3) { msg, clos ->
 			}
 		hs.regParserService = parserControl.createMock()
 		hs.backgroundService = backgroundControl.createMock()
@@ -60,6 +70,9 @@ class HarvestServiceUnitTests extends GrailsUnitTestCase {
 		assertTrue now <= r.lastHarvest
 		assertEquals 1, result.modified
 		assertEquals 1, result.created
+		assertEquals 1, result.deleted
+		// check we've seen a deletion..
+		assertNull Resource.findByIvorn(deleteable.ivorn)
 		
 	}
 	
@@ -135,7 +148,7 @@ class HarvestServiceUnitTests extends GrailsUnitTestCase {
 			assertEquals(rofr,r)
 			def real = new RegParserService()
 			real.xmlService = new XmlService()
-			return real.harvest(r,ivo)
+			def res = real.harvest(r,ivo)
 			
 		}
 		hs.regParserService = parserControl.createMock()
@@ -178,6 +191,31 @@ class HarvestServiceUnitTests extends GrailsUnitTestCase {
 		assertEquals("IVOA Registry of Registries",r.title) // verify this field has been overridden
 		// of course, rest of fields are populate too - this is covered in Resource unit tests.
 		
+	}
+	
+	void testHarvestDeletedResource() {
+		String url = this.class.getResource("registryResource1.xml").toString()
+		Registry rofr = new Registry(ivorn:'ivo://ivoa.net/rofr',endpoint:url) 
+		String ivorn = rofr.ivorn
+		mockDomain(Resource,[
+				new Resource(ivorn:ivorn,title:"don't want to see this")
+				])
+		parserControl.demand.harvest() {r, ivo ->
+			assertEquals(ivorn,ivo)
+			assertEquals(rofr,r)
+			def real = new RegParserService()
+			real.xmlService = new XmlService()
+			return real.harvest(r,ivo)
+			
+		}
+		hs.regParserService = parserControl.createMock()
+		def results= hs.harvestResource( rofr, ivorn)
+		parserControl.verify()
+		// validate results
+		assertEquals(0,Resource.list().size())
+		Resource r = Resource.findByIvorn(ivorn)
+		assertNull(r)
+	
 	}
 	
 }

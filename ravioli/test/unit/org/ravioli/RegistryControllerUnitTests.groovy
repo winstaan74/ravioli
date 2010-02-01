@@ -90,8 +90,8 @@ class RegistryControllerUnitTests extends ControllerUnitTestCase {
 		
 		harvestControl.demand.harvest() {reg, inc ->
 			assertEquals(r,reg)
-			assertTrue('incremental flag expected to be true',inc)
-			return new HarvestResults(created:3,modified:42)
+			assertFalse('incremental flag expected to be false',inc)
+			return new HarvestResults(created:3,modified:42, deleted:2)
 		}
 		this.controller.harvestService = harvestControl.createMock()
 		
@@ -102,6 +102,7 @@ class RegistryControllerUnitTests extends ControllerUnitTestCase {
 		flashContains(r.name)
 		flashContains("42 modified")
 		flashContains('3 new')
+		flashContains('deleted 2')
 		redirectsTo('list')
 	}
 	
