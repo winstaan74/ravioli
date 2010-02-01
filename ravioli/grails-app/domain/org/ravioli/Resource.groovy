@@ -78,7 +78,7 @@ class Resource {
 		title(nullable:true,maxsize:500)
 		created(nullable:false)
 		modified(nullable:true)
-		xml(nullable:false,blank:false)		
+		xml(nullable:false,blank:false,maxSize:6000000) //around 6MB.		
 		status(matches:'active') // enforce a constant.
 	}
 	static transients = ['xmlService']
