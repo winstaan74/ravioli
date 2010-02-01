@@ -83,7 +83,7 @@ class RegParserService  {
 	}
 	
 	private String constructResumeListQuery(Registry reg, String token) {
-		return reg.endpoint + "?verb=ListIdentifiers&resumptionToken=" + token
+		return reg.endpoint + "?verb=ListIdentifiers&resumptionToken=" + token.encodeAsURL()
 	}
 	
 	private parseListIdentifiers(String url) {

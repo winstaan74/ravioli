@@ -93,7 +93,8 @@ class HarvestService {
 		// compute how many of these id's we've already seen.
 		// and dispatch a background service to harvest that id.
 		result.ids?.each { 
-			def c = Resource.findByIvorn(it.ivorn)
+			String ivorn = it.ivorn
+			def c = Resource.findByIvorn(ivorn)
 			if (it.deleted) {
 				hr.deleted++
 				if (c) {
@@ -105,8 +106,8 @@ class HarvestService {
 				} else {
 					hr.created++
 				}
-				backgroundService.execute("Harvesting " + it.ivorn) {
-					harvestResource(reg,it.ivorn)
+				backgroundService.execute("Harvesting " + ivorn) {
+					harvestResource(reg,ivorn)
 				}
 			}
 		}
@@ -124,14 +125,15 @@ class HarvestService {
 		def result = regParserService.listResumedIdentifiers(reg,token)
 		// it's a cut-down version of the processing in ListIdentifiers, with less logging / progress tracking
 		result.ids?.each {
+			String ivorn = it.ivorn
 			if (it.deleted) {
-				def c = Resource.findByIvorn(it.ivorn)
+				def c = Resource.findByIvorn(ivorn)
 				if (c) {
 					c.delete()
 				}
 			} else {
-				backgroundService.execute("Harvesting " + it.ivorn) {
-					harvestResource(reg,it.ivorn)
+				backgroundService.execute("Harvesting " + ivorn) {
+					harvestResource(reg,ivorn)
 				}	
 			}
 		}

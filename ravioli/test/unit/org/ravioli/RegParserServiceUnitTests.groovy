@@ -150,6 +150,8 @@ class RegParserServiceUnitTests extends GrailsUnitTestCase {
 	}
 	
 	void testConstructResumeListQuery() {
+		// bit of magic to mock-out a url encoder - that's provided by the grails runtime.
+		String.metaClass.encodeAsURL = {org.codehaus.groovy.grails.plugins.codecs.URLCodec.encode(delegate)}
 		String url = 'http://www.slashdot.org/foo'
 		Registry ro = new Registry(endpoint:url)
 		// kinds of token seen in the wild.
@@ -160,7 +162,6 @@ class RegParserServiceUnitTests extends GrailsUnitTestCase {
 			// just verify it's created a valid URL
 			URL u1 = new URL(u);
 			assertEquals u, u1.toString()
-			println u1
 		}
 	}
 	

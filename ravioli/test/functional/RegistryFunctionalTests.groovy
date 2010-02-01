@@ -23,7 +23,6 @@ class RegistryFunctionalTests extends FunctionalTestUtils {
 		assertContentContains 'harvest'
 		assertContentContains 'update'
 		assertContentContains 'reload'
-		assertContentContains 'grab'
 		
 		// can't trigger any of these, as they go to a back end server.
 		
