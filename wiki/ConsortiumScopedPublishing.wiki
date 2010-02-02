@@ -1,8 +1,16 @@
 #summary Publishing data, private to a group.
 #labels Phase-Requirements
-= Introduction =
+= Creating Resources just to a group =
+can be done - provide a user with a nice ui for creating a new resource, and then give them the option of what groups to make this resource visible to.
 
-Publishing Tables and Images just to a group
+
+The problem is securing any backing data / services so that they are restricted just to users of this group.
+
+Still, a resource without any backing data might be useful - we could model notes / links to external websites / wiki-style pages used for collaboration in the group as resources - then they can be searched, shared, bookmarked just as any other resource.
+
+To be really useful, need to have group-editing permissions on a resource too.
+
+= Publishing Tables and Images just to a group =
   * registration
   * trust of our service
   * security of underlying data
