@@ -11,3 +11,10 @@ At first, I can develop the prototype on my own computer - but for a proper test
 
 = Developments =
 After much more reading about grails and javascriipt toolkits, I think a quicker win would be to produce a basic UI using one of the standard javascript AJAX toolkits (e.g. prototype, or yahoo UI), and see how performant this is. It's unclear to me, yet, whether we need to go for the full-blown GWT application front-end. I think I should test out the performance of the UI with a more basic toolkit first.
+
+= Progress =
+I've developed a basic ui - an ajax-displaying table, linked to a search box. This is available at [http://astrogrid.roe.ac.uk/ravioli/]. Running over an (almost) fully populated registry of over 6000 items, queries come back swiftly enough - certainly comparable to VOExplorer.
+
+
+= Decision =
+YUI seems to be performant enough, and is pretty easy to work with. - stick with this, rather than having to learn the details of GWT
