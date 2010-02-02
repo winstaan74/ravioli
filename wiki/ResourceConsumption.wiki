@@ -11,3 +11,9 @@ Once the registry has been explored, how are the selected resources consumed?
 Do we need to implement any 'helper apps' in webpages?
 
 = Details =
+
+We've decided to offer this functionality in-place wherever possible - inline the operations with the resource description, rather than have a separate 'action' pane, as with voexplorer. This means that operations can be more strongly associated with the particular capability they're going to operate upon.
+
+Don't want to provide too much functionality ourselves - instead hand-off to helper applications.
+
+Samp messaging - I've restarted the discussion of a samp messgage with Yulie and MarkT.
