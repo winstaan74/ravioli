@@ -18,4 +18,4 @@ For the minority 'bulk' actions, provide a checkbox column in the resource table
 
 Don't want to provide too much functionality ourselves - instead hand-off to helper applications.
 
-Samp messaging - I've restarted the discussion of a samp messgage with Yulie and MarkT.
+Samp messaging - I've restarted the discussion of a samp message for voresources with Yulie and MarkT. Now that topcat provides cone search, etc, I thnk this might go somewhere.
