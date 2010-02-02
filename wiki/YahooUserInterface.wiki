@@ -1,0 +1,1 @@
+YUI - Yahoo User Interface - http://developer.yahoo.com/yui/
