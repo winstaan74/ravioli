@@ -33,7 +33,7 @@ Listed in order of priority.
   will be more here later, about the design of the UI.
 
 = Implementation Choices = 
-  * XmlDb
+  * <strike>XmlDb</strike> RelationalDatabase and LuceneSearchEngine
   * GrailsServer
-  * GoogleWebToolkit
+  * <strike>GoogleWebToolkit</strike> YahooUserInterface (YUI)
   * HowToManageUsers
