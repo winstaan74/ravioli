@@ -3,4 +3,6 @@
 
 = Introduction =
 
-There's OpenId, Google Accounts, and probably more. Plus IVOA Accounts and communities. Need to review, see which is easy to use, easy to implement; which integrates nicely with Grails.
+I'm trialing [http://sites.google.com/site/nimbledoc/ Nimble} at the moment, which is a plugin for grails which integrates all kinds of auth mechanisms - such OpenId, and also site-local account management.
+
+Later, will need to integrate with IVOA accounts and communities.
