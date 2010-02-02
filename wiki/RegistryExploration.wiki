@@ -21,7 +21,7 @@ A table that displays summaries of matching resources
   * Basic implementation done - later needs a way of altering which columns are shown
 
 On clicking on an item in the table, expand to display a formatted description of the resource.
-
+   * integrate with other web services where possible - e.g. when bibcode, link to pdf found through ADS
 
 = Unknowns =
 How to compute the list of possible values, given the user's existing query. Need to investigate this.
