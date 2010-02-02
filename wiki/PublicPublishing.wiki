@@ -5,8 +5,7 @@
 
 Public publishing of tables and images.
 
- Done with a
-standard-style web wizard : multi-page workflow. Eg for a cone
+ Done with a standard-style web wizard : multi-page workflow. Eg for a cone
 search : user names URL where a table can be found (could be any
 format that Topcat understands ?).  Then you fill in stuff for the
 resource entry. Then our software produces the DSA service. The data
