@@ -13,6 +13,7 @@ Instead, I suspect the standard grails plugin [http://www.grails.org/Searchable+
 A left-hand list of folders - precanned and user-defined - to select from.
 
 A query builder - displays possible values for each search term, lets users easily add new search terms to refine the search.
+   * a novel search term gives astroscope-like functionaity - provides an estimate of how many resources each service will return for a given position.
 
 A 'save' button that allows a query to be saved to the left-hand list of folders.
 
