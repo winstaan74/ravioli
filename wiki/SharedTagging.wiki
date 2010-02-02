@@ -2,13 +2,16 @@
 #labels Phase-Requirements
 
 = Resource Tagging =
-Is User Tagging / Annotating / Flagging of registry resources (as seen now in voexplorer) useful?
+allow the user to add tags, notes, flag, even attach files (e.g. sample inputs, queries) to resources.
+  * requires a nice little text editor ui.
 
-Should these annotations be shared between users?
-  * What scope - all / by group?
-  * how to determine which group the annotation belongs too
+each annotation may be shared with none or more of the groups the user belongs to.
+  * if a user leaves a group, the annotations are no longer available to members of that group.
 
+annotations from others in your group are attributed - you can see who made the annotation.
+
+is a 'don't show annotations from this user'  option necessary - if the groups become very large?
 
 = Tagging of other things = 
-Could we use ravioli to enable users to tag other things? - particular db tables, or even rows in db tables?
+Could we use ravioli to enable users to tag/point to other things? - particular db tables, or even rows in db tables?
   * links in with idea of named subsets in topcat
