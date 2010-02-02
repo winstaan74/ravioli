@@ -5,9 +5,9 @@
 What's possible?
   * ShallWeUseGoogleAppEngine
     * Nope - deploy to our own server
-      * *http://astrogrid.roe.ac.uk/ravioli* - alpha deployment
+      * http://astrogrid.roe.ac.uk/ravioli - alpha deployment
   * PerformanceExperimentsWithGwt
-     * YUI and Lucene search engine - fast enough
+    * YUI and Lucene search engine - fast enough
   * StateOfVospaceAndCommunity
   * StateOfPublishingLibraries
   * StateOfSampTools
