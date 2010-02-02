@@ -283,6 +283,16 @@
 			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/tomcat-1.2.0/src/groovy</location>
 		</link>
 		<link>
+			<name>xwiki-rendering-0.1-grails-app-services</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/xwiki-rendering-0.1/grails-app/services</location>
+		</link>
+		<link>
+			<name>xwiki-rendering-0.1-grails-app-taglib</name>
+			<type>2</type>
+			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/xwiki-rendering-0.1/grails-app/taglib</location>
+		</link>
+		<link>
 			<name>yui-2.7.0.1-grails-app-i18n</name>
 			<type>2</type>
 			<location>/Users/noel/.grails/1.2.0/projects/ravioli/plugins/yui-2.7.0.1/grails-app/i18n</location>

@@ -47,34 +47,24 @@ environments {
 	test {
 		grails.serverURL = "http://localhost:8080/${appName}"
 	}
+	alpha {
+		grails.serverURL = "http://localhost:8080/${appName}"
+	}
 	
 }
 
 // log4j configuration for deployment servers.
-environments {
 
-	beta {
-		log4j = {
-			appenders {
-				rollingFile name:'harvest', file:"${userHome}/tomcat/logs/ravioli-harvest.log", maxFileSize:1024
-				rollingFile name:'ravioli', file:"${userHome}/tomcat/logs/ravioli.log", maxFileSize:1024	
-			}
-		}
-	}
-	production {
-		//@todo configure this.
-	}
-}
 //defalt logging conf, for devel and test
 log4j = {
 	appenders {
 		console name:'stdout', layout: pattern(conversionPattern:'%d [%t] %-5p %c{2} %x - %m%n')
-		file name:'harvest', file:"harvest.log", layout: xml
-		file name:'ravioli', file:"ravioli.log" 	
+		file name:'harvest', file:"${userHome}/logs/harvest.log"
+		file name:'ravioli', file:"${userHome}/logs/ravioli.log" 	
 	}
 	
-	debug harvest: 'grails.app.service.org.ravioli.RegParserService'
-	debug harvest: 'grails.app.service.org.ravioli.HarvestService'
+	info harvest: 'grails.app.service.org.ravioli.RegParserService'
+	info harvest: 'grails.app.service.org.ravioli.HarvestService'
 //	debug harvest: 'grails.app.controller.org.ravioli.RegistryController'
 	
 	error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
@@ -103,8 +93,8 @@ environments {
 	beta {
 		log4j = {
 			appenders {
-				rollingFile name:'harvest', file:"${userHome}/tomcat/logs/ravioli-harvest.log", maxFileSize:1024
-				rollingFile name:'ravioli', file:"${userHome}/tomcat/logs/ravioli.log", maxFileSize:1024		
+				rollingFile name:'harvest', file:"${userHome}/tomcat/logs/ravioli-harvest.log"
+				rollingFile name:'ravioli', file:"${userHome}/tomcat/logs/ravioli.log"		
 			}
 			info harvest: 'grails.app.service.org.ravioli.RegParserService'
 			info harvest: 'grails.app.service.org.ravioli.HarvestService'

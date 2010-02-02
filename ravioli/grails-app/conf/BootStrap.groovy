@@ -3,7 +3,6 @@ import org.springframework.context.ApplicationContext;
 import org.codehaus.groovy.grails.commons.*
 import org.ravioli.*
 import grails.util.Environment;
-import groovy.util.XmlParser;
 
 import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes;
 import org.ravioli.Registry;
@@ -15,7 +14,7 @@ class BootStrap {
 	ApplicationContext ctx
 	def init = { servletContext ->
 		ctx = servletContext.getAttribute(GrailsApplicationAttributes.APPLICATION_CONTEXT)
-		
+
 		switch (Environment.current) {
 			case Environment.DEVELOPMENT:
 				populateRegistries()
@@ -25,6 +24,11 @@ class BootStrap {
 			case Environment.TEST: // integration tests.
 				populateRegistries()
 				populateResources([5,15,25,35,45,55,65,75,85,95,92]) // smaller set of resources.
+				break;
+			case Environment.CUSTOM :
+				if (System.getProperty('grails.env') == 'alpha' && Registry.count() == 0) {
+					populateRegistries('classpath:/exampledata/stubRegistries.xml') // rofr description with mangled endpoints.
+				}
 				break;
 			default:
 				if (Registry.count() ==0) {
@@ -62,12 +66,20 @@ class BootStrap {
 	 * load registry information from disk.
 	 * @return
 	 */
-	private populateRegistries() {
-		ctx.getResource("classpath:/exampledata/rofrRegistries.xml").getInputStream().with { is ->
+	private populateRegistries(def res = "classpath:/exampledata/rofrRegistries.xml") {
+		println "Populating registries from ${res}"
+		assert ctx.getResource(res) != null, 'Resource ${res} cannot be found'
+		ctx.getResource(res).getInputStream().with { is ->
 			def xml = new XmlSlurper().parse(is)
 			regParserService.doParseRofr(xml) { m ->
 				//if (m.ivorn != rofr.ivorn) {
-				new Registry(m).save()
+				
+				Registry r = new Registry(m)
+				if (r.validate()) {
+					r.save()
+				} else {
+					r.errors.allErrors.each { println it}
+				}
 				//}
 			}
 		}
