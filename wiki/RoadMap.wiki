@@ -21,10 +21,10 @@ Listed in order of priority.
   * GroupManagement
   * SharedTagging
   * BookmarkSharing
-  * ImportExport
   * PublicPublishing
   * ConsortiumScopedPublishing
   * FurtherCollaborationTools
+  * ImportExport
   * RichDesktopClients
 
 
