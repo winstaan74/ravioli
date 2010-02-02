@@ -2,8 +2,8 @@
 #labels Phase-Requirements
 
 = Resource Tagging =
-allow the user to add tags, notes, flag, even attach files (e.g. sample inputs, queries) to resources.
-  * requires a nice little text editor ui.
+allow the user to add tags, notes, comments, flag, even attach files (e.g. sample inputs, queries) to resources.
+  * requires a ui
 
 each annotation may be shared with none or more of the groups the user belongs to.
   * if a user leaves a group, the annotations are no longer available to members of that group.
