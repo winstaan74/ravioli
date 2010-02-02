@@ -4,3 +4,20 @@
 = Introduction =
 
 Public publishing of tables and images.
+
+ Done with a
+standard-style web wizard : multi-page workflow. Eg for a cone
+search : user names URL where a table can be found (could be any
+format that Topcat understands ?).  Then you fill in stuff for the
+resource entry. Then our software produces the DSA service. The data
+stays where it is, but the services runs on our server. Finally we
+publish the resource entry.  For a SIAP its similar, but we have to
+crawl over a (flat) collection of FITS images to make an index table.
+Needs some careful thought about atlas vs cutout etc.
+
+problem is that the source data must be publicly accessible - so can't use this solution for consortium / group scoped publishing.
+
+Should implement the harvesting interface, so that other registries can access these (public) new resources
+  * provides a convenient way to register your own services.
+
+Should we allow users to register any kind of service? upload XML resource description?
