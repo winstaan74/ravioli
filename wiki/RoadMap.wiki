@@ -18,12 +18,12 @@ Listed in order of priority.
  
   * RegistryExploration
   * ResourceConsumption
+  * GroupManagement
+  * SharedTagging
+  * BookmarkSharing
   * ImportExport
   * PublicPublishing
-  * GroupManagement
-  * BookmarkSharing
   * ConsortiumScopedPublishing
-  * SharedTagging
   * FurtherCollaborationTools
   * RichDesktopClients
 
