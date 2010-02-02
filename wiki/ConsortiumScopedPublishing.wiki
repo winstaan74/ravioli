@@ -11,12 +11,17 @@ Publishing Tables and Images just to a group
 
 Maybe there's work-arounds - such as a download-from-vospace client, that runs on user's desktop?
 
- We don't have a good
-solution to this yet. The problem is that the data needs to be on a
-public FTP server, so it is protected only by obscurity. Solution (i)
-let people do it as above, but don't put entry in public registry.
-Advise them that this could expose their data. (ii) Offer to host the
-data as well as the DSA service. Maybe we could do this for small
-tables, but not huge datasets. (iii) Put data on sftp or https, and
-have user interrupted by a request for a password ? won't work well (iv) Wait
-for VOSpace ... (v) some magic with single use URLs?
+We don't have a good solution to this yet. The problem is that the data needs to be on a public FTP server, so it is protected only by obscurity. 
+
+Solution
+
+(i) let people do it as above, but don't put entry in public registry.
+Advise them that this could expose their data.
+
+(ii) Offer to host the data as well as the DSA service. Maybe we could do this for small tables, but not huge datasets.
+
+(iii) Put data on sftp or https, and have user interrupted by a request for a password ? won't work well
+
+(iv) Wait for VOSpace ...
+
+(v) some magic with single use URLs?
