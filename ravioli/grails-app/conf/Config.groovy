@@ -90,6 +90,33 @@ log4j = {
 
 //log4j configuration for deployment servers.
 environments {	
+	alpha {
+		log4j = {
+			appenders {
+				rollingFile name:'harvest', file:"${userHome}/tinkering/alpha/logs/ravioli-harvest.log"
+				rollingFile name:'ravioli', file:"${userHome}/tinkering/alpha/logs/ravioli.log"		
+			}
+			info harvest: 'grails.app.service.org.ravioli.RegParserService'
+			info harvest: 'grails.app.service.org.ravioli.HarvestService'
+			error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
+					'org.codehaus.groovy.grails.web.pages', //  GSP
+					'org.codehaus.groovy.grails.web.sitemesh', //  layouts
+					'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+					'org.codehaus.groovy.grails.web.mapping', // URL mapping
+					'org.codehaus.groovy.grails.commons', // core / classloading
+					'org.codehaus.groovy.grails.plugins', // plugins
+					'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
+					'org.springframework',
+					'org.hibernate'
+			warn   'org.mortbay.log'
+			
+			root {
+				error 'ravioli'
+				//debug 'ravioliDebug'
+				additivity = true
+			}	
+		}
+	}
 	beta {
 		log4j = {
 			appenders {
@@ -169,3 +196,7 @@ grails.json.legacy.builder=false
 
 // the service endpoint of the registry of registries.
 ravioli.rofr.endpoint="http://rofr.ivoa.net/cgi-bin/oai.pl"
+
+//only meaningful in development
+ravioli.stubRegistry.basedir="/Users/noel/tinkering/mock-registry"
+

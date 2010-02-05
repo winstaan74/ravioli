@@ -169,6 +169,15 @@ environments {
         }
     }
 	
+	alpha {
+		searchable {
+			// add your production settings here
+			compassConnection = new File(
+			"/Users/noel/tinkering/alpha/searchable-index/${grailsEnv}/${appName}"
+			).absolutePath
+		}
+	}
+	
 	production {
 		searchable {
 			//to be defined.
