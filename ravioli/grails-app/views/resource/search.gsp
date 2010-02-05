@@ -1,7 +1,6 @@
 <html>
 <head>
 	<title>Search Resources</title>
-	<meta name="layout" content="main" />
 </head>
 <body>
 	<h1>Search</h1>

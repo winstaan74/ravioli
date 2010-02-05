@@ -1,7 +1,6 @@
 <html>
 <head>
 	<title>Harvest a registry</title>
-	<meta name="layout" content="main" />
 </head>
 <body>
 	<h1>Harvest from a registry</h1>
@@ -14,6 +13,14 @@
 			noSelection='${['null':'Choose a registry'] }'
 			/>
 			<g:submitButton name='harvest' value='Harvest' />
+			<br />
+		only resources changes since last harvest: <g:checkBox name="incremental" value="true" />
+	</g:form>
+	<p/>
+	<hr />
+	
+	<g:form action='harvestAll'>
+				<g:submitButton name='harvest' value='Harvest Everything!!' />
 			<br />
 		only resources changes since last harvest: <g:checkBox name="incremental" value="true" />
 	</g:form>
