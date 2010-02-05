@@ -83,12 +83,16 @@ class Resource {
 	}
 	static transients = ['xmlService']
 
+	// some of these are currently unused, but do no harm being there. 
 	private final static Map DYNAMIC_PROPERTIES = [
 	       shortname:'/node()/shortName'
 	       ,description:'/node()/content/description'
 		   , source:'/node()/content/source'
+		   , sourceFormat:'/node()/content/source/@format'
 		   , resourcetype: '/node()/@*[local-name() = "type"]'
-		   , contenttype: '/node()/content/type/text()' // text() necessary, as used as part of a dynamic list defn below.
+		   , referenceUrl: '/node()/content/referenceURL'
+		   , version: '/node()/curation/version'
+		   , date: '/node()/curation/date' // strictly speaking, this can be a list, but really never is.
 	]
 
 	private final static Map DYNAMIC_LISTS = [
@@ -102,13 +106,15 @@ class Resource {
 		, col: '/node()/catalog/table/column/name/text() | /node()/table/column/name/text()'
 		, ucd: '/node()/catalog/table/column/ucd/text() | /node()/table/column/ucd/text()'
 		, level: '/node()/content/contentLevel/text()' // don't have an index for this
+		, contenttype: '/node()/content/type/text()' // text() necessary, as used as part of a dynamic list defn below.
+						
 			//future: validationLevel?
 		]
 
 	static { // this is defined in terms of other ones - so do it after the map creation
 		// so we can refer to the map.
 		DYNAMIC_LISTS.type = DYNAMIC_LISTS.capability + 
-		" | " + DYNAMIC_PROPERTIES.contenttype +
+		" | " + DYNAMIC_LISTS.contenttype +
 		" | " + DYNAMIC_PROPERTIES.resourcetype
 	}
 
@@ -184,7 +190,7 @@ class Resource {
 	 * @param path
 	 * @return
 	 */
-	private  String xpath(String path) {
+	public  String xpath(String path) {
 		return xmlService.xpath(this.xml,path)
 	}
 	
@@ -193,7 +199,7 @@ class Resource {
 	 * @param path
 	 * @return
 	 */
-	private  List xpathList(String path) {
+	public  List xpathList(String path) {
 		return xmlService.xpathList(this.xml,path)
 	}
 	
