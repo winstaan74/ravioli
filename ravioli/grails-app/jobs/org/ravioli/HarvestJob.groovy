@@ -10,7 +10,8 @@ class HarvestJob {
 	def group = 'harvest'
 	
 	static triggers = {
-		cron name: 'daily harvest', cronExpression: '0 15 4 ? * *' // 4:14 every day.
+		//@todo re-enable, when we're confident it won't crash the system.
+		//cron name: 'daily harvest', cronExpression: '0 15 4 ? * *' // 4:14 every day.
 	}	
 	
 	def execute() {
