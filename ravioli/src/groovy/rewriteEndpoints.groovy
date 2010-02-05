@@ -1,7 +1,25 @@
+// this is a standalone script. mangle the classpath, so we get to the libs we need.
+//would be better to use grape for this, but not got network at the moment.
+def loader = this.class.classLoader.rootLoader
+loader.addURL(new File('/Users/noel/.ivy2/cache/org.grails/grails-core/jars/grails-core-1.2.1.jar').toURL())
+
+// offline - will work once we're online
+//@Grab(group='org.grails', module='grails-core', version='1.2.1')
+//def fn() {
+//}
+
 import groovy.lang.Closure;
 import groovy.util.slurpersupport.GPathResult;
 import groovy.xml.XmlUtil;
 import groovy.xml.StreamingMarkupBuilder
+
+// can't import - as class not loaded yet./
+//import org.codehaus.groovy.grails.plugins.codecs.MD5Codec
+
+//add grails-standard encoding magic..
+// classname looked up by string, to work around loading-time issues. wouldn'\t be a problem with grape..
+String.metaClass.encodeAsMD5 = {Class.forName('org.codehaus.groovy.grails.plugins.codecs.MD5Codec').encode(delegate)}
+
 
 // script to rewrite endpoints in rofr file, so it can be used for testing.
 // used to create stub registries file, that can then be copied into sampledata folder.
@@ -27,9 +45,7 @@ xml.ListRecords.record.metadata.Resource. // work around - namespace sensitive.
 					( face.'@version' =~ '1.0' || face.'@version' =~ "") &&
 					( face.'@role' =~ 'std' || face.'@role' =~ "")
 				}.each { face ->
-					def encoded = URLEncoder.encode(ivorn)
-					def newURL = "http://127.0.0.1:8080/ravioli/stub-registry/${encoded}/"
-					face.accessURL[0] = newURL
+				  face.accessURL[0]  = "http://127.0.0.1:8080/ravioli/stub-registry/${ivorn.encodeAsMD5()}/"
 				}
 			}
 		}

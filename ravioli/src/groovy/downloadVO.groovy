@@ -1,5 +1,14 @@
+// enable when we're online.
+//@Grab(group='org.grails', module='grails-core', version='1.2.1')
+//def fn() {
+//}
+
 import groovy.lang.Closure;
 import groovy.util.slurpersupport.GPathResult;
+import org.codehaus.groovy.grails.plugins.codecs.MD5Codec
+// add grails-standard encoding magic..
+String.metaClass.encodeAsMD5 = {org.codehaus.groovy.grails.plugins.codecs.MD5Codec.encode(delegate)}
+
 
 // script to download the whole vo.
 
@@ -13,19 +22,19 @@ def xml = new XmlSlurper().parse(reglist)
 doParseRofr(xml) { ivo, url ->
 	println "Processing Registry ${ivo}"
 	try {
-		def regDir = new File(basedir,URLEncoder.encode(ivo))
+		def regDir = new File(basedir,ivo.encodeAsMD5())
 		regDir.mkdir()
 		def wgetFile = new File(regDir,"wget.sh")
 		wgetFile.withPrintWriter{ writer ->
-		println "Identifying.."
-		def idUrl= url + "?verb=Identify"
-		def idFile = new File(regDir,'identify.xml')
-		//writer.println("wget ${idUrl} -O ${idFile} -nc")
-		wget(idUrl, idFile)
-		println "Listing..."
-		def listFile = new File(regDir,'list.xml')
-		wget(url + "?verb=ListIdentifiers&metadataPrefix=ivo_vor&set=ivo_managed",listFile)
-		// now process the list file..
+			println "Identifying.."
+			def idUrl= url + "?verb=Identify"
+			def idFile = new File(regDir,'identify.xml')
+			//writer.println("wget ${idUrl} -O ${idFile} -nc")
+			wget(idUrl, idFile)
+			println "Listing..."
+			def listFile = new File(regDir,'list.xml')
+			wget(url + "?verb=ListIdentifiers&metadataPrefix=ivo_vor&set=ivo_managed",listFile)
+			// now process the list file..
 			while(true) {
 				def listXML = new XmlSlurper().parse(listFile)
 				listXML.ListIdentifiers.header.identifier*.text().each { resourceId ->
