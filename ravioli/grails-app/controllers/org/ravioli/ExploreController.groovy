@@ -1,11 +1,12 @@
 package org.ravioli
 import grails.converters.JSON
+import groovy.util.XmlSlurper;
 /** controller for the interactive main display */
 
-class DisplayController {
+class ExploreController {
 
     def index = {
-		render(view:'main')
+		render(view:'table')
 		}
 	
 	public static final int MAX_QUERY = 100;
@@ -35,7 +36,7 @@ class DisplayController {
 					,title : r.title
 					,created : r.created?.format("yyyy-MM-dd")
 					,modified :r.modified?.format("yyyy-MM-dd")
-					,dataUrl: g.createLink(action:'resourceDetail', id:r.getId())
+					,dataUrl: g.createLink(action:'inlineResource', id:r.getId())
 					)
 				}
 			}
@@ -43,14 +44,34 @@ class DisplayController {
 	}
 	
 	
-	def resourceDetail = {
-		Resource r = Resource.get(params.id)
+	def resource = {
+		//@todo - template should be wrapped in a template that prodvides a html>title.
+		Resource r
+		if (params.id) {
+			r = Resource.get(params.id)
+		} else if (params.ivorn) {
+			r = Resource.findByIvorn(params.ivorn)
+		}
 		if(r) {
-			render(template:"resourceDetail",model:[r:r])
+			def xml = new XmlSlurper().parseText(r.xml)
+			render(template:"resourceDetail",model:[r:r,xml:xml])
 		} else {
 			render(status:404, text:'Failed to find resource')
 		}
 	}
+	
+	// separate action, with a custom layout, which removes all additional formatting.
+	// although, in time, may need to add in additional stuff there..
+	def inlineResource = {
+		Resource r = Resource.get(params.id)
+		if(r) {
+			def xml = new XmlSlurper().parseText(r.xml)
+			render(template:"resourceDetail",model:[r:r,xml:xml])
+		} else {
+			render(status:404, text:'Failed to find resource')
+		}
+	}
+	
 	
 	
 }

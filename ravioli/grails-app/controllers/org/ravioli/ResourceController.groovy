@@ -2,6 +2,7 @@ package org.ravioli
 
 class ResourceController {
 	static scaffold = true;
+	static layout = 'explore'
 	static navigation =[ 
 	                    title:"Resources"
 	                    ,group:'admin'

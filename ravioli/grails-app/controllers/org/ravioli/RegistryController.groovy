@@ -3,6 +3,7 @@ package org.ravioli
 //controls the list of known registries.
 //use standard scaffolding to list / view / edit registries.
 class RegistryController {
+	static layout = 'explore'
 	static scaffold = true
 	
 	static navigation = [
@@ -21,6 +22,7 @@ class RegistryController {
 	
 	
 	HarvestService harvestService // will be autowired
+	def backgroundService; 
 	
 	def index = {
 		redirect(action:'list')
@@ -64,6 +66,20 @@ class RegistryController {
 			flash.message = "Unknown registry ${harvestId}"
 			return [:]
 		}
+	}
+	
+	def harvestAll = {
+		boolean incremental = params.incremental ? true : false; // converts from groovy truth to flag.
+		
+		Registry.list().each { r->
+			backgroundService.execute("Listing updates from ${r.ivorn}") {
+				log.info "Listing updates from ${r.ivorn}"
+				harvestService.harvest(r,incremental) 
+			}
+		}
+		
+		flash.message = 'your office lights may dim while performing this monster re-harvest'		
+		redirect(action:'list')
 	}
 	
 	
