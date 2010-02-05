@@ -10,12 +10,11 @@
     <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}" /><%--default grails styling.. --%>
   </g:if>
   <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
- 
- <g:layoutHead />
- 	<%--after the layout head, so we can override as needed. --%>
-     <link rel="stylesheet" href="${resource(dir:'css',file:'ravioli.css')}" />
-        <g:javascript library="application" />	
-        <nav:resources />	
+  <g:javascript library="application" />	
+  <nav:resources />	
+  <g:layoutHead />
+  <%--add our own custom stylesheet last of all - can only help. --%>
+  <link rel="stylesheet" href="${resource(dir:'css',file:'ravioli.css')}" />
 </head>
 <body class="yui-skin-sam">
 <div id="doc3" class="yui-t2">
@@ -24,7 +23,7 @@
         </div>	
    <div id="hd">
     <g:link controller='explore'><img align='left' src="${resource(dir:'images',file:'ravioli.png')}" alt="Ravioli" /></g:link>
-   	<g:render template="/loginMenu" />
+   	<g:render template="/topMenu" />
    	<g:if test="${flash.message }">
   		<div id="flash">
   				${flash.message }
@@ -39,7 +38,7 @@
 	<!--</div>-->
 </div>
 	</div>
-	<div class="yui-b"><!-- YOUR NAVIGATION GOES HERE --></div>
+	<div class="yui-b"><g:render template="/leftMenu"/></div>
 	
 	</div>
    <div id="ft"><p>Ravioli v<g:meta name="app.version" /></p></div>

@@ -1,6 +1,6 @@
-<%-- common login menu --%>
-<!-- TODO: work on this -->
- <div id="login-div">
+<%-- common login menu --%>	
+ <div id="top-menu">
+ 	<div class="login">
         	<n:isNotLoggedIn>
         	<g:link controller="auth" action="login">Login</g:link>
         	| <g:link controller="account" action="createuser">Register</g:link>
@@ -9,9 +9,12 @@
         	Logged in as <g:link controller="profile"><n:principal/></g:link>
         	| <g:link controller="auth" action="logout">logout</g:link>
         	</n:isLoggedIn>
-        	<n:isAdministrator>
+     </div>
+        <n:isAdministrator>
+        <div class='admin'>
         	<nav:render group="admin"/><nav:renderSubItems group="admin" />
-        	</n:isAdministrator>
+        </div>
+        </n:isAdministrator>
         </div>	
       
      

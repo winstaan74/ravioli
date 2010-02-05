@@ -94,4 +94,22 @@ td.errors select {
 }
 td.errors input {
     border: 1px solid red;
+    
 }
+
+/** Top menu */
+
+div#top-menu {
+	/*background: red; */
+	padding: 10px;
+}
+
+div#top-menu .login {
+	text-align:right;
+	}
+	
+div#top-menu .admin {
+	position: absolute;
+	top : 0px;
+	left: 250px;
+	}
