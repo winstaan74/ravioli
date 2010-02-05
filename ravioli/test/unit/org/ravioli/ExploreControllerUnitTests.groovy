@@ -2,7 +2,7 @@ package org.ravioli
 
 import grails.test.*
 
-class DisplayControllerUnitTests extends ControllerUnitTestCase {
+class ExploreControllerUnitTests extends ControllerUnitTestCase {
     protected void setUp() {
         super.setUp()
     }
@@ -56,7 +56,7 @@ class DisplayControllerUnitTests extends ControllerUnitTestCase {
 		
 	}
 	
-	void testResourceDetail() {
+	void testInlineResource() {
 		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a', xml:'<foo />')
 		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
 		mockDomain(Resource, [r1,r2])
@@ -64,12 +64,13 @@ class DisplayControllerUnitTests extends ControllerUnitTestCase {
 		
 		controller.params.id= r1.getId()
 		
-		def model = controller.resourceDetail()
+		def model = controller.inlineResource()
 		assertEquals r1, model.r
+		assertNotNull model.xml
 		assertEquals 'resourceDetail', controller.renderArgs['template']
 	}
 	
-	void testUnknownResourceDetail() {
+	void testInlineResourceUnknown() {
 		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a', xml:'<foo />')
 		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
 		mockDomain(Resource, [r1,r2])
@@ -77,7 +78,59 @@ class DisplayControllerUnitTests extends ControllerUnitTestCase {
 		
 		controller.params.id= 42
 		
-		def model = controller.resourceDetail()
+		def model = controller.inlineResource()
+		assertEquals 404, controller.renderArgs['status']
+	}
+	
+	void testResource() {
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a', xml:'<foo />')
+		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
+		mockDomain(Resource, [r1,r2])
+		
+		
+		controller.params.id= r1.getId()
+		
+		def model = controller.resource()
+		assertEquals r1, model.r
+		assertNotNull model.xml
+		assertEquals 'resourceDetail', controller.renderArgs['template']
+	}
+	
+	void testresourceUnknown() {
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a', xml:'<foo />')
+		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
+		mockDomain(Resource, [r1,r2])
+		
+		
+		controller.params.id= 42
+		
+		def model = controller.resource()
+		assertEquals 404, controller.renderArgs['status']
+	}
+	
+	void testResourceIvorn() {
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a', xml:'<foo />')
+		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
+		mockDomain(Resource, [r1,r2])
+		
+		
+		controller.params.ivorn= r1.ivorn
+		
+		def model = controller.resource()
+		assertEquals r1, model.r
+		assertNotNull model.xml
+		assertEquals 'resourceDetail', controller.renderArgs['template']
+	}
+	
+	void testresourceUnknownIvorn() {
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a', xml:'<foo />')
+		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
+		mockDomain(Resource, [r1,r2])
+		
+		
+		controller.params.ivorn= 'ivo://missing'
+		
+		def model = controller.resource()
 		assertEquals 404, controller.renderArgs['status']
 	}
 	

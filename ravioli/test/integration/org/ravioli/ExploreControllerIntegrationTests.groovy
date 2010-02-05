@@ -4,11 +4,11 @@ import grails.test.*
 import grails.converters.*
 import org.codehaus.groovy.grails.web.json.*;
 
-class DisplayControllerIntegrationTests extends GrailsUnitTestCase {
+class ExploreControllerIntegrationTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }
-    def controller = new DisplayController()
+    def controller = new ExploreController()
     protected void tearDown() {
         super.tearDown()
 		controller = null
@@ -114,5 +114,9 @@ class DisplayControllerIntegrationTests extends GrailsUnitTestCase {
 			assertNotNull m.dataUrl
 		}
 		
+	}
+	
+	void testInlineResource() {
+		//@
 	}
 }

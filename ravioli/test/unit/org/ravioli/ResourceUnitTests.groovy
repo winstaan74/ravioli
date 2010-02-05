@@ -198,7 +198,7 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 		
 		assertTrue r.level.isEmpty()
 		
-		assertEquals("Registry", r.contenttype)
+		assertEquals(["Registry"], r.contenttype)
 		
 		assertEquals 'active', r.status
 	}
