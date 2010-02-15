@@ -1,4 +1,4 @@
-import org.apache.jasper.tagplugins.jstl.core.Out;
+
 
 /** taglib of conditional labelling kinds of things
  * 
@@ -20,7 +20,7 @@ class LabelTagLib {
 		} else {
 			value = body()?.trim()
 		}
-		if (value) { // only output stuff if value is non-null and non-empty
+		if (value && (value.isNumber() ? value as Float != 0 : true) ) { // only output stuff if value is non-null and non-empty
 			out << "<span class='field'>"
 			out << l.label(name:attr.name)
 			out << value

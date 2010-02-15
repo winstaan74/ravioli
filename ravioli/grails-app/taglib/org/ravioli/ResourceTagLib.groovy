@@ -1,4 +1,6 @@
 package org.ravioli
+
+
 /** utilities for formatting resources
  * 
  *  expects a resource to be in page scope under the key 'r'
@@ -39,7 +41,7 @@ class ResourceTagLib {
 	/** format the source, linking to ADS if appropriate */
 	def source = {
 		def r = pageScope.r
-		def s = r.source?.trim()
+		def s = r.source
 		if (! s) {
 			return 
 		}
@@ -90,9 +92,8 @@ class ResourceTagLib {
 			uri = b
 		}
 		if (uri?.startsWith('ivo://')) {
-			out << '<a class="res" href="'
-			//@todo configure this correctly. - decide what to do - should it open a new window, or display in popup, or in current table?
-			out << g.createLink(params:[q:uri], controller:'display')
+			out << '<a class="res" target="_blank" href="'
+			out << g.createLink(params:[ivorn:uri], controller:'explore',action:'resource')
 			out << '">' << b << "</a>"
 		} else if (uri) { // not an ivorn, but something.
 			out << '<a href="' << uri << '">' << b << "</a>"
@@ -100,6 +101,51 @@ class ResourceTagLib {
 			out << b
 		}
 		
+	}
+	
+	
+	/** our own customized version of the gui data table
+	 * defined as a separate tag, as it was getting unwieldy to configure the 
+	 * dataTable tag within gsp.
+	 * 
+	 * @todo integrate with browser history management.
+	 * @todo add sortable.
+	 * @todo load preferred column view for user.
+	 * @todo find a way of showing datatips for truncated columns.
+	 * @todo future column types: annotations, flags, tags
+	 * @todo other column types: snippet of description, snippet of where query matches?
+	 */
+	def resourceTable = {attrs ->
+		def tableOptions = '''<a id="dt-options-link" class="dt-options-link" href="#" >Table Options</a>'''
+		def columns = [
+		//@todo implement mass-selection using checkbox		[key:'check', formatter:'checkbox']
+		[key:'ivorn', label:'IVO-ID', width:250]
+		,[key:'title', label:'Title',width:250]
+		,[key:'shortname',label:'Short Name', hidden:true, width:80]
+		,[key:'subject', label:'Subjects', hidden:true,width:250]
+		,[key:'source', label:'Source Reference',hidden:true, width:100]
+		,[key:'waveband',label:'Wavebands',hidden:true, width:100]
+		,[key:'publisher',label:'Publisher',hidden:true,width:250]
+		,[key:'creator',label:'Creator',hidden:true,width:250]
+//		,[key:'created',sortable:true, label:'Date Created', width:80]
+//		,[key:'modified',sortable:true, label:'Date Modified', hidden:true, width:80]
+		,[key:'date', label:'Date', width:80]	
+		]
+		
+		out << gui.dataTable(
+				id:'resources'
+				,sortedBy:'ivorn'
+				,rowsPerPage:30 // later grab this value from user's prefs
+				,columnDefs:columns
+				,rowExpansion:true
+				,draggableColumns:true
+				,controller:"explore"
+				,action:"tableDataAsJSON"
+				,paginatorConfig:[
+					template: '{PreviousPageLink} {PageLinks} {NextPageLink} {CurrentPageReport} ' + tableOptions,
+					pageReportTemplate:'{totalRecords} resources ' 
+					]	
+		)
 	}
 
 
