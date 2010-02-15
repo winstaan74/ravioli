@@ -24,7 +24,8 @@
 	<l:field name="Footprint Service">
 		<r:resourceName xml="${footprint }"/>
 	</l:field>
-	<l:seq name="Wavebands" values="${coverage.waveband*.text() }" />
+	
+	<l:field name="Wavebands" value="${r.wavebands }" />
 	<%-- TODO - do something with STC?? --%>
 	</g:each>
 </g:each> 
@@ -71,9 +72,16 @@
 	</l:field>
 </g:if>
 
-<%-- TODO: format service capabilities. --%>
+<%-- format service capabilities. --%>
+<div class="capabilities">
+<g:each var='cap' in="${xml.capability }">
+	<div class="capability">
+		<capability:format capability="${cap }" />
+	</div>
+</g:each>
+</div>
 
-<%-- list the interfaces provided by a CEA app?? --%>
+<%-- TODO: list the interfaces provided by a CEA app --%>
 </div>
 
 <%-- curation --%>
@@ -125,7 +133,7 @@
 <div class='yui-u block'>
 <%--vital statistics --%>
 <div class='vitals'>
-<l:field name="Short Name" value="${xml.shortName }" />
+<l:field name="Short Name" value="${r.shortname }" />
 <l:field name="Resource Type"><r:resourcetype/></l:field>
 <l:field name="Created"><r:created/></l:field>
 <g:if test="${r.created != r.modified }">
@@ -142,7 +150,7 @@
 	<%--  content block --%>
 	<div class="content">
 	<l:seq name="Content Type" values="${content.type*.text() }" /> 
-	<l:seq name="Subject" values="${content.subject*.text() }" /> 
+	<l:field name="Subject" value="${r.subjects }" /> 
 	<l:seq name="Level" values="${content.contentLevel*.text() }" />
 	</div>
 

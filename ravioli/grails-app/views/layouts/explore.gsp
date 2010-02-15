@@ -6,11 +6,11 @@
    <title>Ravioli &raquo; <g:layoutTitle /></title>
   <link rel="stylesheet" href="${resource(dir:'css',file:'reset-fonts-grids.css')}" />
   <link rel="stylesheet" href="${resource(dir:'css',file:'famfamfam.css',plugin:'nimble')}" />  
-  <g:if test="${['resource','registry'].contains(params.controller)  }">
+  <g:if test="${['resource','registry','task','taskExecution'].contains(params.controller)  }">
     <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}" /><%--default grails styling.. --%>
   </g:if>
   <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
-  <g:javascript library="application" />	
+  <g:javascript library="yui" />	
   <nav:resources />	
   <g:layoutHead />
   <%--add our own custom stylesheet last of all - can only help. --%>
