@@ -39,6 +39,7 @@ class StubRegistryController {
 		File basedir = new File(grailsApplication.config.ravioli.stubRegistry.basedir)
 		File f = new File(basedir,"${params.registryIvorn}/${URLEncoder.encode(params.identifier)}")
 		//expect url not to be urlencoded.
+		println f
 		if (! f.exists()) {
 			render status:404 ,text: "404: Resource ${f} not found"
 		} else {

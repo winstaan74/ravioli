@@ -13,5 +13,9 @@ package org.ravioli
 class IdentifyException extends RuntimeException {
     String reported
     String expected
+	
+	public String getMessage() {
+		return "Misidentification: Expected ${expected} but got identifier ${reported}"
+	}
 }
 

@@ -3,8 +3,7 @@
 //def fn() {
 //}
 
-import groovy.lang.Closure;
-import groovy.util.slurpersupport.GPathResult;
+
 import org.codehaus.groovy.grails.plugins.codecs.MD5Codec
 // add grails-standard encoding magic..
 String.metaClass.encodeAsMD5 = {org.codehaus.groovy.grails.plugins.codecs.MD5Codec.encode(delegate)}

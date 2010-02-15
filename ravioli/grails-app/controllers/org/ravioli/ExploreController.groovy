@@ -1,6 +1,5 @@
 package org.ravioli
 import grails.converters.JSON
-import groovy.util.XmlSlurper;
 /** controller for the interactive main display */
 
 class ExploreController {
@@ -34,9 +33,17 @@ class ExploreController {
 					row(
 					ivorn : r.ivorn
 					,title : r.title
-					,created : r.created?.format("yyyy-MM-dd")
-					,modified :r.modified?.format("yyyy-MM-dd")
+					//,created : r.created?.format("yyyy-MM-dd")
+					//,modified : r.modified?.format("yyyy-MM-dd")
+					,date: (r.modified ?: r.created).format("yyyy-MM-dd")
 					,dataUrl: g.createLink(action:'inlineResource', id:r.getId())
+					,shortname: r.shortname ?:""
+					,source: r.source ?:""
+					,subject: r.subjects ?: ""
+					,waveband: r.wavebands?: ""
+					,publisher: r.publishers?: ""
+					,creator: r.creators?: ""
+					,id:r.id
 					)
 				}
 			}
@@ -45,7 +52,6 @@ class ExploreController {
 	
 	
 	def resource = {
-		//@todo - template should be wrapped in a template that prodvides a html>title.
 		Resource r
 		if (params.id) {
 			r = Resource.get(params.id)
@@ -54,7 +60,7 @@ class ExploreController {
 		}
 		if(r) {
 			def xml = new XmlSlurper().parseText(r.xml)
-			render(template:"resourceDetail",model:[r:r,xml:xml])
+			return [r:r,xml:xml]
 		} else {
 			render(status:404, text:'Failed to find resource')
 		}

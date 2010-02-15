@@ -111,7 +111,7 @@ environments {
 			warn   'org.mortbay.log'
 			
 			root {
-				error 'ravioli'
+				info 'ravioli'
 				//debug 'ravioliDebug'
 				additivity = true
 			}	
@@ -157,12 +157,6 @@ navigation.admin = [
 		]
 
 
-///// Task Queue Config
-backgroundThread {
-	queueSize = 10000 // Maximum number of tasks to queue up
-	threadCount = 5 // Number of threads processing background tasks.
-	tasksPerDrain = 100 // See Note
-}
 
 // json output
 grails.json.legacy.builder=false

@@ -59,8 +59,12 @@ class RegistryController {
 		log.debug(params.dump())
 		Registry r = Registry.findByIvorn(harvestId)
 		if (r) {
-			def hr = harvestService.harvest(r,incremental)
-			flash.message = "Started harvesting from ${r.name} - deleted ${hr.deleted} resources, fetching ${hr.created} new resources, ${hr.modified} modified resources"
+			RegistryHarvestTask task = new RegistryHarvestTask(reg:r, incremental:incremental)
+			if( task.save() ) { 
+				flash.message = "Started harvesting from ${r.name}"
+			} else {
+				flash.message = 'Unexpected fault when initializing harvest task'
+			}
 			redirect(action:'list') 
 		} else {
 			flash.message = "Unknown registry ${harvestId}"
@@ -72,11 +76,9 @@ class RegistryController {
 		boolean incremental = params.incremental ? true : false; // converts from groovy truth to flag.
 		
 		Registry.list().each { r->
-			backgroundService.execute("Listing updates from ${r.ivorn}") {
-				log.info "Listing updates from ${r.ivorn}"
-				harvestService.harvest(r,incremental) 
+			RegistryHarvestTask task = new RegistryHarvestTask(reg:r, incremental:incremental)
+			assert task.save()
 			}
-		}
 		
 		flash.message = 'your office lights may dim while performing this monster re-harvest'		
 		redirect(action:'list')

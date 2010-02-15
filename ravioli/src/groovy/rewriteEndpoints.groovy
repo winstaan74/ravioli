@@ -8,9 +8,6 @@ loader.addURL(new File('/Users/noel/.ivy2/cache/org.grails/grails-core/jars/grai
 //def fn() {
 //}
 
-import groovy.lang.Closure;
-import groovy.util.slurpersupport.GPathResult;
-import groovy.xml.XmlUtil;
 import groovy.xml.StreamingMarkupBuilder
 
 // can't import - as class not loaded yet./
