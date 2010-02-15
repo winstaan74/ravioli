@@ -3,7 +3,7 @@
  */
 class ProtectedPagesFunctionalTests extends FunctionalTestUtils {
 	
-	def adminOnly = ['/registry/list', '/resource/list','/buildInfo']
+	def adminOnly = ['/registry/list', '/resource/list','/buildInfo','/task/list']
 	def userOnly = []
 	
 	

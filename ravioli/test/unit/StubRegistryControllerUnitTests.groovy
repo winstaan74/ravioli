@@ -142,4 +142,21 @@ class StubRegistryControllerUnitTests extends ControllerUnitTestCase {
 		
 		
 	}
+	
+	void testGetResourceWithPlusInIvorn() {
+		controller.params.verb = 'GetRecord'
+		controller.params.metadataPrefix = 'ivo_vor'
+		def ivorn = 'ivo://CDS.VizieR/J/A+A/265/32'
+		controller.params.identifier = ivorn 
+		
+		controller.getrecord()
+		
+		assertFalse (404 == renderArgs.status)
+		assertEquals 'text/xml', controller.response.contentType 
+		def xml = new XmlSlurper().parseText(controller.response.contentAsString)
+		
+		assertTrue xml.error.text().contains('unknown')
+		
+		
+	}
 }

@@ -85,7 +85,7 @@ class ExploreFunctionalTests extends FunctionalTestUtils {
 		Resource r = Resource.findByIvorn(ivorn)
 		assertNotNull "Not Found ${ivorn}",r
 		def id = r.id
-		get("/display/inlineResource?id=${id}")
+		get("/explore/inlineResource/${id}")
 		assertStatus 200
 		// things which will always be here
 		acc ivorn

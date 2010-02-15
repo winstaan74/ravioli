@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<oai:OAI-PMH xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+
+<oai:responseDate>2010-02-02T00:11:14Z</oai:responseDate>
+<oai:request verb="GetRecord" metadataPrefix="ivo_vor" identifier="ivo://jvo/vizier/J/A AS/102/397">http://jvo.nao.ac.jp/publishingRegistry1.0/oai.pl</oai:request>
+
+<oai:error code="idDoesNotExist">The value of the identifier argument is unknown or illegal in this repository</oai:error>
+
+</oai:OAI-PMH>

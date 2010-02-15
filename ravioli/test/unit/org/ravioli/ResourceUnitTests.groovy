@@ -33,14 +33,13 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 		assertFalse r.validate()
 		assertNull r.errors["ivorn"], r.errors['ivorn']	
 		
-		assertEquals "nullable",r.errors['xml']
-		r.xml = "some xml. oh rly?"
-		assertFalse r.validate()
-		assertNull r.errors['xml']
+
 
 		assertEquals('nullable',r.errors['created'])
 		r.created = new Date()
 		
+		assertEquals('nullable',r.errors['date'])
+		r.date = r.created
 		
 		assertEquals('nullable',r.errors['status'])
 		
@@ -72,6 +71,17 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 		assertNotNull(r.created)
 		
 		assertNotNull(r.modified)
+
+		assertEquals 'active', r.status
+		
+		// new fields, as used in table..
+		assertEquals '', r.source
+		assertEquals 'RofR', r.shortname
+		
+		assertEquals '', r.wavebands
+		assertEquals 'another subject, virtual observatory',r.subjects
+		assertEquals 'International Virtual Observatory Alliance', r.publishers
+		assertEquals 'Raymond Plante', r.creators
 		assertTrue r.validate()
 		
 	}
@@ -80,7 +90,7 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 		mockForConstraintsTests(Resource)
 		URL u = this.class.getResource("trimmedRegResource.xml")
 		def ivorn = "ivo://another.ivorn"
-		shouldFailWithCause(IllegalArgumentException) {
+		shouldFailWithCause(IdentifyException) {
 			Resource.buildResource(u.text, ivorn)
 		}
 	}
@@ -93,128 +103,30 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 		assertTrue r.validate();
 		assertEquals('ivo://ivoa.net/rofr',r.ivorn);
 	}
-	
-	void testStrippedXML() {
-		def inputXML='''
-			<element attr="attr-value">
-			  Some content
-				<p ix="another value">
-				more content
-			</p>
-			<i>stuff</i>more words
-			</element>
-			'''
-		Resource r = new Resource(xml:inputXML)
-		r.xmlService = new XmlService();
-		String output = r.stripXML()
-		assertNotNull output
-		[
-				"attr-value " // all data should be space delimited
-				, " another value "
-				, "more content"
-				, " stuff "
-				, " more words"
-				].each { str ->
-					assertTrue("Missing ${str}",output.contains(str))
-				}
+
+	void testDelegates() { // check the delegate functions are working.
+		URL u = this.class.getResource("trimmedRegResource.xml")
+		Resource r = Resource.buildResource(u.text)
+		r.rxml.xmlService = new XmlService()
+		// check propertyMissing is delegateing
+		assertEquals r.rxml.description, r.description
+		
+		// check xpath
+		def xp = '/node()/title'
+		assertEquals r.rxml.xpath(xp),r.xpath(xp)
+		
+		// xpathList
+		xp = '/node()/content/subject/text()'
+		def a  = r.rxml.xpathList(xp)
+		def b = r.xpathList(xp)
+		assertEquals a,b
 	}
+	
 	
 	//we could add unit tests for some other resources that exercise different parts of the data model
 	// eg waveband..
 	// exercised in resource integration test, so maybe not so much of a problem.
 	
-	/** test the xpath-defined dynamic fields */
-	void testXpath() {
-		mockForConstraintsTests(Resource)
-		URL u = this.class.getResource("trimmedRegResource.xml")
-		
-		Resource r = Resource.buildResource(u.text)
-		r.xmlService = new XmlService()
-		assertTrue r.validate();
-		
-		assertEquals('RofR',r.shortname)
-		
-		assertNull(r.source)
-		
-		// 
-		assertTrue(r.description.startsWith('This is a spec'))
 
-		assertEquals("vg:Registry",r.resourcetype)
-
-
-		def subj = r.subject
-		assertNotNull subj
-		assertEquals 2,subj.size()
-		assertTrue subj.contains('virtual observatory')
-		assertTrue subj.contains('another subject')
-		subj.each {
-			assertTrue (it instanceof String )
-		}
-		
-		assertEquals(0,r.waveband.size())
-
-		def cap = r.capability
-		assertEquals 2, cap.size()
-		assertTrue(cap.contains('vg:Harvest'))
-		assertTrue(cap.contains('ivo://ivoa.net/std/Registry'))
-		cap.each {
-			assertTrue (it instanceof String)
-		}
-		
-		def curation = r.curation 
-		curation.each {
-				assertTrue (it instanceof String)
-		}
-		
-		def creator = r.creator
-		assertEquals 1, creator.size()
-		assertTrue creator.contains('Raymond Plante')
-		assertTrue curation.contains('Raymond Plante')
-		creator.each {
-			assertTrue (it instanceof String) 
-			
-		}
-		
-		def publisher = r.publisher
-		assertEquals 2, publisher.size()
-		assertTrue publisher.contains("ivo://ivoa.net/IVOA")
-		assertTrue curation.contains("ivo://ivoa.net/IVOA")		
-		
-		assertTrue publisher*.trim().contains("International Virtual Observatory Alliance")
-		assertTrue curation*.trim().contains("International Virtual Observatory Alliance")
-
-		publisher.each {
-			assertTrue(it instanceof String) 
-		}
-		
-		assertNotNull r.ucd
-		assertTrue r.ucd.isEmpty()
-		
-		assertNotNull r.col
-		assertTrue r.col.isEmpty()
-		
-		assertTrue r.name.contains(r.title)
-		assertTrue r.name.contains(r.shortname)
-		
-		assertTrue r.level.isEmpty()
-		
-		assertEquals(["Registry"], r.contenttype)
-		
-		assertEquals 'active', r.status
-	}
-	
-	void testMethodMissing() {
-		mockForConstraintsTests(Resource)
-		URL u = this.class.getResource("trimmedRegResource.xml")
-		
-		Resource r = Resource.buildResource(u.text)
-		r.xmlService = new XmlService()
-		assertTrue r.validate();
-		
-		shouldFail(MissingPropertyException){
-			r.unknown
-		}
-	
-	}
 	
 }

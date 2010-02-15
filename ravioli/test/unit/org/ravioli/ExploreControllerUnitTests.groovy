@@ -57,7 +57,8 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 	}
 	
 	void testInlineResource() {
-		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a', xml:'<foo />')
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a')
+		r1.rxml.xml ='<foo />'
 		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
 		mockDomain(Resource, [r1,r2])
 
@@ -71,7 +72,8 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 	}
 	
 	void testInlineResourceUnknown() {
-		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a', xml:'<foo />')
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a')
+		r1.rxml.xml ='<foo />'
 		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
 		mockDomain(Resource, [r1,r2])
 		
@@ -83,7 +85,8 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 	}
 	
 	void testResource() {
-		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a', xml:'<foo />')
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a')
+		r1.rxml.xml ='<foo />'
 		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
 		mockDomain(Resource, [r1,r2])
 		
@@ -93,11 +96,11 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 		def model = controller.resource()
 		assertEquals r1, model.r
 		assertNotNull model.xml
-		assertEquals 'resourceDetail', controller.renderArgs['template']
 	}
 	
 	void testresourceUnknown() {
-		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a', xml:'<foo />')
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a')
+		r1.rxml.xml ='<foo />'
 		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
 		mockDomain(Resource, [r1,r2])
 		
@@ -109,7 +112,8 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 	}
 	
 	void testResourceIvorn() {
-		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a', xml:'<foo />')
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a')
+		r1.rxml.xml ='<foo />'
 		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
 		mockDomain(Resource, [r1,r2])
 		
@@ -119,11 +123,11 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 		def model = controller.resource()
 		assertEquals r1, model.r
 		assertNotNull model.xml
-		assertEquals 'resourceDetail', controller.renderArgs['template']
 	}
 	
 	void testresourceUnknownIvorn() {
-		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a', xml:'<foo />')
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a')
+		r1.rxml.xml ='<foo />'
 		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
 		mockDomain(Resource, [r1,r2])
 		

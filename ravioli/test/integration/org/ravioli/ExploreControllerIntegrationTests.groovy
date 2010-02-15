@@ -7,8 +7,9 @@ import org.codehaus.groovy.grails.web.json.*;
 class ExploreControllerIntegrationTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
+        controller = new ExploreController()
     }
-    def controller = new ExploreController()
+    def controller
     protected void tearDown() {
         super.tearDown()
 		controller = null
@@ -24,19 +25,21 @@ class ExploreControllerIntegrationTests extends GrailsUnitTestCase {
 		//println o.dump()
 		assertEquals(11,o.totalRecords)
 		
+		checkResponse(o)
+
+    }
+	
+	final static keys = ['ivorn','title','date','dataUrl','shortname','source','subject','waveband','publisher','creator']
+	def checkResponse(def o) {
 		def r = o.results
 		assertNotNull r
 		assertEquals o.totalRecords, r.length()
 		
 		r.each { m ->
-			assertNotNull m.ivorn
-			assertNotNull m.title
-			assertNotNull m.created
-			assertNotNull m.modified
-			assertNotNull m.dataUrl
+			keys.each { assertNotNull 'key ${it} missing',m."${it}"}
+			assertEquals keys.size(), m.size()
 		}
-		
-    }
+	}
 	
 	void testTableDataAsJSONOddParams() {
 		controller.params.max = 200
@@ -50,18 +53,7 @@ class ExploreControllerIntegrationTests extends GrailsUnitTestCase {
 		//println o.dump()
 		assertEquals(11,o.totalRecords)
 		
-		def r = o.results
-		assertNotNull r
-		assertEquals o.totalRecords, r.length()
-		
-		r.each { m ->
-			assertNotNull m.ivorn
-			assertNotNull m.title
-			assertNotNull m.created
-			assertNotNull m.modified
-			assertNotNull m.dataUrl
-		}
-		
+		checkResponse(o)
 	}
 	
 	void testTableDataAsJSONSearch() {
@@ -75,18 +67,7 @@ class ExploreControllerIntegrationTests extends GrailsUnitTestCase {
 		//println o.dump()
 		assertEquals(1,o.totalRecords)
 		
-		def r = o.results
-		assertNotNull r
-		assertEquals o.totalRecords, r.length()
-		
-		r.each { m ->
-			assertNotNull m.ivorn
-			assertNotNull m.title
-			assertNotNull m.created
-			assertNotNull m.modified
-			assertNotNull m.dataUrl
-		}
-		
+		checkResponse(o)
 	}
 	
 	void testTableDataAsJSONSearchParams() {
@@ -102,21 +83,8 @@ class ExploreControllerIntegrationTests extends GrailsUnitTestCase {
 		//println o.dump()
 		assertEquals(1,o.totalRecords)
 		
-		def r = o.results
-		assertNotNull r
-		assertEquals o.totalRecords, r.length()
-		
-		r.each { m ->
-			assertNotNull m.ivorn
-			assertNotNull m.title
-			assertNotNull m.created
-			assertNotNull m.modified
-			assertNotNull m.dataUrl
-		}
+		checkResponse(o)
 		
 	}
-	
-	void testInlineResource() {
-		//@
-	}
+
 }

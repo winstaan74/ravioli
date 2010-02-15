@@ -61,50 +61,44 @@ class RegistryControllerUnitTests extends ControllerUnitTestCase {
 	void testHarvestWithParams() {
 		def r = new Registry(ivorn:'ivo://foo.bar.choo',name:'a reg')
 		mockDomain(Registry,[r])
+		mockDomain(RegistryHarvestTask,[])
 
 		this.controller.params.harvestId = r.ivorn
 		this.controller.params.incremental = false
-
-		harvestControl.demand.harvest() {reg, inc ->
-			assertEquals(r,reg)
-			assertFalse("incremental flag expected to be false",inc)
-			return new HarvestResults(created:3,modified:42)
-		}
-		this.controller.harvestService = harvestControl.createMock()
 		
 		this.controller.harvest()
 
-		harvestControl.verify()
+		def l = RegistryHarvestTask.list()
+		assertEquals 1, l.size()
+
+		def task = l[0]
+		assertEquals false, task.incremental
+		assertEquals r, task.reg
 		
 		flashContains(r.name)
-		flashContains("42 modified")
-		flashContains('3 new')
 		redirectsTo('list')
 	}
 	
-	void testHarvestWithMissingIncremental() {// shold provide default value for incremental.
+	void testHarvestWithMissingIncremental() {
 		def r = new Registry(ivorn:'ivo://foo.bar.choo',name:'a reg')
 		mockDomain(Registry,[r])
+		mockDomain(RegistryHarvestTask,[])
 		
 		this.controller.params.harvestId = r.ivorn
 		
-		harvestControl.demand.harvest() {reg, inc ->
-			assertEquals(r,reg)
-			assertFalse('incremental flag expected to be false',inc)
-			return new HarvestResults(created:3,modified:42, deleted:2)
-		}
-		this.controller.harvestService = harvestControl.createMock()
-		
 		this.controller.harvest()
 		
-		harvestControl.verify()
+		def l = RegistryHarvestTask.list()
+		assertEquals 1, l.size()
+		
+		def task = l[0]
+		assertEquals false, task.incremental
+		assertEquals r, task.reg
 		
 		flashContains(r.name)
-		flashContains("42 modified")
-		flashContains('3 new')
-		flashContains('deleted 2')
 		redirectsTo('list')
 	}
+	
 	
 	void testHarvestWithUnknownRegistry() {
 		def r = new Registry(ivorn:'ivo://foo.bar.choo',name:'a reg')
@@ -117,6 +111,24 @@ class RegistryControllerUnitTests extends ControllerUnitTestCase {
 		
 		flashContains(this.controller.params.harvestId)
 		assertEquals(0,model.size())
+	}
+	
+	void testHarvesAll() {
+		def r = new Registry(ivorn:'ivo://foo.bar.choo',name:'a reg')
+		def r1 = new Registry(ivorn:'ivo://wibble.nibble', name:'another reg')
+		def rs = [r,r1]
+		mockDomain(Registry,rs)
+		mockDomain(RegistryHarvestTask,[])
+
+		this.controller.params.incremental = false
+		this.controller.harvestAll()
+		
+		def l = RegistryHarvestTask.list()
+		assertEquals rs.size(), l.size()
+		
+		assertEquals rs, l*.reg
+		assertTrue l.every{! it.incremental}
+		
 	}
 	
 	
