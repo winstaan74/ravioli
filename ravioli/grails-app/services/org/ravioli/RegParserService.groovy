@@ -128,6 +128,8 @@ class RegParserService  {
 	 * @param reg registry to harvest from
 	 * @param ivorn record id to load
 	 * @preturn the GPath of the Resource document, for further processing. - i.e result will have name() == 'Resource'
+ 	* @todo find out how to trhow an exception from within an xslt transformation - best way of detecting errors early
+ 	* @todo spend some time debugging behaviour of url encoding of ivorn parameter.
 	 */
 	String harvest(Registry reg, String ivorn) {
 		log.info "Harvesting ${ivorn} from ${reg.ivorn}"
@@ -137,6 +139,9 @@ class RegParserService  {
 		<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 			<xsl:template match="/">
 				<xsl:copy-of select="//node()[local-name() = 'Resource']"/>
+			</xsl:template>
+			<xsl:template match="//node()[local-name() = 'error']">
+				<xsl:error><xsl:value-of select="."/></xsl:error>
 			</xsl:template>
 		</xsl:stylesheet>
 			'''.trim()

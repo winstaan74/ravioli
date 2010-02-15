@@ -6,10 +6,15 @@ package org.ravioli
 class Registry {
 	
     static constraints = { // all non-nullable by default
-        ivorn unique:true, matches:/ivo:\/\/\S+/ , maxsize:200 // must have prefix ivo://
-        endpoint url: true , maxsize:400
+        ivorn unique:true, matches:/ivo:\/\/\S+/ , maxsize:1000 // must have prefix ivo://
+        endpoint url: true , maxsize:1000
         lastHarvest nullable:true
         manages  nullable:false
+    }
+
+    static mapping = {
+		ivorn column: 'ivorn', sqlType:'VARCHAR(1000)'
+		endpoint column: 'endpoint', sqlType:'VARCHAR(1000)'
     }
 
 

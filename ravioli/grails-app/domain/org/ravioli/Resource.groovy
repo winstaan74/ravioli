@@ -27,20 +27,15 @@ import org.compass.annotations.*
  */
 @Searchable
 @SearchableDynamicMetaDatas(value=[
-@SearchableDynamicMetaData(name="shortname",converter="groovy"
-			, expression="data.shortname" )
 			
-,@SearchableDynamicMetaData(name='description', converter='groovy'
+@SearchableDynamicMetaData(name='description', converter='groovy'
 			, expression="data.description" )
-			
-,@SearchableDynamicMetaData(name='source', converter='groovy', excludeFromAll=ExcludeFromAll.YES
-			, expression="data.source" )
 			
 ,@SearchableDynamicMetaData(name='resourcetype', converter='groovy', excludeFromAll=ExcludeFromAll.YES
 		, expression="data.resourcetype" )
 
 ,@SearchableDynamicMetaData(name="all", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-			,expression="data.stripXML()" )
+			,expression="data.rxml.stripXML()" )
 
 ,@SearchableDynamicMetaData(name="subject", converter="groovy"
 			,expression="data.subject" )
@@ -69,76 +64,81 @@ import org.compass.annotations.*
 ,expression="data.col" )
 ,@SearchableDynamicMetaData(name="type", converter="groovy", excludeFromAll=ExcludeFromAll.YES
 ,expression="data.type" )
-])
+,@SearchableDynamicMetaData(name="identifier", converter="groovy", excludeFromAll=ExcludeFromAll.YES
+,expression="data.ivorn" )
+,@SearchableDynamicMetaData(name="date", converter="groovy", excludeFromAll=ExcludeFromAll.YES
+//,format="yyyy-MM-dd" @todo work out how to express format here..
+//@todo find out how to make this field non-tokenized.
+,expression="[] << data.created << data.modified " )
+]) 
 class Resource {
-	
-	def transient xmlService  // reference to xml service.
 	static constraints = {
-		ivorn(unique:true, matches:/ivo:\/\/\S+/,maxsize:200) // must have prefix ivo://
-		title(nullable:true,maxsize:500)
+		ivorn(unique:true, matches:/ivo:\/\/\S+/,maxsize:1000) // must have prefix ivo://
+		title(nullable:true,maxsize:1000)
+		shortname(nullable:true, maxsize:100)
+		source(nullable:true, maxsize:200)
 		created(nullable:false)
-		modified(nullable:true)
-		xml(nullable:false,blank:false,maxSize:6000000) //around 6MB.		
+		modified(nullable:true)	
+		date(nullable:false) // display version of date.
 		status(matches:'active') // enforce a constant.
-	}
-	static transients = ['xmlService']
-
-	// some of these are currently unused, but do no harm being there. 
-	private final static Map DYNAMIC_PROPERTIES = [
-	       shortname:'/node()/shortName'
-	       ,description:'/node()/content/description'
-		   , source:'/node()/content/source'
-		   , sourceFormat:'/node()/content/source/@format'
-		   , resourcetype: '/node()/@*[local-name() = "type"]'
-		   , referenceUrl: '/node()/content/referenceURL'
-		   , version: '/node()/curation/version'
-		   , date: '/node()/curation/date' // strictly speaking, this can be a list, but really never is.
-	]
-
-	private final static Map DYNAMIC_LISTS = [
-		subject: '/node()/content/subject/text()'
-		,waveband: '/node()/coverage/waveband/text()'
-		,capability: '/node()/capability/@standardID|/node()/capability/@*[local-name() = "type"]'
-		,creator: '/node()/curation/creator/name/text() | /node()/curation/creator/@ivo-id'
-		, curation: '/node()/curation//text() | /node()/curation//@*'
-		, publisher: '/node()/curation/publisher/text() | /node()/curation/publisher/@ivo-id'
-		, name: '/node()/shortName/text() | /node()/title/text()' 
-		, col: '/node()/catalog/table/column/name/text() | /node()/table/column/name/text()'
-		, ucd: '/node()/catalog/table/column/ucd/text() | /node()/table/column/ucd/text()'
-		, level: '/node()/content/contentLevel/text()' // don't have an index for this
-		, contenttype: '/node()/content/type/text()' // text() necessary, as used as part of a dynamic list defn below.
-						
-			//future: validationLevel?
-		]
-
-	static { // this is defined in terms of other ones - so do it after the map creation
-		// so we can refer to the map.
-		DYNAMIC_LISTS.type = DYNAMIC_LISTS.capability + 
-		" | " + DYNAMIC_LISTS.contenttype +
-		" | " + DYNAMIC_PROPERTIES.resourcetype
+		rxml(unique:true)
+		wavebands(nullable:true, maxsize:1000)
+		subjects(nullable:true, maxsize:1000)
+		publishers(nullable:true, maxsize:1000)
+		creators(nullable:true, maxsize:1000)
 	}
 
+	static mapping = {
+		// need to define column types explicitly, as otherwise we're given a varchar(255), which isn't large enough for some of the fields above
+		ivorn column: 'ivorn', sqlType:'VARCHAR(1000)'
+		title column: 'title', sqlType:'VARCHAR(1000)'
+		wavebands column:'wavebands', sqlType:'VARCHAR(1000)'
+		subjects column:'subjects', sqlType:'VARCHAR(1000)'
+		publishers column:'publishers', sqlType:'VARCHAR(1000)'
+		creators column:'creators', sqlType:'VARCHAR(1000)'
+	}
+
+		/** the resource xml - modelled in a separate object
+		 *   */	
+		ResourceXml rxml= new ResourceXml()
+		
 		@SearchableId(excludeFromAll=ExcludeFromAll.YES)
 		Long id
 	//vodesktop default becomes lucene's 'all'
 	// need to omit bits we don't want from 'all'
 		
-		@SearchableProperty(name='identifier',boost=2.0f)
+		@SearchableProperty(name='ivorn',boost=2.0f)
 		String ivorn // $r/identifier 
 		
-		// not searchable - accesses the content through 'all" defined using stripXML
-		String xml 
-		
 		String status // not searchable.
-
+		
 		@SearchableProperty(boost=2.0f)
-		String title //$r/title
-
+		String shortname
+		
+		@SearchableProperty() // decided to add to default search index.
+		String source
+		
+		@SearchableProperty(boost=2.0f)
+		String title 
+		
 		@SearchableProperty(format="yyyy-MM-dd")
 		Date created
 		@SearchableProperty(format="yyyy-MM-dd")
 		Date modified
-
+		
+	// pre-formatted fields used in resource table.
+	// not indexed: lucene has indexed the raw text elsewhere.
+	// using the dynamic property in the singular - e.g. r.subject, 
+	// while r.subjects gives the formatted version.
+		String subjects
+		String wavebands
+		String publishers
+		String creators
+		
+		// not searchable - we define the 'date' search index above, to include both modified and created dates
+		Date date // combination of modified and created
+		
+		
 		/** parse a url containing XML into a resource 
 		 * 
 		 * @param xml xml description of the resource - outer tag is expeected to be <ri:Resource
@@ -146,7 +146,7 @@ class Resource {
 		 * @return
 		 */
 	static Resource buildResource(String xml, String ivorn = null) {
-		Resource r = new Resource(xml:xml, ivorn:ivorn)
+		Resource r = new Resource(ivorn:ivorn)
 		// parse up the rest
 		r.updateFields(xml)
 		return r;
@@ -155,19 +155,20 @@ class Resource {
 
 	/** parse xml and update most of the fields of this resource from it */
 	void updateFields(String xml) {
-		
-		this.xml = xml;
+		this.rxml.xml = xml;
 		def gp = new XmlSlurper().parseText(xml)
 
 		def ivo = gp.identifier?.text()?.trim()
 		if (this.ivorn == null) { // never overwrite the ivorn
 			this.ivorn = ivo
 		} else if (ivorn != ivo) { // check the ivorn is correct
-			throw new IllegalArgumentException("Expected xml for resource '${ivorn}', but got identifier '${ivo}'");
+			throw new IdentifyException(reported:ivo, expected:ivorn)
 		}
 		
 		this.title = gp.title?.text()?.trim()
+		this.shortname = gp.shortName?.text()?.trim()
 		this.status = gp.'@status'.text()
+		this.source = gp.content.source?.text()?.trim()
 		// using joda time here, as it has the correct parsing built in.
 		this.created = new DateTime(gp.'@created'.text()).toDate();
 		try {
@@ -175,59 +176,35 @@ class Resource {
 			this.modified = dt.toDate();
 		} catch (IllegalArgumentException e) {
 			// no matter..
-		}		
-	}
-	
-	/** access the stripped version of xml - no tags, just body content 
-	 * and id values
-	 */
-	private String stripXML() {
-		return xpathList("//@*|//text()").join(' ')
-	}
-
-	/** evaluate an xpath over the xml body of this resource
-	 * and return a single value, or null if no match.
-	 * @param path
-	 * @return
-	 */
-	public  String xpath(String path) {
-		return xmlService.xpath(this.xml,path)
-	}
-	
-	/** evaluate an xpath over the xml body of this resource
-	 * and return a list of values
-	 * @param path
-	 * @return
-	 */
-	public  List xpathList(String path) {
-		return xmlService.xpathList(this.xml,path)
-	}
-	
-	/** utility to provide convenient access to xpath-defined fields
-	 * means we can adjust the implementation later, without letting the details leak out.
-	 * @param name
-	 * @return
-	 */
-	def propertyMissing(String name) {
-		def xp = DYNAMIC_PROPERTIES[name]
-		if(xp) {
-			// cache the method impleemntaiton, so it will be called more efficiently next time.
-			Resource.metaClass."$name" = { ->  xpath(xp)?.trim() }
-			return xpath(xp)?.trim()
-		} else {
-			xp = DYNAMIC_LISTS[name]
-			if (xp) {
-				Resource.metaClass."$name" = {-> xpathList(xp) }
-				return xpathList(xp) 
-			}
-		}
-		throw new MissingPropertyException(name)
+		}	
+		this.date = modified ?: created
+		
+		def fuse = {it.collect({e -> e.text()?.trim()}).sort().join(', ')}
+		// variant that doesn't sort it's items
+		def fuseNS = {it.collect({e -> e.text()?.trim()}).join(', ')}
+		this.subjects = fuse(gp.content.subject)
+		this.wavebands= fuse(gp.coverage.waveband)
+		this.publishers = fuseNS(gp.curation.publisher)
+		this.creators = fuse(gp.curation.creator.name)
 	}
 	
 	/** search functionality*/
 	/** rewrite query to remove all references to 'ivo://' */
 	public static String rewriteQuery(String s) {
 		return s?.replaceAll('ivo:', '')
+	}
+	
+	// delegate methods
+	public String xpath(String path) {
+		return rxml.xpath(path)
+	}
+	
+	public List xpathList(String path) {
+		return rxml.xpathList(path)
+	}
+	
+	def propertyMissing(String name) {
+		return rxml.propertyMissing(name)
 	}
 	
 		
