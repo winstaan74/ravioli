@@ -135,13 +135,19 @@ class RegParserService  {
 		log.info "Harvesting ${ivorn} from ${reg.ivorn}"
 		def url = reg.endpoint + "?verb=GetRecord&metadataPrefix=ivo_vor&identifier=" + ivorn
 		debugUrl(url)
+		// test for occurrence of error, and if see it, halt with a transform exception
+		// else just cut out the resource part of the response.
 		def xslt = '''
-		<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-			<xsl:template match="/">
-				<xsl:copy-of select="//node()[local-name() = 'Resource']"/>
-			</xsl:template>
-			<xsl:template match="//node()[local-name() = 'error']">
-				<xsl:error><xsl:value-of select="."/></xsl:error>
+		<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+			xmlns:java="http://xml.apache.org/xalan/java"
+				exclude-result-prefixes="java"
+			version="1.0">
+			<xsl:template match='/'>
+			<xsl:if test="//node()[local-name() = 'error']">
+				<xsl:value-of 
+				select='java:org.ravioli.HarvestServiceException.throwException(//node()[local-name() = "error"])' />
+			</xsl:if>
+			<xsl:copy-of select="//node()[local-name() = 'Resource']"/>
 			</xsl:template>
 		</xsl:stylesheet>
 			'''.trim()

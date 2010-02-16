@@ -11,7 +11,7 @@ class TaskExecution {
 	}
 
 	static mapping = {
-		messages column: 'messages', sqlType:'LONGTEXT' //@todo fix up the type'VARCHAR(1000000)'
+		messages column: 'messages', type:'text'
 		sort start:'asc'
 	}
 	

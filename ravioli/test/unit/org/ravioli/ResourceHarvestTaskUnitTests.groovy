@@ -8,8 +8,10 @@ class ResourceHarvestTaskUnitTests extends GrailsUnitTestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		mockLogging(RegParserService)
+		mockLogging(XmlService)
 		mockForConstraintsTests Registry
 		parserControl = mockFor(RegParserService)
+		mockDomain ResourceHarvestTask
 	}
 	
 	
@@ -106,9 +108,7 @@ class ResourceHarvestTaskUnitTests extends GrailsUnitTestCase {
 		String url = this.class.getResource("unknownResource.xml").toString()
 		Registry rofr = new Registry(ivorn:'ivo://ivoa.net/rofr',endpoint:url) 
 		String ivorn = 'ivo://jvo/vizier/J/A AS/102/397' // note the problematic space
-		mockDomain(Resource,[
-				new Resource(ivorn:ivorn,title:"don't want to see this")
-				])
+		mockDomain(Resource)
 		parserControl.demand.harvest() {r, ivo ->
 			assertEquals(ivorn,ivo)
 			assertEquals(rofr,r)
@@ -123,8 +123,6 @@ class ResourceHarvestTaskUnitTests extends GrailsUnitTestCase {
 		
 		// validate results
 		assertEquals(0,Resource.list().size())
-		Resource r = Resource.findByIvorn(ivorn)
-		assertNull(r)
 	}
 	
 	void testHarvestResourceServiceDown() { // get a 404, or similar from server
@@ -143,9 +141,9 @@ class ResourceHarvestTaskUnitTests extends GrailsUnitTestCase {
 
 		def task = new ResourceHarvestTask(reg:rofr, ivorn:ivorn)
 		task.regParserService = parserControl.createMock()
-		shouldFail(SAXParseException) {
-			task.run(System.out)
-		}
+		// problem manifests as a transformer exception - which we're catching and managing.
+		// so we get an error..
+		assertEquals Outcome.ERROR, task.run(System.out)
 		// validate results - shold be no changes.
 		assertEquals(0,Resource.list().size())
 	}

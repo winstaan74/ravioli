@@ -13,25 +13,24 @@ import java.util.zip.GZIPInputStream;
  * 
  * which means for quick lookups in the resource, this large CLOB (sometimes some megs)
  * doesn't need to be loaded from db.
+ * 
+ * @todo put binary compressed alternative in a subclass? with a factory method?
  * @author noel
  *  */
 class ResourceXml {
 	
-	public static final int BINARY_THRESHOLD = 1000000; //1048576 is max packet size..
-	
+	public static final int MAX_PACKET_SIZE = 1084000; //1048576 is max packet size for myslq driver.
+
 	static constraints = {
-		xml(nullable:true,blank:true,maxSize:BINARY_THRESHOLD) 
-		binXml(nullable:true)
+		xml(nullable:true,blank:true,maxSize:MAX_PACKET_SIZE) 
+		binXml(nullable:true, maxSize:MAX_PACKET_SIZE)
 	}
 
 
 	
 	static mapping = {
-		xml column: 'xml', sqlType:'LONGTEXT'
-		binXml column: 'binXml', sqlType:'LONGBLOB'
-		
-	//	xml column: 'xml', sqlType:"VARCHAR(1000000)" // gstring doesn't work..
-	//	binXml column: 'binXml', sqlType:'blob' // @todo find correct type sqlType:"VARBINARY(1000000)" //can't make it much larger, otherwise it exceeds mysql's defalt packet size.
+		xml column: 'xml', type:'text'
+		binXml column: 'binXml', type:'binary'
 	}
 
 
@@ -50,7 +49,7 @@ class ResourceXml {
 	}
 	
 	public void setXml(String xml) {
-		if (xml.size() > BINARY_THRESHOLD) {
+		if (xml.size() > MAX_PACKET_SIZE) {
 			ByteArrayOutputStream bos = new ByteArrayOutputStream()
 			bos.withStream { s ->
 				new GZIPOutputStream(s).withStream { zos ->

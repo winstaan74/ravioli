@@ -8,5 +8,6 @@ class UnknownResourceException extends RuntimeException {
 	public String getMessage() {
 		"Registry ${regIvorn} has no knowledge of ${ivorn}"
 	}
+	
 
 }

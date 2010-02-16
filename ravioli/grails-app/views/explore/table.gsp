@@ -1,10 +1,14 @@
 <html>
 <head>
 	<title>Registry Resources</title>
-	<gui:resources components="dataTable, dialog, menu, resize"/>
+ 	<gui:resources components="dataTable, dialog, menu"/>
+	<yui:javascript dir="cookie" file="cookie-min.js" />
+	<yui:javascript dir="json" file="json-min.js" />
+
 <style type='text/css'>
 <%-- putting an inline style here seems to be the only way to override the
 default styling. --%>
+
 .yui-skin-sam tr.ymod-expandedData td, .yui-skin-sam tr.ymod-expandedData, .yui-skin-sam tr.ymod-expandedData div.ymod-expandedDataContent {
 	background-color: #FFFFFF;
 		color: #000;
@@ -22,29 +26,34 @@ default styling. --%>
 #dt-dlg .dt-dlg-pickerkey {float:left;}
 #dt-dlg .dt-dlg-pickerbtns {float:right;}
 
-/* Container workarounds for Mac Gecko scrollbar issues */
+<%-- Container workarounds for Mac Gecko scrollbar issues --%>
+
 .yui-panel-container.hide-scrollbars #dt-dlg .bd {
-    /* Hide scrollbars by default for Gecko on OS X */
+    <%-- Hide scrollbars by default for Gecko on OS X --%>
     overflow: hidden;
 }
 .yui-panel-container.show-scrollbars #dt-dlg .bd {
-    /* Show scrollbars for Gecko on OS X when the Panel is visible  */
+    <%-- Show scrollbars for Gecko on OS X when the Panel is visible --%>
     overflow: auto;
 }
 #dt-dlg_c .underlay {overflow:hidden;}
 
-.inprogress {position:absolute;} /*	 transitional progressive enhancement state */
-
+.inprogress {position:absolute;} <%-- transitional progressive enhancement state --%>
+<%-- control width of table --%>
+#dt_div_resources {
+	width:100%;
+}
+.yui_dt_hidden {
+	display:none;
+}
 </style>
 </head>
 <body>
 	<%-- search form --%>
 	<input type="text" id="sb" value="">
 	<button id="filterButton">Search</button>
+
 <div id='resourcesParent'>
-<%-- column view controls - inlined with table.
-<div id="dt-options"><a id="dt-options-link" href="fallbacklink.html">Table Options</a></div>
---%>
 	<r:resourceTable />
 </div>
 <%--popup dialogue for selecting columns. --%>

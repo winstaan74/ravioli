@@ -29,7 +29,7 @@ class ExploreControllerIntegrationTests extends GrailsUnitTestCase {
 
     }
 	
-	final static keys = ['ivorn','title','date','dataUrl','shortname','source','subject','waveband','publisher','creator']
+	final static keys = ['ivorn','title','date','dataUrl','shortname','source','subject','waveband','publisher','creator','id']
 	def checkResponse(def o) {
 		def r = o.results
 		assertNotNull r

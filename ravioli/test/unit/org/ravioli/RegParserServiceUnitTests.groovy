@@ -1,13 +1,16 @@
+
+
 package org.ravioli
 import groovy.util.XmlSlurper;
 import groovy.util.slurpersupport.GPathResult;
-
+import javax.xml.transform.TransformerException;
 import grails.test.*
 
 class RegParserServiceUnitTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
 		mockLogging(RegParserService)
+		mockLogging XmlService
 		parser = new RegParserService()
 		parser.xmlService = new XmlService()
     }
@@ -219,6 +222,20 @@ class RegParserServiceUnitTests extends GrailsUnitTestCase {
 		assertNotNull(xml)
 		def gp = new XmlSlurper().parseText(xml)
 		assertEquals('Resource',gp.name())
+	}
+	
+	void testHarvestUnknown() {
+		String url = this.class.getResource("unknownResource.xml").toString()
+		Registry ro = new Registry(endpoint:url,ivorn:'ivo://ivoa.net/rofr')
+		try {
+			parser.harvest(ro,"ivo://ivoa.net.rofr")
+			fail ("should have failed")
+		} catch (TransformerException t) {
+			def cause = t.getCause();
+			assertNotNull(cause)
+			assertEquals HarvestServiceException, cause.getClass()
+			assertEquals 'The value of the identifier argument is unknown or illegal in this repository',cause.message
+		}
 	}
 
 }

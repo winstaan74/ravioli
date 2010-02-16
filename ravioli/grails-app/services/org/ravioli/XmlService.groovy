@@ -11,7 +11,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 /** xml processing assistance - contains parsing, etc */
-class XmlService {
+class XmlService  {
 	
 	
 	boolean transactional = false;
@@ -118,18 +118,21 @@ class XmlService {
 	}
 	
 	private Transformer findTransformer(String stylesheet) {
+		Transformer trans
 		synchronized (xsltCache) {
 			if (xsltCache.containsKey(stylesheet)) {
 				Templates t = xsltCache.get(stylesheet);
-				if (t != null) { return t.newTransformer() }
+				if (t != null) { trans =  t.newTransformer() }
 			}
 			// not in the cache - need to create one.
-			return withStreamSource(stylesheet) { ss ->
+			withStreamSource(stylesheet) { ss ->
 				Templates t = tFactory.newTemplates(ss)
 				xsltCache.put(stylesheet, t)
-				return t.newTransformer();
+				trans = t.newTransformer();
 			}
 		}
+		trans.setErrorListener(new MyErrorListener(log:log))
+		return trans
 	}
 	
 	private def withStreamResult(def result, Closure closure) {
@@ -163,5 +166,26 @@ class XmlService {
 	
 	private final TransformerFactory tFactory = TransformerFactory.newInstance()
 	private final Map<String,Templates> xsltCache = new ReferenceMap<String,Templates>()
-	
 }
+	// error listener interface.
+	class MyErrorListener implements ErrorListener {
+	public void error(TransformerException exception)
+			throws TransformerException {
+		this.ex = exception;
+		
+	}
+	def log;
+	
+	def ex;
+	
+	public void fatalError(TransformerException exception)
+			throws TransformerException {
+		throw ex ?: exception // if we've seen an exception preivously, it'll be more informative than thos one.
+		
+	}
+	
+	public void warning(TransformerException exception) throws TransformerException {
+		this.ex = exception
+		}
+	}
+

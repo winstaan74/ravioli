@@ -1,5 +1,7 @@
 package org.ravioli;
 
+import javax.xml.transform.TransformerException;
+
 /** a pending task to harvest a resource */
 class ResourceHarvestTask extends Task {
 	
@@ -59,6 +61,15 @@ class ResourceHarvestTask extends Task {
 		} catch (UnknownResourceException e) {
 			out.println(e.message)
 			return Outcome.FAILED // no point retrying
+		} catch (TransformerException e) {
+			def cause = e.getCause()
+			if (cause && cause instanceof HarvestServiceException) {
+				out.println(cause.message)
+				return Outcome.FAILED
+			} else {
+				out.println(e.message)
+				return Outcome.ERROR
+			}
 		}
 		
 	}

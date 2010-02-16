@@ -29,7 +29,62 @@
   YAHOO.util.Event.on('filterButton','click',function (e) { 
 	     updateFilter(); 
 	    }); 
-
+  
+  var RAVIOLI_COOKIE = 'ravioli_resource_table';
+  
+  /** outputs display information to a cookie */
+  
+  var loadingState = false;
+  function persistTableDisplayState() {
+	  if (loadingState) {
+		  return;
+	  }
+	  var allColumns = GRAILSUI.resources.getColumnSet().keys;
+	  var cookieData = [];
+	  var l = allColumns.length;
+	  for (var i =0; i < l; i++) {
+		  var col = allColumns[i];
+		  cookieData.push( {
+			  'key': col.getKey()
+			  ,'hidden':col.hidden
+			  ,'width': col.width
+		  });
+	  }
+	  var str = YAHOO.lang.JSON.stringify(cookieData);
+	  YAHOO.util.Cookie.set(RAVIOLI_COOKIE,str);
+  }
+  
+  /** loads cookie of table display info, if available */
+  function loadTableDisplayState() {
+	  var loadingState = true;
+	  var str = YAHOO.util.Cookie.get(RAVIOLI_COOKIE);
+	  if (str) {
+		  var l = YAHOO.lang.JSON.parse(str);
+		  for (var i = 0; i < l.length; i++) {
+			  var o = l[i];
+			  var col = GRAILSUI.resources.getColumn(o.key)
+			  if (col) {// defensive, in case it doesn't exist.
+				 if (o.hidden) {
+					 GRAILSUI.resources.hideColumn(col);
+				 } else {
+					 GRAILSUI.resources.showColumn(col);
+				 }
+				  GRAILSUI.resources.setColumnWidth(col,o.width);
+				  GRAILSUI.resources.reorderColumn(col,i);
+			  }
+			           
+		  }
+	  }
+	  var loadingState = false;
+  }
+  // call the above function to load state.
+  loadTableDisplayState();
+  
+  /** listen to changes in column width, column order, and visibility */
+  GRAILSUI.resources.subscribe("columnResizeEvent", persistTableDisplayState);
+  GRAILSUI.resources.subscribe('columnReorderEvent', persistTableDisplayState);
+  GRAILSUI.resources.subscribe("columnShowEvent", persistTableDisplayState);
+  GRAILSUI.resources.subscribe("columnHideEvent", persistTableDisplayState);
 	 /*
 	 *adjustable columns.
 	 */

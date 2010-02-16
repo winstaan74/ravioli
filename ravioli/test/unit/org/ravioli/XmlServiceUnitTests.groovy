@@ -1,7 +1,8 @@
 
+
 package org.ravioli;
 import javax.xml.transform.stream.*;
-
+import javax.xml.transform.TransformerException;
 import org.xml.sax.InputSource;
 
 import grails.test.GrailsUnitTestCase;
@@ -9,10 +10,12 @@ import grails.test.GrailsUnitTestCase;
 
 class XmlServiceUnitTests extends GrailsUnitTestCase {
 	protected void setUp() {
-		//mockLogging(XmlService)
+		super.setUp()
+		mockLogging(XmlService)
 		xml = new XmlService()
 	}
 	protected void tearDown() {
+		super.tearDown()
 		xml = null;
 	}
 	
@@ -168,5 +171,41 @@ class XmlServiceUnitTests extends GrailsUnitTestCase {
 		}
 	}
 	
+	private static final String errorStyle = """
+		<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+		<xsl:template match='/'>
+			<xsl:message terminate='yes'>
+			fooble
+		    </xsl:message>
+		</xsl:template>
+</xsl:stylesheet>
+		""";
+	void testThrowingException() {
+		def doc = """<?xml version="1.0" encoding="UTF-8"?><foo><bar/></foo>"""
+		StringWriter result = new StringWriter()
+		try {
+			xml.transform(errorStyle,doc,result)
+			fail("expected to throw")
+		} catch (TransformerException e) {
+			assertTrue e.getMessage().contains('fooble')
+		}
+	}
 	
+	private static final String extensionStyle = """
+		<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+			xmlns:java="http://xml.apache.org/xalan/java"
+				exclude-result-prefixes="java"
+		version="1.0">
+		<xsl:template match='/'>
+			<xsl:value-of select='java:java.lang.System.getProperty("user.home")' />
+		</xsl:template>
+</xsl:stylesheet>
+		""";
+	
+void testTransformExtension() {
+	def doc = """<?xml version="1.0" encoding="UTF-8"?><foo><bar/></foo>"""
+	StringWriter result = new StringWriter()
+	xml.transform(extensionStyle,doc,result)
+	assertTrue (result.toString().contains('/Users/noel'))
+}
 }

@@ -108,19 +108,16 @@ class ResourceTagLib {
 	 * defined as a separate tag, as it was getting unwieldy to configure the 
 	 * dataTable tag within gsp.
 	 * 
-	 * @todo integrate with browser history management.
 	 * @todo add sortable.
-	 * @todo load preferred column view for user.
-	 * @todo find a way of showing datatips for truncated columns.
 	 * @todo future column types: annotations, flags, tags
 	 * @todo other column types: snippet of description, snippet of where query matches?
 	 */
 	def resourceTable = {attrs ->
 		def tableOptions = '''<a id="dt-options-link" class="dt-options-link" href="#" >Table Options</a>'''
-		def columns = [
+		def rawColumns = [
 		//@todo implement mass-selection using checkbox		[key:'check', formatter:'checkbox']
 		[key:'ivorn', label:'IVO-ID', width:250]
-		,[key:'title', label:'Title',width:250]
+		,[key:'title', label:'Title',  width:250]
 		,[key:'shortname',label:'Short Name', hidden:true, width:80]
 		,[key:'subject', label:'Subjects', hidden:true,width:250]
 		,[key:'source', label:'Source Reference',hidden:true, width:100]
@@ -131,7 +128,20 @@ class ResourceTagLib {
 //		,[key:'modified',sortable:true, label:'Date Modified', hidden:true, width:80]
 		,[key:'date', label:'Date', width:80]	
 		]
-		
+		// add in any default configuration..
+		def columns = rawColumns.collect {
+			it + [resizeable:true]
+			//, width:"""readCookie("${it.key}",${it.width})"""]
+		}
+		out << g.javascript {
+			'''
+			function readCookie(key,defaultWidth) {
+			var cVal = parseInt(YAHOO.util.Cookie.get(key),10)
+			alert(cVal)
+			return cVal || defaultWidth
+		}
+			'''
+		}
 		out << gui.dataTable(
 				id:'resources'
 				,sortedBy:'ivorn'
