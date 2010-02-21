@@ -11,7 +11,7 @@ class ResourceHarvestTask extends Task {
 	}
 	
 	static mapping = {
-		ivorn column: 'ivorn', sqlType:'VARCHAR(1000)'
+		ivorn column: 'ivorn', sqlType:'varchar(1000)'
 	}
 	
 	/** the registry to harves the resource from */

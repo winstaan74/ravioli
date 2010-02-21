@@ -1,7 +1,7 @@
 package org.ravioli
 
 import grails.test.*
-
+@Mixin(RavioliAssert)
 class ExploreControllerUnitTests extends ControllerUnitTestCase {
     protected void setUp() {
         super.setUp()
@@ -10,11 +10,15 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
     protected void tearDown() {
         super.tearDown()
     }
-
+	
+	void testIndex() {
+		this.controller.index()
+		assertEquals 'table', controller.renderArgs.view
+	}
 
 	void testTableData() {
-		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a')
-		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',titleField:'title a')
+		Resource r2 = new Resource(ivorn:'ivo://bee.boo',titleField:'second title')
 		mockDomain(Resource, [r1,r2])
 		def resourceControl = mockFor(Resource)
 		resourceControl.demand.static.list() {m ->
@@ -33,8 +37,8 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 	}
 	
 	void testTableDataSearch() {
-		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a')
-		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',titleField:'title a')
+		Resource r2 = new Resource(ivorn:'ivo://bee.boo',titleField:'second title')
 		mockDomain(Resource, [r1,r2])
 		controller.params.q = 'foo AND ivo://foo.bar.choo'
 		controller.params.max = 200
@@ -57,9 +61,9 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 	}
 	
 	void testInlineResource() {
-		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a')
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',titleField:'title a')
 		r1.rxml.xml ='<foo />'
-		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
+		Resource r2 = new Resource(ivorn:'ivo://bee.boo',titleField:'second title')
 		mockDomain(Resource, [r1,r2])
 
 		
@@ -72,9 +76,9 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 	}
 	
 	void testInlineResourceUnknown() {
-		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a')
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',titleField:'title a')
 		r1.rxml.xml ='<foo />'
-		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
+		Resource r2 = new Resource(ivorn:'ivo://bee.boo',titleField:'second title')
 		mockDomain(Resource, [r1,r2])
 		
 		
@@ -85,9 +89,9 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 	}
 	
 	void testResource() {
-		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a')
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',titleField:'title a')
 		r1.rxml.xml ='<foo />'
-		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
+		Resource r2 = new Resource(ivorn:'ivo://bee.boo',titleField:'second title')
 		mockDomain(Resource, [r1,r2])
 		
 		
@@ -99,9 +103,9 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 	}
 	
 	void testresourceUnknown() {
-		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a')
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',titleField:'title a')
 		r1.rxml.xml ='<foo />'
-		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
+		Resource r2 = new Resource(ivorn:'ivo://bee.boo',titleField:'second title')
 		mockDomain(Resource, [r1,r2])
 		
 		
@@ -112,9 +116,9 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 	}
 	
 	void testResourceIvorn() {
-		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a')
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',titleField:'title a')
 		r1.rxml.xml ='<foo />'
-		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
+		Resource r2 = new Resource(ivorn:'ivo://bee.boo',titleField:'second title')
 		mockDomain(Resource, [r1,r2])
 		
 		
@@ -126,9 +130,9 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 	}
 	
 	void testresourceUnknownIvorn() {
-		Resource r1 = new Resource(ivorn:'ivo://foo.bar',title:'title a')
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',titleField:'title a')
 		r1.rxml.xml ='<foo />'
-		Resource r2 = new Resource(ivorn:'ivo://bee.boo',title:'second title')
+		Resource r2 = new Resource(ivorn:'ivo://bee.boo',titleField:'second title')
 		mockDomain(Resource, [r1,r2])
 		
 		

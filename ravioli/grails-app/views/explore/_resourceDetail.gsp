@@ -1,33 +1,28 @@
 <div class="resourceDetail">
-<h1>${r.title}</h1><%--TODO: add capability icons --%>
+<h1>${r.titleField}</h1><%--TODO: add capability icons --%>
 
 <l:field name="IVOA-ID" value="${r.ivorn }" />
 
 <div class='yui-ge columncontainer'><%--container for left and right --%>
 <%-- left block --%>
 <div class='yui-u first'>
-<g:each var='content' in="${xml.content }">
-	<p class='description'>
-	${content.description }
-	<l:condLink name='Further&nbsp;Information...'>${content.referenceURL }</l:condLink>
-	</p>
+	<r:description />
 	 <%-- TODO: add more clever AJAX integration into ADS --%> 
 	 <l:field name="Source Reference">
 		<r:source />
 	</l:field> 
-</g:each>
+
 
 <%--capability block - content-specific bits. --%>
 <div class='capabilities'>
 <g:each var='coverage' in="${xml.coverage}">
 	<g:each var='footprint' in="${coverage.footprint }">
-	<l:field name="Footprint Service">
-		<r:resourceName xml="${footprint }"/>
-	</l:field>
-	
+		<l:field name="Footprint Service">
+			<r:resourceName xml="${footprint }"/>
+		</l:field>
+	</g:each>
 	<l:field name="Wavebands" value="${r.wavebands }" />
 	<%-- TODO - do something with STC?? --%>
-	</g:each>
 </g:each> 
 
 <g:if test="${xml.facility.size() > 0 }">
@@ -73,16 +68,25 @@
 </g:if>
 
 <%-- format service capabilities. --%>
-<div class="capabilities">
 <g:each var='cap' in="${xml.capability }">
-	<div class="capability">
 		<capability:format capability="${cap }" />
-	</div>
 </g:each>
-</div>
 
-<%-- TODO: list the interfaces provided by a CEA app --%>
+<%-- list the interfaces provided by a CEA app --%>
+<g:each var="app" in="${xml.applicationDefinition }">
+<div id='cea-application'>
+<g:if test="${ app.parameters.parameterDefinition.'@type'.any{'adql'.equalsIgnoreCase(it?.text())}}">
+This resource describes a Catalog&nbsp;Query&nbsp;Service&nbsp;(ADQL)
+</g:if>
+<g:else>
+This resource describes a Remote&nbsp;Application&nbsp;(CEA)
+</g:else>
+<l:seq name='Interfaces' values="${app.interfaces.interfaceDefinition.'@id'*.text() }" />
 </div>
+</g:each>
+
+
+</div><%-- end of large capabilities block--%>
 
 <%-- curation --%>
 <g:each var='curation' in="${xml.curation}">
@@ -133,7 +137,7 @@
 <div class='yui-u block'>
 <%--vital statistics --%>
 <div class='vitals'>
-<l:field name="Short Name" value="${r.shortname }" />
+<l:field name="Short Name" value="${r.shortnameField }" />
 <l:field name="Resource Type"><r:resourcetype/></l:field>
 <l:field name="Created"><r:created/></l:field>
 <g:if test="${r.created != r.modified }">
@@ -148,7 +152,7 @@
 <%--content --%>
 <g:each var='content' in="${xml.content }">
 	<%--  content block --%>
-	<div class="content">
+	<div class="content-sidebar">
 	<l:seq name="Content Type" values="${content.type*.text() }" /> 
 	<l:field name="Subject" value="${r.subjects }" /> 
 	<l:seq name="Level" values="${content.contentLevel*.text() }" />
@@ -158,13 +162,12 @@
 		<div class='relationships'>
 		<l:label name="Relationships"/>
 		<g:each var="rel" in="${content.relationship }">
-			<div class='relationship'>
-			<l:label name="${rel.relationshipType }"/>
+			<l:field name="${rel.relationshipType.text() }">
 			<g:each var="rr" status='i' in="${rel.relatedResource }">
 				<g:if test="${i > 0 }">; </g:if>
 				<r:resourceName xml="${rr}"/>
 			</g:each>
-			</div>
+			</l:field>
 		</g:each>	
 		</div>
 	</g:if>

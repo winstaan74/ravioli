@@ -237,5 +237,5 @@ class RegParserServiceUnitTests extends GrailsUnitTestCase {
 			assertEquals 'The value of the identifier argument is unknown or illegal in this repository',cause.message
 		}
 	}
-
+	
 }

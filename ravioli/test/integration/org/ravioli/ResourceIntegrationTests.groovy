@@ -125,7 +125,6 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 		contains(GLIM)
 	}
 
-	//@todo look at this.
 	void testSource() {
 		search("source:*") // should match any item with a source
 		expect(2) // only 2 have sources.
@@ -142,7 +141,10 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 		// investigating how search engine tokenizes words.
 		search("source:1980")
 		expect(0)
-		
+
+		search("source:1980*")
+		expect(1)
+
 		search("source:1980RMxAA")
 		expect(1)
 	}
@@ -201,38 +203,30 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 		assertEquals(sz,sr.total)
 	}
 	
-	// @todo configure creator so it works as you'd expect
 	void testCreator() {
-		notYetImplemented()
 		search("creator:*");
 		expectSome()
 		
 		//[Johnson H.L.]
-		search("creator:Mathhew")
+		search("creator:Matthew")
 		expect(1)
 		
 		search("creator:Graham")
 		expect(1)
 
-		search("creatore:'Matthew J.'")
+		search("creator:'Matthew J.'")
 		expect(1)
 
 		search("creator:'Dr Matthew J. Graham'")
-		expect(1) // I'd expect this to work.
+		expect(1)
 
 		search("creator:'Matthew J. Graham'")
-		expect(1) // and I'd expect this to work
+		expect(1) 
 		
 		search("creator:'Matthew Graham'")
-		expect(1) // and I'd expect this too.
+		expect(1) 
 	}
-	
-	void testCreatorExcludedFromMainIndex() {
-		search("creator:Graham")
-		expect(1)
-		search("Graham");
-		expect(0)
-	}
+
 	
 	void testPublisher() {
 		search("publisher:*");
@@ -245,13 +239,6 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 		// test searching for a name
 		search("publisher:CDS")
 		expect(1)
-	}
-	
-	void testPublisherExcludedFromMainIndex() {
-		search("publisher:CDS")
-		expect(1)
-		search("CDS")
-		expect(0)
 	}
 	
 	void testAll() {

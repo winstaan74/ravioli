@@ -1,4 +1,6 @@
-class ResourceFunctionalTests extends FunctionalTestUtils {
+/** test for the resource controller */
+@Mixin(RavioliFunctionalAssert)
+class ResourceControllerFunctionalTests  extends functionaltestplugin.FunctionalTestCase{
 	
 	protected void setUp() {
 		super.setUp()
@@ -13,10 +15,10 @@ class ResourceFunctionalTests extends FunctionalTestUtils {
 	}
 	
     void testResourcePage() {
-		assertContentContains 'Resources'
+		acc 'Resources'
 		click 'Resources'
-		assertContentContains 'List'
-		assertContentContains 'Search'
+		acc 'List'
+		acc 'Search'
 		
 		assertStatus 200
 		
@@ -27,22 +29,22 @@ class ResourceFunctionalTests extends FunctionalTestUtils {
 	
 	
 	void testResourceSearchPage() {
-		assertContentContains 'Resources'
+		acc 'Resources'
 		click 'Resources'
 		click 'Search'
 		assertStatus 200
 		
-		assertContentDoesNotContain('No resources found')
+		lacks('No resources found')
 		form {
 			q = 'asca'
 			search.click()
 		}
 		assertStatus 200
 		// one of the expected search results.
-		assertContentContains 'ASCA Proposals'
+		acc 'ASCA Proposals'
 		click 'ASCA Proposals'
 		assertStatus 200
-		assertContentContains 'stc:STCResourceProfile'
+		acc 'stc:STCResourceProfile'
 		
 		back()
 		form {
@@ -50,6 +52,6 @@ class ResourceFunctionalTests extends FunctionalTestUtils {
 			search.click()
 		}
 		assertStatus 200
-		assertContentContains 'No resources found'
+		acc 'No resources found'
 	}
 }

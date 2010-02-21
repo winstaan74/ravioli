@@ -4,11 +4,12 @@ class LabelTagLibIntegrationTests extends GroovyPagesTestCase {
 
 	
 	void testField() {
-		def template = '''<l:field name='title' value="${val}" />''' // single, not double, so GString isn't evaluated now..
+		def template = '''<l:field name='A Title' value="${val}" />''' // single, not double, so GString isn't evaluated now..
 		// correct case
 		def ls = [1,2,3]
 		def result = applyTemplate(template, [val:ls])
-		assertTrue result.contains('title')
+		assertTrue result.contains('A Title')
+		assertTrue result.contains("id='field_atitle'")
 		assertTrue result.contains("${ls}")
 		// non-appearing cases.
 		assertOutputEquals('',template, [val:null]) // null value provided
@@ -18,6 +19,22 @@ class LabelTagLibIntegrationTests extends GroovyPagesTestCase {
 		assertOutputEquals('',template, [val:[:]]) // empty map provided			
 		assertOutputEquals('',template, [val:'  ']) // blank provided
 
+	}
+	
+	void testFieldNumeric() {
+		def template = '''<l:field name='title' value="${val}" />''' // single, not double, so GString isn't evaluated now..
+		// integer case
+		def result = applyTemplate(template, [val:42])
+		assertTrue result.contains('title')
+		assertTrue result.contains("42")
+		// float case
+		result = applyTemplate(template, [val:42.0])
+		assertTrue result.contains('title')
+		assertTrue result.contains("42.0")
+		// non-appearing cases.
+		assertOutputEquals('',template, [val:0]) // integer 0
+		assertOutputEquals('',template, [val:0.0]) // float zero
+		
 	}
 	
 	void testFieldBody() {
@@ -42,10 +59,11 @@ class LabelTagLibIntegrationTests extends GroovyPagesTestCase {
 	}
 	
 	void testSeq() {
-		def template = '''<l:seq name='title' values="${val}"/>'''
+		def template = '''<l:seq name='A Title' values="${val}"/>'''
 		def l = [1,2,3]
 		def result = applyTemplate(template, [val:l])
-		assertTrue result.contains('title')
+		assertTrue result.contains('A Title')
+		assertTrue result.contains("id='field_atitle")
 		assertTrue result.contains('1, 2, 3')
 		
 		// test for non-appearing cases
@@ -60,6 +78,18 @@ class LabelTagLibIntegrationTests extends GroovyPagesTestCase {
 		def template = '''<l:condLink name='title' url="${val}"/>'''
 		def url = 'http://www.slashdot.org'
 		assertOutputEquals "<a href='${url}'>title</a>" ,template, [val:url]
+		
+		// test for non-appearing cases
+		assertOutputEquals('',template, [val:null]) // null value provided
+		assertOutputEquals('',template, [:]) // no value provided
+		assertOutputEquals('',template, [val:'']) // empty provided	
+		
+	}
+	
+	void testCondLinkWithId() {
+		def template = '''<l:condLink name='title' id='thisId' url="${val}"/>'''
+		def url = 'http://www.slashdot.org'
+		assertOutputEquals "<a href='${url}' id='thisId'>title</a>" ,template, [val:url]
 		
 		// test for non-appearing cases
 		assertOutputEquals('',template, [val:null]) // null value provided

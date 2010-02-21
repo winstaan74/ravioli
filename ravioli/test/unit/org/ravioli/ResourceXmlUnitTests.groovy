@@ -55,9 +55,9 @@ class ResourceXmlUnitTests extends GrailsUnitTestCase {
 		def r = new ResourceXml(xml:u.text)
 		r.xmlService = new XmlService()
 		
-		assertEquals('RofR',r.shortname)
+		assertEquals('RofR',r.shortnameField)
 		
-		assertNull(r.source)
+		assertNull(r.sourceField)
 		
 		// 
 		assertTrue(r.description.startsWith('This is a spec'))
@@ -116,8 +116,8 @@ class ResourceXmlUnitTests extends GrailsUnitTestCase {
 		assertNotNull r.col
 		assertTrue r.col.isEmpty()
 		
-		assertTrue r.name.contains(r.title)
-		assertTrue r.name.contains(r.shortname)
+		assertTrue r.name.contains(r.titleField)
+		assertTrue r.name.contains(r.shortnameField)
 		
 		assertTrue r.level.isEmpty()
 		

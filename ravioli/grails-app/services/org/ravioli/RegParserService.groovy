@@ -128,7 +128,6 @@ class RegParserService  {
 	 * @param reg registry to harvest from
 	 * @param ivorn record id to load
 	 * @preturn the GPath of the Resource document, for further processing. - i.e result will have name() == 'Resource'
- 	* @todo find out how to trhow an exception from within an xslt transformation - best way of detecting errors early
  	* @todo spend some time debugging behaviour of url encoding of ivorn parameter.
 	 */
 	String harvest(Registry reg, String ivorn) {

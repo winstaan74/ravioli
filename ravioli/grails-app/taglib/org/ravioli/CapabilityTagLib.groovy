@@ -1,4 +1,5 @@
 package org.ravioli
+import groovy.swing.factory.TDFactory;
 import groovy.xml.StreamingMarkupBuilder
 /** handles the formatting and interactivity assoicated with the capability parts of 
  * a resource.
@@ -25,7 +26,6 @@ class CapabilityTagLib {
 		std : cap.'@standardID'?.text()
 		,type : cap.'@xsi:type'?.text()
 		]
-		boolean showXML = true
 		Closure formatter = {
 			// first declare helper closures - within the formatter, so have access to markup 
 			// builder, and to the capability gpath.
@@ -51,6 +51,110 @@ class CapabilityTagLib {
 				mkp.yieldUnescaped l.seq(name:name, values:val*.text())
 				mkp.yield ' '
 			}
+			// format a 'other' inteface - one not special to the particular capability.
+			def otherInterface = { iface ->
+				div(class:'interface') {
+					iface.accessURL.each { aurl ->
+							def fmtUse = { switch(aurl.'@use'){
+									case 'base': return 'Base '
+									case 'full': return 'Full '
+									case 'dir': return 'Directory '
+									default: return ''
+								}
+							}
+							switch(iface.'@xsi:type') {
+								case ~/.*WebBrowser/: 
+									a(class:'access',href:aurl.text(), 'Web Form')
+									break
+								case ~/.*WebService/:
+								case ~/.*CECInterface/:
+								case ~/.*OAISOAP/:
+									a(class:'access',href:aurl.text(), 'SOAP Web Service')
+									iface.wsdlURL.each { wsdl ->
+										mkp.yield ' '
+										a(href:wsdl,'wsdl')
+									}
+									break
+								case ~/.*ParamHTTP/:
+								case ~/.*UWS-PA/:
+								case ~/.*OAIHTTP/:
+									a(class:'access', href:aurl.text(), 'HTTP Web Service - ' + fmtUse() + 'URL')
+									mkp.yield ' '
+									field 'Query Type', iface.queryType
+									field 'Result Type', iface.resultType
+									if (iface.param.size() > 0) {
+										br()
+										mkp.yieldUnescaped l.label(name:'Parameters')
+										table(class:'parameters'){
+											tr{
+												th('Name')
+												th('Description')
+												th('Type')
+												th('Unit')
+												th('UCD')
+												th('Optional')
+												th('Standard')
+											}
+											iface.param.each { p ->
+												tr{
+													td(p.name)
+													td(p.description)
+													td(p.dataType + ' ' + p.dataType.'@arraysize')
+													td(p.unit)
+													td(p.ucd)
+													td(p.use == 'optional' ? 'yes':'')
+													td(p.std)
+												}
+											}
+										}
+									}
+									break
+								default: // no type, or unrecognized type.
+								//full, base or dir - should only put in link in case of full.
+								//mkp.yield aurl.'@use'
+									a(class:'access',href:aurl.text(), fmtUse() + 'URL')
+							}
+					} // end access urls.
+					br()
+					field 'Version', iface.'@version'
+					if (iface.'@role' != 'std') {
+						field 'Role',iface.'@role' // doubtful it's often neededs
+					}
+					//field 'Type',iface.'@xsi:type' 
+					listField 'Security',iface.securityMethod.'@standardID'	
+
+				}
+			}
+			
+			/** format all the interfaces for a capability, passing in a 'special' formatter
+			 * closure for the capability-specific interface.
+			 * @todo untested and unused - suspect it's not yielding correctlly.
+			 */
+			def interfacesWithSpecial = {Closure special ->
+				def l = cap.'interface'.list()
+			//	println l
+				switch (l.size()) {
+					case 0:
+						return;
+					case 1:
+						// if only one inteface, assume it must be the 'special' protocol specific one.
+						special(l[0])
+						break
+					default:
+						//find the interface marked 'std' , and do something special with it.
+					l.each { iface ->
+						if (iface.'@role' == 'std') {
+							special iface
+						} else {
+							otherInterface iface
+						}
+					}
+				}// end switch.
+			}
+			/** format all interfaces for a capability in the standard manner */
+			def interfaces = {
+				cap.'interface'.each { iface -> otherInterface iface}
+			}
 			
 			// now start the formatting.
 			div(class:'capability') {
@@ -61,8 +165,7 @@ class CapabilityTagLib {
 					field 'Maximum search radius', cap.maxSR
 					field 'Maximum results returned', cap.maxRecords
 					field 'Verbose parameter', cap.verbosity
-					//showXML = false
-					//@todo add search form. - use verbose paramerter, and test query
+					interfaces()
 					break
 					
 					case {it.std =='ivo://ivoa.net/std/SIA'}: 
@@ -82,14 +185,15 @@ class CapabilityTagLib {
 						field 'Maximum query size', cap.maxQueryRegionSize.lat.text() + "," + cap.maxQueryRegionSize.'long'.text()
 					}
 					
-					//showXML = false
 					//@todo add search form, using test query if available.
+					interfaces()
 					break
 					
 					case {it.std =~ "/TAP"}:
 					title 'Table/Database access service (TAP)'
 					description()
 					//@todo check tap specs for additional fields here.
+					interfaces()
 					break
 					
 					case {it.type =~ /ProtoSpectralAccess/}:
@@ -108,7 +212,7 @@ class CapabilityTagLib {
 					field 'Maximum search radius', cap.maxSearchRadius
 					listField 'Supported Frames', cap.supportedFrame
 					//@todo add search form, build from test query
-					
+					interfaces()
 					break
 					
 					
@@ -120,7 +224,7 @@ class CapabilityTagLib {
 					field 'Supports positioning', cap.supportPositioning
 					listField 'Formats', cap.supportedFormats
 					//@todo add search form, built from test query.
-					
+					interfaces()
 					break
 					
 					// marginally useful.
@@ -128,8 +232,11 @@ class CapabilityTagLib {
 					case {it.type =~ /CEA/}: 
 					title 'Remote application (CEA) service'
 					description()
-					//@todo need to test this - probaly won't work. may want to add hyperlink to applications.
-					listField 'Provides tasks',cap.managedApplications
+					//@todo - not getting a delimiter between items..
+					field 'Provides tasks',cap.managedApplications.collect{ app ->
+						r.resourceName() { app.text() }
+						}.join('; ')
+					interfaces()
 					break;
 					
 					case {it.std == 'ivo://ivoa.net/std/Registry' && it.type =~ /Search/}:
@@ -138,47 +245,72 @@ class CapabilityTagLib {
 					field 'Maximum records returned',cap.maxRecords
 					field 'Extension search support', cap.extensionSearchSupport
 					listField 'Additional Protocols', cap.optionalProtocol
+					interfaces()
 					break
 					
 					case {it.std == 'ivo://ivoa.net/std/Registry' && it.type =~ /Harvest/}:
 					title 'Registry Harvest'
 					description()
 					field 'Maximum records returned',cap.maxRecords
+					interfaces()
 					break
 					
 					case {it.std == 'ivo://ivoa.net/std/VOSpace'}:
 					title 'VOSpace remote storage'
 					description()
+					interfaces()
 					break
 					
 					// less important stuff.
 					case {it.std =~ /VOSI.*availability/}:
 					title 'VOSI Availability'
 					description()
+					interfaces()
 					break
 					
 					case {it.std =~ /VOSI/}:
 					title 'VOSI: ' + capType.std
 					description()
+					interfaces()
 					break
 					
 					case {it.std =~ /Community/}:
 					title 'Community: ' + capType.std
 					description()
+					interfaces()
 					break
 					
-					case {it.std == 'ivo://ivoa.net/std/Delegation'}:
+					case {it.std =~ 'ivo://ivoa.net/std/Delegation'}:
 					title 'Delegation'
 					description()
+					interfaces()
+					break 
+					
+					case {it.std == 'ivo://ivoa.net/std/OpenSkyNode'}:
+					title 'SkyNode'
+					description()
+					field 'Compliance', cap.compliance
+					field 'Maximum Records', cap.maxRecords
+					field 'Primary Table', cap.primaryTable
+					field 'Primary Key',cap.primaryKey
+					interfaces()
+					break
+					
+					case {it.std == '' && it.type == ''}:
+					//seems best with no title.title 'Generic Capability' //@todo find a better title here.
+					description()
+					interfaces()
 					break
 					
 					default:
 					log.warn("Unknown capability type: " + capType)
 					title 'Unknown capability type: ' + capType
 					description()
-				} // end case
+					interfaces()
+				} // end capabilitycase
+				
 			} // end enclosing div.
-			if (showXML) {
+			if (false) { //for debugging.
 				div(style:'width:800px') {
 					mkp.yield renderXML(cap)
 				}
@@ -198,7 +330,7 @@ class CapabilityTagLib {
 		def s =  internal.bind { mkp.yield capability}
 		return s.toString()
 	}
-	
+
 	
 	
 }

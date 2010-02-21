@@ -29,11 +29,28 @@ a:link, a:visited, a:hover {
 .resourceDetail h1 {
 	font-size: 150%;
 	font-weight: bold;
+	margin-bottom:5px;
 }
 
-.resourceDetail .description {
+.resourceDetail .content {
 	padding:5px;
 	background:#EEEEEE;
+	}
+
+.resourceDetail .content p {
+	margin-bottom: 3px;
+	}
+	
+.resourceDetail .capability {
+	padding:5px;
+	/*border:1px solid #666633; */
+	margin-top:5px;
+		background:#EEEEEE;
+	}
+
+.cap-title {
+	font-weight:bold;
+	margin-bottom:2px;
 	}
 
 .resourceDetail .content , .resourceDetail .vitals, .resourceDetail .capabilities, .resourceDetail .curation, .resourceDetail .relationships {

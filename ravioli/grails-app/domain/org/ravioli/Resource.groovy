@@ -27,56 +27,89 @@ import org.compass.annotations.*
  */
 @Searchable
 @SearchableDynamicMetaDatas(value=[
-			
+//search indexes that don't occur in the table - never need to be sorted on, or stored.			
 @SearchableDynamicMetaData(name='description', converter='groovy'
-			, expression="data.description" )
-			
-,@SearchableDynamicMetaData(name='resourcetype', converter='groovy', excludeFromAll=ExcludeFromAll.YES
-		, expression="data.resourcetype" )
+			, expression="data.description" , store=Store.NO)
 
-,@SearchableDynamicMetaData(name="all", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-			,expression="data.rxml.stripXML()" )
+,@SearchableDynamicMetaData(name="all", converter="groovy"
+		, excludeFromAll=ExcludeFromAll.YES
+		,expression="data.rxml.stripXML()", store=Store.NO )
+
+,@SearchableDynamicMetaData(name='resourcetype', converter='groovy'
+		,excludeFromAll=ExcludeFromAll.YES // as part of 'type'
+		, expression="data.resourcetype", store=Store.NO )
+
+,@SearchableDynamicMetaData(name="capability", converter="groovy"
+		, excludeFromAll=ExcludeFromAll.YES // as part of 'type'
+		,expression="data.capability",  store=Store.NO )
+	
+,@SearchableDynamicMetaData(name="curation", converter="groovy"
+	//, excludeFromAll=ExcludeFromAll.YES
+	,expression="data.curation", store=Store.NO )
+
+,@SearchableDynamicMetaData(name="name", converter="groovy"
+	, excludeFromAll=ExcludeFromAll.YES // as we already have title ad shortname
+	,expression="data.name", store=Store.NO )
+
+,@SearchableDynamicMetaData(name="ucd", converter="groovy"
+	, excludeFromAll=ExcludeFromAll.YES
+	,expression="data.ucd", store=Store.NO )
+	
+,@SearchableDynamicMetaData(name="col", converter="groovy"
+		,excludeFromAll=ExcludeFromAll.YES
+		,expression="data.col" , store=Store.NO)
+
+,@SearchableDynamicMetaData(name="type", converter="groovy"
+	//, excludeFromAll=ExcludeFromAll.YES 
+	,expression="data.type" , store=Store.NO)
+
+// search indexes that do occur in the table - not stored, or sortable.
+// however, there needds to be another index for each table column (named with a leading '_') which is sotred and sortable.
 
 ,@SearchableDynamicMetaData(name="subject", converter="groovy"
-			,expression="data.subject" )
+			,expression="data.subject",store=Store.NO )
+			
+,@SearchableDynamicMetaData(name="waveband", converter="groovy"
+	//, excludeFromAll=ExcludeFromAll.YES
+		,expression="data.waveband",store=Store.NO)
+		
+,@SearchableDynamicMetaData(name="creator", converter="groovy"
+	, excludeFromAll=ExcludeFromAll.YES // already have curation
+		,expression="data.creator"
+		,store=Store.NO )
+	
+,@SearchableDynamicMetaData(name="publisher", converter="groovy"
+	, excludeFromAll=ExcludeFromAll.YES // already have curation
+		,expression="data.publisher",store=Store.NO )
+		
+,@SearchableDynamicMetaData(name="title", converter="groovy"
+	, expression="data.titleField"
+	, excludeFromAll=ExcludeFromAll.NO
+	,boost=2.0f
+	, store=Store.NO)
+		
+,@SearchableDynamicMetaData(name="shortname",converter="groovy"
+	, expression="data.shortnameField"
+	, boost=2.0f
+	, excludeFromAll=ExcludeFromAll.NO
+	,store=Store.NO)
 
-,@SearchableDynamicMetaData(name="waveband", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-		,expression="data.waveband" )
+,@SearchableDynamicMetaData(name="identifier", converter="groovy"
+	, excludeFromAll=ExcludeFromAll.NO 
+	, boost=2.0f
+	,expression="data.ivorn"
+	, store=Store.NO )
+	
+,@SearchableDynamicMetaData(name="source",converter="groovy"
+		, expression="data.sourceField" ,store=Store.NO)
 		
-,@SearchableDynamicMetaData(name="capability", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-		,expression="data.capability" )
-		
-,@SearchableDynamicMetaData(name="creator", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-		,expression="data.creator" )
-		
-,@SearchableDynamicMetaData(name="curation", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-		,expression="data.curation" )
-		
-,@SearchableDynamicMetaData(name="publisher", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-		,expression="data.publisher" )
-
-,@SearchableDynamicMetaData(name="name", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-		,expression="data.name" )
-
-,@SearchableDynamicMetaData(name="ucd", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-,expression="data.ucd" )
-,@SearchableDynamicMetaData(name="col", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-,expression="data.col" )
-,@SearchableDynamicMetaData(name="type", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-,expression="data.type" )
-,@SearchableDynamicMetaData(name="identifier", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-,expression="data.ivorn" )
-,@SearchableDynamicMetaData(name="date", converter="groovy", excludeFromAll=ExcludeFromAll.YES
-//,format="yyyy-MM-dd" @todo work out how to express format here..
-//@todo find out how to make this field non-tokenized.
-,expression="[] << data.created << data.modified " )
 ]) 
 class Resource {
 	static constraints = {
 		ivorn(unique:true, matches:/ivo:\/\/\S+/,maxsize:1000) // must have prefix ivo://
-		title(nullable:true,maxsize:1000)
-		shortname(nullable:true, maxsize:100)
-		source(nullable:true, maxsize:200)
+		titleField(nullable:true,maxsize:1000)
+		shortnameField(nullable:true, maxsize:100)
+		sourceField(nullable:true, maxsize:200)
 		created(nullable:false)
 		modified(nullable:true)	
 		date(nullable:false) // display version of date.
@@ -89,54 +122,64 @@ class Resource {
 	}
 
 	static mapping = {
-		// need to define column types explicitly, as otherwise we're given a varchar(255), which isn't large enough for some of the fields above
-		ivorn column: 'ivorn', sqlType:'VARCHAR(1000)'
-		title column: 'title', sqlType:'VARCHAR(1000)'
-		wavebands column:'wavebands', sqlType:'VARCHAR(1000)'
-		subjects column:'subjects', sqlType:'VARCHAR(1000)'
-		publishers column:'publishers', sqlType:'VARCHAR(1000)'
-		creators column:'creators', sqlType:'VARCHAR(1000)'
+		ivorn column: 'ivorn', sqlType:'varchar(1000)', unique:true
+		titleField column: 'title', sqlType:'varchar(1000)'
+		wavebands column:'wavebands',sqlType:'varchar(1000)'
+		subjects column:'subjects', sqlType:'varchar(1000)'
+		publishers column:'publishers',sqlType:'varchar(1000)'
+		creators column:'creators',sqlType:'varchar(1000)'
 	}
 
 		/** the resource xml - modelled in a separate object
 		 *   */	
 		ResourceXml rxml= new ResourceXml()
-		
-		@SearchableId(excludeFromAll=ExcludeFromAll.YES)
+
+		// used in table row, so must be stored.
+		@SearchableId(store=Store.YES)
 		Long id
-	//vodesktop default becomes lucene's 'all'
-	// need to omit bits we don't want from 'all'
 		
-		@SearchableProperty(name='ivorn',boost=2.0f)
+		// used in table row.
+		@SearchableProperty(name="_ivorn",index=Index.NOT_ANALYZED,store=Store.YES)
 		String ivorn // $r/identifier 
 		
 		String status // not searchable.
 		
-		@SearchableProperty(boost=2.0f)
-		String shortname
+		// used in table row.
+		@SearchableProperty(name="_shortnameField",index=Index.NOT_ANALYZED,store=Store.YES)
+		String shortnameField
 		
-		@SearchableProperty() // decided to add to default search index.
-		String source
+		@SearchableProperty(name="_sourceField",index=Index.NOT_ANALYZED, store=Store.YES) 
+		String sourceField
 		
-		@SearchableProperty(boost=2.0f)
-		String title 
+
+		@SearchableProperty(name="_titleField",index=Index.NOT_ANALYZED, store=Store.YES)
+		String titleField 
 		
-		@SearchableProperty(format="yyyy-MM-dd")
+		@SearchableProperty(format="yyyy-MM-dd", store=Store.NO)
 		Date created
-		@SearchableProperty(format="yyyy-MM-dd")
+		@SearchableProperty(format="yyyy-MM-dd", store=Store.NO)
 		Date modified
+		
+		// date used in table.
+		@SearchableProperty(format="yyyy-MM-dd", store=Store.YES)		
+		Date date // combination of modified and created
 		
 	// pre-formatted fields used in resource table.
 	// not indexed: lucene has indexed the raw text elsewhere.
+	// but are stored: so that they can be used to populate table from search results.
 	// using the dynamic property in the singular - e.g. r.subject, 
 	// while r.subjects gives the formatted version.
+		@SearchableProperty(name='_subjects',index=Index.NOT_ANALYZED, store=Store.YES)
 		String subjects
+		@SearchableProperty(name='_wavebands',index=Index.NOT_ANALYZED, store=Store.YES)
 		String wavebands
+		@SearchableProperty(name='_publishers',index=Index.NOT_ANALYZED, store=Store.YES)
 		String publishers
+		@SearchableProperty(name='_creators',index=Index.NOT_ANALYZED, store=Store.YES)
 		String creators
 		
-		// not searchable - we define the 'date' search index above, to include both modified and created dates
-		Date date // combination of modified and created
+
+
 		
 		
 		/** parse a url containing XML into a resource 
@@ -165,10 +208,10 @@ class Resource {
 			throw new IdentifyException(reported:ivo, expected:ivorn)
 		}
 		
-		this.title = gp.title?.text()?.trim()
-		this.shortname = gp.shortName?.text()?.trim()
+		this.titleField = gp.title?.text()?.trim()
+		this.shortnameField = gp.shortName?.text()?.trim()
 		this.status = gp.'@status'.text()
-		this.source = gp.content.source?.text()?.trim()
+		this.sourceField = gp.content.source?.text()?.trim()
 		// using joda time here, as it has the correct parsing built in.
 		this.created = new DateTime(gp.'@created'.text()).toDate();
 		try {
@@ -206,6 +249,50 @@ class Resource {
 	def propertyMissing(String name) {
 		return rxml.propertyMissing(name)
 	}
+	
+	/* return the row of data used in the resource table
+	 * returns a map, with a key for each of TABLE_COLUMNS.
+	 * used in ExploreController to generate json.
+	 *
+	 * 
+	 */
+	Map tableRow() {
+		return [
+		        _ivorn : ivorn
+				,_titleField : titleField
+				,_shortnameField: shortnameField ?:""
+				,_sourceField: sourceField ?:""
+				,_subjects: subjects ?: ""
+				,_wavebands: wavebands?: ""
+				,_publishers: publishers?: ""
+				,_creators: creators?: ""
+				,date: date?.format("yyyy-MM-dd")
+				,id:id
+		]
+	}
+	
+	/** describes the columns that will be available in the client-side YUI table 
+	 * 
+	 *column keys are chosen to correspond to lucene indexes that allow sorting - i.e. indexes
+	 *that are untokenized. The actual db column is sortable on by removing the '_' prefix.
+	 * 
+	 * some presentation leak in here,(hidden, width, label) sadly, but can't be helped.
+	 * */
+	static def TABLE_COLUMNS =  [
+	                     		//@todo implement mass-selection using checkbox		[key:'check', formatter:'checkbox']
+	                    		[key:'_ivorn', label:'IVOA-ID', width:250]
+	                    		,[key:'_titleField', label:'Title',  width:250]
+	                    		,[key:'_shortnameField',label:'Short Name', hidden:true, width:80]
+								,[key:'_sourceField', label:'Source Reference',hidden:true, width:100]
+	                    		,[key:'_subjects', label:'Subject', hidden:true,width:250]
+	                    		,[key:'_wavebands',label:'Waveband',hidden:true, width:100]
+	                    		,[key:'_publishers',label:'Publisher',hidden:true,width:250]
+	                    		,[key:'_creators',label:'Creator',hidden:true,width:250]
+	                    		,[key:'date', label:'Date', width:80]	
+	                    		,[key:'id', label:'ID',hidden:true] // never displayed, used to create links to resources.
+	                    		]
+	
+	
 	
 		
 /*

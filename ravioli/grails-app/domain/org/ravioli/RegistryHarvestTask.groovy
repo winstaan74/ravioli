@@ -6,15 +6,18 @@ class RegistryHarvestTask extends Task {
 	static constraints = {
 		resumptionToken(nullable:true, maxSize:1000)
 	}
+
+	static mapping = {
+		resumptionToken column:'token', sqlType:'varchar(1000)'
+	}
+	
 	// the registry to harvest from.
 	Registry reg
 	// flag whether to perform an incremental harvest
 	boolean incremental = true
 	// a resumptionToken, if we'rte not harvesting from startpoint.
 	String resumptionToken
-	static mapping = {
-		resumptionToken column:'resumption', sqlType:'VARCHAR(1000)'
-	}
+
 	def regParserService
 	
 	Outcome run(PrintStream out) {

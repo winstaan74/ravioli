@@ -22,6 +22,8 @@ class TaskController {
 	
 	def cleanup = {
 		Task.findAllByCompleted(true)*.delete()
+		flash.message = 'deleted completed tasks'
+		redirect(action:'list')
 	}
 	
 }

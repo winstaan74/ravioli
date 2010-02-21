@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>
-${r.title }
+${r.titleField }
 </title>
 </head>
 <body>

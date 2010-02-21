@@ -1,7 +1,8 @@
 /**
  * test that specific pages are protected at each permission level.
  */
-class ProtectedPagesFunctionalTests extends FunctionalTestUtils {
+@Mixin(RavioliFunctionalAssert)
+class ProtectedPagesFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 	
 	def adminOnly = ['/registry/list', '/resource/list','/buildInfo','/task/list']
 	def userOnly = []

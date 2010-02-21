@@ -29,8 +29,8 @@ class ResourceXml {
 
 	
 	static mapping = {
-		xml column: 'xml', type:'text'
-		binXml column: 'binXml', type:'binary'
+		xml column: 'xml', type:'text', length:1084000
+		binXml column: 'binXml', type:'binary', length:1084000
 	}
 
 
@@ -100,10 +100,10 @@ class ResourceXml {
 	
 	// some of these are currently unused, but do no harm being there. 
 	private final static Map DYNAMIC_PROPERTIES = [
-	title: '/node()/title'
-	, shortname:'/node()/shortName'
-	,description:'/node()/content/description'
-	, source:'/node()/content/source'
+	titleField: '/node()/title'
+	, shortnameField:'/node()/shortName'
+	, description:'/node()/content/description'
+	, sourceField:'/node()/content/source'
 	, sourceFormat:'/node()/content/source/@format'
 	, resourcetype: '/node()/@*[local-name() = "type"]'
 	, referenceUrl: '/node()/content/referenceURL'

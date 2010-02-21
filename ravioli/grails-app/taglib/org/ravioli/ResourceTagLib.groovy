@@ -36,12 +36,24 @@ class ResourceTagLib {
 		out << pageScope.r.modified?.format('yyyy-MM-dd')
 	}
 
+	/** format the description, preserving whitespace if possible.*/
+	def description = {
+		out << '<div class="content">'
+		def content = pageScope.xml.content
+		def descr = content.description.text()
+		descr.eachLine{
+			out << '<p>' << it << '</p>'
+		}
+		out << l.condLink(name:'Further&nbsp;Information...') {content.referenceURL.text()}
+		out << '</div>'
+	}
+
 	public static final String BIBCODE_URL = "http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=";
 
 	/** format the source, linking to ADS if appropriate */
 	def source = {
 		def r = pageScope.r
-		def s = r.source
+		def s = r.sourceField
 		if (! s) {
 			return 
 		}
@@ -77,6 +89,8 @@ class ResourceTagLib {
 	 * parameters
 	 * xml - an xml node, with a '@ivo-id' attribute
 	 * OR uri field, and body
+	 * 
+	 * @todo future - if body is missing, perform query on Resource to find appropriate title.
 	 *  */
 	def resourceName = {attrs, body ->
 		def b
@@ -88,8 +102,12 @@ class ResourceTagLib {
 			uri = attrs.uri
 			b = body()?.trim()
 		}
+		// if we're missing one, see if the other is suitable.
 		if (! uri && ['ivo://','http://','ftp://','https://'].any{ b?.startsWith it} ) { // ommon misuse
 			uri = b
+		}
+		if (!b && uri) {
+			b = uri
 		}
 		if (uri?.startsWith('ivo://')) {
 			out << '<a class="res" target="_blank" href="'
@@ -108,29 +126,14 @@ class ResourceTagLib {
 	 * defined as a separate tag, as it was getting unwieldy to configure the 
 	 * dataTable tag within gsp.
 	 * 
-	 * @todo add sortable.
 	 * @todo future column types: annotations, flags, tags
 	 * @todo other column types: snippet of description, snippet of where query matches?
 	 */
 	def resourceTable = {attrs ->
 		def tableOptions = '''<a id="dt-options-link" class="dt-options-link" href="#" >Table Options</a>'''
-		def rawColumns = [
-		//@todo implement mass-selection using checkbox		[key:'check', formatter:'checkbox']
-		[key:'ivorn', label:'IVO-ID', width:250]
-		,[key:'title', label:'Title',  width:250]
-		,[key:'shortname',label:'Short Name', hidden:true, width:80]
-		,[key:'subject', label:'Subjects', hidden:true,width:250]
-		,[key:'source', label:'Source Reference',hidden:true, width:100]
-		,[key:'waveband',label:'Wavebands',hidden:true, width:100]
-		,[key:'publisher',label:'Publisher',hidden:true,width:250]
-		,[key:'creator',label:'Creator',hidden:true,width:250]
-//		,[key:'created',sortable:true, label:'Date Created', width:80]
-//		,[key:'modified',sortable:true, label:'Date Modified', hidden:true, width:80]
-		,[key:'date', label:'Date', width:80]	
-		]
 		// add in any default configuration..
-		def columns = rawColumns.collect {
-			it + [resizeable:true]
+		def columns = Resource.TABLE_COLUMNS.collect {
+			it + [resizeable:true, sortable:true]
 			//, width:"""readCookie("${it.key}",${it.width})"""]
 		}
 		out << g.javascript {
@@ -144,7 +147,7 @@ class ResourceTagLib {
 		}
 		out << gui.dataTable(
 				id:'resources'
-				,sortedBy:'ivorn'
+				,sortedBy:'_ivorn'
 				,rowsPerPage:30 // later grab this value from user's prefs
 				,columnDefs:columns
 				,rowExpansion:true

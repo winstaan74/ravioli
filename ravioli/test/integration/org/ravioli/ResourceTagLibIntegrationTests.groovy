@@ -35,20 +35,20 @@ class ResourceTagLibIntegrationTests extends GroovyPagesTestCase {
 		def template = '''<g:set var='r' value="${r}" scope='page'/><r:source/>'''
 		
 		assertOutputEquals '', template, [r:[source:null]] // no source.
-		assertOutputEquals 'anyold', template, [r:[source:'anyold']] // arbitrary kind of source
+		assertOutputEquals 'anyold', template, [r:[sourceField:'anyold']] // arbitrary kind of source
 		
 		def urlOutput = """<a href="${ResourceTagLib.BIBCODE_URL}anyold">anyold</a>"""
-		assertOutputEquals urlOutput, template, [r:[source:'anyold',sourceFormat:'bibcode']] // bibcode marked as such, even tho it's not looking like one
+		assertOutputEquals urlOutput, template, [r:[sourceField:'anyold',sourceFormat:'bibcode']] // bibcode marked as such, even tho it's not looking like one
 		
 		urlOutput = '''<a href="http://www.slashdot.org">http://www.slashdot.org</a>'''
-		assertOutputEquals urlOutput, template, [r:[source:'http://www.slashdot.org']] // url instead of bibcode
-		assertOutputEquals urlOutput, template, [r:[source:'http://www.slashdot.org', sourceFormat:'bibcode']] // url instead of bibcode - sourceFormat is ignored		
+		assertOutputEquals urlOutput, template, [r:[sourceField:'http://www.slashdot.org']] // url instead of bibcode
+		assertOutputEquals urlOutput, template, [r:[sourceField:'http://www.slashdot.org', sourceFormat:'bibcode']] // url instead of bibcode - sourceFormat is ignored		
 		
 		def bc = '1974AJ.....79..819H'
 		assertTrue new ResourceTagLib().looksLikeBibcode(bc)
 		
 		urlOutput = """<a href="${ResourceTagLib.BIBCODE_URL}${bc}">${bc}</a>"""
-		assertOutputEquals urlOutput, template, [r:[source:bc]] // bibcode not marked as such - should recognize by it's format.
+		assertOutputEquals urlOutput, template, [r:[sourceField:bc]] // bibcode not marked as such - should recognize by it's format.
 	}
 	
 	void testXpath() {
@@ -82,8 +82,11 @@ class ResourceTagLibIntegrationTests extends GroovyPagesTestCase {
 		
 		assertOutputEquals '<a href="http://www.slashdot.org">http://www.slashdot.org</a>', template, [body:' http://www.slashdot.org '] // no link attribute, but it looks like a url.		
 		assertOutputEquals '<a class="res" target="_blank" href="/explore/resource?ivorn=ivo%3A%2F%2Ffoo.bar%2Fchoo">ivo://foo.bar/choo</a>', template, [body:' ivo://foo.bar/choo '] // no link attribute, but it looks like a url.		
-		assertOutputEquals '<a class="res" target="_blank" href="/explore/resource?ivorn=ivo%3A%2F%2Ffoo.bar%2Fchoo">fred</a>', template, [uri:'ivo://foo.bar/choo', body:'fred'] // no link attribute, but it looks like a url.		
-			
+		assertOutputEquals '<a class="res" target="_blank" href="/explore/resource?ivorn=ivo%3A%2F%2Ffoo.bar%2Fchoo">fred</a>', template, [uri:'ivo://foo.bar/choo', body:'fred'] // no link attribute, but it looks like a url.	
+		
+	
+		assertOutputEquals '<a class="res" target="_blank" href="/explore/resource?ivorn=ivo%3A%2F%2Ffoo.bar%2Fchoo">ivo://foo.bar/choo</a>', template, [uri:'ivo://foo.bar/choo', body:''] // link attribute, no body.
+				
 		
 	}
 	

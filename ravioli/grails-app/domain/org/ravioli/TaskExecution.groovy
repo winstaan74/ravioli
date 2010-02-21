@@ -11,7 +11,7 @@ class TaskExecution {
 	}
 
 	static mapping = {
-		messages column: 'messages', type:'text'
+		messages column: 'messages', type:'text', length:1000000
 		sort start:'asc'
 	}
 	

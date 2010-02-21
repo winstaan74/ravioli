@@ -54,6 +54,7 @@
 	  YAHOO.util.Cookie.set(RAVIOLI_COOKIE,str);
   }
   
+  
   /** loads cookie of table display info, if available */
   function loadTableDisplayState() {
 	  var loadingState = true;
@@ -85,6 +86,7 @@
   GRAILSUI.resources.subscribe('columnReorderEvent', persistTableDisplayState);
   GRAILSUI.resources.subscribe("columnShowEvent", persistTableDisplayState);
   GRAILSUI.resources.subscribe("columnHideEvent", persistTableDisplayState);
+
 	 /*
 	 *adjustable columns.
 	 */

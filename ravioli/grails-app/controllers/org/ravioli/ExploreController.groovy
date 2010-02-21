@@ -19,31 +19,24 @@ class ExploreController {
 		if (params.q) {
 			// call to search service.
 			def query = Resource.rewriteQuery(params.q)
+			// sort params already in correct format for lucene.
 			def sr = Resource.search(query,params)
 			count = sr.total 
 			list = sr.results
 		} else { // no query, just start listing.
-			count = Resource.count()
+			count = Resource.count() 
+			// rewrite sort params - remove any leading '_' so it refers to the db table.
+			if (params.sort?.startsWith('_')) {
+				params.sort = params.sort - '_'
+			}
 			list = Resource.list(params)
 		}
 		render(contentType:"text/json") {
 			totalRecords = count
 			results = array {
 				for (Resource r in list) {
-					row(
-					ivorn : r.ivorn
-					,title : r.title
-					//,created : r.created?.format("yyyy-MM-dd")
-					//,modified : r.modified?.format("yyyy-MM-dd")
-					,date: (r.modified ?: r.created).format("yyyy-MM-dd")
-					,dataUrl: g.createLink(action:'inlineResource', id:r.getId())
-					,shortname: r.shortname ?:""
-					,source: r.source ?:""
-					,subject: r.subjects ?: ""
-					,waveband: r.wavebands?: ""
-					,publisher: r.publishers?: ""
-					,creator: r.creators?: ""
-					,id:r.id
+					row(r.tableRow() + 
+							[dataUrl: g.createLink(action:'inlineResource',id:r.id)]
 					)
 				}
 			}

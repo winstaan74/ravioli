@@ -13,8 +13,8 @@ class Registry {
     }
 
     static mapping = {
-		ivorn column: 'ivorn', sqlType:'VARCHAR(1000)'
-		endpoint column: 'endpoint', sqlType:'VARCHAR(1000)'
+		ivorn column: 'ivorn', sqlType:'varchar(1000)', unique:true
+		endpoint column: 'endpoint', sqlType:'varchar(1000)'
     }
 
 

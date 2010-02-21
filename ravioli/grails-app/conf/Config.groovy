@@ -86,6 +86,7 @@ log4j = {
 		additivity = true
 	}		
 	//	debug 'org.codehaus.groovy.grails.plugins.searchable'
+	//	debug 'org.compass'
 }
 
 //log4j configuration for deployment servers.

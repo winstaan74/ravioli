@@ -52,7 +52,7 @@ class ResourceHarvestTaskUnitTests extends GrailsUnitTestCase {
 		Registry rofr = new Registry(ivorn:'ivo://ivoa.net/rofr',endpoint:url) 
 		String ivorn = rofr.ivorn
 		mockDomain(Resource,[
-		new Resource(ivorn:ivorn,title:"don't want to see this")
+		new Resource(ivorn:ivorn,titleField:"don't want to see this")
 		])
 		parserControl.demand.harvest() {r, ivo ->
 			assertEquals(ivorn,ivo)
@@ -73,7 +73,7 @@ class ResourceHarvestTaskUnitTests extends GrailsUnitTestCase {
 		assertNotNull(r)
 		assertEquals(ivorn,r.ivorn)
 		assertNotNull(r.xml)
-		assertEquals("IVOA Registry of Registries",r.title) // verify this field has been overridden
+		assertEquals("IVOA Registry of Registries",r.titleField) // verify this field has been overridden
 		// of course, rest of fields are populate too - this is covered in Resource unit tests.
 		
 	}
@@ -83,7 +83,7 @@ class ResourceHarvestTaskUnitTests extends GrailsUnitTestCase {
 		Registry rofr = new Registry(ivorn:'ivo://ivoa.net/rofr',endpoint:url) 
 		String ivorn = rofr.ivorn
 		mockDomain(Resource,[
-		new Resource(ivorn:ivorn,title:"don't want to see this")
+		new Resource(ivorn:ivorn,titleField:"don't want to see this")
 		])
 		parserControl.demand.harvest() {r, ivo ->
 			assertEquals(ivorn,ivo)

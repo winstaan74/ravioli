@@ -1,4 +1,5 @@
-class RegistryFunctionalTests extends FunctionalTestUtils {
+@Mixin(RavioliFunctionalAssert)
+class RegistryControllerFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 	
 	protected void setUp() {
 		super.setUp()
@@ -14,19 +15,19 @@ class RegistryFunctionalTests extends FunctionalTestUtils {
 	
 	void testRegistryPage() {
 
-		assertContentContains 'Registries'
+		acc 'Registries'
 		click 'Registries'
 		
 		assertStatus 200
 		
-		assertContentContains 'List'
-		assertContentContains 'harvest'
-		assertContentContains 'update'
-		assertContentContains 'reload'
+		acc 'List'
+		acc 'harvest'
+		acc 'update'
+		acc 'reload'
 		
 		// can't trigger any of these, as they go to a back end server.
 		
-		assertContentContains 'Next'
+		acc 'Next'
 		click 'Next'
 		assertStatus 200
 		
@@ -38,7 +39,7 @@ class RegistryFunctionalTests extends FunctionalTestUtils {
 		click 'Harvest a registry'
 		assertStatus 200
 		
-		assertContentContains 'Harvest from'
+		acc 'Harvest from'
 		
 	}
 }

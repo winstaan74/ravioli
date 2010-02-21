@@ -29,21 +29,21 @@ class ExploreControllerIntegrationTests extends GrailsUnitTestCase {
 
     }
 	
-	final static keys = ['ivorn','title','date','dataUrl','shortname','source','subject','waveband','publisher','creator','id']
-	def checkResponse(def o) {
+def checkResponse(def o) {
+		def keys = Resource.TABLE_COLUMNS.collect {it.key} + ['dataUrl']
 		def r = o.results
 		assertNotNull r
 		assertEquals o.totalRecords, r.length()
 		
 		r.each { m ->
-			keys.each { assertNotNull 'key ${it} missing',m."${it}"}
+			keys.each { assertNotNull "key ${it} missing",m."${it}"}
 			assertEquals keys.size(), m.size()
 		}
 	}
 	
 	void testTableDataAsJSONOddParams() {
 		controller.params.max = 200
-		controller.params.sort='title'
+		controller.params.sort='titleField'
 		def model = controller.tableDataAsJSON()
 		def js =  controller.response.contentAsString
 		//println js

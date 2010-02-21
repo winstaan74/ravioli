@@ -66,7 +66,7 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 		
 		assertNotNull(r.xml)
 		
-		assertEquals('IVOA Registry of Registries',r.title)
+		assertEquals('IVOA Registry of Registries',r.titleField)
 		
 		assertNotNull(r.created)
 		
@@ -75,8 +75,8 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 		assertEquals 'active', r.status
 		
 		// new fields, as used in table..
-		assertEquals '', r.source
-		assertEquals 'RofR', r.shortname
+		assertEquals '', r.sourceField
+		assertEquals 'RofR', r.shortnameField
 		
 		assertEquals '', r.wavebands
 		assertEquals 'another subject, virtual observatory',r.subjects
@@ -85,7 +85,7 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 		assertTrue r.validate()
 		
 	}
-	
+
 	void testWhenParsedIvornDoesnMatchExpectedIvorn() {
 		mockForConstraintsTests(Resource)
 		URL u = this.class.getResource("trimmedRegResource.xml")
@@ -123,10 +123,24 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 	}
 	
 	
-	//we could add unit tests for some other resources that exercise different parts of the data model
-	// eg waveband..
-	// exercised in resource integration test, so maybe not so much of a problem.
-	
-
+	/** test that TABLE_COLUMNS and tableRow gel */
+	void testItemForEachColumn() {
+		URL u = this.class.getResource("trimmedRegResource.xml")
+		Resource r = Resource.buildResource(u.text)
+		r.id = 42 // necessary. so that we've mocked all the data correctly.
+		def row = r.tableRow()
+		assertEquals Resource.TABLE_COLUMNS.size(), row.size()
+		//check each column has a key, label, and a corresponding value in the row.
+		// and that any other column key conforms to a small set of known values.
+		Resource.TABLE_COLUMNS.each {col ->
+			assertTrue col.containsKey('key')
+			assertTrue col.containsKey('label')
+			col.each{ field ->
+				assertTrue field.getKey() in ['key','label','width','hidden','sortable']
+			}
+			assertTrue row.containsKey(col.key)
+			assertNotNull "row value of ${col.key} is null", row.get(col.key) // never null, though may be blank.
+		}
+	}
 	
 }

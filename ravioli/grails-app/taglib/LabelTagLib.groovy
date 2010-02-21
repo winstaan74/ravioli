@@ -21,12 +21,20 @@ class LabelTagLib {
 			value = body()?.trim()
 		}
 		if (value && (value.isNumber() ? value as Float != 0 : true) ) { // only output stuff if value is non-null and non-empty
-			out << "<span class='field'>"
+			out << "<span id='"
+			out << "field_" << mkId(attr.name)
+			out << "' class='field'>"
 			out << l.label(name:attr.name)
 			out << value
 			out << "</span>"
 		}
 	}
+
+	/** 'id-ify' a string */
+	private def mkId(def name) {
+		return name?.toLowerCase().replaceAll(' ','')
+	}
+	
 	/** just wrap the 'name' attribute in a span tag with class 'label */
 	def label = {attr ->
 		out << '<span class="label">'
@@ -41,7 +49,9 @@ class LabelTagLib {
 	def seq = {attr->
 		def value = attr.values
 		if (value) { // only output stuff if value is non-null and non-empty
-			out << "<span class='field'>"
+			out << "<span id='"
+			out << "field_" << mkId(attr.name)
+			out << "' class='field'>"
 			out << l.label(name: attr.name)
 			out << value.join(", ")
 			out << "</span>"
@@ -60,7 +70,11 @@ class LabelTagLib {
 			url = body()?.trim()
 		}
 		if (url) {
-			out << "<a href='" << url << "'>" << name << "</a>"
+			out << "<a href='" << url << "'" 
+			if (attr.id) {
+				out << " id='" << attr.id << "'"
+			}
+			out << ">" << name << "</a>"
 		}
 	}
 	

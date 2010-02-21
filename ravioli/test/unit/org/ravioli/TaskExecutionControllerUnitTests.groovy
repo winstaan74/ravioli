@@ -2,7 +2,8 @@ package org.ravioli
 
 import grails.test.*
 
-class CapabilityTagLibTests extends TagLibUnitTestCase {
+@Mixin(RavioliAssert)
+class TaskExecutionControllerUnitTests extends ControllerUnitTestCase {
     protected void setUp() {
         super.setUp()
     }
@@ -11,7 +12,9 @@ class CapabilityTagLibTests extends TagLibUnitTestCase {
         super.tearDown()
     }
 
-    void testSomething() {
+    void testIndex() {
+		controller.index()
+		redirectsTo('list')
 
     }
 }

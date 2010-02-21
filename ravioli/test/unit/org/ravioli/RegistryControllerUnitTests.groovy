@@ -2,6 +2,7 @@ package org.ravioli
 
 import grails.test.*
 
+@Mixin(RavioliAssert)
 class RegistryControllerUnitTests extends ControllerUnitTestCase {
     protected void setUp() {
         super.setUp()
@@ -132,14 +133,5 @@ class RegistryControllerUnitTests extends ControllerUnitTestCase {
 	}
 	
 	
-	
-    private void redirectsTo(String action) {
-		assertEquals action, this.controller.redirectArgs['action']
-		assertNull  this.controller.redirectArgs['controller']
-    }
-	
-	private void flashContains(String s) {
-		assertNotNull this.controller.flash.message
-		assertTrue this.controller.flash.message + "/=/" + s,this.controller.flash.message.contains(s)
-	}
+
 }

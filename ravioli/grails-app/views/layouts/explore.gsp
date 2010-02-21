@@ -33,9 +33,9 @@
    <div id="bd">
 	<div id="yui-main">
 	<div class="yui-b">
-	<!--<div class="yui-ge">-->
+<!--  	<div class="yui-ge">-->
         <g:layoutBody />
-	<!--</div>-->
+<!-- </div>-->
 </div>
 	</div>
 	<div class="yui-b"><g:render template="/leftMenu"/></div>

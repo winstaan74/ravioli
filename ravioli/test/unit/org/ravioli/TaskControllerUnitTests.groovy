@@ -1,7 +1,7 @@
 package org.ravioli
 
 import grails.test.*
-
+@Mixin(RavioliAssert)
 class TaskControllerUnitTests extends ControllerUnitTestCase {
     protected void setUp() {
         super.setUp()
@@ -14,12 +14,7 @@ class TaskControllerUnitTests extends ControllerUnitTestCase {
 		this.controller.index()
 		redirectsTo('list')
 	}
-	
-	private void redirectsTo(String action) {
-		assertEquals action, this.controller.redirectArgs['action']
-		assertNull  this.controller.redirectArgs['controller']
-	}
-	
+
 	public void testCleanup() {
 		def l = [
 		         new Task(completed:true)
