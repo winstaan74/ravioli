@@ -22,17 +22,9 @@ class ResourceXml {
 	public static final int MAX_PACKET_SIZE = 1084000; //1048576 is max packet size for myslq driver.
 
 	static constraints = {
-		xml(nullable:true,blank:true,maxSize:MAX_PACKET_SIZE) 
-		binXml(nullable:true, maxSize:MAX_PACKET_SIZE)
+		xml(nullable:true,blank:true,maxSize:1084000) 
+		binXml(nullable:true, maxSize:1084000)
 	}
-
-
-	
-	static mapping = {
-		xml column: 'xml', type:'text', length:1084000
-		binXml column: 'binXml', type:'binary', length:1084000
-	}
-
 
 	
 	public String getXml() {
@@ -69,7 +61,7 @@ class ResourceXml {
 	def transient xmlService  // reference to xml service.
 	
 	static transients = ['xmlService']
-	static belongsTo = [resource:Resource] // means deletes and updates to resource will be cascaded here
+	static belongsTo = Resource // means deletes and updates to resource will be cascaded here
 	
 	
 	/** access the stripped version of xml - no tags, just body content 

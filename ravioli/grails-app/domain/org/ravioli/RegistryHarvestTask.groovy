@@ -7,9 +7,6 @@ class RegistryHarvestTask extends Task {
 		resumptionToken(nullable:true, maxSize:1000)
 	}
 
-	static mapping = {
-		resumptionToken column:'token', sqlType:'varchar(1000)'
-	}
 	
 	// the registry to harvest from.
 	Registry reg

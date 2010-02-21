@@ -6,13 +6,10 @@ import javax.xml.transform.TransformerException;
 class ResourceHarvestTask extends Task {
 	
 	static constraints = {
-		ivorn( matches:/ivo:\/\/\S+/,maxsize:1000) // must have prefix ivo://
+		ivorn( matches:/ivo:\/\/\S+/,maxSize:1000) // must have prefix ivo://
 		
 	}
-	
-	static mapping = {
-		ivorn column: 'ivorn', sqlType:'varchar(1000)'
-	}
+
 	
 	/** the registry to harves the resource from */
 	Registry reg

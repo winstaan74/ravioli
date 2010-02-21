@@ -106,28 +106,23 @@ import org.compass.annotations.*
 ]) 
 class Resource {
 	static constraints = {
-		ivorn(unique:true, matches:/ivo:\/\/\S+/,maxsize:1000) // must have prefix ivo://
-		titleField(nullable:true,maxsize:1000)
-		shortnameField(nullable:true, maxsize:100)
-		sourceField(nullable:true, maxsize:200)
+		ivorn(unique:true, matches:/ivo:\/\/\S+/,maxSize:1000) // must have prefix ivo://
+		titleField(nullable:true,maxSize:1000)
+		shortnameField(nullable:true, maxSize:100)
+		sourceField(nullable:true, maxSize:200)
 		created(nullable:false)
 		modified(nullable:true)	
 		date(nullable:false) // display version of date.
 		status(matches:'active') // enforce a constant.
 		rxml(unique:true)
-		wavebands(nullable:true, maxsize:1000)
-		subjects(nullable:true, maxsize:1000)
-		publishers(nullable:true, maxsize:1000)
-		creators(nullable:true, maxsize:1000)
+		wavebands(nullable:true, maxSize:1000)
+		subjects(nullable:true, maxSize:1000)
+		publishers(nullable:true, maxSize:1000)
+		creators(nullable:true, maxSize:1000)
 	}
 
 	static mapping = {
 		ivorn column: 'ivorn', sqlType:'varchar(1000)', unique:true
-		titleField column: 'title', sqlType:'varchar(1000)'
-		wavebands column:'wavebands',sqlType:'varchar(1000)'
-		subjects column:'subjects', sqlType:'varchar(1000)'
-		publishers column:'publishers',sqlType:'varchar(1000)'
-		creators column:'creators',sqlType:'varchar(1000)'
 	}
 
 		/** the resource xml - modelled in a separate object

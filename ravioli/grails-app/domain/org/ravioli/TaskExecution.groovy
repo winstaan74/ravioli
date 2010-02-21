@@ -7,11 +7,10 @@ class TaskExecution {
 	static constraints = {
 		start(nullable:false)
 		finish(nullable:true)
-		messages(nullable:true, maxsize:1000000) // about a meg.
+		messages(nullable:true, maxSize:1000000) // about a meg.
 	}
 
 	static mapping = {
-		messages column: 'messages', type:'text', length:1000000
 		sort start:'asc'
 	}
 	
