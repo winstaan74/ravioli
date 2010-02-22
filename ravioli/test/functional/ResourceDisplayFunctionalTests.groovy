@@ -17,8 +17,9 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 		// things which will always be here
 		assertTitleContains(r.titleField)
 		fieldContains('ivoa-id',ivorn)
-		if (r.description) {
-			acc r.description[0..Math.min(r.description.size()-1,30)]
+		def description = r.rxml.createSlurper().content.description.text()
+		if (description) {
+			acc description[0..Math.min(description.size()-1,30)]
 		}
 		acc r.titleField
 		return r
@@ -26,7 +27,7 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 	
 	/** resource 15 */
 	void testCDS() {
-		def r = displayResource ('ivo://CDS.VizieR/II/85')
+		Resource r = displayResource ('ivo://CDS.VizieR/II/85')
 		fieldContains('shortname',r.shortnameField)
 		fieldContains 'resourcetype', 'CatalogService'
 		fieldContains 'contenttype', 'Catalog'

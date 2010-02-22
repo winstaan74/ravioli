@@ -13,16 +13,18 @@ class ResourceTagLib {
 	 * translate a few oddly-named ones.
 	 */
 	def resourcetype = { attr ->
-		def t = pageScope.r.resourcetype
+		def t = pageScope.xml.'@type'?.text()
 		switch(t) {
-			case null : out << 'unspecified'
-			break;
+			case null :
+			case '':
+				out << 'unspecified'
+				break;
 			case 'CeaApplication':
 			case 'CeaHttpApplication':
-			out << 'Remote Application (CEA)'
-			break
+				out << 'Remote Application (CEA)'
+				break
 			default :
-			out << t.tokenize(':').last() // removes any prefix.
+				out << t.tokenize(':').last() // removes any prefix.
 		}
 	}
 
@@ -52,6 +54,7 @@ class ResourceTagLib {
 
 	/** format the source, linking to ADS if appropriate */
 	def source = {
+		def xml = pageScope.xml
 		def r = pageScope.r
 		def s = r.sourceField
 		if (! s) {
@@ -59,7 +62,7 @@ class ResourceTagLib {
 		}
 		if (s?.startsWith('http://')) { // tackle a common mis-use of the field first.
 			out << '<a href="' << s << '">' << s << "</a>"
-		} else if (r.sourceFormat?.equalsIgnoreCase('bibcode') || looksLikeBibcode(s)) {
+		} else if (xml.content.source.'@format'?.text()?.equalsIgnoreCase('bibcode') || looksLikeBibcode(s)) {
 			out << '<a href="' << BIBCODE_URL << s << '">' << s << "</a>"
 		} else {
 			out << s
@@ -72,19 +75,19 @@ class ResourceTagLib {
 		return s != null && s.size() == 19 && s[0..3].isInteger()
 	}
 	
-	/** use an xpath to get back a value */
-	def xpath = { attrs ->
-		def xp = attrs.path
-		out << pageScope.r.xpath(xp)
-	}
-	
-
-	/** use an xpath to get back a list of values, comma joined */
-	def xpathList = { attrs ->
-		def xp = attrs.path
-		out << pageScope.r.xpathList(xp)?.join(', ')
-	}
-	
+//	/** use an xpath to get back a value */
+//	def xpath = { attrs ->
+//		def xp = attrs.path
+//		out << pageScope.r.xpath(xp)
+//	}
+//	
+//
+//	/** use an xpath to get back a list of values, comma joined */
+//	def xpathList = { attrs ->
+//		def xp = attrs.path
+//		out << pageScope.r.xpathList(xp)?.join(', ')
+//	}
+//	
 	/** format a resourceName-style thing - adding a link to a related ivo-id if provided
 	 * parameters
 	 * xml - an xml node, with a '@ivo-id' attribute

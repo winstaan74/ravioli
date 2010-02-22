@@ -238,4 +238,22 @@ class RegParserServiceUnitTests extends GrailsUnitTestCase {
 		}
 	}
 	
+//	void testHarvestSlurp() {
+//		String url = this.class.getResource("registryResource.xml").toString()
+//		Registry ro = new Registry(endpoint:url,ivorn:'ivo://ivoa.net/rofr')
+//		def gp = parser.harvestSlurp(ro,"ivo://ivoa.net.rofr")
+//		assertEquals('Resource',gp.name())
+//	}
+//	
+//	void testHarvestSlurpUnknown() {
+//		String url = this.class.getResource("unknownResource.xml").toString()
+//		Registry ro = new Registry(endpoint:url,ivorn:'ivo://ivoa.net/rofr')
+//		try {
+//			parser.harvestSlurp(ro,"ivo://ivoa.net.rofr")
+//			fail ("should have failed")
+//		} catch (HarvestServiceException t) {
+//			assertEquals 'The value of the identifier argument is unknown or illegal in this repository',t.message
+//		}
+//	}
+	
 }

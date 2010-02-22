@@ -52,14 +52,10 @@ class ResourceXmlUnitTests extends GrailsUnitTestCase {
 		mockForConstraintsTests(ResourceXml)
 		URL u = this.class.getResource("trimmedRegResource.xml")
 		
-		def r = new ResourceXml(xml:u.text)
+		def r = new ResourceXml()
+		r.xml = u.text
 		r.xmlService = new XmlService()
-		
-		assertEquals('RofR',r.shortnameField)
-		
-		assertNull(r.sourceField)
-		
-		// 
+
 		assertTrue(r.description.startsWith('This is a spec'))
 		
 		assertEquals("vg:Registry",r.resourcetype)
@@ -116,8 +112,6 @@ class ResourceXmlUnitTests extends GrailsUnitTestCase {
 		assertNotNull r.col
 		assertTrue r.col.isEmpty()
 		
-		assertTrue r.name.contains(r.titleField)
-		assertTrue r.name.contains(r.shortnameField)
 		
 		assertTrue r.level.isEmpty()
 		
@@ -129,7 +123,8 @@ class ResourceXmlUnitTests extends GrailsUnitTestCase {
 		mockForConstraintsTests(ResourceXml)
 		URL u = this.class.getResource("trimmedRegResource.xml")
 		
-		def r = new ResourceXml(xml:u.text)
+		def r = new ResourceXml()
+		r.xml = u.text
 		r.xmlService = new XmlService()
 		
 		shouldFail(MissingPropertyException){

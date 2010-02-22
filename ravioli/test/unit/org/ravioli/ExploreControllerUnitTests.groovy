@@ -71,7 +71,6 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 		
 		def model = controller.inlineResource()
 		assertEquals r1, model.r
-		assertNotNull model.xml
 		assertEquals 'resourceDetail', controller.renderArgs['template']
 	}
 	
@@ -99,7 +98,6 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 		
 		def model = controller.resource()
 		assertEquals r1, model.r
-		assertNotNull model.xml
 	}
 	
 	void testresourceUnknown() {
@@ -126,7 +124,6 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 		
 		def model = controller.resource()
 		assertEquals r1, model.r
-		assertNotNull model.xml
 	}
 	
 	void testresourceUnknownIvorn() {

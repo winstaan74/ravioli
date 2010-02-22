@@ -1,4 +1,10 @@
+
 package org.ravioli;
+
+import java.io.IOError;
+import java.io.IOException;
+
+import groovy.util.slurpersupport.GPathResult;
 
 import javax.xml.transform.TransformerException;
 
@@ -58,14 +64,26 @@ class ResourceHarvestTask extends Task {
 		} catch (UnknownResourceException e) {
 			out.println(e.message)
 			return Outcome.FAILED // no point retrying
+		} catch (HarvestServiceException e) {
+			out.println(e.message)
+			return Outcome.FAILED 
+		
+		} catch (IOException e) {
+			out.println(e.message)
+			return Outcome.ERROR // may be worth retrying
+		
 		} catch (TransformerException e) {
 			def cause = e.getCause()
-			if (cause && cause instanceof HarvestServiceException) {
-				out.println(cause.message)
-				return Outcome.FAILED
-			} else {
-				out.println(e.message)
-				return Outcome.ERROR
+			switch(cause) {
+				case HarvestServiceException:
+					out.println(cause.message)
+					return Outcome.FAILED
+				case null:
+					out.println(e.messsage)
+					return Outcome.ERROR
+				default:
+					out.println(cause.message)
+					return Outcome.ERROR
 			}
 		}
 		

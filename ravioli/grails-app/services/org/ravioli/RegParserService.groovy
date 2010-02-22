@@ -129,6 +129,7 @@ class RegParserService  {
 	 * @param ivorn record id to load
 	 * @preturn the GPath of the Resource document, for further processing. - i.e result will have name() == 'Resource'
  	* @todo spend some time debugging behaviour of url encoding of ivorn parameter.
+ 	* @todo remove - unused.
 	 */
 	String harvest(Registry reg, String ivorn) {
 		log.info "Harvesting ${ivorn} from ${reg.ivorn}"
@@ -156,6 +157,30 @@ class RegParserService  {
 		}
 		return output.toString();
 	}
+	
+	/** harvest a record from a registry 
+	 * 
+	 * @param reg registry to harvest from
+	 * @param ivorn record id to load
+	 * @preturn the GPath of the Resource document, for further processing. - i.e result will have name() == 'Resource'
+	 * @todo spend some time debugging behaviour of url encoding of ivorn parameter.
+	 * sadly doesn't work :(
+	 */
+//	GPathResult harvestSlurp(Registry reg, String ivorn) {
+//		log.info "Harvesting ${ivorn} from ${reg.ivorn}"
+//		def url = reg.endpoint + "?verb=GetRecord&metadataPrefix=ivo_vor&identifier=" + ivorn
+//		debugUrl(url)
+//		def gp = new XmlSlurper().parse(url)
+//		// test for an error..
+//		if (gp.error.size() != 0) {
+//			throw new HarvestServiceException(gp.error.text())
+//		}
+//		def resource = gp.GetRecord.record.metadata.Resource
+//		if (resource.size() != 1) {
+//			throw new UnknownResourceException(regIvorn:reg.ivorn, ivorn:ivorn)
+//		}
+//		return resource
+//	}
 	
 	/** construct the reg of reg list records query. - either incrmental, or no */
 	private String constructRofrQuery(Registry r, incremental=true,query= "?verb=ListRecords&metadataPrefix=ivo_vor&set=ivoa_publishers") {

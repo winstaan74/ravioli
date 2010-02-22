@@ -42,7 +42,7 @@ class ResourceHarvestTaskUnitTests extends GrailsUnitTestCase {
 		Resource r = Resource.findByIvorn(ivorn)
 		assertNotNull(r)
 		assertEquals(ivorn,r.ivorn)
-		assertNotNull(r.xml)
+		assertNotNull(r.rxml)
 		// of course, rest of fields are populate too - this is covered in Resource unit tests.
 		
 	}
@@ -72,7 +72,7 @@ class ResourceHarvestTaskUnitTests extends GrailsUnitTestCase {
 		Resource r = Resource.findByIvorn(ivorn)
 		assertNotNull(r)
 		assertEquals(ivorn,r.ivorn)
-		assertNotNull(r.xml)
+		assertNotNull(r.rxml)
 		assertEquals("IVOA Registry of Registries",r.titleField) // verify this field has been overridden
 		// of course, rest of fields are populate too - this is covered in Resource unit tests.
 		
@@ -141,7 +141,7 @@ class ResourceHarvestTaskUnitTests extends GrailsUnitTestCase {
 
 		def task = new ResourceHarvestTask(reg:rofr, ivorn:ivorn)
 		task.regParserService = parserControl.createMock()
-		// problem manifests as a transformer exception - which we're catching and managing.
+		// problem manifests as an IOException- which we're catching and managing.
 		// so we get an error..
 		assertEquals Outcome.ERROR, task.run(System.out)
 		// validate results - shold be no changes.

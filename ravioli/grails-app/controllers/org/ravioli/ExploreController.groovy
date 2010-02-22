@@ -52,8 +52,7 @@ class ExploreController {
 			r = Resource.findByIvorn(params.ivorn)
 		}
 		if(r) {
-			def xml = new XmlSlurper().parseText(r.xml)
-			return [r:r,xml:xml]
+			return [r:r]
 		} else {
 			render(status:404, text:'Failed to find resource')
 		}
@@ -64,8 +63,7 @@ class ExploreController {
 	def inlineResource = {
 		Resource r = Resource.get(params.id)
 		if(r) {
-			def xml = new XmlSlurper().parseText(r.xml)
-			render(template:"resourceDetail",model:[r:r,xml:xml])
+			render(template:"resourceDetail",model:[r:r])
 		} else {
 			render(status:404, text:'Failed to find resource')
 		}

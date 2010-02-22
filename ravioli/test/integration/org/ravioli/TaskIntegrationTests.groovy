@@ -16,6 +16,8 @@ class TaskIntegrationTests extends GrailsUnitTestCase {
 
     protected void tearDown() {
         super.tearDown()
+		Task.list().each { it.delete(flush:true)}
+		TaskExecution.list().each{ it.delete(flush:true)}
     }
 	
 

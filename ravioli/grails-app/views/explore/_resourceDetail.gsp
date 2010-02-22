@@ -1,3 +1,5 @@
+<%--create an xml slurper to work with. --%>
+<g:set var='xml' value="${r.rxml.createSlurper() }" scope='page' />
 <div class="resourceDetail">
 <h1>${r.titleField}</h1><%--TODO: add capability icons --%>
 

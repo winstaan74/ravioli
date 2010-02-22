@@ -3,6 +3,7 @@ import org.springframework.context.ApplicationContext;
 import org.codehaus.groovy.grails.commons.*
 import org.ravioli.*
 import grails.util.Environment;
+import groovy.util.XmlSlurper;
 
 import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes;
 import org.ravioli.Registry;
@@ -47,6 +48,7 @@ class BootStrap {
 		range.each { ix -> // we have 143, but want to reduce startup time.
 			try { // don't want a failure in one of these to halt entire load.
 				ctx.getResource("classpath:/exampledata/sample/${ix}.xml").getInputStream().with { is ->
+					
 					Resource r = Resource.buildResource(is.text);
 					if (r.validate()) {
 						r.save();

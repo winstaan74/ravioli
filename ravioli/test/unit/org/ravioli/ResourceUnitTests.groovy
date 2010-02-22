@@ -1,4 +1,6 @@
 package org.ravioli;
+import groovy.util.XmlSlurper;
+import groovy.xml.StreamingMarkupBuilder;
 
 import grails.test.*;
 
@@ -6,7 +8,11 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 	
 	protected void setUp() throws Exception {
 		super.setUp();
+		def u = this.class.getResource("trimmedRegResource.xml")
+		xml = u.text
 	}
+	
+	def xml
 	
 	protected void tearDown() throws Exception {
 		super.tearDown();
@@ -54,17 +60,17 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 		}
 		assertTrue r.validate()
 	}
+
 	
 	void testBuild() {
 		mockForConstraintsTests(Resource)
-		URL u = this.class.getResource("trimmedRegResource.xml")
 		def ivorn = "ivo://ivoa.net/rofr"
-		Resource r = Resource.buildResource(u.text, ivorn)
+	//	gp.namespace().each{println it}
+		Resource r = Resource.buildResource(xml, ivorn)
+		r.rxml.xmlService = new XmlService()
 		assertNotNull r
 		
 		assertEquals(ivorn, r.ivorn)
-		
-		assertNotNull(r.xml)
 		
 		assertEquals('IVOA Registry of Registries',r.titleField)
 		
@@ -84,49 +90,32 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 		assertEquals 'Raymond Plante', r.creators
 		assertTrue r.validate()
 		
+		// test some fields of the created rxml.
+		assertNotNull(r.rxml)
+		assertNotNull(r.rxml.createSlurper())
+		assertNotNull r.rxml.description
 	}
 
 	void testWhenParsedIvornDoesnMatchExpectedIvorn() {
 		mockForConstraintsTests(Resource)
-		URL u = this.class.getResource("trimmedRegResource.xml")
 		def ivorn = "ivo://another.ivorn"
 		shouldFailWithCause(IdentifyException) {
-			Resource.buildResource(u.text, ivorn)
+			Resource.buildResource(xml, ivorn)
 		}
 	}
 	
 	void testWhenNoIvornProvided() {
 		mockForConstraintsTests(Resource)
-		URL u = this.class.getResource("trimmedRegResource.xml")
 		
-		Resource r = Resource.buildResource(u.text)
+		Resource r = Resource.buildResource(xml)
 		assertTrue r.validate();
 		assertEquals('ivo://ivoa.net/rofr',r.ivorn);
 	}
 
-	void testDelegates() { // check the delegate functions are working.
-		URL u = this.class.getResource("trimmedRegResource.xml")
-		Resource r = Resource.buildResource(u.text)
-		r.rxml.xmlService = new XmlService()
-		// check propertyMissing is delegateing
-		assertEquals r.rxml.description, r.description
-		
-		// check xpath
-		def xp = '/node()/title'
-		assertEquals r.rxml.xpath(xp),r.xpath(xp)
-		
-		// xpathList
-		xp = '/node()/content/subject/text()'
-		def a  = r.rxml.xpathList(xp)
-		def b = r.xpathList(xp)
-		assertEquals a,b
-	}
-	
 	
 	/** test that TABLE_COLUMNS and tableRow gel */
 	void testItemForEachColumn() {
-		URL u = this.class.getResource("trimmedRegResource.xml")
-		Resource r = Resource.buildResource(u.text)
+		Resource r = Resource.buildResource(xml)
 		r.id = 42 // necessary. so that we've mocked all the data correctly.
 		def row = r.tableRow()
 		assertEquals Resource.TABLE_COLUMNS.size(), row.size()

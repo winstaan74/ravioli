@@ -2,107 +2,77 @@
 
 package org.ravioli
 
+import groovy.util.slurpersupport.GPathResult;
+
 import java.io.ByteArrayInputStream;
+import java.sql.Blob;
+import java.sql.Clob;
+import java.sql.SQLException;
+import java.util.Map;
 import java.util.zip.GZIPOutputStream;
 import java.util.zip.GZIPInputStream;
+
+import org.hibernate.lob.ClobImpl;
+import java.io.ByteArrayOutputStream;
+
+import org.hibernate.Hibernate;
+
+
 
 
 /** xml that defines a resource
  * in a separate domain class, so that it can be lazily loaded
  * separate to the resource it defines
+ * properties in this object are only required for search indexing, or resource details display
  * 
  * which means for quick lookups in the resource, this large CLOB (sometimes some megs)
  * doesn't need to be loaded from db.
  * 
- * @todo put binary compressed alternative in a subclass? with a factory method?
  * @author noel
  *  */
 class ResourceXml {
 	
-	public static final int MAX_PACKET_SIZE = 1084000; //1048576 is max packet size for myslq driver.
 
 	static constraints = {
-		xml(nullable:true,blank:true,maxSize:1084000) 
-		binXml(nullable:true, maxSize:1084000)
+		xml(nullable:true,blank:true,maxSize: 2147483647) // max size for a long text in mysql.
+
 	}
 
-	
-	public String getXml() {
-		if (this.binXml != null) {
-			ByteArrayInputStream bis = new ByteArrayInputStream(this.binXml)
-			bis.withStream { s ->
-				new GZIPInputStream(s).withStream {zis ->
-					return zis.text
-				}
-			}
-		} else {
-			return this.xml
-		}	
+	static mapping ={
+		clob type: 'clob'
 	}
 	
-	public void setXml(String xml) {
-		if (xml.size() > MAX_PACKET_SIZE) {
-			ByteArrayOutputStream bos = new ByteArrayOutputStream()
-			bos.withStream { s ->
-				new GZIPOutputStream(s).withStream { zos ->
-					zos << xml
-				}
-			}
-			this.binXml = bos.toByteArray()
-		} else {
-		this.xml = xml
-		}
-	}
-	
-	/** the xml resource description */
-	String xml 
-	byte[] binXml
-	
-	def transient xmlService  // reference to xml service.
-	
-	static transients = ['xmlService']
+	static transients = ['xmlService','vals']
 	static belongsTo = Resource // means deletes and updates to resource will be cascaded here
 	
 	
+	String xml
+
+	def transient xmlService  // reference to xml service.
+
+	
 	/** access the stripped version of xml - no tags, just body content 
 	 * and attr values
+	 *
 	 */
 	public String stripXML() {
-		return xpathList("//@*|//text()").join(' ')
+		return xmlService.xpathList(getXml(),"//@*|//text()").join(' ')
 	}
-	
-	/** evaluate an xpath over the xml body of this resource
-	 * and return a single value, or null if no match.
-	 * @param path
-	 * @return
-	 */
-	public  String xpath(String path) {
-		return xmlService.xpath(this.getXml(),path)
-	}
-	
-	/** evaluate an xpath over the xml body of this resource
-	 * and return a list of values
-	 * @param path
-	 * @return
-	 */
-	public  List xpathList(String path) {
-		return xmlService.xpathList(this.getXml(),path)
-	}
-	
-	
+
 	// some of these are currently unused, but do no harm being there. 
 	private final static Map DYNAMIC_PROPERTIES = [
-	titleField: '/node()/title'
-	, shortnameField:'/node()/shortName'
-	, description:'/node()/content/description'
-	, sourceField:'/node()/content/source'
-	, sourceFormat:'/node()/content/source/@format'
+//	titleField: '/node()/title'
+//	, shortnameField:'/node()/shortName'
+	 description:'/node()/content/description' 
+//	, sourceField:'/node()/content/source'
+//	, sourceFormat:'/node()/content/source/@format'
 	, resourcetype: '/node()/@*[local-name() = "type"]'
-	, referenceUrl: '/node()/content/referenceURL'
-	, version: '/node()/curation/version'
-	, date: '/node()/curation/date' // strictly speaking, this can be a list, but really never is.
+//	, referenceUrl: '/node()/content/referenceURL'
+//	, version: '/node()/curation/version'
+//	, date: '/node()/curation/date' // strictly speaking, this can be a list, but really never is.
 	]
-	
+
+	// these are used during indexing..
 	private final static Map DYNAMIC_LISTS = [
 	subject: '/node()/content/subject/text()'
 	,waveband: '/node()/coverage/waveband/text()'
@@ -119,7 +89,7 @@ class ResourceXml {
 	//future: validationLevel?
 	]
 	
-	static { // this is defined in terms of other ones - so do it after the map creation
+/*s*/	static { // this is defined in terms of other ones - so do it after the map creation
 		// so we can refer to the map.
 		DYNAMIC_LISTS.type = DYNAMIC_LISTS.capability + 
 		" | " + DYNAMIC_LISTS.contenttype +
@@ -128,25 +98,34 @@ class ResourceXml {
 	
 	/** utility to provide convenient access to xpath-defined fields
 	 * means we can adjust the implementation later, without letting the details leak out.
+	 * 
+	 * first time one dynamic property is requested, all are computed and loaded.
 	 * @param name
 	 * @return
 	 */
 	def propertyMissing(String name) {
-		if (name == 'xml') {
-			return getXml()
+		if (vals.containsKey(name)) {
+			return vals.get(name)
 		}
-		def xp = DYNAMIC_PROPERTIES[name]
-		if(xp) {
-			// cache the method impleemntaiton, so it will be called more efficiently next time.
-			Resource.metaClass."$name" = { ->  xpath(xp)?.trim() }
-			return xpath(xp)?.trim()
-		} else {
-			xp = DYNAMIC_LISTS[name]
-			if (xp) {
-				Resource.metaClass."$name" = {-> xpathList(xp) }
-				return xpathList(xp) 
-			}
+		if (DYNAMIC_PROPERTIES.containsKey(name) || DYNAMIC_LISTS.containsKey(name)) {
+			// load them all up.
+			def _xml = getXml() // optmization, in case of subclass - only need to decompress data once.
+			DYNAMIC_PROPERTIES.each {k, path -> 
+				def val = xmlService.xpath(_xml,path)?.trim()
+				vals."${k}" = val
+				} 
+			DYNAMIC_LISTS.each {k,path -> 
+				def val = xmlService.xpathList(_xml,path)
+				vals."${k}" = val
+			} 
+			return vals.get(name)
 		}
 		throw new MissingPropertyException(name)
+	}
+	
+	def vals = [:]
+
+	public GPathResult createSlurper() {
+		return new XmlSlurper().parseText(getXml())
 	}
 }

@@ -18,14 +18,13 @@ environments {
 		}
 	}
 	test {
-		dataSource {
-			dbCreate = "update"
-			url = "jdbc:hsqldb:mem:testDb"
-		}
+//		dataSource {
+//			dbCreate = "update"
+//			url = "jdbc:hsqldb:mem:testDb"
+//		}
 		
-		/*would like to use real mysql database here, but doesn't seem to 
-		 * support rollback from each test - so no good.
-		 * dataSource { // test against a temporary mysql sb
+		/*using real mysql database here - teases out more errors.*/
+		  dataSource { // test against a temporary mysql sb
 		 
 			dbCreate= "create-drop"
 			driverClassName = "com.mysql.jdbc.Driver"
@@ -33,7 +32,7 @@ environments {
 			username="ravioli"
 			password="pious43*flap"
 			
-		} */
+		} 
 	}
 	beta {
 		dataSource {

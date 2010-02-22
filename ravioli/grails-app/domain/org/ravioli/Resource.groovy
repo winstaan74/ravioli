@@ -1,35 +1,32 @@
 
+
+
 package org.ravioli
 
 import org.joda.time.DateTime;
 import javax.xml.xpath.*;
 import org.compass.annotations.*
+import groovy.util.XmlSlurper;
+import groovy.util.slurpersupport.GPathResult;
+import groovy.xml.StreamingMarkupBuilder;
 
 /**
  * 
  * Representation of a voresource.
- * original XML is maintained in xml field.
- * on construction, we parse a few fields that either we're going to need
- * programattically, or which need some mangling that's easier to do by hand
- * than in xpath.
- * Other fields that we want to enable search on are expressed as 'searchableDynamics' - 
- * there's an xpath that's applied to compute the value from the xml field
- * This is more inefficient timewise, but only happens when the search enging is indexing
- * a resource - when it's just been harvested, once.
- * Because of the dynamic approach, there's less data replicated in the db,
- * which needs to be loaded when accessing the resource - so user experience should be
- * improved.
  * 
- * Furthermore, some of the query positions are easiest to express in XPATH.
- * Note that xpath fields are extracted untrimmed - but this doesn't matter, as they\re only
- * going for trimming anyhow.
+ * 3 kinds of property / data element
+ * <ul>
+ * <li>table row elements - used to display in table row,  precomputed, stored in this class</li>
+ * <li>search elements - used once, computed on demand, when indexing with lucene</li>
+ * <li>resource detail elements - used to display the resource details. stored within ResourceXml object. </li>
+ * </ul>
  * 
  */
 @Searchable
 @SearchableDynamicMetaDatas(value=[
 //search indexes that don't occur in the table - never need to be sorted on, or stored.			
 @SearchableDynamicMetaData(name='description', converter='groovy'
-			, expression="data.description" , store=Store.NO)
+			, expression="data.rxml.description" , store=Store.NO)
 
 ,@SearchableDynamicMetaData(name="all", converter="groovy"
 		, excludeFromAll=ExcludeFromAll.YES
@@ -37,50 +34,50 @@ import org.compass.annotations.*
 
 ,@SearchableDynamicMetaData(name='resourcetype', converter='groovy'
 		,excludeFromAll=ExcludeFromAll.YES // as part of 'type'
-		, expression="data.resourcetype", store=Store.NO )
+		, expression="data.rxml.resourcetype", store=Store.NO )
 
 ,@SearchableDynamicMetaData(name="capability", converter="groovy"
 		, excludeFromAll=ExcludeFromAll.YES // as part of 'type'
-		,expression="data.capability",  store=Store.NO )
+		,expression="data.rxml.capability",  store=Store.NO )
 	
 ,@SearchableDynamicMetaData(name="curation", converter="groovy"
 	//, excludeFromAll=ExcludeFromAll.YES
-	,expression="data.curation", store=Store.NO )
+	,expression="data.rxml.curation", store=Store.NO )
 
 ,@SearchableDynamicMetaData(name="name", converter="groovy"
 	, excludeFromAll=ExcludeFromAll.YES // as we already have title ad shortname
-	,expression="data.name", store=Store.NO )
+	,expression="data.rxml.name", store=Store.NO )
 
 ,@SearchableDynamicMetaData(name="ucd", converter="groovy"
 	, excludeFromAll=ExcludeFromAll.YES
-	,expression="data.ucd", store=Store.NO )
+	,expression="data.rxml.ucd", store=Store.NO )
 	
 ,@SearchableDynamicMetaData(name="col", converter="groovy"
 		,excludeFromAll=ExcludeFromAll.YES
-		,expression="data.col" , store=Store.NO)
+		,expression="data.rxml.col" , store=Store.NO)
 
 ,@SearchableDynamicMetaData(name="type", converter="groovy"
 	//, excludeFromAll=ExcludeFromAll.YES 
-	,expression="data.type" , store=Store.NO)
+	,expression="data.rxml.type" , store=Store.NO)
 
 // search indexes that do occur in the table - not stored, or sortable.
 // however, there needds to be another index for each table column (named with a leading '_') which is sotred and sortable.
 
 ,@SearchableDynamicMetaData(name="subject", converter="groovy"
-			,expression="data.subject",store=Store.NO )
+			,expression="data.rxml.subject",store=Store.NO )
 			
 ,@SearchableDynamicMetaData(name="waveband", converter="groovy"
 	//, excludeFromAll=ExcludeFromAll.YES
-		,expression="data.waveband",store=Store.NO)
+		,expression="data.rxml.waveband",store=Store.NO)
 		
 ,@SearchableDynamicMetaData(name="creator", converter="groovy"
 	, excludeFromAll=ExcludeFromAll.YES // already have curation
-		,expression="data.creator"
+		,expression="data.rxml.creator"
 		,store=Store.NO )
 	
 ,@SearchableDynamicMetaData(name="publisher", converter="groovy"
 	, excludeFromAll=ExcludeFromAll.YES // already have curation
-		,expression="data.publisher",store=Store.NO )
+		,expression="data.rxml.publisher",store=Store.NO )
 		
 ,@SearchableDynamicMetaData(name="title", converter="groovy"
 	, expression="data.titleField"
@@ -193,9 +190,9 @@ class Resource {
 
 	/** parse xml and update most of the fields of this resource from it */
 	void updateFields(String xml) {
-		this.rxml.xml = xml;
-		def gp = new XmlSlurper().parseText(xml)
-
+		this.rxml.xml = xml
+		def gp = rxml.createSlurper()
+		
 		def ivo = gp.identifier?.text()?.trim()
 		if (this.ivorn == null) { // never overwrite the ivorn
 			this.ivorn = ivo
@@ -224,6 +221,7 @@ class Resource {
 		this.wavebands= fuse(gp.coverage.waveband)
 		this.publishers = fuseNS(gp.curation.publisher)
 		this.creators = fuse(gp.curation.creator.name)
+
 	}
 	
 	/** search functionality*/
@@ -231,19 +229,20 @@ class Resource {
 	public static String rewriteQuery(String s) {
 		return s?.replaceAll('ivo:', '')
 	}
-	
-	// delegate methods
-	public String xpath(String path) {
-		return rxml.xpath(path)
-	}
-	
-	public List xpathList(String path) {
-		return rxml.xpathList(path)
-	}
-	
-	def propertyMissing(String name) {
-		return rxml.propertyMissing(name)
-	}
+//	
+//	// delegate methods
+//	public String xpath(String path) {
+//		return rxml.xpath(path)
+//	}
+//	
+//	public List xpathList(String path) {
+//		return rxml.xpathList(path)
+//	}
+//	
+//	def propertyMissing(String name) {
+//		return rxml.propertyMissing(name)
+//	}
+//	
 	
 	/* return the row of data used in the resource table
 	 * returns a map, with a key for each of TABLE_COLUMNS.

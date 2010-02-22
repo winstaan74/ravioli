@@ -8,13 +8,22 @@ class ResourceTagLibIntegrationTests extends GroovyPagesTestCase {
 
     void testResourcetype() {
 		// first part of template just injects value into page context.
-		def template = '''<g:set var='r' value="${r}" scope='page'/><r:resourcetype/>'''
+		def template = '''<g:set var='xml' value="${xml}" scope='page'/><r:resourcetype/>'''
 		// use a map to stub for a resource.
-		assertOutputEquals 'ConeSearch', template, [r:[resourcetype:'cs:ConeSearch']]
-		assertOutputEquals 'ConeSearch', template, [r:[resourcetype:'ConeSearch']]
-		assertOutputEquals 'unspecified', template, [r:[resourcetype:null]]
-		assertOutputEquals 'Remote Application (CEA)', template, [r:[resourcetype:'CeaApplication']]
-		assertOutputEquals 'Remote Application (CEA)', template, [r:[resourcetype:'CeaHttpApplication']]
+		def xml = new XmlSlurper().parseText('<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="cs:ConeSearch"/>')
+		assertOutputEquals 'ConeSearch', template, [xml:xml]
+		
+		xml = new XmlSlurper().parseText('<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ConeSearch"/>')
+		assertOutputEquals 'ConeSearch', template, [xml:xml]
+		
+		xml = new XmlSlurper().parseText('<resource />')
+		assertOutputEquals 'unspecified', template, [xml:xml]
+		
+		xml = new XmlSlurper().parseText('<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CeaApplication"/>')
+		assertOutputEquals 'Remote Application (CEA)', template, [xml:xml]
+		
+		xml = new XmlSlurper().parseText('<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CeaHttpApplication"/>')
+		assertOutputEquals 'Remote Application (CEA)', template,[xml:xml]
     }
 	
 	void testCreated() {
@@ -32,50 +41,27 @@ class ResourceTagLibIntegrationTests extends GroovyPagesTestCase {
 	}
 	
 	void testSource() {
-		def template = '''<g:set var='r' value="${r}" scope='page'/><r:source/>'''
+		def template = '''<g:set var='r' value="${r}" scope='page'/><g:set var='xml' value="${xml}" scope='page'/><r:source/>'''
 		
-		assertOutputEquals '', template, [r:[source:null]] // no source.
-		assertOutputEquals 'anyold', template, [r:[sourceField:'anyold']] // arbitrary kind of source
+		def empty = new XmlSlurper().parseText('<resource />')
+		assertOutputEquals '', template, [r:[sourceField:null],xml:empty] // no source.
+		assertOutputEquals 'anyold', template, [r:[sourceField:'anyold'],xml:empty] // arbitrary kind of source
 		
 		def urlOutput = """<a href="${ResourceTagLib.BIBCODE_URL}anyold">anyold</a>"""
-		assertOutputEquals urlOutput, template, [r:[sourceField:'anyold',sourceFormat:'bibcode']] // bibcode marked as such, even tho it's not looking like one
+		def bibcode = new XmlSlurper().parseText('<resource><content><source format="bibcode"/></content></resource>')
+		assertOutputEquals urlOutput, template, [r:[sourceField:'anyold'],xml:bibcode] // bibcode marked as such, even tho it's not looking like one
 		
 		urlOutput = '''<a href="http://www.slashdot.org">http://www.slashdot.org</a>'''
-		assertOutputEquals urlOutput, template, [r:[sourceField:'http://www.slashdot.org']] // url instead of bibcode
-		assertOutputEquals urlOutput, template, [r:[sourceField:'http://www.slashdot.org', sourceFormat:'bibcode']] // url instead of bibcode - sourceFormat is ignored		
+		assertOutputEquals urlOutput, template, [r:[sourceField:'http://www.slashdot.org'],xml:empty] // url instead of bibcode
+		assertOutputEquals urlOutput, template, [r:[sourceField:'http://www.slashdot.org'],xml:bibcode] // url instead of bibcode - sourceFormat is ignored		
 		
 		def bc = '1974AJ.....79..819H'
 		assertTrue new ResourceTagLib().looksLikeBibcode(bc)
 		
 		urlOutput = """<a href="${ResourceTagLib.BIBCODE_URL}${bc}">${bc}</a>"""
-		assertOutputEquals urlOutput, template, [r:[sourceField:bc]] // bibcode not marked as such - should recognize by it's format.
+		assertOutputEquals urlOutput, template, [r:[sourceField:bc],xml:empty] // bibcode not marked as such - should recognize by it's format.
 	}
-	
-	void testXpath() {
-		Resource r = Resource.findByIvorn('ivo://nvo.caltech/registry');
-		def template = '''<g:set var='r' value="${r}" scope='page'/><r:xpath path='/node()/shortName'/>'''
-		assertOutputEquals 'Carnivore', template, [r:r]
-		
-		template = '''<g:set var='r' value="${r}" scope='page'/><r:xpath path='/node()/rubbish'/>'''
-		assertOutputEquals '', template, [r:r]
-		
-	}
-	
-	void textXpathList() {
-		Resource r = Resource.findByIvorn('ivo://jvo/vizier/J/ApJS/120/265');
-		// singleton
-		def template = '''<g:set var='r' value="${r}" scope='page'/><r:xpathList path='/node()/content/type'/>'''
-		assertOutputEquals 'Catalog', template, [r:r]
-		
-		//many
-		template = '''<g:set var='r' value="${r}" scope='page'/><r:xpathList path='/node()/content/subject'/>'''
-		assertOutputEquals 'Globular Clusters, Photometry', template, [r:r]		
-		
-		//none
-		template = '''<g:set var='r' value="${r}" scope='page'/><r:xpathList path='/node()/rubbish'/>'''
-		assertOutputEquals '', template, [r:r]		
-	}
-	
+
 	void testResourceName() {
 		def template = '''<r:resourceName uri="${uri}">${body}</r:resourceName>'''
 		assertOutputEquals 'foo', template, [body:'foo'] // no link provided
@@ -94,7 +80,7 @@ class ResourceTagLibIntegrationTests extends GroovyPagesTestCase {
 		
 		Resource r= Resource.findByIvorn('ivo://CDS.VizieR/II/85')
 		// the common use of the <resourceName tag is to pass a xmlslurper result into it - so we'll test that..
-		def xml = new XmlSlurper().parseText(r.xml)
+		def xml = r.rxml.createSlurper()
 		
 		// ok, now pass the xml in.. want the tag to detect when it's getting a complex type, and extract the attribute ivo-id itself.
 		def template = '''<r:resourceName xml="${xml}" />'''
