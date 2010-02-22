@@ -27,9 +27,14 @@ class BootStrap {
 				populateResources([5,15,25,35,45,55,65,75,85,95,92]) // smaller set of resources.
 				break;
 			case Environment.CUSTOM :
-				if (System.getProperty('grails.env') == 'alpha' && Registry.count() == 0) {
+			if (Registry.count() ==0) {
+				if (System.getProperty('grails.env') == 'alpha') {
 					populateRegistries('classpath:/exampledata/stubRegistries.xml') // rofr description with mangled endpoints.
+				} else {
+					populateRegistries() 
 				}
+			}
+				
 				break;
 			default:
 				if (Registry.count() ==0) {
