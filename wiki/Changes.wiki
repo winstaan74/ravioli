@@ -5,11 +5,10 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.3
 ==version 0.4 unreleased==
 
 ===New Features==
-   * visual styling improvements - colour scheme and spacing
+   * visual styling improvements - colour scheme and spacing, tooltips
    * collapsing of less interesting resource capabilities.
    * clicking on bibcode field triggers AJAX query to ADS
    * clicking on Availability link triggers an AJAX VOSI availability query.
-   * changelog, popup tooltips in places, 
    
 ===Questions===
 	* At the moment, the query of ADS / VOSI availability requires the user to click on the link. Is this appropriate, or is it better to either: always fetch this information, and display it in the resource from the resource (increasing page display time, and load on back-end servers); or fetch this information automatically once the resource had been displayed for a short time (a few seconds) - i.e if the user is lingering over a resource, this suggests that the additional information is worth fetching.
