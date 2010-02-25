@@ -8,7 +8,7 @@ package org.ravioli
 class ResourceTagLib {
 	
 	static namespace = 'r'
-
+	
 	/** format a resourcetype - remove any leading namespace prefix, and 
 	 * translate a few oddly-named ones.
 	 */
@@ -17,17 +17,17 @@ class ResourceTagLib {
 		switch(t) {
 			case null :
 			case '':
-				out << 'unspecified'
-				break;
+			out << 'unspecified'
+			break;
 			case 'CeaApplication':
 			case 'CeaHttpApplication':
-				out << 'Remote Application (CEA)'
-				break
+			out << 'Remote Application (CEA)'
+			break
 			default :
-				out << t.tokenize(':').last() // removes any prefix.
+			out << t.tokenize(':').last() // removes any prefix.
 		}
 	}
-
+	
 	/** format the creation date */
 	def created = { 
 		out << pageScope.r.created?.format('yyyy-MM-dd')
@@ -37,7 +37,7 @@ class ResourceTagLib {
 	def modified = { 
 		out << pageScope.r.modified?.format('yyyy-MM-dd')
 	}
-
+	
 	/** format the description, preserving whitespace if possible.*/
 	def description = {
 		out << '<div class="content">'
@@ -49,8 +49,7 @@ class ResourceTagLib {
 		out << l.condLink(class:'icon icon_world_link main',name:'Further&nbsp;Information...') {content.referenceURL.text()}
 		out << '</div>'
 	}
-
-	public static final String BIBCODE_URL = "http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=";
+	
 
 	/** format the source, linking to ADS if appropriate */
 	def source = {
@@ -63,36 +62,17 @@ class ResourceTagLib {
 		if (s?.startsWith('http://')) { // tackle a common mis-use of the field first.
 			out << '<a href="' << s << '">' << s << "</a>"
 		} else if (xml.content.source.'@format'?.text()?.equalsIgnoreCase('bibcode') || looksLikeBibcode(s)) {
-			//out << '<a href="' << BIBCODE_URL << s << '">' << s << "</a>"
-		//@todo ugh, and repeated from vosi. factor out some of the embedded html - separate method, or a template.
-			def md5 = s.encodeAsMD5()
-//			out << g.javascript {"""
-//				function update(e) {
-//					var resp = e.responseJSON
-//					var title= resp.title
-//					alert(title)
-//				}
-//			"""
-//				}
-//			out << g.remoteLink(controller:'ads', class:'main', params:[bib:s]
-//			       ,onLoading:"YAHOO.util.Dom.get('${md5}-spinner').style.display='inline';"
-//			       ,onComplete:"YAHOO.util.Dom.get('${md5}-spinner').style.display='none';"
-//					,onSuccess:'alert(o)' // need to parse this into JSON oursevles - rats.
-//			       ,update:[failure:md5] 
-//			       , method:'get'                                                 
-//				   ){s}
-//			def imgLink = g.createLinkTo(dir:'/images',file:'spinner.gif')
-//			out << "<img id='${md5}-spinner' style='display: none' src='${imgLink}' />"
-//			out << "&nbsp;<span id='${md5}' class='bibcode_update'/>"
-			out << g.remoteLink(controller:'ads', class:'main', params:[bib:s]
-					,onLoading:"YAHOO.util.Dom.get('${md5}-spinner').style.display='inline';"
-					,onComplete:"YAHOO.util.Dom.get('${md5}-spinner').style.display='none';"
-					,update:[success:md5,failure:md5] 
-					, method:'get'                                                 
-					){s}
+			out << gui.toolTip(text:'Click here to retrieve bibliographic information for this resource from ADS') {
+				out << g.remoteLink(controller:'ads', class:'main', params:[bib:s]
+				,onLoading:"YAHOO.util.Dom.get('${s}-spinner').style.display='inline';"
+				,onComplete:"YAHOO.util.Dom.get('${s}-spinner').style.display='none';"
+				,update:[success:s,failure:s] 
+				, method:'get'                                                 
+				){s}
+			}
 			def imgLink = g.createLinkTo(dir:'/images',file:'spinner.gif')
-			out << "<img id='${md5}-spinner' style='display: none' src='${imgLink}' />"
-			out << "&nbsp;<span id='${md5}' class='bibcode_update'/>"
+			out << "<img id='${s}-spinner' style='display: none' src='${imgLink}' />"
+			out << "&nbsp;<span id='${s}'/>"
 		} else {
 			out << s
 		}
@@ -103,20 +83,7 @@ class ResourceTagLib {
 		// string of 19 characters, first 4 are the year.
 		return s != null && s.size() == 19 && s[0..3].isInteger()
 	}
-	
-//	/** use an xpath to get back a value */
-//	def xpath = { attrs ->
-//		def xp = attrs.path
-//		out << pageScope.r.xpath(xp)
-//	}
-//	
-//
-//	/** use an xpath to get back a list of values, comma joined */
-//	def xpathList = { attrs ->
-//		def xp = attrs.path
-//		out << pageScope.r.xpathList(xp)?.join(', ')
-//	}
-//	
+
 	/** format a resourceName-style thing - adding a link to a related ivo-id if provided
 	 * parameters
 	 * xml - an xml node, with a '@ivo-id' attribute
@@ -178,22 +145,22 @@ class ResourceTagLib {
 			'''
 		}
 		out << gui.dataTable(
-				id:'resources'
-				,sortedBy:'date'
-				,sortOrder:'desc'
-				,rowsPerPage:30 // later grab this value from user's prefs
-				,columnDefs:columns
-				,rowExpansion:true
-				,draggableColumns:true
-				,controller:"explore"
-				,action:"tableDataAsJSON"
-				,paginatorConfig:[
-					template: '{PreviousPageLink} {PageLinks} {NextPageLink} {CurrentPageReport} ' + tableOptions,
-					pageReportTemplate:'{totalRecords} resources ' 
-					]	
+		id:'resources'
+		,sortedBy:'date'
+		,sortOrder:'desc'
+		,rowsPerPage:30 // later grab this value from user's prefs
+		,columnDefs:columns
+		,rowExpansion:true
+		,draggableColumns:true
+		,controller:"explore"
+		,action:"tableDataAsJSON"
+		,paginatorConfig:[
+		template: '{PreviousPageLink} {PageLinks} {NextPageLink} {CurrentPageReport} ' + tableOptions,
+		pageReportTemplate:'{totalRecords} resources ' 
+		]	
 		)
 	}
-
-
+	
+	
 	
 }

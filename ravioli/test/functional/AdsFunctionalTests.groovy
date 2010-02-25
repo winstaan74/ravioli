@@ -11,7 +11,7 @@ import grails.converters.JSON;
 class AdsFunctionalTests extends functionaltestplugin.FunctionalTestCase {
     void testGetAdsBiblioAsJSON() {
 		def bibcode = '2003ASPC..295..465P'
-		get("/ads/${bibcode}")
+		get("/ads/${bibcode}?format=json")
 		assertStatus 200
 		assertContentType('application/json')
 		// check the content -- verify some if the fields are there.
@@ -20,9 +20,21 @@ class AdsFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 		assertTrue o.title?.startsWith('XAssist')	
     }
 	
-	void testGetUnknownAdsBiblioAsJSON() {
+	void testGetUnknownAdsBiblio() {
 		def bibcode = '1800ASPC..295..465P'
 		get("/ads/${bibcode}")
 		assertStatus 404
+	}
+	
+	void testGetAdsBiblioAsHTML() {
+		def bibcode = '2003ASPC..295..465P'
+		get("/ads/${bibcode}")
+		assertStatus 200
+		assertContentType('text/html')
+		// check the content -- verify some if the fields are there.
+		acc 'XAssist'
+		hasLink '(show abstract)'
+		hasLink '(show authors)'
+		
 	}
 }

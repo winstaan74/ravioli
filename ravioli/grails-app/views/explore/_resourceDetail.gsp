@@ -100,7 +100,7 @@ This resource describes a Remote&nbsp;Application&nbsp;(CEA)
 	<g:each var="creator" in="${curation.creator }">
 	 	<r:resourceName xml="${creator.name }"/>
 		<g:if test="${creator.logo }">
-			<img align='right' class='resource-logo' alt='creator logo' src="${creator.logo }" />
+			<img align='right' class='resource-logo'  src="${creator.logo }" />
 		</g:if>
 	</g:each>
 	</l:field>

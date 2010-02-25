@@ -51,7 +51,7 @@ a.main {
 	color:#347879;
 	}
 
-.resourceDetail .content , .resourceDetail .capability{
+.resourceDetail .content , .resourceDetail .capability, .resourceDetail .ads{
 	padding:5px;
 	background:#E6EEEF;
 	border: 1px solid gray;
@@ -146,7 +146,7 @@ a.main {
 /*	border-left:1px solid grey;
 	padding:1px;*/
 	}
-/
+
 /*
 form.search {
 	float:right;
@@ -157,7 +157,22 @@ form.search {
 	margin-right: 180px;
 }*/
 
-
+/* ads bibliography */
+.ads li { /* applies to links and authors */
+	display: inline;
+	list-style: none;
+	padding-right: 10px;
+	}
+	
+.ads .abstract {
+		display:none;
+}
+.ads .authors {
+		display:none;
+	}
+.ads p {
+		margin-bottom:5px;
+}
 	
 
 

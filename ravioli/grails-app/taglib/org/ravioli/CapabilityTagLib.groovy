@@ -268,47 +268,47 @@ class CapabilityTagLib {
 						field 'Maximum search radius', cap.maxSR 
 					}
 					div(class:'right') {
-					interfacesWithSpecial {iface ->
+						interfacesWithSpecial {iface ->
 							// have to refer to builder.form here, else it's a referenc to the 'form' context variable. whoops!
 							builder.form(method:'GET', action:"${iface.accessURL.text()}",class:'search cone') {
-							fieldset() {
-								legend('Search')
-								formField(name:'RA',description:"Right Ascension (ICRS decimal degrees)", value:"${cap.testQuery.ra }")	
-								formField(name:'DEC',description:"Declination (ICRS decimal degrees)",value:"${cap.testQuery.dec }")
-								formField(name:'SR',txt:'Radius',description:"Search Radius",value:"${cap.testQuery.sr ?: cap.maxSR}")
-
-								if (cap.verbosity.toBoolean()) {
-									label('for':'VERB','Columns to return:')
-									mkp.yieldUnescaped g.radioGroup(name:'VERB',values:[1,2,3],labels:['Minimal','Most','All'], value:'1') {
-										// for some reason, groovy builder doesnb't work in here - probably as this is the body of the g.radioGroup tag.
-										out << '<span>' << it.label << " " << it.radio << '</span>' 
-									}
-								}
-								mkp.yieldUnescaped g.submitButton(name:'search',value:'Get Data')
-								
-							}
-							//check for additional, optional parameters.
-							def additionalParams = iface.param.findAll{! (it.name.text().toLowerCase() in ['ra','dec','sr']) }
-							if (additionalParams.size() > 0) {
 								fieldset() {
-									legend('Additional optional parameters')
-									additionalParams.each {param ->
-										def name = param.name
-										StringBuffer descr = new StringBuffer()
-										['description':'','dataType':'Type','unit':'Units','ucd':'UCD'].each{k,v ->
-											def txt = param."${k}".text()
-											if (txt) {
-												descr << (v ?:name ) << ': ' << txt << '\n'
-											}
+									legend('Search')
+									formField(name:'RA',description:"Right Ascension (ICRS decimal degrees)", value:"${cap.testQuery.ra }")	
+									formField(name:'DEC',description:"Declination (ICRS decimal degrees)",value:"${cap.testQuery.dec }")
+									formField(name:'SR',txt:'Radius',description:"Search Radius",value:"${cap.testQuery.sr ?: cap.maxSR}")
+									
+									if (cap.verbosity.toBoolean()) {
+										label('for':'VERB','Columns to return:')
+										mkp.yieldUnescaped g.radioGroup(name:'VERB',values:[1,2,3],labels:['Minimal','Most','All'], value:'1') {
+											// for some reason, groovy builder doesnb't work in here - probably as this is the body of the g.radioGroup tag.
+											out << '<span>' << it.label << " " << it.radio << '</span>' 
 										}
-										formField(name:name,description:descr.toString())
+									}
+									mkp.yieldUnescaped g.submitButton(name:'search',value:'Get Data')
+									
+								}
+								//check for additional, optional parameters.
+								def additionalParams = iface.param.findAll{! (it.name.text().toLowerCase() in ['ra','dec','sr']) }
+								if (additionalParams.size() > 0) {
+									fieldset() {
+										legend('Additional optional parameters')
+										additionalParams.each {param ->
+											def name = param.name
+											StringBuffer descr = new StringBuffer()
+											['description':'','dataType':'Type','unit':'Units','ucd':'UCD'].each{k,v ->
+												def txt = param."${k}".text()
+												if (txt) {
+													descr << (v ?:name ) << ': ' << txt << '\n'
+												}
+											}
+											formField(name:name,description:descr.toString())
+										}
 									}
 								}
-							}
 								
-						
-						}
-					} //end special interface.
+								
+							}
+						} //end special interface.
 					}
 					break
 					
@@ -411,11 +411,13 @@ class CapabilityTagLib {
 						if (iface.accessURL.size() == 1) {
 							def url = iface.accessURL.text()
 							def md5 = url.encodeAsMD5()
-							out << g.remoteLink(controller:'vosi', class:'main'
-							, params:[u:url], update:md5, method:'get'
-							,onLoading:"YAHOO.util.Dom.get('${md5}-spinner').style.display='inline';"
-							,onComplete:"YAHOO.util.Dom.get('${md5}-spinner').style.display='none';"
-							){'Check service availability'}
+							out << gui.toolTip(text:'Click here to check whether the service is currently running') {
+								out << g.remoteLink(controller:'vosi', class:'main'
+								, params:[u:url], update:md5, method:'get'
+								,onLoading:"YAHOO.util.Dom.get('${md5}-spinner').style.display='inline';"
+								,onComplete:"YAHOO.util.Dom.get('${md5}-spinner').style.display='none';"
+								){'Check service availability'}
+							}
 							out << '&nbsp;'
 							img(id:"${md5}-spinner",style:'display: none',src:g.createLinkTo(dir:'/images',file:'spinner.gif'))		
 							span(id:md5,class:'vosi_update')
