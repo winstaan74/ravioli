@@ -1,0 +1,34 @@
+=List of Changes=
+
+Version at http://astrogrid.roe.ac.uk/ravioli - v0.3
+
+==version 0.4 unreleased==
+
+===New Features==
+   * visual styling improvements - colour scheme and spacing
+   * collapsing of less interesting resource capabilities.
+   * clicking on bibcode field triggers AJAX query to ADS
+   * clicking on Availability link triggers an AJAX VOSI availability query.
+   * changelog, popup tooltips in places, 
+   
+===Questions===
+	* At the moment, the query of ADS / VOSI availability requires the user to click on the link. Is this appropriate, or is it better to either: always fetch this information, and display it in the resource from the resource (increasing page display time, and load on back-end servers); or fetch this information automatically once the resource had been displayed for a short time (a few seconds) - i.e if the user is lingering over a resource, this suggests that the additional information is worth fetching.
+	
+	* At present, uninteresting capabilities are collapsed, and require a click to display. I think this keeps the display uncluttered. Is it worthwhile collapsing a) other capabilities, b) the resource description in similar click-to-display fields? It would be possible to remember the user's preference via a cookie, and so show any subsequent resources with e.g. description shown.
+	
+	* Bibliography integration - comments please - is this what you were thinking of? I don't display the abstract and authors by default, as __often__ they repeat the resource description and authors. However, in some cases they seem to give useful additional information.
+	
+----
+
+==version 0.3, 23rd Feb 2010==
+
+===New Features===
+  *  the table columns to be shown can be altered, and choice is remembered by cookie (click on 'table options' link)
+  *  formatted display of resource details.
+  *  stability - should stay up longer than the previous snapshot
+  *  more reliable harvesting and handling of large resources
+
+===issues===
+   * when using the search box, hitting return doesn't trigger the search - you must click on the 'search' button. As this bit of the UI will be replaced by a search form, it's only a temporary problem./	
+   * when clicking on a table row to display a resource body, the table resizes, which is jerky and jarring. I don't think there's a nice way of fixing this,  considering that the table can dynamically alter which rows are being shown.  Unless I can come up with a solution, I think it might be best to display resources in a separate area _below_ the table. (i.e. in a typical email-reader layout).
+   * We've only got 6K resources, rather than the expected 8K because I'm having problems harvesting resources that contain a '+' in the ivorn name (this only occurs in CDS). Fixable, just haven't done yet.
