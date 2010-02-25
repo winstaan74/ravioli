@@ -16,5 +16,10 @@ class UrlMappings {
 			action = {params.verb?.toLowerCase()}
 		}
 		
+		// nice mappings for ads and sesame.
+		
+		"/ads/${bib}"(controller:'ads')
+		"/sesame/${obj}"(controller:'sesame')
+		
 	}
 }

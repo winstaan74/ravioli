@@ -69,10 +69,12 @@
 	</l:field>
 </g:if>
 
-<%-- format service capabilities. --%>
-<g:each var='cap' in="${xml.capability }">
+<%-- format service capabilities. 
+<g:each var='cap' in="${xml.capability }">--%>
+<capability:each var='cap' in="${xml.capability }">
 		<capability:format capability="${cap }" />
-</g:each>
+</capability:each>
+
 
 <%-- list the interfaces provided by a CEA app --%>
 <g:each var="app" in="${xml.applicationDefinition }">

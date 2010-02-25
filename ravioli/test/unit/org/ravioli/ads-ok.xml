@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<records xmlns="http://ads.harvard.edu/schema/abs/1.0/abstracts" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ads.harvard.edu/schema/abs/1.0/abstracts http://ads.harvard.edu/schema/abs/1.0/abstracts.xsd" retrieved="1" start="1" selected="1">
+<record>
+<bibcode>1989ApJ...342L..71R</bibcode>
+<title>Gamma-ray observations of SN 1987A from Antarctica</title>
+<author>Rester, A. C.</author>
+<author>Coldwell, R. L.</author>
+<author>Dunnam, F. E.</author>
+<author>Eichhorn, G.</author>
+<author>Trombka, J. I.</author>
+<author>Starr, R.</author>
+<author>Lasche, G. P.</author>
+<affiliation>AA(Florida, University, Alachua), AB(Florida, University, Alachua), AC(Florida, University, Alachua), AD(Florida, University, Gainesville), AE(NASA, Goddard Space Flight Center, Greenbelt, MD), AF(NASA, Goddard Space Flight Center, Greenbelt, MD; Catholic University of America, Washington, DC)</affiliation>
+<journal>Astrophysical Journal, Part 2 - Letters (ISSN 0004-637X), vol. 342, July 15, 1989, p. L71-L73.</journal>
+<volume>342</volume>
+<pubdate>Jul 1989</pubdate>
+<page>L71</page>
+<lastpage>L73</lastpage>
+<keywords type="NASA/STI">
+<keyword>GAMMA RAY ASTRONOMY</keyword>
+<keyword>SUPERNOVA 1987A</keyword>
+<keyword>ANTARCTIC REGIONS</keyword>
+<keyword>ASTRONOMICAL SPECTROSCOPY</keyword>
+<keyword>SPECTRAL EMISSION</keyword>
+</keywords>
+<origin>STI</origin>
+<link type="ABSTRACT">
+  <name>Abstract</name>
+  <url>http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=1989ApJ...342L..71R&#38;link_type=ABSTRACT</url>
+</link>
+<link type="GIF">
+  <name>Scanned Article (GIF)</name>
+  <url>http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=1989ApJ...342L..71R&#38;link_type=GIF</url>
+</link>
+<link type="REFERENCES">
+  <name>References in the Article</name>
+  <url>http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=1989ApJ...342L..71R&#38;link_type=REFERENCES</url>
+</link>
+<link type="CITATIONS">
+  <name>Citations to the Article</name>
+  <url>http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=1989ApJ...342L..71R&#38;link_type=CITATIONS</url>
+</link>
+<link type="REFCIT">
+  <name>Refereed Citations to the Article</name>
+  <url>http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=1989ApJ...342L..71R&#38;link_type=REFCIT</url>
+</link>
+<link type="SIMBAD">
+  <name>SIMBAD Objects</name>
+  <url>http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=1989ApJ...342L..71R&#38;link_type=SIMBAD</url>
+</link>
+<link type="NED">
+  <name>NED Objects</name>
+  <url>http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=1989ApJ...342L..71R&#38;link_type=NED</url>
+</link>
+<link type="AR">
+  <name>Also-Read Articles</name>
+  <url>http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=1989ApJ...342L..71R&#38;link_type=AR</url>
+</link>
+<url>http://adsabs.harvard.edu/abs/1989ApJ...342L..71R</url>
+<score>1.000</score>
+<citations>26</citations>
+<abstract>Gamma-ray lines from the direction of supernova 1987A have been observed
+with a Ge detector flown on a high-altitude balloon platform over
+Antarctica in January 1988. Gamma rays at 844.1 + or - 1.0 and 1239.9 +
+or - 1.5 keV, with fluxes 0.0023 + or - 0.002 and 0.0021 + or - 0.001
+photons/sq cm sec, respectively, are attributed to the radioactive decay
+of Co-56. Errors quoted do not include possible systematic effects.</abstract>
+<DOI>10.1086/185487</DOI>
+</record>
+
+</records>

@@ -9,6 +9,8 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 	
 	def searchableService
 	
+	static final int TOTAL_NUMBER = 12
+	
 	protected void setUp() {
 		super.setUp()
 		sr = null;
@@ -60,7 +62,7 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 	
 	/** test for general search - make sure something is working */
 	void testSearchingForResources() {
-		assertEquals(11,Resource.list().size());
+		assertEquals(TOTAL_NUMBER,Resource.list().size());
 			
 		search("Ultraviolet"); // 95
 		assertEquals(1,sr.total);
@@ -151,7 +153,7 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 	
 	void testDesciption() {
 		search("description:*")
-		expect(10)
+		expect(TOTAL_NUMBER-1)
 		
 		// lets find the one lacking a description
 		search("NOT (description:*)") // should have thought this would work, but it doesn't.
@@ -234,7 +236,7 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 		
 		// test searching for an ivo-id
 		search("publisher://wfau.roe.ac.uk")
-		expect(1)
+		expect(2)
 		
 		// test searching for a name
 		search("publisher:CDS")
@@ -273,18 +275,18 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 	
 	void testCreated() {
 		search("created:*")
-		expect(11) // created is mandatory.
+		expect(TOTAL_NUMBER) // created is mandatory.
 		
 		search("created:[2008-1-1 TO 2008-12-30]")
-		expect(6)
+		expect(7)
 		
 		search("created:[2006-1-1 TO now]")
-		expect(8)		
+		expect(9)		
 	}
 	
 	void testModified() {
 		search("modified:*")
-		expect(11)
+		expect(TOTAL_NUMBER)
 		
 		search("modified:[2008-1-1 TO 2008-12-30]")
 		expect(6)

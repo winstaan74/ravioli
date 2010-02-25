@@ -74,6 +74,9 @@ class LabelTagLib {
 			if (attr.id) {
 				out << " id='" << attr.id << "'"
 			}
+			if (attr.class) {
+				out << " class='" << attr.class << "'"
+			}
 			out << ">" << name << "</a>"
 		}
 	}

@@ -171,32 +171,32 @@
         YAHOO.util.Event.purgeElement("dt-dlg-picker", true);
         YAHOO.util.Dom.get("dt-dlg-picker").innerHTML = "";
     }, this, true);
-	
-	/** context menu */
-        var onContextMenuClick = function(p_sType, p_aArgs, p_myDataTable) {
-            var task = p_aArgs[1];
-            if(task) {
-                // Extract which TR element triggered the context menu
-                var elRow = this.contextEventTarget;
-                elRow = p_myDataTable.getTrEl(elRow);
-
-                if(elRow) {
-                    switch(task.index) {
-                        case 0:     //open in new window
-                        	var oRecord = p_myDataTable.getRecord(elRow)
-                        	var url = mkOpenResourceUrl(oRecord.getData('id'))
-                        	window.open(url)
-                    }
-                }
-            }
-        };
-
-        var myContextMenu = new YAHOO.widget.ContextMenu("mycontextmenu",
-                {trigger:GRAILSUI.resources.getTbodyEl()});
-        myContextMenu.addItem("Show resource in new window");
-        // Render the ContextMenu instance to the parent container of the DataTable
-        myContextMenu.render("resourcesParent");
-        myContextMenu.clickEvent.subscribe(onContextMenuClick, GRAILSUI.resources);
+//	NOt wanted - as interferes with right-clicking on url links.
+//	/** context menu */
+//        var onContextMenuClick = function(p_sType, p_aArgs, p_myDataTable) {
+//            var task = p_aArgs[1];
+//            if(task) {
+//                // Extract which TR element triggered the context menu
+//                var elRow = this.contextEventTarget;
+//                elRow = p_myDataTable.getTrEl(elRow);
+//
+//                if(elRow) {
+//                    switch(task.index) {
+//                        case 0:     //open in new window
+//                        	var oRecord = p_myDataTable.getRecord(elRow)
+//                        	var url = mkOpenResourceUrl(oRecord.getData('id'))
+//                        	window.open(url)
+//                    }
+//                }
+//            }
+//        };
+//
+//        var myContextMenu = new YAHOO.widget.ContextMenu("mycontextmenu",
+//                {trigger:GRAILSUI.resources.getTbodyEl()});
+//        myContextMenu.addItem("Show resource in new window");
+//        // Render the ContextMenu instance to the parent container of the DataTable
+//        myContextMenu.render("resourcesParent");
+//        myContextMenu.clickEvent.subscribe(onContextMenuClick, GRAILSUI.resources);
 
    }); // end container.
 

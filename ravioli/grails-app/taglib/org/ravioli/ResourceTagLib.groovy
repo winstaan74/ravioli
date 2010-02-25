@@ -46,7 +46,7 @@ class ResourceTagLib {
 		descr.eachLine{
 			out << '<p>' << it << '</p>'
 		}
-		out << l.condLink(name:'Further&nbsp;Information...') {content.referenceURL.text()}
+		out << l.condLink(class:'icon icon_world_link main',name:'Further&nbsp;Information...') {content.referenceURL.text()}
 		out << '</div>'
 	}
 
@@ -63,7 +63,36 @@ class ResourceTagLib {
 		if (s?.startsWith('http://')) { // tackle a common mis-use of the field first.
 			out << '<a href="' << s << '">' << s << "</a>"
 		} else if (xml.content.source.'@format'?.text()?.equalsIgnoreCase('bibcode') || looksLikeBibcode(s)) {
-			out << '<a href="' << BIBCODE_URL << s << '">' << s << "</a>"
+			//out << '<a href="' << BIBCODE_URL << s << '">' << s << "</a>"
+		//@todo ugh, and repeated from vosi. factor out some of the embedded html - separate method, or a template.
+			def md5 = s.encodeAsMD5()
+//			out << g.javascript {"""
+//				function update(e) {
+//					var resp = e.responseJSON
+//					var title= resp.title
+//					alert(title)
+//				}
+//			"""
+//				}
+//			out << g.remoteLink(controller:'ads', class:'main', params:[bib:s]
+//			       ,onLoading:"YAHOO.util.Dom.get('${md5}-spinner').style.display='inline';"
+//			       ,onComplete:"YAHOO.util.Dom.get('${md5}-spinner').style.display='none';"
+//					,onSuccess:'alert(o)' // need to parse this into JSON oursevles - rats.
+//			       ,update:[failure:md5] 
+//			       , method:'get'                                                 
+//				   ){s}
+//			def imgLink = g.createLinkTo(dir:'/images',file:'spinner.gif')
+//			out << "<img id='${md5}-spinner' style='display: none' src='${imgLink}' />"
+//			out << "&nbsp;<span id='${md5}' class='bibcode_update'/>"
+			out << g.remoteLink(controller:'ads', class:'main', params:[bib:s]
+					,onLoading:"YAHOO.util.Dom.get('${md5}-spinner').style.display='inline';"
+					,onComplete:"YAHOO.util.Dom.get('${md5}-spinner').style.display='none';"
+					,update:[success:md5,failure:md5] 
+					, method:'get'                                                 
+					){s}
+			def imgLink = g.createLinkTo(dir:'/images',file:'spinner.gif')
+			out << "<img id='${md5}-spinner' style='display: none' src='${imgLink}' />"
+			out << "&nbsp;<span id='${md5}' class='bibcode_update'/>"
 		} else {
 			out << s
 		}
@@ -133,7 +162,7 @@ class ResourceTagLib {
 	 * @todo other column types: snippet of description, snippet of where query matches?
 	 */
 	def resourceTable = {attrs ->
-		def tableOptions = '''<a id="dt-options-link" class="dt-options-link" href="#" >Table Options</a>'''
+		def tableOptions = '''<a id="dt-options-link" class="dt-options-link main" href="#" >Table Options</a>'''
 		// add in any default configuration..
 		def columns = Resource.TABLE_COLUMNS.collect {
 			it + [resizeable:true, sortable:true]
@@ -150,7 +179,8 @@ class ResourceTagLib {
 		}
 		out << gui.dataTable(
 				id:'resources'
-				,sortedBy:'_ivorn'
+				,sortedBy:'date'
+				,sortOrder:'desc'
 				,rowsPerPage:30 // later grab this value from user's prefs
 				,columnDefs:columns
 				,rowExpansion:true

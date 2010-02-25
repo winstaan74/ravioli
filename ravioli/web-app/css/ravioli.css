@@ -1,18 +1,32 @@
+/*
+#E6EEEF - faint green, background blocks
+#D6E0E1 - second, darker background
+#347879 - bold hilite backgrounds,titles.
+black - text.
+#054345 - a
+#660000 - a:hover
 
+
+*/
 .spinner {
     padding: 5px;
     position: absolute;
     right: 0;
 }
 
-
-
-a:link, a:visited, a:hover {
-    color: #666;
-    font-weight: bold;
-  /*  text-decoration: none;*/
+a:link, a:visited {
+    color: #054345;
+  /*  font-weight: bold;
+    text-decoration: none;*/
 }
-
+a:hover {
+    color: #660000;
+  /*  font-weight: bold;
+    text-decoration: none;*/
+}
+a.main {
+	font-weight:bold
+	}
   a.res { 
   	color: #2584a7; 
   }
@@ -24,6 +38,7 @@ a:link, a:visited, a:hover {
 .resourceDetail {
 	margin: 0px;
 	padding:5px;
+	max-width:800px; /** magic that stops it bleading too far */
 	}
 
 .resourceDetail h1 {
@@ -32,20 +47,19 @@ a:link, a:visited, a:hover {
 	margin-bottom:5px;
 }
 
-.resourceDetail .content {
+.resourceDetail h1, .resourceDetail h2, .resourceDetail h3{
+	color:#347879;
+	}
+
+.resourceDetail .content , .resourceDetail .capability{
 	padding:5px;
-	background:#EEEEEE;
+	background:#E6EEEF;
+	border: 1px solid gray;
+	margin-bottom: 5px;
 	}
 
 .resourceDetail .content p {
 	margin-bottom: 3px;
-	}
-	
-.resourceDetail .capability {
-	padding:5px;
-	/*border:1px solid #666633; */
-	margin-top:5px;
-		background:#EEEEEE;
 	}
 
 .cap-title {
@@ -57,9 +71,10 @@ a:link, a:visited, a:hover {
 	  margin-top: 5px;
 	}
 
+
 /** labels and fields */
 .label { 
-	color: #666633; 
+	color: #347879;
 	font-style: normal;
 	white-space: nowrap;
 	}
@@ -78,6 +93,75 @@ a:link, a:visited, a:hover {
 	font-style: italic;
 	display:inline;
 }
+
+.resourceDetail .helplink {
+/*	text-decoration:underline;*/
+	border-bottom: 1px dashed;
+	}
+	
+/** stuff for search forms */
+.search fieldset{
+	border-top: 1px solid grey; 
+	border-left: 1px solid grey;
+	/*padding: 5px*/;
+	padding-left:5px;
+	margin-left:5px;
+	margin-right:5px;
+	}
+.search legend {
+	color:gray;
+	font-style: italic;
+	white-space: nowrap;
+	}
+.search input.text { /* can be more specific - input.RA - but make them all small for now */ 
+	width:100px;
+}
+
+.search .formfield {
+	padding:5px;
+	display:block;
+	white-space:nowrap;
+	}
+.search .formfield label {
+	float:left;
+	display:block;
+	margin-right:5px;
+	width:50px;
+	text-align:right;
+}
+/* display ra and dec on the sameline 
+.cone span.RA, .cone span.DEC {
+	display:inline;
+	}*/
+	
+/* two columns for a capability */
+.capability .left{
+	float:left;
+	width: 250px;
+	padding:1px
+}
+
+.capability .right {
+	margin-left: 260px;
+/*	border-left:1px solid grey;
+	padding:1px;*/
+	}
+/
+/*
+form.search {
+	float:right;
+	width:160px;
+	}
+	
+.capability {
+	margin-right: 180px;
+}*/
+
+
+	
+
+
+
 
 /* MESSAGES AND ERRORS */
 
@@ -130,3 +214,5 @@ div#top-menu .admin {
 	top : 0px;
 	left: 250px;
 	}
+	
+

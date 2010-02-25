@@ -28,11 +28,11 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 		controller.params.max=200 // spurious input.
 		def model = controller.tableDataAsJSON()
 
-		assertEquals 'text/json', controller.renderArgs.contentType
+		contentType 'text/json'
 		
 		// bug on mailing list about this - can't inspect json output in unit test - repeat as an integration test
 		// but leave this unit test in place - at least it's exercising the code.
-		def resp1 =  controller.response.contentAsString
+		def resp1 =  resp()
 	
 	}
 	
@@ -52,11 +52,11 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 		}
 		def model = controller.tableDataAsJSON()
 		
-		assertEquals 'text/json', controller.renderArgs.contentType
+		contentType 'text/json'
 		
 		// bug on mailing list about this - can't inspect json output in unit test - repeat as an integration test
 		// but leave this unit test in place - at least it's exercising the code.
-		def resp1 =  controller.response.contentAsString
+		def resp1 =  resp()
 		
 	}
 	
@@ -71,7 +71,7 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 		
 		def model = controller.inlineResource()
 		assertEquals r1, model.r
-		assertEquals 'resourceDetail', controller.renderArgs['template']
+		template 'resourceDetail'
 	}
 	
 	void testInlineResourceUnknown() {
@@ -84,7 +84,7 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 		controller.params.id= 42
 		
 		def model = controller.inlineResource()
-		assertEquals 404, controller.renderArgs['status']
+		status 404
 	}
 	
 	void testResource() {
@@ -110,7 +110,7 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 		controller.params.id= 42
 		
 		def model = controller.resource()
-		assertEquals 404, controller.renderArgs['status']
+		status 404
 	}
 	
 	void testResourceIvorn() {
@@ -136,7 +136,7 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 		controller.params.ivorn= 'ivo://missing'
 		
 		def model = controller.resource()
-		assertEquals 404, controller.renderArgs['status']
+		status 404
 	}
 	
 }

@@ -87,6 +87,8 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 		hasLink 'HTTP Web Service - Base URL'
 		fieldContains 'querytype','GET'
 		fieldContains 'resulttype','application/xml+votable'
+		
+		lacks 'Other Capabilities'
 	}
 
 	
@@ -103,31 +105,34 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 		acc 'wsa, glimpse_mca_inter: cone search'
 		fieldContains 'maximumsearchradius','1.5'
 		fieldContains 'maximumresultsreturned','2000000'
-		fieldContains 'verboseparameter','false'
 		
 		// we've got multiple cone capabilities - problem?
 		
 		
-		acc 'VOSI Availability'
+		acc 'Check service availability'
 		
-		//@todo test for omission of ugly unuseful capabilties - e.g. vosi tables.
+		acc 'Catalog cone search service'
+		
 		
 		acc 'relationships'
 		fieldContains 'service-for', 'ivo://wfau.roe.ac.uk' 
 		
 		
-		// test for cea
+		acc 'Other Capabilities' // the thing that hides the unintesting bot
+		
+		// however, the uninteresting bit still seewms to be visible to the test
+		// to continue test below.
+//		// test for cea
 		acc 'Remote application (CEA) service'
 		acc 'Access to two applications' /// useless descrption
 		def ivo = 'ivo://wfau.roe.ac.uk/glimpse-dsa/wsa/ceaApplication' 
 		fieldContains 'providestasks',ivo
-			//want to check for presence of link here, but not easy too - as already have identical link
-		// in relationships will fail at the moment.
-		// try this - hack into the page, and check we've got 2 links with the above url.
+//			//want to check for presence of link here, but not easy too - as already have identical link
+
+//		// try this - hack into the page, and check we've got 2 links with the above url.
 		assertEquals 2, page.anchors.findAll{ it.asText() == ivo}.size()
-		
-		// test interface - will expect this to change later.
-		hasLink 'HTTP Web Service - Base URL'
+//		
+//		// test interface - will expect this to change later.
 		hasLink 'HTTP Web Service - Full URL'
 		fieldContains 'querytype','GET'
 		fieldContains 'resulttype','application/xml'

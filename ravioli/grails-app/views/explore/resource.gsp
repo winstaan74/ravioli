@@ -3,8 +3,9 @@
 <title>
 ${r.titleField }
 </title>
+ 	<gui:resources components="tooltip, expandablePanel"/>
 </head>
-<body>
+<body class="yui-skin-sam">
 	<g:render template="resourceDetail" />
 </body>
 </html>

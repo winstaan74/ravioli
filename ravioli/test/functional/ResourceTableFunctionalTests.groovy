@@ -16,7 +16,9 @@ class ResourceTableFunctionalTests extends functionaltestplugin.FunctionalTestCa
 		acc 'Login'
 		acc 'Register'	
     }
-
+	
+	//@write a test that requiests the JSON table update code.
+	
 //@todo test the ajax functionality. - columns dialogue, sorting, pagination, resource expansion
 //
 //	

@@ -27,7 +27,7 @@ class ResourceControllerFunctionalTests  extends functionaltestplugin.Functional
 		assertStatus 200
     }
 	
-	
+	//fails.	
 	void testResourceSearchPage() {
 		acc 'Resources'
 		click 'Resources'
@@ -44,7 +44,7 @@ class ResourceControllerFunctionalTests  extends functionaltestplugin.Functional
 		acc 'ASCA Proposals'
 		click 'ASCA Proposals'
 		assertStatus 200
-		acc 'stc:STCResourceProfile'
+		acc 'X-ray'
 		
 		back()
 		form {

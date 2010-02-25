@@ -192,6 +192,13 @@ grails.json.legacy.builder=false
 // the service endpoint of the registry of registries.
 ravioli.rofr.endpoint="http://rofr.ivoa.net/cgi-bin/oai.pl"
 
+ravioli.sesame.endpoint='http://cdsweb.u-strasbg.fr/cgi-bin/nph-sesame/-ox/NSV?'
+
+ravioli.ads.endpoint='http://adsabs.harvard.edu/cgi-bin/nph-bib_query?data_type=XML&bibcode='
+
 //only meaningful in development
 ravioli.stubRegistry.basedir="/Users/noel/tinkering/mock-registry"
+
+// use the yui javascript library, not prototype
+grails.views.javascript.library="yui"
 

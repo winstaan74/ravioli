@@ -2,12 +2,12 @@
  <div id="top-menu">
  	<div class="login">
         	<n:isNotLoggedIn>
-        	<g:link controller="auth" action="login">Login</g:link>
-        	| <g:link controller="account" action="createuser">Register</g:link>
+        	<g:link class='main' controller="auth" action="login">Login</g:link>
+        	| <g:link class='main' controller="account" action="createuser">Register</g:link>
         	</n:isNotLoggedIn>
         	<n:isLoggedIn>
-        	Logged in as <g:link controller="profile"><n:principal/></g:link>
-        	| <g:link controller="auth" action="logout">logout</g:link>
+        	Logged in as <g:link class='main' controller="profile"><n:principal/></g:link>
+        	| <g:link class='main' controller="auth" action="logout">logout</g:link>
         	</n:isLoggedIn>
      </div>
         <n:isAdministrator>

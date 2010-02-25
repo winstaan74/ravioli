@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Sesame xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="http://vizier.u-strasbg.fr/xml/sesame_4.xsd">
+<Target option="NSV">
+  <name>m32</name>
+  <!-- Q600925 #1 -->
+  <Resolver name="N=NED">
+    <INFO>not found</INFO>
+    <otype>G</otype>
+    <jpos>00:42:41.82 +40:51:54.6</jpos>
+    <!-- 
+    <jradeg>010.67425</jradeg>
+    <jdedeg>+40.8651667</jdedeg>
+    -->
+    <refPos>20032MASX.C.......:</refPos>
+    <errRAmas>1250</errRAmas><errDEmas>1250</errDEmas>
+    <Vel><v>-199.96160</v><e>5.99585</e><r>2000UZC...C......0F</r></Vel>
+    <MType>cE2</MType>
+    <oname>MESSIER 032 </oname>
+    <nrefs>785</nrefs>
+  </Resolver>
+</Target>
+</Sesame>

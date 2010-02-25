@@ -17,7 +17,7 @@
 		<g:each var='r' in='${searchResult }'>
 			<div class="searchResource">
 				<div class='resourceLink'>
-				<g:link action='show' id='${r.id}'>${r.title}</g:link>
+				<g:link action='show' id='${r.id}'>${r.titleField}</g:link>
 				</div>
 			</div>
 		</g:each>

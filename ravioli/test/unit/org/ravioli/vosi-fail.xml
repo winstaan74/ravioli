@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+
+<avail:availability
+    xmlns:avail="http://www.ivoa.net/xml/Availability/v0.25"
+    xmlns:vr="http://www.ivoa.net/xml/VOresource/v1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.ivoa.net/xml/VOResource/v1.0    http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd
+        http://www.ivoa.net/xml/Availability/v0.25 http://ag02.ast.cam.ac.uk/HyperHeader/VOSI/Availability.xsd
+    "
+>
+  <avail:available>false</avail:available>
+  <uptime>PT0S</uptime>
+  <validTo nil="true"/>
+  <avail:contact>
+    <vr:name>Unknown</vr:name>
+    <vr:email>Unknown</vr:email>
+  </avail:contact>
+</avail:availability>
