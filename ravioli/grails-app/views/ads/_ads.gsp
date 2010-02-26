@@ -7,20 +7,9 @@ expects 'rec' to contain an GPathElement of an ADS record element.1
  <div class='ads'>
  
  <h3><i>${rec.title }</i></h3>
- <p class='journal'> ${rec.journal }</p>
-
-<p id='${bibcode}-authors' class='authors'>
-${rec.author.list()*.text().join(', ') }
-</p>
-
-  <p>${rec.citations } Citations,
-  <a href='#' onClick="YAHOO.util.Dom.get('${bibcode}-abstract').style.display='block';return false;">(show abstract)</a>,
-  <a href='#' onClick="YAHOO.util.Dom.get('${bibcode}-authors').style.display='block';return false;">(show authors)</a>
-  </p>
-
-<p id='${bibcode}-abstract' class='abstract'>${rec.abstract }</p>
-
- <ul class='links'>
+ <l:field name="Citations" value="${rec.citations }" />
+  
+ <ul>
  <% 
 	def styles = [
 		'GIF': 'icon icon_page_white_camera'
@@ -35,5 +24,13 @@ ${rec.author.list()*.text().join(', ') }
  	<li><a class="${styles[l.'@type'.text()]  }" target="_blank" href="${l.url}">${l.name }</a></li>
  </g:each>
  </ul>
+ 
+<gui:expandablePanel title='more..' expanded='false' bounce='false'>
+<l:field name="Journal" value="${rec.journal }"/>
+<l:field name="Authors" value="${rec.author.list()*.text().join(', ') }"/>
+<p class='abstract'>${rec.abstract }</p>
+</gui:expandablePanel>
+
+
  
  </div>

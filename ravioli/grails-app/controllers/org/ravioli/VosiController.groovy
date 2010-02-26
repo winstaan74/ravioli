@@ -22,7 +22,6 @@ class VosiController {
 				def downAt = vos.downAt?.text()
 				def backAt = vos.backAt?.text()
 				
-				def sb = available
 				// less elegan than using a builder, but means it can be unit tested.
 				render """<span class="${isAvailable?'icon icon_tick':'icon icon_exclamation'}">
 					      ${available}

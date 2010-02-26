@@ -51,7 +51,9 @@
 		  });
 	  }
 	  var str = YAHOO.lang.JSON.stringify(cookieData);
-	  YAHOO.util.Cookie.set(RAVIOLI_COOKIE,str);
+	  YAHOO.util.Cookie.set(RAVIOLI_COOKIE,str, {
+		    expires: new Date("January 28, 2024")
+	  });
   }
   
   

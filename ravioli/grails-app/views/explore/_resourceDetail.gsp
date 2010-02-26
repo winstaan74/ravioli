@@ -99,9 +99,6 @@ This resource describes a Remote&nbsp;Application&nbsp;(CEA)
 	<l:field name="Creator">
 	<g:each var="creator" in="${curation.creator }">
 	 	<r:resourceName xml="${creator.name }"/>
-		<g:if test="${creator.logo }">
-			<img align='right' class='resource-logo'  src="${creator.logo }" />
-		</g:if>
 	</g:each>
 	</l:field>
 	
@@ -185,6 +182,10 @@ This resource describes a Remote&nbsp;Application&nbsp;(CEA)
 	<l:field name="Date" value="${curation.date.text() }" />
 	</div>
 </g:each>
+<%-- finish off the right column with logos. --%>
+	<g:each var="logo" in="${xml.curation.creator.logo }">
+			<img class='resource-logo'  src="${logo }" />
+	</g:each>
 </div><%--end right block --%>
 </div><%-- end container for left and right --%>
 <%-- end resourceDetail --%>

@@ -54,14 +54,13 @@ background-color:#347879;
 #dt-dlg_c .underlay {overflow:hidden;}
 
 .inprogress {position:absolute;} <%-- transitional progressive enhancement state --%>
-<%-- control width of table
+<%-- control width of table --%>
 #dt_div_resources {
-	width:100%;
+	width:800px;
 }
-.yui_dt_hidden {
-	display:none;
-}
- --%>
+#dt_div_resources > table {
+	width:800px;
+	}
 </style>
 </head>
 <body>

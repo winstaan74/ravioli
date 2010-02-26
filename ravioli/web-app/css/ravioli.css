@@ -60,6 +60,8 @@ a.main {
 
 .resourceDetail .content p {
 	margin-bottom: 3px;
+/* due to haphazard nature of text, this doesn't look good
+		text-indent:10px;*/
 	}
 
 .cap-title {
@@ -71,6 +73,15 @@ a.main {
 	  margin-top: 5px;
 	}
 
+/** limit the size of these */
+img.resource-logo {
+	/*	max-height:150px;*/
+		max-width:186px;
+		margin-top:10px;
+		display:block;
+	/*	margin-left:auto;
+		margin-right:auto; centers it*/
+	}
 
 /** labels and fields */
 .label { 
@@ -159,20 +170,21 @@ ul.download li {
 	}
 
 /** bibliographies */
-.ads li{ /* applies to links and authors */
+.ads li{ /* applies to links */
 	display: inline;
 	list-style: none;
 	padding-right: 10px;
 	}
 
-.ads .abstract {
-		display:none;
-}
-.ads .authors {
-		display:none;
+.ads .field {
+	display:block;
+	margin-bottom: 5px;
 	}
-.ads p {
-		margin-bottom:5px;
+.ads .abstract {
+		text-indent:20px;
+}
+.ads ul {
+		margin-bottom:10px;
 }
 	
 

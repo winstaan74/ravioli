@@ -69,7 +69,7 @@ class CapabilityTagLib {
 		// and now the less interesting.
 		if (partition.boring) {
 			out << '<div style="margin-top:5px;">'
-			out << gui.expandablePanel(title:'Other Capabilities..', expanded:false, bounce:true) {
+			out << gui.expandablePanel(title:'Other Capabilities..', expanded:false, bounce:false) {
 				partition.boring.each { c ->
 					out << body((var):c)
 				}
