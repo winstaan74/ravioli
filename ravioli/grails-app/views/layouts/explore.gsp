@@ -41,7 +41,11 @@
 	<div class="yui-b"><g:render template="/leftMenu"/></div>
 	
 	</div>
-   <div id="ft"><p>Ravioli v<g:meta name="app.version" /></p></div>
+   <div id="ft"><p style='text-align: center; margin-top:50px;'>Ravioli v<g:meta name="app.version" /> 
+      | <a href='hhttp://code.google.com/p/ravioli/wiki/Changes' target='_blank'>Changes</a>
+      | <a href='http://code.google.com/p/ravioli/issues/entry' target='_blank'>Report an issue</a>
+      | <a href="http://code.google.com/p/ravioli/" target='_blank'>Project page</a>
+   </p></div>
 </div>
 </body>
 </html>

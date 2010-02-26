@@ -21,5 +21,6 @@ class UrlMappings {
 		"/ads/${bib}"(controller:'ads')
 		"/sesame/${obj}"(controller:'sesame')
 		
+		
 	}
 }

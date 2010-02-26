@@ -143,27 +143,28 @@ a.main {
 
 .capability .right {
 	margin-left: 260px;
-/*	border-left:1px solid grey;
-	padding:1px;*/
 	}
 
-/*
-form.search {
-	float:right;
-	width:160px;
-	}
-	
-.capability {
-	margin-right: 180px;
-}*/
+/* downloads */
+ul.download {
+	display:inline;
+	margin-left:10px;
+}
 
-/* ads bibliography */
-.ads li { /* applies to links and authors */
+ul.download li {
+	display: inline;
+	list-style: none;
+	padding-right: 10px;
+	white-space:nowrap;
+	}
+
+/** bibliographies */
+.ads li{ /* applies to links and authors */
 	display: inline;
 	list-style: none;
 	padding-right: 10px;
 	}
-	
+
 .ads .abstract {
 		display:none;
 }

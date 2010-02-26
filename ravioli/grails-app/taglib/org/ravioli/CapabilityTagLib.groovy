@@ -50,7 +50,7 @@ class CapabilityTagLib {
 				// also registry - don't think it's very interesting really.
 				return 'interesting'
 				
-				case {it.std =~ /VOSI.*availability/}:
+				case {it.std == "ivo://ivoa.net/std/VOSI#availability"}:
 				return 'secondary'
 				
 				default:
@@ -95,10 +95,11 @@ class CapabilityTagLib {
 			// can't declare inner functions, but can declare the equivalent closure.
 			
 			// format the title
+			//@todo work in tooltip here too.
 			def title =  {args ->
 				switch (args) {
 					case Map:
-					h3(class:"cap-title icon ${args.icon}",args.txt)
+					h3(class:"cap-title icon ${args.icon}",style:args.style,args.txt)
 					break;
 					default:
 					h3(class:'cap-title',args)
@@ -163,8 +164,9 @@ class CapabilityTagLib {
 							}
 						}
 						switch(iface.'@xsi:type') {
-							case ~/.*WebBrowser/: 
-							a(class:'access icon icon_world_link',href:aurl.text(), 'Web Form')
+							case ~/.*WebBrowser/:
+							//previously used icon for a external link - but there's too many of these
+							a(class:'main icon icon_application_form',href:aurl.text(),target:'_blank', 'Web Form')
 							break
 							case ~/.*WebService/:
 							case ~/.*CECInterface/:
@@ -241,8 +243,10 @@ class CapabilityTagLib {
 					break
 					default:
 					//find the interface marked 'std' , and do something special with it.
+					boolean hasStd = l.any {it.'@role' == 'std'} // check if there's an interface marked as 'std'
 					l.each { iface ->
-						if (iface.'@role' == 'std') {
+						if ((hasStd && iface.'@role' == 'std') // we know there's an interface marked std, and this is it.
+						|| iface.'@type' =~ /ParamHTTP/)  { //there's no interface marked std, so we're probably looking for paramHTTP (as this is how cone, siap, etc are modelled)
 							special iface
 						} else {
 							otherInterface iface
@@ -377,7 +381,7 @@ class CapabilityTagLib {
 					title 'Remote application (CEA) service'
 					description()
 					//@todo - not getting a delimiter between items..
-					field 'Provides tasks',cap.managedApplications.collect{ app ->
+					field 'Provides tasks',cap.managedApplications.ApplicationReference.collect{ app ->
 						r.resourceName() { app.text() }
 					}.join('; ')
 					interfaces()
@@ -405,8 +409,50 @@ class CapabilityTagLib {
 					interfaces()
 					break
 					
-					// uninteresting stuff.
-					case {it.std =~ /VOSI.*availability/}:
+					//special rule for CDS download capability.
+					// a capability from cds, unmarked, with a paramhttp interface
+					case {it.std == '' && it.type == '' &&
+						cap.parent().curation.publisher == 'CDS' &&
+						cap.'interface'.'@type'.list().any {it =~ /ParamHTTP/} 
+					}:
+					def url = cap.'interface'.accessURL[0].text()
+					// the urls are in the process of change.
+					// and if they're in a certain form, a portion of it needds to be removed for it to work.
+					if (url.startsWith(URL_NEEDS_MANGLING)) {
+						url = url - '/-dtd/-A'
+					}
+					// next hurdle - is there one, or many tables?
+					if (cap.parent().table.size() > 1) {
+						title (icon:'icon_table_save', style:'display:inline;' ,txt:'Download Tables', tooltip:'Download the data for this resource as VOTables')
+						ul(class:'download') {
+							cap.parent().table.each{t ->
+								mkp.yield ' '
+								li {
+									def tname = t.name.text().tokenize('/').last()
+									a(class:'main',href:url + '/' + tname,tname)
+									if (! t.description.isEmpty()) {
+										mkp.yield ': '
+										mkp.yield t.description.text()
+									}
+								}
+							}
+						}
+					} else { // the easier option.
+						out << gui.toolTip(text:'Download the data for this resource as a VOTable') {
+							"<a href='${url}' target='_blank' class='main icon icon_table_save'>Download Table</a>"
+						}
+					}
+					//@todo add integration with samp apps here - fire straight off too tomcat.
+					break
+					
+					case {it.std == '' && it.type == ''}:
+					//seems best with no title.title 'Generic Capability'
+					description()
+					interfaces()
+					break
+					
+					// not so interesting
+					case {it.std == "ivo://ivoa.net/std/VOSI#availability"}:
 					interfacesWithSpecial { iface ->
 						if (iface.accessURL.size() == 1) {
 							def url = iface.accessURL.text()
@@ -425,6 +471,7 @@ class CapabilityTagLib {
 					}
 					break
 					
+					// uninteresting stuff
 					case {it.std =~ /VOSI/}:
 					title 'VOSI: ' + capType.std
 					description()
@@ -450,12 +497,6 @@ class CapabilityTagLib {
 					field 'Maximum Records', cap.maxRecords
 					field 'Primary Table', cap.primaryTable
 					field 'Primary Key',cap.primaryKey
-					interfaces()
-					break
-					
-					case {it.std == '' && it.type == ''}:
-					//seems best with no title.title 'Generic Capability'
-					description()
 					interfaces()
 					break
 					
@@ -487,6 +528,9 @@ class CapabilityTagLib {
 		def s =  internal.bind { mkp.yield capability}
 		return s.toString()
 	}
+	
+	/** Vizier URL prefix that indicates it needs mangling */
+	private static final String URL_NEEDS_MANGLING = "http://vizier.u-strasbg.fr/viz-bin/votable/-dtd/-A?-source=";
 	
 	
 	
