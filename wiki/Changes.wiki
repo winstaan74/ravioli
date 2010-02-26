@@ -13,6 +13,7 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.3
    * clicking on bibcode field triggers AJAX query to ADS
    * clicking on Availability link triggers an AJAX VOSI availability query.
    * Table download links for CDS resources.
+   * Fixed issue with resource body causing table to judder and resize width-ways. Table is always at least as wide as the resource body, and the resource body has a fixed width
    
 ===Questions===
 	* At the moment, the query of ADS / VOSI availability requires the user to click on the link. Is this appropriate, or is it better to either: always fetch this information, and display it in the resource from the resource (increasing page display time, and load on back-end servers); or fetch this information automatically once the resource had been displayed for a short time (a few seconds) - i.e if the user is lingering over a resource, this suggests that the additional information is worth fetching.
