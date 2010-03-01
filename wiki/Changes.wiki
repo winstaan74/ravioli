@@ -27,6 +27,8 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.4
 ===Issues===
    * The NVO table viewer doesn't work with the Safari browser on OSX. Works fine with firefox. I can't fix this - is there a alternate table viewer we could use?
 
+   * The 'open new tab' link is broken at present.
+
 ===FIxed from 0.3===
    * Fixed the size of table, and inline resource display - should prevent the jerkiness.
 
