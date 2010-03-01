@@ -1,13 +1,15 @@
 #labels Featured
 =List of Changes=
 
-Version at http://astrogrid.roe.ac.uk/ravioli - v0.3
+Version at http://astrogrid.roe.ac.uk/ravioli - v0.4
 
 -----
 
-==version 0.4 unreleased==
+==version 0.4 1st March 2010==
 
 ===New Features==
+   * Search form for Cone, SIAP, SSAP capabilities - by position, and by object name (using sesame)
+      * presents link to votable, and button to display result in NVO's html votable-viewer
    * visual styling improvements - colour scheme and spacing, tooltips
    * collapsing of less interesting resource capabilities.
    * clicking on bibcode field triggers AJAX query to ADS
@@ -22,6 +24,9 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.3
 	
 	* Bibliography integration - comments please - is this what you were thinking of? I don't display the abstract and authors by default, as __often__ they repeat the resource description and authors. However, in some cases they seem to give useful additional information.
 	
+===Issues===
+   * The NVO table viewer doesn't work with the Safari browser on OSX. Works fine with firefox. I can't fix this - is there a alternate table viewer we could use?
+
 ----
 
 ==version 0.3, 23rd Feb 2010==
