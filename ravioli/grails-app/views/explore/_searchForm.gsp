@@ -1,9 +1,7 @@
 <%-- attempt at rendering a search form using GSP rather than builder
 oh well, live and learn --%>
-<form id="${formId}" class="search ${className}" action=''>
-	<%--the access url. --%>
-	<input type="hidden"
-		name="accessurl" value="${iface.accessURL.text()?.trim() }" />
+<sf:form id="${formId}" class="${className}">
+	<sf:accessURL iface="${iface }" }/>
 	<fieldset>
 	<%-- not needed.
 		<legend>Search</legend> 
@@ -57,26 +55,21 @@ oh well, live and learn --%>
 	%>
 <gui:tabView >
     <gui:tab label="Search by Position" active="true">
-		<capability:formField  value="${raVal }" name="RA" id="${raFieldId }"
+		<sf:formField  value="${raVal }" name="RA" id="${raFieldId }"
 			tip="Right Ascension (ICRS decimal degrees)" />
-		<capability:formField  value="${decVal}" name="DEC" id="${decFieldId }"
+		<sf:formField  value="${decVal}" name="DEC" id="${decFieldId }"
 			title='Dec'
 			tip="Declination (ICRS decimal degrees)" />
 	</gui:tab>
 		
     <gui:tab label="Search by Object Name">
-    <span class='formfield'>
-			<gui:toolTip text="Object name">
-				<label for='obj'><span class='helplink'>Name</span></label>
-			</gui:toolTip>
-
-			<g:textField name="obj"/>
+	<sf:formField name='obj' title='Name' tip='Object Name'><%--a formfield with a nested element. --%>
 			<gui:toolTip text="Resolve an object name to position using the Sesame service from CDS">
 			<g:submitToRemote value="Resolve" name="${formId }"
 				url="[controller:'sesame']" method="get"
 				update="[failure:resultsId]"
-				onLoading="YAHOO.util.Dom.get('${spinnerId}').style.visibility='visible';"
-				onComplete="YAHOO.util.Dom.get('${spinnerId}').style.visibility='hidden';"
+				onLoading="${sf.spinnerStart(id:spinnerId)}"
+				onComplete="${sf.spinnerStop(id:spinnerId)}"
 				onSuccess="var pos = YAHOO.lang.JSON.parse(o.responseText);
 					var res = YAHOO.util.Dom.get('${resultsId }');
 					res.innerHTML = 'Resolves to ' + pos.ra + ', ' + pos.dec;
@@ -84,20 +77,18 @@ oh well, live and learn --%>
 					YAHOO.util.Dom.get('${ decFieldId}').value = pos.dec;"
 			/>
 			</gui:toolTip>
-			<span class='formfield'>
+		</sf:formField>
+		<span class='formfield'><%--a dummy formfield, displaying AJAX results --%>
 			<label> 
 			<span style="visibility: hidden;">hidden</span>
-			<img id="${spinnerId }" style='padding-left: 3px; visibility: hidden'
-				src="${g.createLinkTo(dir:'/images',file:'spinner.gif')}"
-				/>
+			<sf:spinner id="${spinnerId }" />
 			</label>
 			<div id="${resultsId }" ></div>
-			</span>
 		</span>
     </gui:tab>
 </gui:tabView>
 
-		 <capability:formField value="${szVal}" name="${szName}"
+		 <sf:formField value="${szVal}" name="${szName}"
 		 	tip="Search Radius"
 		 	title="Radius"
 		 />
@@ -110,18 +101,8 @@ oh well, live and learn --%>
 		</g:if>
 		
 	<%-- buttons and actions --%>
-	<ul>
-		<li><gui:toolTip
-			text='Run the query (right-click to download the query results)'>
-			<a href='#' class='main' target='_blank'
-				onmouseover="this.href = dalQuery('${formId}',${isPosParam});">Get Data</a>
-		</gui:toolTip></li>
-		<li><gui:toolTip
-			text="Run the query and display as HTML in a new browser window">
-			<button type='button'
-				onClick="dalDisplay('${formId}',${isPosParam }); return false;">Show Data</button>
-		</gui:toolTip></li>
-	</ul>
+	<sf:actionButtons formId="${formId }" isPosParam="${isPosParam }"/>
+	
 	</fieldset>
 	<%
 	// test for presence of list of parameters, and if so, check if there's any non-standard ones..
@@ -133,18 +114,8 @@ oh well, live and learn --%>
 		<fieldset>
 			<legend>Additional optional parameters</legend>
 			<g:each var='param' in="${additionalParams }">
-			<% // build a tooltip. pity it seems that we can't html-format the tooltip.
-			def name = param.name
-			StringBuffer descr = new StringBuffer()
-			['description':'','dataType':'Type','unit':'Units','ucd':'UCD'].each{k,v ->
-				def txt = param."${k}".text()?.trim()
-				if (txt) {
-					descr << (v ?:name ) << ': ' << txt << '; '
-				}
-			}
-			%>
-			<capability:formField name="${name }" tip="${descr.toString() }" />
+				<sf:unknownFormField param="${param }" />
 			</g:each>
 		</fieldset>
 	</g:if>
-</form>
+</sf:form>

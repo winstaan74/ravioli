@@ -39,7 +39,7 @@ environments {
 		grails.serverURL = "http://www.changeme.com"
 	}
 	beta {
-		grails.serverURL = 'http://astrogrid.roe.ac.uk:8080/${appName}'
+		grails.serverURL = "http://astrogrid.roe.ac.uk/${appName}"
 	}
 	development {
 		grails.serverURL = "http://localhost:8080/${appName}"

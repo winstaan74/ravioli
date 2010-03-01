@@ -62,16 +62,16 @@ class ResourceTagLib {
 		if (s?.startsWith('http://')) { // tackle a common mis-use of the field first.
 			out << '<a href="' << s << '">' << s << "</a>"
 		} else if (xml.content.source.'@format'?.text()?.equalsIgnoreCase('bibcode') || looksLikeBibcode(s)) {
+			def spinnerId = s + '-spinner'
 			out << gui.toolTip(text:'Click here to retrieve bibliographic information for this resource from ADS') {
 				out << g.remoteLink(controller:'ads', class:'main', params:[bib:s]
-				,onLoading:"YAHOO.util.Dom.get('${s}-spinner').style.display='inline';"
-				,onComplete:"YAHOO.util.Dom.get('${s}-spinner').style.display='none';"
+				,onLoading:"${sf.spinnerStart(id:spinnerId)}"
+				,onComplete:"${sf.spinnerStop(id:spinnerId)}"
 				,update:[success:s,failure:s] 
 				, method:'get'                                                 
 				){s}
 			}
-			def imgLink = g.createLinkTo(dir:'/images',file:'spinner.gif')
-			out << "<img id='${s}-spinner' style='display: none' src='${imgLink}' />"
+			out << sf.spinner(id:spinnerId)
 			out << "&nbsp;<span id='${s}'/>"
 		} else {
 			out << s

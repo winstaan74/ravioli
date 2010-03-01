@@ -50,10 +50,10 @@ class CapabilityTagLib {
 				case {it.std == '' && it.type == ''}:
 				// notable omissions from 'interesting' - vospace, skynode, cea.
 				// can't do anything with these, so not interesting.
-				// also registry - don't think it's very interesting really.
+				// also registry - don't think it's very interesting for mere mortals.
 				return 'interesting'
 				
-				case {it.std == "ivo://ivoa.net/std/VOSI#availability"}:
+				case {it.std =~ "availability"}:
 				return 'secondary'
 				
 				default:
@@ -88,19 +88,6 @@ class CapabilityTagLib {
 		]
 	}
 	
-	/** tag to render a field in a search form */
-	def formField ={attr ->
-		out << "<span class='formfield'>"
-		if (attr.tip) {
-			out << gui.toolTip(text:attr.tip) {
-				out << "<label for='${attr.name}'><span class='helplink'>${attr.title ?: attr.name}</span></label>"
-			}
-		} else {
-			out << "<label for='${attr.name}'>${attr.title ?: attr.name}</label>"
-		}
-		out << g.textField(class:attr.name, *:(attr.subMap(['value','name','id'])))
-		out << "</span>"
-	}
 	
 	
 	/** the main tag - format a capability, given with the 'cap' attribute */
@@ -108,6 +95,7 @@ class CapabilityTagLib {
 		def cap = attr.capability
 		def capType = mkCapMap(cap)
 		Closure formatter = { builder -> // pass in the markup builder, which is useful if we need to disambiguate.
+			
 			// first declare helper closures - within the formatter, so have access to markup 
 			// builder, and to the capability gpath.
 			// can't declare inner functions, but can declare the equivalent closure.
@@ -174,35 +162,25 @@ class CapabilityTagLib {
 							case ~/.*ParamHTTP/:
 							case ~/.*UWS-PA/:
 							case ~/.*OAIHTTP/:
-							a(class:'access icon icon_script_code', href:aurl.text(), 'HTTP Web Service - ' + fmtUse() + 'URL')
-							out << ' '
-							field 'Query Type', iface.queryType
-							field 'Result Type', iface.resultType
+							// we duno what it is, but it describes how to call it..
 							if (iface.param.size() > 0) {
-								br()
-								out << l.label(name:'Parameters')
-								table(class:'parameters'){
-									tr{
-										th('Name')
-										th('Description')
-										th('Type')
-										th('Unit')
-										th('UCD')
-										th('Optional')
-										th('Standard')
+								def formId = iface.accessURL.text().encodeAsMD5()
+								title 'Call this service'
+								out << sf.form(id:formId, class:"arbitrary") {
+									out << sf.accessURL(iface:iface)
+								//	out << "<fieldset><legend>Call this service</legend>"
+									iface.param.each {p ->
+										out << sf.unknownFormField( param:p)
 									}
-									iface.param.each { p ->
-										tr{
-											td(p.name)
-											td(p.description)
-											td(p.dataType + ' ' + p.dataType.'@arraysize')
-											td(p.unit)
-											td(p.ucd)
-											td(p.use == 'optional' ? 'yes':'')
-											td(p.std)
-										}
-									}
+									
+									out << sf.actionButtons(formId:formId, isPosParam:false)
+								//	out << "</fieldset>"
 								}
+							} else { // dunno what it is.
+								a(class:'access icon icon_script_code', href:aurl.text(), 'HTTP Web Service - ' + fmtUse() + 'URL')
+								out << ' '
+								field 'Query Type', iface.queryType
+								field 'Result Type', iface.resultType
 							}
 							break
 							default: // no type, or unrecognized type.
@@ -265,15 +243,6 @@ class CapabilityTagLib {
 				out << g.render (template:'searchForm', model:m)
 			}
 			
-			// AJAX utilities.
-			/*
-			 * render a spinner div, 
-			 * @param id to use for the div
-			 */
-			def spinner = {divid ->
-				img(id:divid,style:'padding-left:3px; display: none',src:g.createLinkTo(dir:'/images',file:'spinner.gif'))		
-				
-			}
 			
 			// now start the formatting.
 			div(class:'capability') {
@@ -347,12 +316,12 @@ class CapabilityTagLib {
 					
 					case {it.std ==  "ivo://org.astrogrid/std/STAP/v1.0"}:
 					case {it.type =~ /SimpleTimeAccess/}:
-						title(icon:'icon_time', txt:'Time range access service (STAP)')
-						description()
-						field 'Maximum results returned', cap.maxRecords
-						field 'Supports positioning', cap.supportPositioning
-						listField 'Formats', cap.supportedFormats
-						interfaces()
+					title(icon:'icon_time', txt:'Time range access service (STAP)')
+					description()
+					field 'Maximum results returned', cap.maxRecords
+					field 'Supports positioning', cap.supportPositioning
+					listField 'Formats', cap.supportedFormats
+					interfaces()
 					break
 					
 					// marginally useful.
@@ -431,19 +400,20 @@ class CapabilityTagLib {
 					break
 					
 					// not so interesting
-					case {it.std == "ivo://ivoa.net/std/VOSI#availability"}:
+					case {it.std =~ "availability"}: // matches ivo standard, and legacy AG one (which seems to be more common at the moment)
 					interfacesWithSpecial { iface ->
 						if (iface.accessURL.size() == 1) {
 							def url = iface.accessURL.text()
 							def md5 = url.encodeAsMD5()
+							def spinnerId = md5 + "-spinner"
 							out << gui.toolTip(text:'Click here to check whether the service is currently running') {
 								out << g.remoteLink(controller:'vosi', class:'main'
 								, params:[u:url], update:md5, method:'get'
-								,onLoading:"YAHOO.util.Dom.get('${md5}-spinner').style.display='inline';"
-								,onComplete:"YAHOO.util.Dom.get('${md5}-spinner').style.display='none';"
+								,onLoading:"${sf.spinnerStart(id:spinnerId)}"
+								,onComplete:"${sf.spinnerStop(id:spinnerId)}"
 								){'Check service availability'}
 							}
-							spinner("${md5}-spinner")
+							out << sf.spinner(id:spinnerId)
 							span(id:md5,class:'vosi_update')
 						}
 					}

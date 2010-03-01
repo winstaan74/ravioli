@@ -55,9 +55,10 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 		// interfaces.
 		hasLink 'Web Form'
 		
-		hasLink 'HTTP Web Service - Base URL'
-		fieldContains 'querytype','GET'
-		fieldContains 'resulttype','text/xml+votable'
+		// check that the other resource is getting recognized as something special.
+		hasLink 'Download Table'
+		
+		lacks 'HTTP Web Service - Base URL'
 		
 		//@todo add table metadata diusplay, somehow.
 	}
@@ -83,18 +84,18 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 		
 		fieldContains 'wavebands', 'Infrared'
 		
-		// test interface - will expect this to change later.
-		hasLink 'HTTP Web Service - Base URL'
-		fieldContains 'querytype','GET'
-		fieldContains 'resulttype','application/xml+votable'
+		// check we're seeing a siap service
+		acc 'Search by Position'
+		acc 'Search by Object Name'
+		hasLink 'Get Data'
 		
 		lacks 'Other Capabilities'
 	}
-
+	
 	
 	/** test a cone search service, and multiple capabilities, and cea service, and vosi.
 	 * resource number 45
-*/
+	 */
 	void testGlimpse() {
 		def r = displayResource( 'ivo://wfau.roe.ac.uk/glimpse-dsa/wsa')
 		furtherInformation()
@@ -122,25 +123,24 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 		
 		// however, the uninteresting bit still seewms to be visible to the test
 		// to continue test below.
-//		// test for cea
+		//		// test for cea
 		acc 'Remote application (CEA) service'
 		acc 'Access to two applications' /// useless descrption
 		def ivo = 'ivo://wfau.roe.ac.uk/glimpse-dsa/wsa/ceaApplication' 
 		fieldContains 'providestasks',ivo
-//			//want to check for presence of link here, but not easy too - as already have identical link
-
-//		// try this - hack into the page, and check we've got 2 links with the above url.
+		//			//want to check for presence of link here, but not easy too - as already have identical link
+		
+		//		// try this - hack into the page, and check we've got 2 links with the above url.
 		assertEquals 2, page.anchors.findAll{ it.asText() == ivo}.size()
-//		
-//		// test interface - will expect this to change later.
-		hasLink 'HTTP Web Service - Full URL'
-		fieldContains 'querytype','GET'
-		fieldContains 'resulttype','application/xml'
+		//		
+		// check we're seeing a siap service
+		acc 'Search by Position'
+		acc 'Search by Object Name'
+		hasLink 'Get Data'
+		
 		hasLink 'SOAP Web Service' // cea
 		
 		
-		
-
 	}
 	
 	/** rtesource number 5 */
@@ -160,7 +160,7 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 		hasLink 'NASA/GSFC HEASARC'
 		fieldContains 'contact', 'Michael Preciado'
 		fieldContains 'wavebands', 'X-ray'
-
+		
 		acc 'Relationships'
 		fieldContains 'service-for','NASA'
 		hasLink 'NASA/GSFC Exploration of the Universe Division'
@@ -190,7 +190,7 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 		fieldContains 'level','Research'
 		// crappy registry - not my problem.
 		//lacks 'mirror-of' // as there's no resource info..
-
+		
 		fieldContains 'managesauthorities', 'nvo.caltech'
 		
 		acc 'Registry Harvest'
@@ -198,10 +198,10 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 		hasLink 'HTTP Web Service - URL'
 		
 		acc 'Registry Search'
-
+		
 		fieldContains 'extensionsearchsupport', 'full'
 		fieldContains 'additionalprotocols', 'XQuery'
-
+		
 	}
 	
 	/** a publisching authority, 
@@ -228,6 +228,6 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 		
 		WebAssert.assertTextPresentInElement page, 'Remote Application', 'cea-application'
 		fieldContains 'interfaces','pipeline'
-		}
-	 
+	}
+	
 }
