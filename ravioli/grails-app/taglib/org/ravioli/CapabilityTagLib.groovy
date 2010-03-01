@@ -6,8 +6,11 @@ import groovy.util.slurpersupport.GPathResult;
 /** handles the formatting and interactivity assoicated with the capability parts of 
  * a resource.
  * 
- * @todo implement our own 'each' looping construct, which 
- * filters out uninteresting capabilities, and sorts and groups the rest.
+ * Seemed simplest, and more efficient, to have procedural-style code here - 
+ * the nice groovy switch statement helps. It's still a monster class however.
+ * 
+ * Here be dragons! enjoy.  I might be available for consultancy work - noelwinstanley@googlemail.com 
+ * 
  */
 class CapabilityTagLib {
 	static namespace = "capability"
@@ -21,9 +24,9 @@ class CapabilityTagLib {
 		return txt as Float != 0
 	}
 	
-	/** iterator that sorts capabilities into two classes, 
-	 * interesting and unintersting. Formats the interesting ones first,
-	 * followed by the uninteresting, ina collapsible frame.
+	/** iterator that sorts capabilities into three classes, 
+	 * interesting, secondary and unintersting. Formats the interesting ones first,
+	 * followed by thesecondary, and then the uninteresting, ina collapsible frame.
 	 * 
 	 * 
 	 */
@@ -85,7 +88,7 @@ class CapabilityTagLib {
 		]
 	}
 	
-	// supporting tags.
+	/** tag to render a field in a search form */
 	def formField ={attr ->
 		out << "<span class='formfield'>"
 		if (attr.tip) {
@@ -99,10 +102,6 @@ class CapabilityTagLib {
 		out << "</span>"
 	}
 	
-	// inner of form field.,
-	def formLabel = {attr ->
-		
-	}
 	
 	/** the main tag - format a capability, given with the 'cap' attribute */
 	def format = { attr ->

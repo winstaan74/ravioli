@@ -1,6 +1,13 @@
 <%--create an xml slurper to work with. --%>
 <g:set var='xml' value="${r.rxml.createSlurper() }" scope='page' />
 <div class="resourceDetail" id='resourceDetail'>
+<g:if test="${webRequest.actionName == 'inlineResource' }"><%--only display in inlineResource within table. --%>
+	<div style='float:right;'>
+	<gui:toolTip text='Open a new tab to display this resource'>
+		<g:link class='icon icon_tab_go' target='_blank' action='resource' controller='explore' id="${r.id }" absolute='true'>Open in new tab</g:link>
+	</gui:toolTip>
+	</div>
+</g:if>
 <h1>${r.titleField}</h1><%--TODO: add capability icons --%>
 
 <l:field name="IVOA-ID" value="${r.ivorn }" />

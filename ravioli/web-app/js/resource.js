@@ -4,13 +4,24 @@
  * @param reference to the form, 
  * containing all the expected fields
  */
-function dalQuery(formId) {
-	return buildQueryUrl(formId)
+function dalQuery(formId, isPosParam) {
+	return buildQueryUrl(formId, isPosParam)
 }
 
+/** perform a dal query, display in table-based viewer
+ * @param referenc to the form, containing all the expected fields
+ * @return
+ */
+function dalDisplay(formId, isPosParam) {
+	var qurl = buildQueryUrl(formId, isPosParam)
+	// now encode while thing, as put as a param at end of nvo table viewer
+	var furl = 'http://heasarc.gsfc.nasa.gov/vo/squery//query.sh?viewURL=' + encodeURIComponent(qurl)
+	window.open(furl)
+
+}
 
 /** build up the query url*/
-function buildQueryUrl(formId) {
+function buildQueryUrl(formId, isPosParam) {
 	var f = YAHOO.util.Dom.get(formId)
 	var inputs = f.getElementsByTagName('input')
 	// build up a values object, for easier work..
@@ -29,6 +40,11 @@ function buildQueryUrl(formId) {
 			}
 		} 
 	}
+	if (isPosParam) { // alter map, concat ra and dec together into a 'pos' param
+		fields.POS = fields.RA + "," + fields.DEC
+		delete fields.RA
+		delete fields.DEC
+	}
 	var qurl = accessurl
 	var first = true
 	for (var key in fields) {
@@ -42,16 +58,4 @@ function buildQueryUrl(formId) {
 	
 	return qurl
 	
-}
-
-/** perform a dal query, display in table-based viewer
- * @param referenc to the form, containing all the expected fields
- * @return
- */
-function dalDisplay(formId) {
-	var qurl = buildQueryUrl(formId)
-	// now encode while thing, as put as a param at end of nvo table viewer
-	var furl = 'http://heasarc.gsfc.nasa.gov/vo/squery//query.sh?viewURL=' + encodeURIComponent(qurl)
-	window.open(furl)
-
 }
