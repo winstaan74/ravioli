@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>Registry Resources</title>
- 	<gui:resources components="dataTable, dialog, menu, tooltip, expandablePanel"/>
+ 	<gui:resources components="dataTable, dialog, tooltip, expandablePanel, tabView" />
 	<yui:javascript dir="cookie" file="cookie-min.js" />
 	<yui:javascript dir="json" file="json-min.js" />
 
@@ -66,7 +66,7 @@ background-color:#347879;
 <body>
 	<%-- search form --%>
 	<input type="text" id="sb" value="">
-	<button id="filterButton">Search</button>
+	<button type='button' id="filterButton">Search</button>
 
 <div id='resourcesParent'>
 	<r:resourceTable />
@@ -94,5 +94,6 @@ seems to work best here.
  }
 </g:javascript>
 	<g:javascript src='resourceTable.js'/>
+	<g:javascript src='resource.js' />
 </body>
 </html>

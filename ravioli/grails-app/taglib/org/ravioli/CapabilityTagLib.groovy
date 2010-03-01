@@ -85,6 +85,25 @@ class CapabilityTagLib {
 		]
 	}
 	
+	// supporting tags.
+	def formField ={attr ->
+		out << "<span class='formfield'>"
+		if (attr.tip) {
+			out << gui.toolTip(text:attr.tip) {
+				out << "<label for='${attr.name}'><span class='helplink'>${attr.title ?: attr.name}</span></label>"
+			}
+		} else {
+			out << "<label for='${attr.name}'>${attr.title ?: attr.name}</label>"
+		}
+		out << g.textField(class:attr.name, *:(attr.subMap(['value','name','id'])))
+		out << "</span>"
+	}
+	
+	// inner of form field.,
+	def formLabel = {attr ->
+		
+	}
+	
 	/** the main tag - format a capability, given with the 'cap' attribute */
 	def format = { attr ->
 		def cap = attr.capability
@@ -99,7 +118,11 @@ class CapabilityTagLib {
 			def title =  {args ->
 				switch (args) {
 					case Map:
-					h3(class:"cap-title icon ${args.icon}",style:args.style,args.txt)
+					def icon = args.icon
+					def txt = args.txt
+					args.remove 'icon'
+					args.remove 'txt'
+					h3(class:"cap-title icon ${icon}",*:args,txt)
 					break;
 					default:
 					h3(class:'cap-title',args)
@@ -112,34 +135,6 @@ class CapabilityTagLib {
 				if (cap.description?.text()) {
 					p(cap.description.text())
 				}
-			}
-			/** make a formtatted label for an input field
-			 * @param name: - required. - used to desscribe which input field this is 'for'
-			 * @param txt: - optional display text to use. if not presenrt, uses txt
-			 * @param description: optional - further description, shown in popup.
-			 */
-			def formLabel =  {p ->
-				if (p.description) {
-					mkp.yieldUnescaped gui.toolTip(text:p.description) {
-						out << "<label class='label' for='" << p.name << "'><span class='helplink'>" << (p.txt ?: p.name) << "</span></label>"
-					}
-				} else {
-					label(class:'label','for':p.name,p.txt ?: p.name)
-				}
-			}
-			
-			/** make a formtatted label and text input field
-			 * @param name: - required. - used to desscribe which input field this is 'for'
-			 * @param txt: - optional display text to use. if not presenrt, uses txt
-			 * @param description: optional - further description, shown in popup.
-			 * @param value: (optional) initial value for the form element.
-			 */
-			def formField = { p->
-				span(class:"formfield ${p.name}") {
-					formLabel(p)
-					mkp.yieldUnescaped g.textField(name:p.name,value:p.value,class:"text ${p.name}")
-				}
-				mkp.yield ' '
 			}
 			
 			// format a field, only displaying it if non-null, (and non-zero for a numeric field)
@@ -254,9 +249,31 @@ class CapabilityTagLib {
 					}
 				}// end switch.
 			}
+			
+			
 			/** format all interfaces for a capability in the standard manner */
 			def interfaces = {
 				cap.'interface'.each { iface -> otherInterface iface}
+			}
+			
+			/** format a search form 
+			 * @param className - a html class to identify this type of search form - determines which kind of form to produce.
+			 * @iface the xmlslurper object
+			 * */
+			def searchForm = {m ->
+				m.accessurl = m.iface.accessURL.text()
+				m.formId = m.accessurl.encodeAsMD5() // creates a unique id for the form.
+				out << g.render (template:'searchForm', model:m)
+			}
+			
+			// AJAX utilities.
+			/*
+			 * render a spinner div, 
+			 * @param id to use for the div
+			 */
+			def spinner = {divid ->
+				img(id:divid,style:'padding-left:3px; display: none',src:g.createLinkTo(dir:'/images',file:'spinner.gif'))		
+				
 			}
 			
 			// now start the formatting.
@@ -268,73 +285,35 @@ class CapabilityTagLib {
 						title (icon:'icon_table',txt:'Catalog cone search service')
 						description()
 						field 'Maximum results returned', cap.maxRecords
-						//mkp.yieldUnescaped ' '
+						mkp.yieldUnescaped ' '
 						field 'Maximum search radius', cap.maxSR 
 					}
 					div(class:'right') {
-						interfacesWithSpecial {iface ->
-							// have to refer to builder.form here, else it's a referenc to the 'form' context variable. whoops!
-							builder.form(method:'GET', action:"${iface.accessURL.text()}",class:'search cone') {
-								fieldset() {
-									legend('Search')
-									formField(name:'RA',description:"Right Ascension (ICRS decimal degrees)", value:"${cap.testQuery.ra }")	
-									formField(name:'DEC',description:"Declination (ICRS decimal degrees)",value:"${cap.testQuery.dec }")
-									formField(name:'SR',txt:'Radius',description:"Search Radius",value:"${cap.testQuery.sr ?: cap.maxSR}")
-									
-									if (cap.verbosity.toBoolean()) {
-										label('for':'VERB','Columns to return:')
-										mkp.yieldUnescaped g.radioGroup(name:'VERB',values:[1,2,3],labels:['Minimal','Most','All'], value:'1') {
-											// for some reason, groovy builder doesnb't work in here - probably as this is the body of the g.radioGroup tag.
-											out << '<span>' << it.label << " " << it.radio << '</span>' 
-										}
-									}
-									mkp.yieldUnescaped g.submitButton(name:'search',value:'Get Data')
-									
-								}
-								//check for additional, optional parameters.
-								def additionalParams = iface.param.findAll{! (it.name.text().toLowerCase() in ['ra','dec','sr']) }
-								if (additionalParams.size() > 0) {
-									fieldset() {
-										legend('Additional optional parameters')
-										additionalParams.each {param ->
-											def name = param.name
-											StringBuffer descr = new StringBuffer()
-											['description':'','dataType':'Type','unit':'Units','ucd':'UCD'].each{k,v ->
-												def txt = param."${k}".text()
-												if (txt) {
-													descr << (v ?:name ) << ': ' << txt << '\n'
-												}
-											}
-											formField(name:name,description:descr.toString())
-										}
-									}
-								}
-								
-								
-							}
-						} //end special interface.
+						interfacesWithSpecial {iface -> searchForm(className:'cone',iface:iface) } 
 					}
 					break
 					
 					case {it.std =='ivo://ivoa.net/std/SIA'}: 
 					case {it.type =~ /SimpleImageAccess/}:
-					title (icon:'icon_images',txt:'Image access service (SIAP)')
-					description()
-					field 'Service type', cap.imageServiceType
-					field 'Maximum file size', cap.maxFileSize
-					field 'Maximum results returned', cap.maxRecords
-					if (isNonZero(cap.maxImageExtent.lat)) {
-						field 'Maximum image extent', cap.maxImageExtent.lat.text() + "," +cap.maxImageExtent.'long'.text()
-					}	
-					if (isNonZero(cap.maxImageSize.lat)) {
-						field 'Maximum image size', cap.maxImageSize.lat.text() + "," + cap.maxImageSize.'long'.text()
+					div(class:'left') {
+						title (icon:'icon_images',txt:'Image access service (SIAP)')
+						description()
+						field 'Service type', cap.imageServiceType
+						field 'Maximum file size', cap.maxFileSize
+						field 'Maximum results returned', cap.maxRecords
+						if (isNonZero(cap.maxImageExtent.lat)) {
+							field 'Maximum image extent', cap.maxImageExtent.lat.text() + "," +cap.maxImageExtent.'long'.text()
+						}	
+						if (isNonZero(cap.maxImageSize.lat)) {
+							field 'Maximum image size', cap.maxImageSize.lat.text() + "," + cap.maxImageSize.'long'.text()
+						}
+						if (isNonZero(cap.maxQueryRegionSize.lat)) {
+							field 'Maximum query size', cap.maxQueryRegionSize.lat.text() + "," + cap.maxQueryRegionSize.'long'.text()
+						}
 					}
-					if (isNonZero(cap.maxQueryRegionSize.lat)) {
-						field 'Maximum query size', cap.maxQueryRegionSize.lat.text() + "," + cap.maxQueryRegionSize.'long'.text()
+					div(class:'right') {
+						interfacesWithSpecial {iface -> searchForm(className:'siap',iface:iface) }
 					}
-					
-					//@todo add search form, using test query if available.
-					interfaces()
 					break
 					
 					case {it.std =~ "/TAP"}:
@@ -348,31 +327,33 @@ class CapabilityTagLib {
 					case {it.std == 'ivo://ivoa.net/std/SSA'}:
 					case {it.std == 'ivo://ivoa.net/std/TSA'}:
 					case {it.type =~ /SimpleSpectralAccess/ } :
-					title (icon:'icon_rainbow',txt:'Spectrum access service (SSAP)')
-					description()
-					field 'Compliance', cap.complianceLevel
-					listField 'Creation type', cap.creationType
-					listField 'Data source', cap.dataSource
-					field 'Maximum results returned', cap.maxRecords
-					field 'Default max. records',cap.defaultMaxRecords
-					field 'Maximum file size', cap.maxFileSize
-					field 'Maximum aperture', cap.maxAperture
-					field 'Maximum search radius', cap.maxSearchRadius
-					listField 'Supported Frames', cap.supportedFrame
-					//@todo add search form, build from test query
-					interfaces()
+					div(class:'left') {
+						title (icon:'icon_rainbow',txt:'Spectrum access service (SSAP)')
+						description()
+						field 'Compliance', cap.complianceLevel
+						listField 'Creation type', cap.creationType
+						listField 'Data source', cap.dataSource
+						field 'Maximum results returned', cap.maxRecords
+						field 'Default max. records',cap.defaultMaxRecords
+						field 'Maximum file size', cap.maxFileSize
+						field 'Maximum aperture', cap.maxAperture
+						field 'Maximum search radius', cap.maxSearchRadius
+						listField 'Supported Frames', cap.supportedFrame
+					}
+					div(class:'right') {
+						interfacesWithSpecial {iface -> searchForm(className:'ssap',iface:iface) }
+					}
 					break
 					
 					
 					case {it.std ==  "ivo://org.astrogrid/std/STAP/v1.0"}:
 					case {it.type =~ /SimpleTimeAccess/}:
-					title(icon:'icon_time', txt:'Time range access service (STAP)')
-					description()
-					field 'Maximum results returned', cap.maxRecords
-					field 'Supports positioning', cap.supportPositioning
-					listField 'Formats', cap.supportedFormats
-					//@todo add search form, built from test query.
-					interfaces()
+						title(icon:'icon_time', txt:'Time range access service (STAP)')
+						description()
+						field 'Maximum results returned', cap.maxRecords
+						field 'Supports positioning', cap.supportPositioning
+						listField 'Formats', cap.supportedFormats
+						interfaces()
 					break
 					
 					// marginally useful.
@@ -380,7 +361,6 @@ class CapabilityTagLib {
 					case {it.type =~ /CEA/}: 
 					title 'Remote application (CEA) service'
 					description()
-					//@todo - not getting a delimiter between items..
 					field 'Provides tasks',cap.managedApplications.ApplicationReference.collect{ app ->
 						r.resourceName() { app.text() }
 					}.join('; ')
@@ -464,8 +444,7 @@ class CapabilityTagLib {
 								,onComplete:"YAHOO.util.Dom.get('${md5}-spinner').style.display='none';"
 								){'Check service availability'}
 							}
-							out << '&nbsp;'
-							img(id:"${md5}-spinner",style:'display: none',src:g.createLinkTo(dir:'/images',file:'spinner.gif'))		
+							spinner("${md5}-spinner")
 							span(id:md5,class:'vosi_update')
 						}
 					}

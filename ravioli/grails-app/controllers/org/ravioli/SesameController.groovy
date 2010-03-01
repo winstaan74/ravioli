@@ -16,7 +16,9 @@ class SesameController {
 		def obj  = params.obj
 		if (! obj) {
 			render status:400, text:"supply an object name using the 'obj' parameter"
-			
+//		} else if (obj == 'test') {
+//			def result = [ra:"1.0",dec:"2.0"] 
+//			render result as JSON
 		} else {
 			def u = grailsApplication.config.ravioli.sesame.endpoint + obj.encodeAsURL()
 			def xml = new XmlSlurper().parse(u)

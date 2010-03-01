@@ -114,22 +114,20 @@ img.resource-logo {
 .search fieldset{
 	border-top: 1px solid grey; 
 	border-left: 1px solid grey;
-	/*padding: 5px*/;
 	padding-left:5px;
-	margin-left:5px;
-	margin-right:5px;
 	}
 .search legend {
 	color:gray;
 	font-style: italic;
 	white-space: nowrap;
 	}
-.search input.text { /* can be more specific - input.RA - but make them all small for now */ 
+
+.search input.RA, .search input.DEC, .search input.SR , .search input.SIZE{
 	width:100px;
 }
 
 .search .formfield {
-	padding:5px;
+	padding:4px;
 	display:block;
 	white-space:nowrap;
 	}
@@ -137,23 +135,53 @@ img.resource-logo {
 	float:left;
 	display:block;
 	margin-right:5px;
-	width:50px;
+	width:70px;
 	text-align:right;
 }
-/* display ra and dec on the sameline 
-.cone span.RA, .cone span.DEC {
+
+.search input[type="radio"] {
+              margin-right:5px;
+}
+
+/* make the action buttons appear as a row */
+.search ul {
+	padding:2px;
+	}
+.search li {
 	display:inline;
-	}*/
+	margin-right:10px;
+	}
+
+/** styling to make tabbed-view within a search form belnd in better */
+#resourceDetail .yui-navset div.yui-content {
+	background-color:transparent;
+	padding-left:0px;
+	padding-right:0px;
+	padding-bottom:0px;
+	border-left:none;
+	border-bottom:none;
+	border-right:none;
+	}
+	
+#resourceDetail .yui-navset .yui-nav {
+	border-color:#347879;
+/*	padding:0px;*/
+	}
+#resourceDetail .yui-navset .yui-nav .selected a {
+	background-color:#347879;
+	background-image:none;	
+	}
+
 	
 /* two columns for a capability */
 .capability .left{
 	float:left;
-	width: 250px;
+	width: 220px;
 	padding:1px
 }
 
 .capability .right {
-	margin-left: 260px;
+	margin-left: 220px;
 	}
 
 /* downloads */

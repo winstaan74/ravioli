@@ -1,6 +1,6 @@
 <%--create an xml slurper to work with. --%>
 <g:set var='xml' value="${r.rxml.createSlurper() }" scope='page' />
-<div class="resourceDetail">
+<div class="resourceDetail" id='resourceDetail'>
 <h1>${r.titleField}</h1><%--TODO: add capability icons --%>
 
 <l:field name="IVOA-ID" value="${r.ivorn }" />
@@ -9,6 +9,7 @@
 <%-- left block --%>
 <div class='yui-u first'>
 	<r:description />
+
 	 <%-- TODO: add more clever AJAX integration into ADS --%> 
 	 <l:field name="Source Reference">
 		<r:source />
