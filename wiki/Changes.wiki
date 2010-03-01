@@ -5,7 +5,7 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.4
 
 -----
 
-==version 0.4 1st March 2010==
+==version 0.4, 1st March 2010==
 
 ===New Features==
    * Search form for Cone, SIAP, SSAP capabilities - by position, and by object name (using sesame)
@@ -26,6 +26,9 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.4
 	
 ===Issues===
    * The NVO table viewer doesn't work with the Safari browser on OSX. Works fine with firefox. I can't fix this - is there a alternate table viewer we could use?
+
+===FIxed from 0.3===
+   * Fixed the size of table, and inline resource display - should prevent the jerkiness.
 
 ----
 
