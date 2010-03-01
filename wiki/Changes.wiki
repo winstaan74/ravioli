@@ -2,6 +2,15 @@
 =List of Changes=
 
 Version at http://astrogrid.roe.ac.uk/ravioli - v0.4
+-----
+
+==version 0.5, unreleased==
+
+===New features===
+   * builds rudimentary form for unknown paramHTTP capabilities - useful in calling NED.
+
+===Fixes from 0.4===
+   * open-new-tab link is fixed.
 
 -----
 
@@ -27,7 +36,7 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.4
 ===Issues===
    * The NVO table viewer doesn't work with the Safari browser on OSX. Works fine with firefox. I can't fix this - is there a alternate table viewer we could use?
 
-   * The 'open new tab' link is broken at present.
+   * ~~The 'open new tab' link is broken at present.~~
 
 ===FIxed from 0.3===
    * Fixed the size of table, and inline resource display - should prevent the jerkiness.
@@ -44,5 +53,5 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.4
 
 ===issues===
    * when using the search box, hitting return doesn't trigger the search - you must click on the 'search' button. As this bit of the UI will be replaced by a search form, it's only a temporary problem./	
-   * when clicking on a table row to display a resource body, the table resizes, which is jerky and jarring. I don't think there's a nice way of fixing this,  considering that the table can dynamically alter which rows are being shown.  Unless I can come up with a solution, I think it might be best to display resources in a separate area _below_ the table. (i.e. in a typical email-reader layout).
+   * ~~when clicking on a table row to display a resource body, the table resizes, which is jerky and jarring. I don't think there's a nice way of fixing this,  considering that the table can dynamically alter which rows are being shown.  Unless I can come up with a solution, I think it might be best to display resources in a separate area _below_ the table. (i.e. in a typical email-reader layout).~~
    * We've only got 6K resources, rather than the expected 8K because I'm having problems harvesting resources that contain a '+' in the ivorn name (this only occurs in CDS). Fixable, just haven't done yet.
