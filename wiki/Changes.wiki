@@ -8,6 +8,7 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.4
 
 ===New features===
    * builds rudimentary form for unknown paramHTTP capabilities - useful in calling NED.
+   * table metadata display in separate window.
 
 ===Fixes from 0.4===
    * open-new-tab link is fixed.
