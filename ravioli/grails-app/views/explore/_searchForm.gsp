@@ -45,10 +45,6 @@ oh well, live and learn --%>
 			//hmm - seems better to omit this - causes failure in iras, and astroscope didn't use it.
 			//<input type='hidden' name='FORMAT' value='ALL' />
 			break;
-		
-		case 'stap':
-			//@todo - add this.
-			break;
 		default:
 			throw new RuntimeException("Unrecognized value for className - ${className}")
 	}

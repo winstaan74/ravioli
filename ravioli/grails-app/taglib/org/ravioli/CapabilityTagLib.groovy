@@ -153,10 +153,10 @@ class CapabilityTagLib {
 							case ~/.*WebService/:
 							case ~/.*CECInterface/:
 							case ~/.*OAISOAP/:
-							a(class:'access icon icon_script_code_red',href:aurl.text(), 'SOAP Web Service')
+							a(target:'_blank',class:'access icon icon_script_code_red',href:aurl.text(), 'SOAP Web Service')
 							iface.wsdlURL.each { wsdl ->
 								out << ' '
-								a(href:wsdl.text(),class:'icon icon_script_code_red','wsdl')
+								a(target:'_blank',href:wsdl.text(),class:'icon icon_script_code_red','wsdl')
 							}
 							break
 							case ~/.*ParamHTTP/:
@@ -168,16 +168,16 @@ class CapabilityTagLib {
 								title 'Call this service'
 								out << sf.form(id:formId, class:"arbitrary") {
 									out << sf.accessURL(iface:iface)
-								//	out << "<fieldset><legend>Call this service</legend>"
+									//	out << "<fieldset><legend>Call this service</legend>"
 									iface.param.each {p ->
 										out << sf.unknownFormField( param:p)
 									}
 									
 									out << sf.actionButtons(formId:formId, isPosParam:false)
-								//	out << "</fieldset>"
+									//	out << "</fieldset>"
 								}
 							} else { // dunno what it is.
-								a(class:'access icon icon_script_code', href:aurl.text(), 'HTTP Web Service - ' + fmtUse() + 'URL')
+								a(target:'_blank',class:'access icon icon_script_code', href:aurl.text(), 'HTTP Web Service - ' + fmtUse() + 'URL')
 								out << ' '
 								field 'Query Type', iface.queryType
 								field 'Result Type', iface.resultType
@@ -186,7 +186,7 @@ class CapabilityTagLib {
 							default: // no type, or unrecognized type.
 							//full, base or dir - should only put in link in case of full.
 							//mkp.yield aurl.'@use'
-							a(class:'access',href:aurl.text(), fmtUse() + 'URL')
+							a(target:'_blank',class:'access',href:aurl.text(), fmtUse() + 'URL')
 						}
 					} // end access urls.
 					br()
@@ -240,7 +240,7 @@ class CapabilityTagLib {
 			def searchForm = {m ->
 				m.accessurl = m.iface.accessURL.text()
 				m.formId = m.accessurl.encodeAsMD5() // creates a unique id for the form.
-				out << g.render (template:'searchForm', model:m)
+				out << g.render (template:m.template, model:m)
 			}
 			
 			
@@ -257,7 +257,7 @@ class CapabilityTagLib {
 						field 'Maximum search radius', cap.maxSR 
 					}
 					div(class:'right') {
-						interfacesWithSpecial {iface -> searchForm(className:'cone',iface:iface) } 
+						interfacesWithSpecial {iface -> searchForm(template:'searchForm',className:'cone',iface:iface) } 
 					}
 					break
 					
@@ -280,15 +280,18 @@ class CapabilityTagLib {
 						}
 					}
 					div(class:'right') {
-						interfacesWithSpecial {iface -> searchForm(className:'siap',iface:iface) }
+						interfacesWithSpecial {iface -> searchForm(template:'searchForm',className:'siap',iface:iface) }
 					}
 					break
 					
 					case {it.std =~ "/TAP"}:
-					title (icon:'icon_database_table',txt: 'Table/Database access service (TAP)')
-					description()
-					//@todo check tap specs for additional fields here.
-					interfaces()
+					div(class:'left') {
+						title (icon:'icon_database_table',txt: 'Table/Database access service (TAP)')
+						description()
+					}
+					div(class:'right') {
+						interfacesWithSpecial {iface -> searchForm(template:'tapForm',iface:iface) }
+					}
 					break
 					
 					case {it.type =~ /ProtoSpectralAccess/}:
@@ -309,19 +312,23 @@ class CapabilityTagLib {
 						listField 'Supported Frames', cap.supportedFrame
 					}
 					div(class:'right') {
-						interfacesWithSpecial {iface -> searchForm(className:'ssap',iface:iface) }
+						interfacesWithSpecial {iface -> searchForm(template:'searchForm',className:'ssap',iface:iface) }
 					}
 					break
 					
 					
 					case {it.std ==  "ivo://org.astrogrid/std/STAP/v1.0"}:
 					case {it.type =~ /SimpleTimeAccess/}:
-					title(icon:'icon_time', txt:'Time range access service (STAP)')
-					description()
-					field 'Maximum results returned', cap.maxRecords
-					field 'Supports positioning', cap.supportPositioning
-					listField 'Formats', cap.supportedFormats
-					interfaces()
+					div(class:'left') {
+						title(icon:'icon_time', txt:'Time range access service (STAP)')
+						description()
+						field 'Maximum results returned', cap.maxRecords
+						field 'Supports positioning', cap.supportPositioning
+						listField 'Formats', cap.supportedFormats
+					} 
+					div(class:'right') {
+						interfacesWithSpecial {iface -> searchForm(template:'stapForm',iface:iface) }
+					}
 					break
 					
 					// marginally useful.

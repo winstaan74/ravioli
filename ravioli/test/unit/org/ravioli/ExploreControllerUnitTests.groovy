@@ -139,4 +139,23 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 		status 404
 	}
 	
+	// test for tableMetadata of an existing resource is donew in exploreControllerIntegrationTest.
+	
+	// test for an unknown resource
+	void testTableMetadataUnknown() {
+		mockDomain(Resource) // no entries
+		controller.params.id = 3
+		def resp = controller.tableMetadata()
+		status 404
+	}
+	// test for a resource that lacks table metadata
+	void testTableMetadataNoTable() {
+		Resource r = new Resource()
+		r.rxml.xml = '<foo />'
+		mockDomain(Resource,[r]) // no entries
+		controller.params.id = r.id
+		def resp = controller.tableMetadata()
+		status 400
+	}
+	
 }

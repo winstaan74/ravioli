@@ -47,20 +47,23 @@ class ResourceTagLibIntegrationTests extends GroovyPagesTestCase {
 		assertOutputEquals '', template, [r:[sourceField:null],xml:empty] // no source.
 		assertOutputEquals 'anyold', template, [r:[sourceField:'anyold'],xml:empty] // arbitrary kind of source
 		
-		def urlOutput = """<a href="${ResourceTagLib.BIBCODE_URL}anyold">anyold</a>"""
 		def bibcode = new XmlSlurper().parseText('<resource><content><source format="bibcode"/></content></resource>')
-		assertOutputEquals urlOutput, template, [r:[sourceField:'anyold'],xml:bibcode] // bibcode marked as such, even tho it's not looking like one
-		
-		urlOutput = '''<a href="http://www.slashdot.org">http://www.slashdot.org</a>'''
+		def result = applyTemplate(template, [r:[sourceField:'anyold'],xml:bibcode] )// bibcode marked as such, even tho it's not looking like one
+		// just check that we've taken the correct branch of the source taglib
+		// not that all the fromatting is correct.
+		assertTrue result.contains('spinner')
+
+
+		def urlOutput = '''<a href="http://www.slashdot.org">http://www.slashdot.org</a>'''
 		assertOutputEquals urlOutput, template, [r:[sourceField:'http://www.slashdot.org'],xml:empty] // url instead of bibcode
 		assertOutputEquals urlOutput, template, [r:[sourceField:'http://www.slashdot.org'],xml:bibcode] // url instead of bibcode - sourceFormat is ignored		
 		
 		def bc = '1974AJ.....79..819H'
 		assertTrue new ResourceTagLib().looksLikeBibcode(bc)
 		
-		urlOutput = """<a href="${ResourceTagLib.BIBCODE_URL}${bc}">${bc}</a>"""
-		assertOutputEquals urlOutput, template, [r:[sourceField:bc],xml:empty] // bibcode not marked as such - should recognize by it's format.
-	}
+		result = applyTemplate (template, [r:[sourceField:bc],xml:empty]) // bibcode not marked as such - should recognize by it's format.
+		assertTrue result.contains('spinner')
+		}
 
 	void testResourceName() {
 		def template = '''<r:resourceName uri="${uri}">${body}</r:resourceName>'''

@@ -3,7 +3,7 @@
 <title>
 ${r.titleField }
 </title>
- 	<gui:resources components="tooltip, expandablePanel, tabView"/>
+ 	<gui:resources components="tooltip, expandablePanel, tabView, datePicker"/>
  		<yui:javascript dir="json" file="json-min.js" />
 </head>
 <body class="yui-skin-sam">

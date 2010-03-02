@@ -41,17 +41,17 @@ a.main {
 	max-width:800px; /** magic that stops it bleading too far */
 	}
 
-.resourceDetail h1 {
+.resourceDetail h1, .tableMetadata h1 {
 	font-size: 150%;
 	font-weight: bold;
 	margin-bottom:5px;
 }
 
-.resourceDetail h1, .resourceDetail h2, .resourceDetail h3{
+.resourceDetail h1, .resourceDetail h2, .resourceDetail h3, .tableMetadata h1{
 	color:#347879;
 	}
 
-.resourceDetail .content , .resourceDetail .capability, .resourceDetail .ads{
+.resourceDetail .content , .resourceDetail .capability, .resourceDetail .ads, .tableMetadata .description{
 	padding:5px;
 	background:#E6EEEF;
 	border: 1px solid gray;
@@ -111,17 +111,19 @@ img.resource-logo {
 	}
 	
 /** stuff for search forms */
-.search fieldset{
+.search fieldset, .tableMetadata fieldset{
 	border-top: 1px solid grey; 
 	border-left: 1px solid grey;
 	padding-left:5px;
 	}
-.search legend {
+.search legend, .tableMetadata legend {
 	color:gray;
 	font-style: italic;
 	white-space: nowrap;
 	}
-
+.tableMetadata fieldset {
+		padding:5px;
+	}
 .search input.RA, .search input.DEC, .search input.SR , .search input.SIZE{
 	width:100px;
 }
@@ -150,6 +152,25 @@ img.resource-logo {
 .search li {
 	display:inline;
 	margin-right:10px;
+	}
+	
+/** customization of datepicker within stap form */
+.formfield .datePicker {
+	display:inline;
+	}
+	
+.formfield .datefield {
+		display:inline;
+		padding:0px;
+		top:0px;
+	}
+	
+.formfield .datefield input {
+	width:120x;
+	}
+	
+.formfield .datefield input, .formfield .datefield button {
+	vertical-align:inherit;
 	}
 
 /** styling to make tabbed-view within a search form belnd in better */

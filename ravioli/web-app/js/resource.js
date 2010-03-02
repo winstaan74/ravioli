@@ -35,11 +35,27 @@ function buildQueryUrl(formId, isPosParam) {
 			accessurl = ip.value
 		} else if (ip.type == 'text' || ip.type == 'radio' || ip.type=='hidden') {
 			var v = ip.value.replace(/^\s+|\s+$/g, '') //trim
+			var fiddledName = ip.name
+			var ix = fiddledName.indexOf('-') // necessary for date picker fields
+			if (ix != -1) {
+				fiddledName = fiddledName.substring(0,ix)
+			}
 			if (v.length > 0) {
-				fields[ip.name] = ip.value
+				fields[fiddledName] = v
 			}
 		} 
 	}
+	var areas = f.getElementsByTagName('textarea')
+	for (var i = 0; i < areas.length; i++) {
+		var a = areas[i];
+		var v = a.value.replace(/^\s+|\s+$/g, '') //trim
+		if (v.length > 0) {
+			fields[a.name] = v
+		}
+		        
+	}
+	
+	// adjust the params
 	if (isPosParam) { // alter map, concat ra and dec together into a 'pos' param
 		fields.POS = fields.RA + "," + fields.DEC
 		delete fields.RA

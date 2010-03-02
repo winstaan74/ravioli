@@ -18,6 +18,33 @@ class SearchFormTagLib {
 		out << "</span>"
 	}
 
+	def dateField ={attr, body ->
+	out << "<span class='formfield'>"
+	if (attr.tip) {
+		out << gui.toolTip(text:attr.tip) {
+			out << "<label for='${attr.id}'><span class='helplink'>${attr.name}</span></label>"
+		}
+	} else {
+		out << "<label for='${attr.id}'>${attr.name}</label>"
+	}
+	out << gui.datePicker(id:attr.id, includeTime:attr.includeTime, formatString:attr.formatString)
+	out << "</span>"
+}
+
+	def formTextArea ={attr, body ->
+	out << "<span class='formfield'>"
+	if (attr.tip) {
+		out << gui.toolTip(text:attr.tip) {
+			out << "<label for='${attr.name}'><span class='helplink'>${attr.title ?: attr.name}</span></label>"
+		}
+	} else {
+		out << "<label for='${attr.name}'>${attr.title ?: attr.name}</label>"
+	}
+	out << g.textArea(class:attr.name, *:(attr.subMap(['value','name','id','rows','cols'])))
+	out << body()
+	out << "</span>"
+}
+
 	/** format the button to action the form
 	 * params - formId, isPosParam (boolean)
 	 */
@@ -38,8 +65,18 @@ class SearchFormTagLib {
 
 	/* tag to output hidden input field containing accessURL */
 	def accessURL = {attr ->
-		out << """	<input type="hidden"
-		name="accessurl" value="${attr.iface.accessURL.text()?.trim() }" />"""
+		def aurl = attr.iface.accessURL.text()?.trim()
+		if (attr.suffix) {
+			aurl += attr.suffix
+		}
+		if (! (aurl.endsWith('?') || aurl.endsWith('&'))) {
+			if (aurl.contains('?')) {
+				aurl += '&'
+			} else {
+				aurl += '?'
+			}
+		}
+		out << g.hiddenField(name:"accessurl", value:aurl)
 	}
 
 	/** render a form field that we have no prior knowledge of - 

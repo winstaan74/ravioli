@@ -17,7 +17,6 @@
 <div class='yui-u first'>
 	<r:description />
 
-	 <%-- TODO: add more clever AJAX integration into ADS --%> 
 	 <l:field name="Source Reference">
 		<r:source />
 	</l:field> 
@@ -58,8 +57,17 @@
 			<r:resourceName xml="${org}"/>
 	</l:field>
 </g:each>
-
-<%--TODO: do something with tabular metadata - display in separate tab?--%>
+<%-- 
+<g:if test="${! xml.catalog.table.isEmpty() || ! xml.table.isEmpty() }">
+<div>
+ <gui:toolTip text="Show the table descriptions for this resource in a new window">
+	<g:link class="main icon icon_table_go" action="tableMetadata" controller="explore" 
+		id="${r.id }" target="_blank"
+		>Show Table Metadata</g:link>
+ </gui:toolTip>
+ </div>
+</g:if>
+--%>
 <l:seq name="Format" values="${xml.format*.text() }"/>
 <l:seq name="Access Rights" values="${xml.rights*.text() }"/>
 <l:condLink name='Access URL' url="${xml.accessURL.text() }"/>

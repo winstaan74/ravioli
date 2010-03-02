@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>Registry Resources</title>
- 	<gui:resources components="dataTable, dialog, tooltip, expandablePanel, tabView" />
+ 	<gui:resources components="dataTable, dialog, tooltip, expandablePanel, tabView, datePicker" />
 	<yui:javascript dir="cookie" file="cookie-min.js" />
 	<yui:javascript dir="json" file="json-min.js" />
 

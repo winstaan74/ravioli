@@ -41,12 +41,20 @@ class ResourceTagLib {
 	/** format the description, preserving whitespace if possible.*/
 	def description = {
 		out << '<div class="content">'
-		def content = pageScope.xml.content
+		def xml = pageScope.xml
+		def content = xml.content
 		def descr = content.description.text()
 		descr.eachLine{
 			out << '<p>' << it << '</p>'
 		}
-		out << l.condLink(class:'icon icon_world_link main',name:'Further&nbsp;Information...') {content.referenceURL.text()}
+		out << l.condLink(class:'icon icon_world_link main',name:'Further&nbsp;Information') {content.referenceURL.text()}
+		if (! xml.catalog.table.isEmpty() || ! xml.table.isEmpty() ) {
+			 out << ' '
+			 out << gui.toolTip(text:"Show the table descriptions for this resource in a new window") {
+				out << g.link(class:"main icon icon_table_go", action:"tableMetadata", controller:"explore", 
+						id:pageScope.r.id, target:"_blank"){'Show Table Metadata'}
+			 }
+		}
 		out << '</div>'
 	}
 	
@@ -113,7 +121,7 @@ class ResourceTagLib {
 			out << g.createLink(params:[ivorn:uri], controller:'explore',action:'resource')
 			out << '">' << b << "</a>"
 		} else if (uri) { // not an ivorn, but something.
-			out << '<a href="' << uri << '">' << b << "</a>"
+			out << '<a target="_blank" href="' << uri << '">' << b << "</a>"
 		} else {
 			out << b
 		}
