@@ -8,7 +8,12 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.4
 
 ===New features===
    * builds rudimentary form for unknown paramHTTP capabilities - useful in calling NED.
+   * search form for STAP
+   * search form for synchronous ADQL TAP (a text box, not a query builder) 
    * table metadata display in separate window.
+
+===Issues===
+   * calendar popup in STAP search form interacts badly with data table. Work-around - open resource in new window
 
 ===Fixes from 0.4===
    * open-new-tab link is fixed.
