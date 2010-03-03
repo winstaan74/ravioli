@@ -19,6 +19,7 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.5
 ===Issues===
    * calendar popup in STAP search form interacts badly with data table. Work-around - open resource in new window
    * Need to understand how to sign the samp applet
+   * Samp applet doesn't work on Safari - fine on firefox.
 
 ===Fixes from 0.4===
    * open-new-tab link is fixed.
