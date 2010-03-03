@@ -1,19 +1,24 @@
 #labels Featured
 =List of Changes=
 
-Version at http://astrogrid.roe.ac.uk/ravioli - v0.4
+Version at http://astrogrid.roe.ac.uk/ravioli - v0.5
 -----
 
-==version 0.5, unreleased==
+==version 0.5, 3rd March 2010==
 
 ===New features===
+   * SAMP support - connect/disconnect hub buttons in top left, after which any additional buttons appear so that any search result / votable link can be broadcast to SAMP apps.
    * builds rudimentary form for unknown paramHTTP capabilities - useful in calling NED.
    * search form for STAP
    * search form for synchronous ADQL TAP (a text box, not a query builder) 
-   * table metadata display in separate window.
+   * table metadata display (in separate window)
+
+===Feedback Needed===
+   * Try the samp integration, tell me how it works on your browser. I think I need to do some more work with signing the applet, but don't understand the details (have sent a question to the developers)
 
 ===Issues===
    * calendar popup in STAP search form interacts badly with data table. Work-around - open resource in new window
+   * Need to understand how to sign the samp applet
 
 ===Fixes from 0.4===
    * open-new-tab link is fixed.
@@ -32,7 +37,7 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.4
    * Table download links for CDS resources.
    * Fixed issue with resource body causing table to judder and resize width-ways. Table is always at least as wide as the resource body, and the resource body has a fixed width
    
-===Questions===
+===Feedback Needed===
 	* At the moment, the query of ADS / VOSI availability requires the user to click on the link. Is this appropriate, or is it better to either: always fetch this information, and display it in the resource from the resource (increasing page display time, and load on back-end servers); or fetch this information automatically once the resource had been displayed for a short time (a few seconds) - i.e if the user is lingering over a resource, this suggests that the additional information is worth fetching.
 	
 	* At present, uninteresting capabilities are collapsed, and require a click to display. I think this keeps the display uncluttered. Is it worthwhile collapsing a) other capabilities, b) the resource description in similar click-to-display fields? It would be possible to remember the user's preference via a cookie, and so show any subsequent resources with e.g. description shown.
