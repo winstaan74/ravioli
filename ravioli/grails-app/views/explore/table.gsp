@@ -65,7 +65,7 @@ background-color:#347879;
 </head>
 <body>
 	<%-- search form --%>
-	<input type="text" id="sb" value="">
+	<input type="text" id="sb" value=""/>
 	<button type='button' id="filterButton">Search</button>
 
 <div id='resourcesParent'>

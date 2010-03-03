@@ -1,4 +1,4 @@
-
+ <div id="top-menu">
 
 <%--SAMP integration --%>
 
@@ -24,15 +24,16 @@ send data to other tools.
 	 <div id="NOTCONNECTED" class="icon icon_disconnect">
 	 	Not connected.
 	 	<a  href="#" class='main' onclick="sampConnect('${grailsApplication.config.grails.serverURL }/applet');">Connect</a>
-	 </span>
+	 </div>
 
 	</fieldset>
 </gui:toolTip>
-</div>
+</div><%-- end samp --%>
      
-      <%-- common login menu --%>
      	
- <div id="top-menu">
+
+      <%-- common login menu --%>
+
  	<div class="login">
         	<n:isNotLoggedIn>
         	<g:link class='main' controller="auth" action="login">Login</g:link>
@@ -43,11 +44,13 @@ send data to other tools.
         	| <g:link class='main' controller="auth" action="logout">logout</g:link>
         	</n:isLoggedIn>
      </div>
+     
         <n:isAdministrator>
         <div class='admin'>
         	<nav:render group="admin"/><nav:renderSubItems group="admin" />
         </div>
        </n:isAdministrator>
-       </div>	
+            
+</div><%-- end top menu --%> 	
         
      

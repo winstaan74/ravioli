@@ -1,6 +1,8 @@
 
 
 package org.ravioli
+import org.springframework.context.ApplicationContext;
+
 import groovy.xml.StreamingMarkupBuilder
 import groovy.util.slurpersupport.GPathResult;
 /** handles the formatting and interactivity assoicated with the capability parts of 
@@ -14,7 +16,13 @@ import groovy.util.slurpersupport.GPathResult;
  */
 class CapabilityTagLib {
 	static namespace = "capability"
-	
+
+		/** get next id. work around for bug in access request-scoped service from taglib */ 
+	private String nextId() {
+		return grailsApplication.mainContext.idGenService.next()
+	}
+//	ApplicationContext applicationContext
+	//def idGenService - can't access this as a request-scoped service - work-around is to call through applicationContext (above) every time.
 	/** check that a field in the xml exists, is an integer, and is non-zero */
 	private boolean isNonZero(def path) {
 		def txt = path?.text()
@@ -163,11 +171,11 @@ class CapabilityTagLib {
 									a(target:'_blank',href:ws,class:'icon icon_script_code_red','wsdl')
 								}
 							/*} commented out until wsdllibrary starts working.
-							def wsdlFormId = aurl.text().encodeAsMD5()
+							def wsdlFormId = nextId()//aurl.text().encodeAsMD5()
 							def failureId = wsdlFormId + "-failure"
 							def spinnerId = wsdlFormId + "-spinner"
 							div(class:'right',id:wsdlFormId) {
-								out << g.remoteLink(action:'buildForm'
+								out << g.remoteLink(action:'buildForm', method='get'
 									,update:[success:wsdlFormId,failure:failureId]
 									,controller:'externalSoap'
 									,id:pageScope.r.id
@@ -186,7 +194,8 @@ class CapabilityTagLib {
 							case ~/.*OAIHTTP/:
 							// we duno what it is, but it describes how to call it..
 							if (iface.param.size() > 0) {
-								def formId = iface.accessURL.text().encodeAsMD5()
+							//	def formId = iface.accessURL.text().encodeAsMD5()
+								def formId = nextId()
 								title 'Call this service'
 								out << sf.form(id:formId, class:"arbitrary") {
 									out << sf.accessURL(iface:iface)
@@ -261,7 +270,8 @@ class CapabilityTagLib {
 			 * */
 			def searchForm = {m ->
 				m.accessurl = m.iface.accessURL.text()
-				m.formId = m.accessurl.encodeAsMD5() // creates a unique id for the form.
+			//	m.formId = m.accessurl.encodeAsMD5() // creates a unique id for the form.
+				m.formId = nextId()//applicationContext.idGenService.next()
 				out << g.render (template:m.template, model:m)
 			}
 			
@@ -436,7 +446,8 @@ class CapabilityTagLib {
 					interfacesWithSpecial { iface ->
 						if (iface.accessURL.size() == 1) {
 							def url = iface.accessURL.text()
-							def md5 = url.encodeAsMD5()
+							//def md5 = url.encodeAsMD5()
+							def md5 = nextId()//applicationContext.idGenService.next()
 							def spinnerId = md5 + "-spinner"
 							out << gui.toolTip(text:'Click here to check whether the service is currently running') {
 								out << g.remoteLink(controller:'vosi', class:'main'

@@ -138,10 +138,16 @@ function setStatusIcon(args) {
          // show all the samp buttons.
          var samp = getCSSRule('.samp');
          if (status == 'connected'){
-        	 samp.style.visibility='visible';
+        	 //samp.style.visibility='visible';
+        	 samp.style.display='inline';
         	 showConnected();
          } else if (status == 'disconnected') {
-        	 samp.style.visibility='hidden';
+        	// samp.style.visibility='hidden';
+        	 samp.style.display='none';
+        	 showNotConnected();
+         } else {
+        	// samp.style.visibility='hidden';
+        	 samp.style.display='none';
         	 showNotConnected();
          }
       } else {

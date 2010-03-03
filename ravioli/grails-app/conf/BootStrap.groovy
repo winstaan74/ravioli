@@ -25,7 +25,8 @@ class BootStrap {
 			case Environment.TEST: // integration tests.
 				populateRegistries()
 				populateResources([5,15,25,35,45,55,65,75,85,95,92]) // smaller set of resources.
-				break;
+			break;
+				
 			case Environment.CUSTOM :
 			if (Registry.count() ==0) {
 				if (System.getProperty('grails.env') == 'alpha') {

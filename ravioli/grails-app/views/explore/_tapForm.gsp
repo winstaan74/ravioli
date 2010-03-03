@@ -22,7 +22,7 @@
 		<sf:formTextArea title="ADQL" 
 		tip="Type an ADQL query to perform a simple synchronous search. ADQL is a SQL-like language. It may help to  click on the Show Table Metadata link."
 			name="QUERY" value="${query }"
-			rows="3", cols="35" />
+			rows="4", cols="30" />
 		<sf:actionButtons formId="${formId }" isPosParam="false" />
 	</fieldset>
 </sf:form>

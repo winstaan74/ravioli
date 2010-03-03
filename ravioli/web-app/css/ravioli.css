@@ -168,7 +168,7 @@ img.resource-logo {
 	}
 	
 .formfield .datefield input {
-	width:120x;
+	width:120px;
 	}
 	
 .formfield .datefield input, .formfield .datefield button {
@@ -210,7 +210,7 @@ img.resource-logo {
 /* downloads */
 ul.download {
 	display:inline;
-	margin-left:10px;
+	margin-left:5px;
 }
 
 ul.download li {
@@ -260,7 +260,8 @@ ul.download li {
 shown once samp connects.
  */
 .samp {
-	visibility:hidden;
+	/*visibility:hidden;*/
+	display:none;
 	}
 #CONNECTED {
 	display:none;

@@ -14,7 +14,7 @@ class SampTagLib {
 		out << gui.toolTip(text:'Broadcast this table to SAMP applications') {
 			out << """<a href='#' onclick="broadcast('${attr.url}',this);"><span class='icon icon_transmit'/></a>"""
 		}
-		out << "</samp>"
+		out << "</span>"
 	}
 
 	/** expects an attr: formId - id of the form; isPosParam */
@@ -25,7 +25,7 @@ class SampTagLib {
 			out << "<span class='icon icon_transmit'>Broadcast</span>"
 			out <<"</button>"
 		}
-		out << "</samp>"
+		out << "</span>"
 	}
 	
 }
