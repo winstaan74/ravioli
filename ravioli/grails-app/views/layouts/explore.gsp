@@ -45,7 +45,11 @@
       | <a href='hhttp://code.google.com/p/ravioli/wiki/Changes' target='_blank'>Changes</a>
       | <a href='http://code.google.com/p/ravioli/issues/entry' target='_blank'>Report an issue</a>
       | <a href="http://code.google.com/p/ravioli/" target='_blank'>Project page</a>
-   </p></div>
+	  | SAMP integration courtesy of <a href="http://vo.imcce.fr/webservices/samp/">WebSampConnector</a>
+   </p>
+   </div>
 </div>
+<%--defer as much javascript as possible to here, to improve page appearance time --%>
+  <g:javascript src="websampconnector.js" />
 </body>
 </html>

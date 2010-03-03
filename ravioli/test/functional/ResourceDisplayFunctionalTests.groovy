@@ -36,6 +36,7 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 		fieldPresent 'created'
 		fieldNotPresent 'modified'
 		furtherInformation()
+		tableMetadata()
 		// source should be present, and be a linked
 		fieldContains 'sourcereference', '1980RMxAA...5...25J'
 		hasLink '1980RMxAA...5...25J'
@@ -99,6 +100,7 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 	void testGlimpse() {
 		def r = displayResource( 'ivo://wfau.roe.ac.uk/glimpse-dsa/wsa')
 		furtherInformation()
+		tableMetadata()
 		acc 'Catalog cone search service'
 		
 		// check we're seeing descriptions from two different capabilities..

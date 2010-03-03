@@ -1,4 +1,37 @@
-<%-- common login menu --%>	
+
+
+<%--SAMP integration --%>
+
+<div id="SAMP">
+<gui:toolTip text="
+Samp is a way to exchange data between astronomy tools. 
+Launch Topcat, Aladin, VODesktop, VOSpec, or another tool, and then click Connect.
+Once connected, additional buttons will appear in the resource display to 
+send data to other tools.
+">
+<fieldset>
+	<legend>Samp</legend>
+	 <div id="CONNECTED" class="icon icon_connect">
+	 	Connected.
+	 	<a href="#" onclick="sampDisconnect();">(disconnect)</a>
+	 	
+	 </div>
+	 <div id="CONNECTING">
+	 	<img src="${g.resource(dir:'/images',file:'spinner.gif') }"/>
+	 	working..
+	 </div>
+	 
+	 <div id="NOTCONNECTED" class="icon icon_disconnect">
+	 	Not connected.
+	 	<a  href="#" class='main' onclick="sampConnect('${grailsApplication.config.grails.serverURL }/applet');">Connect</a>
+	 </span>
+
+	</fieldset>
+</gui:toolTip>
+</div>
+     
+      <%-- common login menu --%>
+     	
  <div id="top-menu">
  	<div class="login">
         	<n:isNotLoggedIn>
@@ -14,7 +47,7 @@
         <div class='admin'>
         	<nav:render group="admin"/><nav:renderSubItems group="admin" />
         </div>
-        </n:isAdministrator>
-        </div>	
-      
+       </n:isAdministrator>
+       </div>	
+        
      

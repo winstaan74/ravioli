@@ -60,7 +60,11 @@ class SearchFormTagLib {
 			out << """<button type='button'
 				onClick="dalDisplay('${attr.formId}',${attr.isPosParam }); return false;">Show Data</button>"""
 		}
+		out << "</li><li>"
+		out << samp.button(formId:attr.formId,isPosParam:attr.isPosParam)
 		out << "</li></ul>"
+		
+	
 	}
 
 	/* tag to output hidden input field containing accessURL */
@@ -106,7 +110,7 @@ class SearchFormTagLib {
 	/** output a spinner icon */
 	def spinner = {attr ->
 		out <<  "<img id='${attr.id}' style='padding-left: 3px; visibility: hidden' src='"
-		out << g.createLinkTo(dir:'/images',file:'spinner.gif')
+		out << g.resource(dir:'/images',file:'spinner.gif')
 		out << "' />"
 	}
 	

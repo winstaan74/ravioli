@@ -20,6 +20,11 @@ function dalDisplay(formId, isPosParam) {
 
 }
 
+function broadcastDal(formId, isPosParam,el) {
+	var qurl = buildQueryUrl(formId,isPosParam);
+	broadcast(qurl,el);
+}
+
 /** build up the query url*/
 function buildQueryUrl(formId, isPosParam) {
 	var f = YAHOO.util.Dom.get(formId)
@@ -75,3 +80,107 @@ function buildQueryUrl(formId, isPosParam) {
 	return qurl
 	
 }
+
+function showConnected() {
+    var notconnected= getCSSRule('#NOTCONNECTED');
+    var connected= getCSSRule('#CONNECTED');
+    var connecting = getCSSRule('#CONNECTING');
+    notconnected.style.display='none';
+    connecting.style.display='none';
+    connected.style.display='block';
+}
+function showWorking() {
+    var notconnected= getCSSRule('#NOTCONNECTED');
+    var connected= getCSSRule('#CONNECTED');
+    var connecting = getCSSRule('#CONNECTING');
+    notconnected.style.display='none';
+    connected.style.display='none';
+    connecting.style.display='block';
+}
+
+function showNotConnected() {
+    var notconnected= getCSSRule('#NOTCONNECTED');
+    var connected= getCSSRule('#CONNECTED');
+    var connecting = getCSSRule('#CONNECTING');
+    connected.style.display='none';
+    connecting.style.display='none';
+    notconnected.style.display='block';
+}
+
+function sampConnect(codebase) {
+	showWorking();
+	WebSampConnector.configure({
+		jAppletCodeBase:codebase
+		});
+	WebSampConnector.start();
+}
+
+function sampDisconnect() {
+	showWorking();
+	WebSampConnector.stop(true);
+	
+}
+/** send a votable
+ * @param url - url to send
+ * @el element that caused the broadcast - play with it's display to indicate progress */
+function broadcast(url,el) {
+	var orig = el.style.border
+	el.style.border='2px solid red';
+	showWorking();
+	WebSampConnector.sendSampMsg('v','','',url);
+	showConnected();
+	el.style.border=orig;
+}
+
+function setStatusIcon(args) {
+      if (args != null) {
+         var status = args[0];
+         // show all the samp buttons.
+         var samp = getCSSRule('.samp');
+         if (status == 'connected'){
+        	 samp.style.visibility='visible';
+        	 showConnected();
+         } else if (status == 'disconnected') {
+        	 samp.style.visibility='hidden';
+        	 showNotConnected();
+         }
+      } else {
+         WebSampConnector.log("Hub status icon: arg undefined!");
+      }
+   };
+
+// supporting functions
+function getCSSRule(ruleName, deleteFlag) {               // Return requested style obejct
+	   ruleName=ruleName.toLowerCase();                       // Convert test string to lower case.
+	   if (document.styleSheets) {                            // If browser can play with stylesheets
+	      for (var i=0; i<document.styleSheets.length; i++) { // For each stylesheet
+	         var styleSheet=document.styleSheets[i];          // Get the current Stylesheet
+	         var ii=0;                                        // Initialize subCounter.
+	         var cssRule=false;                               // Initialize cssRule. 
+	         do {                                             // For each rule in stylesheet
+	            if (styleSheet.cssRules) {                    // Browser uses cssRules?
+	               cssRule = styleSheet.cssRules[ii];         // Yes --Mozilla Style
+	            } else {                                      // Browser usses rules?
+	               cssRule = styleSheet.rules[ii];            // Yes IE style. 
+	            }                                             // End IE check.
+	            if (cssRule)  {                               // If we found a rule...
+	               if (cssRule.selectorText.toLowerCase()==ruleName) { //  match ruleName?
+	                  if (deleteFlag=='delete') {             // Yes.  Are we deleteing?
+	                     if (styleSheet.cssRules) {           // Yes, deleting...
+	                        styleSheet.deleteRule(ii);        // Delete rule, Moz Style
+	                     } else {                             // Still deleting.
+	                        styleSheet.removeRule(ii);        // Delete rule IE style.
+	                     }                                    // End IE check.
+	                     return true;                         // return true, class deleted.
+	                  } else {                                // found and not deleting.
+	                     return cssRule;                      // return the style object.
+	                  }                                       // End delete Check
+	               }                                          // End found rule name
+	            }                                             // end found cssRule
+	            ii++;                                         // Increment sub-counter
+	         } while (cssRule)                                // end While loop
+	      }                                                   // end For loop
+	   }                                                      // end styleSheet ability check
+	   return false;                                          // we found NOTHING!
+	}                                                         // end getCSSRule 
+

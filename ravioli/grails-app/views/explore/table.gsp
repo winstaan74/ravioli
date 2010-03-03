@@ -84,7 +84,7 @@ background-color:#347879;
     </div>
 </div>
 <%--last of all, load the javascript for the table.
-seems to work best here.
+loading last means faster page display.
  --%>
  <g:javascript>
  <%--using grails to compute the link back - so this bit of javascript is inline --%>

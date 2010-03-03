@@ -78,7 +78,11 @@ class RavioliFunctionalAssert {
 	}
 	
 	def furtherInformation() {
-		hasLink('Further Information...')
+		hasLink('Further Information')
+	}
+	
+	def tableMetadata() {
+		hasLink('Show Table Metadata')
 	}
 	
 	def hasLink(String name) {

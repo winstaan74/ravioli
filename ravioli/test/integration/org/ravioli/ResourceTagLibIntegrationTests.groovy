@@ -69,7 +69,7 @@ class ResourceTagLibIntegrationTests extends GroovyPagesTestCase {
 		def template = '''<r:resourceName uri="${uri}">${body}</r:resourceName>'''
 		assertOutputEquals 'foo', template, [body:'foo'] // no link provided
 		
-		assertOutputEquals '<a href="http://www.slashdot.org">http://www.slashdot.org</a>', template, [body:' http://www.slashdot.org '] // no link attribute, but it looks like a url.		
+		assertOutputEquals '<a target="_blank" href="http://www.slashdot.org">http://www.slashdot.org</a>', template, [body:' http://www.slashdot.org '] // no link attribute, but it looks like a url.		
 		assertOutputEquals '<a class="res" target="_blank" href="/explore/resource?ivorn=ivo%3A%2F%2Ffoo.bar%2Fchoo">ivo://foo.bar/choo</a>', template, [body:' ivo://foo.bar/choo '] // no link attribute, but it looks like a url.		
 		assertOutputEquals '<a class="res" target="_blank" href="/explore/resource?ivorn=ivo%3A%2F%2Ffoo.bar%2Fchoo">fred</a>', template, [uri:'ivo://foo.bar/choo', body:'fred'] // no link attribute, but it looks like a url.	
 		

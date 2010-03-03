@@ -150,14 +150,36 @@ class CapabilityTagLib {
 							//previously used icon for a external link - but there's too many of these
 							a(class:'main icon icon_application_form',href:aurl.text(),target:'_blank', 'Web Form')
 							break
-							case ~/.*WebService/:
-							case ~/.*CECInterface/:
-							case ~/.*OAISOAP/:
-							a(target:'_blank',class:'access icon icon_script_code_red',href:aurl.text(), 'SOAP Web Service')
-							iface.wsdlURL.each { wsdl ->
-								out << ' '
-								a(target:'_blank',href:wsdl.text(),class:'icon icon_script_code_red','wsdl')
-							}
+
+							case ~/.*CECInterface/: // unsure whether we want to add wsdl form for some of these - CEA, reg, skynode.
+							case ~/.*OAISOAP/:							
+							case ~/.*WebService/: 
+							def ws
+							//div(class:'left') {
+								a(target:'_blank',class:'access icon icon_script_code_red',href:aurl.text(), 'SOAP Web Service')
+								iface.wsdlURL.each { wsdl ->
+									ws = wsdl.text()
+									out << ' '
+									a(target:'_blank',href:ws,class:'icon icon_script_code_red','wsdl')
+								}
+							/*} commented out until wsdllibrary starts working.
+							def wsdlFormId = aurl.text().encodeAsMD5()
+							def failureId = wsdlFormId + "-failure"
+							def spinnerId = wsdlFormId + "-spinner"
+							div(class:'right',id:wsdlFormId) {
+								out << g.remoteLink(action:'buildForm'
+									,update:[success:wsdlFormId,failure:failureId]
+									,controller:'externalSoap'
+									,id:pageScope.r.id
+									,params:[aurl:aurl.text(), wsdl:ws]
+									,onLoading:sf.spinnerStart(id:spinnerId)
+									,onComplete:sf.spinnerStop(id:spinnerId)
+									){
+										'Build a form for this service'
+									}
+								out << sf.spinner(id:spinnerId)
+								div(id:failureId){}
+							}*/
 							break
 							case ~/.*ParamHTTP/:
 							case ~/.*UWS-PA/:
@@ -384,7 +406,9 @@ class CapabilityTagLib {
 								mkp.yield ' '
 								li {
 									def tname = t.name.text().tokenize('/').last()
-									a(class:'main',href:url + '/' + tname,tname)
+									def turl = url + '/' + tname
+									a(class:'main',target:'_blank',href:turl,tname)
+									out << samp.broadcast(url:turl)
 									if (! t.description.isEmpty()) {
 										mkp.yield ': '
 										mkp.yield t.description.text()
@@ -394,8 +418,9 @@ class CapabilityTagLib {
 						}
 					} else { // the easier option.
 						out << gui.toolTip(text:'Download the data for this resource as a VOTable') {
-							"<a href='${url}' target='_blank' class='main icon icon_table_save'>Download Table</a>"
+							out << "<a href='${url}' target='_blank' class='main icon icon_table_save'>Download Table</a>"
 						}
+						out << samp.broadcast(url:url)
 					}
 					//@todo add integration with samp apps here - fire straight off too tomcat.
 					break

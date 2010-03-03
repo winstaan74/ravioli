@@ -8,6 +8,7 @@ ${r.titleField }
 </head>
 <body class="yui-skin-sam">
 	<g:render template="resourceDetail" />
+	<%--load js last of all. --%>
 	<g:javascript src='resource.js' />
 </body>
 </html>

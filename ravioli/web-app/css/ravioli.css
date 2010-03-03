@@ -116,14 +116,16 @@ img.resource-logo {
 	border-left: 1px solid grey;
 	padding-left:5px;
 	}
-.search legend, .tableMetadata legend {
+.search legend, .tableMetadata legend , #SAMP legend{
 	color:gray;
 	font-style: italic;
 	white-space: nowrap;
 	}
+	
 .tableMetadata fieldset {
 		padding:5px;
 	}
+
 .search input.RA, .search input.DEC, .search input.SR , .search input.SIZE{
 	width:100px;
 }
@@ -236,7 +238,39 @@ ul.download li {
 		margin-bottom:10px;
 }
 	
+/**SAMP div */
+#SAMP {
+	width:130px;
+	float:right;
+	margin-left:10px;
+	}
+#SAMP fieldset {
+	padding:5px;
+	border: 1px solid gray;
+	}
+#SAMP img {
+	padding-right:2px;
+	float:left;
+}
+#SAMP a {
+	display:block;
+}
 
+/** samp buttons: invisible to start with
+shown once samp connects.
+ */
+.samp {
+	visibility:hidden;
+	}
+#CONNECTED {
+	display:none;
+	}
+#CONNECTING {
+	display:none;
+}
+#NOTCONNECTED {
+	display:block;
+}
 
 
 
@@ -292,4 +326,5 @@ div#top-menu .admin {
 	left: 250px;
 	}
 	
+
 
