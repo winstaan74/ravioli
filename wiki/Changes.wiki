@@ -3,6 +3,10 @@
 
 Version at http://astrogrid.roe.ac.uk/ravioli - v0.5
 -----
+==version 0.6, unreleased==
+
+===New features===
+   * Added a 'capabilities' column to the table, that displays icons of different abilities of the resource (download table, SSAP, etc). Also possible to search using these terms, rather than the obscure resource terminology
 
 ==version 0.5, 3rd March 2010==
 
