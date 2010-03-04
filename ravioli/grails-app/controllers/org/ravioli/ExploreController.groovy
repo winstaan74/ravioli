@@ -115,7 +115,7 @@ class ExploreController {
 							row(
 									ix:++i
 									,col:c.name.text()
-									,desc:c.description.text()
+									,desc:c.description.text() 
 									,type: c.dataType.text() + " " + c.dataType.'@arraysize'.text()
 									,unit: c.unit.text()
 									,ucd: c.ucd.text()

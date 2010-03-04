@@ -327,4 +327,9 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 		
 	}
 	
+	void testAbility() {
+		search('ability:web interface')
+		expectSome()
+	}
+	
 }

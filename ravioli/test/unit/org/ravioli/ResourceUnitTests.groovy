@@ -125,7 +125,7 @@ class ResourceUnitTests extends GrailsUnitTestCase {
 			assertTrue col.containsKey('key')
 			assertTrue col.containsKey('label')
 			col.each{ field ->
-				assertTrue field.getKey() in ['key','label','width','hidden','sortable']
+				assertTrue field.getKey() in ['key','label','width','hidden','sortable','formatter']
 			}
 			assertTrue row.containsKey(col.key)
 			assertNotNull "row value of ${col.key} is null", row.get(col.key) // never null, though may be blank.

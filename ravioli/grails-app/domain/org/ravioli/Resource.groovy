@@ -99,9 +99,17 @@ import groovy.xml.StreamingMarkupBuilder;
 	
 ,@SearchableDynamicMetaData(name="source",converter="groovy"
 		, expression="data.sourceField" ,store=Store.NO)
-		
+
+// human-readable version of 'capability' - uses same terminology as in the formatted display
+,@SearchableDynamicMetaData(name="ability",converter="groovy" //called abilities, as already have 'capability'
+		, expression="data.capabilityEncoderService.decode(data.capabilityCode)" 
+		, excludeFromAll=ExcludeFromAll.NO
+		,store=Store.NO)	
 ]) 
 class Resource {
+	
+	def capabilityEncoderService
+	
 	static constraints = {
 		ivorn(unique:true, matches:/ivo:\/\/\S+/,maxSize:1000) // must have prefix ivo://
 		titleField(nullable:true,maxSize:1000)
@@ -170,7 +178,12 @@ class Resource {
 		@SearchableProperty(name='_creators',index=Index.NOT_ANALYZED, store=Store.YES)
 		String creators
 		
-
+		
+		// different requirements here
+		// encoding of the 'capabilities' of this resource
+		// want it to be available when revived from search indexes
+		@SearchableProperty(name='capabilityCode',index=Index.NOT_ANALYZED, store=Store.YES)
+		int capabilityCode;
 
 		
 		
@@ -222,7 +235,12 @@ class Resource {
 		this.publishers = fuseNS(gp.curation.publisher)
 		this.creators = fuse(gp.curation.creator.name)
 
+		// initializing this with ?., so it doesn't mess up current unit tests.
+		// the capability encoder has it's own unit tests..
+		this.capabilityCode = capabilityEncoderService?.encode(gp) ?: 0
+
 	}
+
 	
 	/** search functionality*/
 	/** rewrite query to remove all references to 'ivo://' */
@@ -254,6 +272,7 @@ class Resource {
 		return [
 		        _ivorn : ivorn
 				,_titleField : titleField
+				,capabilityCode: capabilityCode
 				,_shortnameField: shortnameField ?:""
 				,_sourceField: sourceField ?:""
 				,_subjects: subjects ?: ""
@@ -276,6 +295,7 @@ class Resource {
 	                     		//@todo implement mass-selection using checkbox		[key:'check', formatter:'checkbox']
 	                    		[key:'_ivorn', label:'IVOA-ID', width:250]
 	                    		,[key:'_titleField', label:'Title',  width:250]
+								,[key:'capabilityCode', label:'Capability',width:80,formatter:'@formatCapabilities']
 	                    		,[key:'_shortnameField',label:'Short Name', hidden:true, width:80]
 								,[key:'_sourceField', label:'Source Reference',hidden:true, width:100]
 	                    		,[key:'_subjects', label:'Subject', hidden:true,width:250]
@@ -284,6 +304,7 @@ class Resource {
 	                    		,[key:'_creators',label:'Creator',hidden:true,width:250]
 	                    		,[key:'date', label:'Date', width:80]	
 	                    		,[key:'id', label:'ID',hidden:true] // never displayed, used to create links to resources.
+	                    		
 	                    		]
 	
 	

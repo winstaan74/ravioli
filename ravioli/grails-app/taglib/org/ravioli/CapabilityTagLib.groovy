@@ -318,7 +318,7 @@ class CapabilityTagLib {
 					
 					case {it.std =~ "/TAP"}:
 					div(class:'left') {
-						title (icon:'icon_database_table',txt: 'Table/Database access service (TAP)')
+						title (icon:'icon_database_table',txt: 'Table/Database query service (TAP)')
 						description()
 					}
 					div(class:'right') {
@@ -432,7 +432,6 @@ class CapabilityTagLib {
 						}
 						out << samp.broadcast(url:url)
 					}
-					//@todo add integration with samp apps here - fire straight off too tomcat.
 					break
 					
 					case {it.std == '' && it.type == ''}:

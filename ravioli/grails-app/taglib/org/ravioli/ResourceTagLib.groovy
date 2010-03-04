@@ -7,6 +7,8 @@ package org.ravioli
  *  */
 class ResourceTagLib {
 	
+	def capabilityEncoderService
+	
 	static namespace = 'r'
 	
 	/** format a resourcetype - remove any leading namespace prefix, and 
@@ -140,17 +142,37 @@ class ResourceTagLib {
 		def tableOptions = '''<a id="dt-options-link" class="dt-options-link main" href="#" >Table Options</a>'''
 		// add in any default configuration..
 		def columns = Resource.TABLE_COLUMNS.collect {
-			it + [resizeable:true, sortable:true]
+			// exception for capability
+			if (it.key == 'capabilityCode') {
+				return it + [resizeable:true]
+			} else {
+				return it + [resizeable:true, sortable:true]
+			}
 			//, width:"""readCookie("${it.key}",${it.width})"""]
 		}
+		// stuff that needs to be loaded before datatable.
 		out << g.javascript {
 			'''
 			function readCookie(key,defaultWidth) {
 			var cVal = parseInt(YAHOO.util.Cookie.get(key),10)
 			alert(cVal)
 			return cVal || defaultWidth
+			
 		}
+			 
+			/** function to format capabilities column */
+			 function formatCapabilities(cell, record, column, data) {
+				// cell is a div Htmlelement
+				// record is a Yahoo.widget.Record - methods getData('field')
+			    // column is a Yahoo.widget.Column
+				// data is a list of items - good.
+				cell.innerHTML = decodeCapabilities(data)
+			 }
 			'''
+		}
+		// the definition of the capabilities decoder.
+		out << g.javascript {
+			capabilityEncoderService.javascriptDecoder()
 		}
 		out << gui.dataTable(
 		id:'resources'

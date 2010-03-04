@@ -33,8 +33,6 @@ class AdsFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 		assertContentType('text/html')
 		// check the content -- verify some if the fields are there.
 		acc 'XAssist'
-		hasLink '(show abstract)'
-		hasLink '(show authors)'
 		
 	}
 }
