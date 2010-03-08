@@ -6,8 +6,12 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.5
 ==version 0.6, unreleased==
 
 ===New features===
+   * Added search folders to left hand side of window. Only pre-canned searches for now, until user-login is implemented
    * Added a 'capabilities' column to the table, that displays icons of different abilities of the resource (download table, SSAP, etc). Also possible to search using these terms, rather than the obscure resource terminology
 
+
+===Feedback Needed===
+   * pre-canned searches - these are the ones from latest VODesktop - are they all ok here? is there anything else to add?
 ==version 0.5, 3rd March 2010==
 
 ===New features===
