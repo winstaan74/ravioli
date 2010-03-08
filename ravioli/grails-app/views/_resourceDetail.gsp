@@ -4,7 +4,7 @@
 <g:if test="${webRequest.actionName == 'inlineResource' }"><%--only display in inlineResource within table. --%>
 	<div style='float:right;'>
 	<gui:toolTip text='Open a new tab to display this resource'>
-		<g:link class='icon icon_tab_go' target='_blank' action='resource' controller='explore' id="${r.id }" absolute='true'>Open in new tab</g:link>
+		<g:link class='icon icon_tab_go' target='_blank' action='resource' controller='display' id="${r.id }" absolute='true'>Open in new tab</g:link>
 	</gui:toolTip>
 	</div>
 </g:if>

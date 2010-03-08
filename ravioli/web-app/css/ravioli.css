@@ -13,17 +13,27 @@ black - text.
     position: absolute;
     right: 0;
 }
-
+/** underline urls, turn color on hover.*/
+/*
 a:link, a:visited {
     color: #054345;
-  /*  font-weight: bold;
-    text-decoration: none;*/
 }
 a:hover {
     color: #660000;
-  /*  font-weight: bold;
-    text-decoration: none;*/
-}
+}*/
+
+/** don't underline urls, apart from on hover. */
+a:link, a:visited {
+    color: #054345;
+		text-decoration:none;
+	}
+	
+a:hover {
+		    color: #660000;
+		    text-decoration:underline;
+	}
+
+
 a.main {
 	font-weight:bold
 	}
@@ -38,7 +48,7 @@ a.main {
 .resourceDetail {
 	margin: 0px;
 	padding:5px;
-	max-width:800px; /** magic that stops it bleading too far */
+	max-width:800px; /** magic that stops it bleeding too far */
 	}
 
 .resourceDetail h1, .tableMetadata h1 {
@@ -54,7 +64,7 @@ a.main {
 .resourceDetail .content , .resourceDetail .capability, .resourceDetail .ads, .tableMetadata .description{
 	padding:5px;
 	background:#E6EEEF;
-	border: 1px solid gray;
+/*	border: 1px solid gray;*/
 	margin-bottom: 5px;
 	}
 
@@ -65,7 +75,8 @@ a.main {
 	}
 
 .cap-title {
-	font-weight:bold;
+/*	font-weight:bold;*/
+	font-size:larger;
 	margin-bottom:2px;
 	}
 
@@ -112,14 +123,11 @@ img.resource-logo {
 	
 /** stuff for search forms */
 .search fieldset, .tableMetadata fieldset{
-	border-top: 1px solid grey; 
+	/*
+	border-top: 1px solid grey; */
 	border-left: 1px solid grey;
-	padding-left:5px;
-	}
-.search legend, .tableMetadata legend , #SAMP legend{
-	color:gray;
-	font-style: italic;
-	white-space: nowrap;
+	padding-left:4px;
+	padding-bottom:4px;
 	}
 	
 .tableMetadata fieldset {
@@ -195,18 +203,6 @@ img.resource-logo {
 	background-image:none;	
 	}
 
-	
-/* two columns for a capability */
-.capability .left{
-	float:left;
-	width: 220px;
-	padding:1px
-}
-
-.capability .right {
-	margin-left: 220px;
-	}
-
 /* downloads */
 ul.download {
 	display:inline;
@@ -243,11 +239,11 @@ ul.download li {
 	width:130px;
 	float:right;
 	margin-left:10px;
+	padding-left:4px;
+	padding-bottom:4x;
+	border-left:1px solid gray;
 	}
-#SAMP fieldset {
-	padding:5px;
-	border: 1px solid gray;
-	}
+
 #SAMP img {
 	padding-right:2px;
 	float:left;
@@ -260,7 +256,6 @@ ul.download li {
 shown once samp connects.
  */
 .samp {
-	/*visibility:hidden;*/
 	display:none;
 	}
 #CONNECTED {
@@ -323,9 +318,28 @@ div#top-menu .login {
 	
 div#top-menu .admin {
 	position: absolute;
-	top : 0px;
+	top : 20px;
 	left: 250px;
 	}
+	
+/** left menu */
+.container {
+	margin-bottom:10px;
+	}
+ .head, legend {
+	font-size:larger;
+	color:#347879;
+	white-space: nowrap;
+	}
+.container li {
+	margin-left:4px;
+	margin-top:3px;
+}
+/*it's all links, so keep the color the same */
+.container a {
+		color:#347879;
+	}
+
 	
 
 

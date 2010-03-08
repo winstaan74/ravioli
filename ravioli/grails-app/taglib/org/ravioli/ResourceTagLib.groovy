@@ -53,7 +53,7 @@ class ResourceTagLib {
 		if (! xml.catalog.table.isEmpty() || ! xml.table.isEmpty() ) {
 			 out << ' '
 			 out << gui.toolTip(text:"Show the table descriptions for this resource in a new window") {
-				out << g.link(class:"main icon icon_table_go", action:"tableMetadata", controller:"explore", 
+				out << g.link(class:"main icon icon_table_go", action:"tableMetadata", controller:"display", 
 						id:pageScope.r.id, target:"_blank"){'Show Table Metadata'}
 			 }
 		}
@@ -120,7 +120,7 @@ class ResourceTagLib {
 		}
 		if (uri?.startsWith('ivo://')) {
 			out << '<a class="res" target="_blank" href="'
-			out << g.createLink(params:[ivorn:uri], controller:'explore',action:'resource')
+			out << g.createLink(params:[ivorn:uri], controller:'display',action:'resource')
 			out << '">' << b << "</a>"
 		} else if (uri) { // not an ivorn, but something.
 			out << '<a target="_blank" href="' << uri << '">' << b << "</a>"

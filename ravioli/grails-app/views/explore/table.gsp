@@ -65,8 +65,9 @@ background-color:#347879;
 </head>
 <body>
 	<%-- search form --%>
-	<input type="text" id="sb" value=""/>
+	<input type="text" id="sb" value="${params.query}"/>
 	<button type='button' id="filterButton">Search</button>
+	<%-- if we've already got a query, trigger it once the page has loaded --%>
 
 <div id='resourcesParent'>
 	<r:resourceTable />

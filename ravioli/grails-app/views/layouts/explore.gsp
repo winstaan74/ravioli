@@ -6,7 +6,7 @@
    <title>Ravioli &raquo; <g:layoutTitle /></title>
   <link rel="stylesheet" href="${resource(dir:'css',file:'reset-fonts-grids.css')}" />
   <link rel="stylesheet" href="${resource(dir:'css',file:'famfamfam.css',plugin:'nimble')}" />  
-  <g:if test="${['resource','registry','task','taskExecution'].contains(params.controller)  }">
+  <g:if test="${['resource','registry','task','taskExecution','resourceList','listContainer'].contains(params.controller)  }">
     <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}" /><%--default grails styling.. --%>
   </g:if>
   <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
@@ -20,7 +20,8 @@
 <div id="doc3" class="yui-t2">
         <div id="spinner" class="spinner" style="display:none;">
             <img src="${resource(dir:'images',file:'spinner.gif')}" alt="Spinner" />
-        </div>	
+        </div>
+<%-- header --%>	
    <div id="hd">
     <g:link controller='explore'><img align='left' src="${resource(dir:'images',file:'ravioli.png')}" alt="Ravioli" /></g:link>
    	<g:render template="/topMenu" />
@@ -30,17 +31,18 @@
   			</div>
   	</g:if>
    </div>
+<%--body --%>
    <div id="bd">
+   <%-- main block --%>
 	<div id="yui-main">
 	<div class="yui-b">
-<!--  	<div class="yui-ge">-->
         <g:layoutBody />
-<!-- </div>-->
-</div>
 	</div>
+	</div>
+	<%--left block --%>
 	<div class="yui-b"><g:render template="/leftMenu"/></div>
-	
 	</div>
+<%--footer --%>
    <div id="ft"><p style='text-align: center; margin-top:50px;'>Ravioli v<g:meta name="app.version" /> 
       | <a href='http://code.google.com/p/ravioli/wiki/Changes' target='_blank'>Changes</a>
       | <a href='http://code.google.com/p/ravioli/issues/entry' target='_blank'>Report an issue</a>

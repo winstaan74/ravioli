@@ -139,7 +139,9 @@ class Resource {
 		Long id
 		
 		// used in table row.
-		@SearchableProperty(name="_ivorn",index=Index.NOT_ANALYZED,store=Store.YES)
+		// made this un-tokenoized, rather than not-analyzed, 
+		// so I can query against exact ivorn matches - used when retrieving static lists.
+		@SearchableProperty(name="_ivorn",index=Index.UN_TOKENIZED,store=Store.YES)
 		String ivorn // $r/identifier 
 		
 		String status // not searchable.

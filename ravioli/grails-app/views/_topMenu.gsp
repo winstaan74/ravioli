@@ -9,8 +9,7 @@ Launch Topcat, Aladin, VODesktop, VOSpec, or another tool, and then click Connec
 Once connected, additional buttons will appear in the resource display to 
 send data to other tools.
 ">
-<fieldset>
-	<legend>Samp</legend>
+	<div class='head'>Samp</div>
 	 <div id="CONNECTED" class="icon icon_connect">
 	 	Connected.
 	 	<a href="#" onclick="sampDisconnect();">(disconnect)</a>
@@ -26,7 +25,6 @@ send data to other tools.
 	 	<a  href="#" class='main' onclick="sampConnect('${grailsApplication.config.grails.serverURL }/applet');">Connect</a>
 	 </div>
 
-	</fieldset>
 </gui:toolTip>
 </div><%-- end samp --%>
      

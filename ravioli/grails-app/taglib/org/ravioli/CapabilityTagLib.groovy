@@ -277,52 +277,52 @@ class CapabilityTagLib {
 			
 			
 			// now start the formatting.
-			div(class:'capability') {
+			div(class:'capability yui-gd') {
 				switch(capType) {
 					case {it.std == 'ivo://ivoa.net/std/ConeSearch'}:
 					case {it.type =~ /Cone/}:
-					div(class:'left') {
+					div(class:'yui-u first') {
 						title (icon:'icon_table',txt:'Catalog cone search service')
 						description()
-						field 'Maximum results returned', cap.maxRecords
+						field 'Max. results returned', cap.maxRecords
 						mkp.yieldUnescaped ' '
-						field 'Maximum search radius', cap.maxSR 
+						field 'Max. search radius', cap.maxSR 
 					}
-					div(class:'right') {
-						interfacesWithSpecial {iface -> searchForm(template:'searchForm',className:'cone',iface:iface) } 
+					div(class:'yui-u') {
+						interfacesWithSpecial {iface -> searchForm(template:'/searchForm',className:'cone',iface:iface) } 
 					}
 					break
 					
 					case {it.std =='ivo://ivoa.net/std/SIA'}: 
 					case {it.type =~ /SimpleImageAccess/}:
-					div(class:'left') {
+					div(class:'yui-u first') {
 						title (icon:'icon_images',txt:'Image access service (SIAP)')
 						description()
 						field 'Service type', cap.imageServiceType
-						field 'Maximum file size', cap.maxFileSize
-						field 'Maximum results returned', cap.maxRecords
+						field 'Max. file size', cap.maxFileSize
+						field 'Max. results returned', cap.maxRecords
 						if (isNonZero(cap.maxImageExtent.lat)) {
-							field 'Maximum image extent', cap.maxImageExtent.lat.text() + "," +cap.maxImageExtent.'long'.text()
+							field 'Max. image extent', cap.maxImageExtent.lat.text() + "," +cap.maxImageExtent.'long'.text()
 						}	
 						if (isNonZero(cap.maxImageSize.lat)) {
-							field 'Maximum image size', cap.maxImageSize.lat.text() + "," + cap.maxImageSize.'long'.text()
+							field 'Max. image size', cap.maxImageSize.lat.text() + "," + cap.maxImageSize.'long'.text()
 						}
 						if (isNonZero(cap.maxQueryRegionSize.lat)) {
-							field 'Maximum query size', cap.maxQueryRegionSize.lat.text() + "," + cap.maxQueryRegionSize.'long'.text()
+							field 'Max. query size', cap.maxQueryRegionSize.lat.text() + "," + cap.maxQueryRegionSize.'long'.text()
 						}
 					}
-					div(class:'right') {
-						interfacesWithSpecial {iface -> searchForm(template:'searchForm',className:'siap',iface:iface) }
+					div(class:'yui-u') {
+						interfacesWithSpecial {iface -> searchForm(template:'/searchForm',className:'siap',iface:iface) }
 					}
 					break
 					
 					case {it.std =~ "/TAP"}:
-					div(class:'left') {
+					div(class:'yui-u first') {
 						title (icon:'icon_database_table',txt: 'Table/Database query service (TAP)')
 						description()
 					}
-					div(class:'right') {
-						interfacesWithSpecial {iface -> searchForm(template:'tapForm',iface:iface) }
+					div(class:'yui-u') {
+						interfacesWithSpecial {iface -> searchForm(template:'/tapForm',iface:iface) }
 					}
 					break
 					
@@ -330,36 +330,36 @@ class CapabilityTagLib {
 					case {it.std == 'ivo://ivoa.net/std/SSA'}:
 					case {it.std == 'ivo://ivoa.net/std/TSA'}:
 					case {it.type =~ /SimpleSpectralAccess/ } :
-					div(class:'left') {
+					div(class:'yui-u first') {
 						title (icon:'icon_rainbow',txt:'Spectrum access service (SSAP)')
 						description()
 						field 'Compliance', cap.complianceLevel
 						listField 'Creation type', cap.creationType
 						listField 'Data source', cap.dataSource
-						field 'Maximum results returned', cap.maxRecords
+						field 'Max. results returned', cap.maxRecords
 						field 'Default max. records',cap.defaultMaxRecords
-						field 'Maximum file size', cap.maxFileSize
-						field 'Maximum aperture', cap.maxAperture
-						field 'Maximum search radius', cap.maxSearchRadius
+						field 'Max. file size', cap.maxFileSize
+						field 'Max. aperture', cap.maxAperture
+						field 'Max. search radius', cap.maxSearchRadius
 						listField 'Supported Frames', cap.supportedFrame
 					}
-					div(class:'right') {
-						interfacesWithSpecial {iface -> searchForm(template:'searchForm',className:'ssap',iface:iface) }
+					div(class:'yui-u') {
+						interfacesWithSpecial {iface -> searchForm(template:'/searchForm',className:'ssap',iface:iface) }
 					}
 					break
 					
 					
 					case {it.std ==  "ivo://org.astrogrid/std/STAP/v1.0"}:
 					case {it.type =~ /SimpleTimeAccess/}:
-					div(class:'left') {
+					div(class:'yui-u first') {
 						title(icon:'icon_time', txt:'Time range access service (STAP)')
 						description()
-						field 'Maximum results returned', cap.maxRecords
+						field 'Max. results returned', cap.maxRecords
 						field 'Supports positioning', cap.supportPositioning
 						listField 'Formats', cap.supportedFormats
 					} 
-					div(class:'right') {
-						interfacesWithSpecial {iface -> searchForm(template:'stapForm',iface:iface) }
+					div(class:'yui-u') {
+						interfacesWithSpecial {iface -> searchForm(template:'/stapForm',iface:iface) }
 					}
 					break
 					
@@ -377,7 +377,7 @@ class CapabilityTagLib {
 					case {it.std == 'ivo://ivoa.net/std/Registry' && it.type =~ /Search/}:
 					title'Registry Search'
 					description()
-					field 'Maximum records returned',cap.maxRecords
+					field 'Max. records returned',cap.maxRecords
 					field 'Extension search support', cap.extensionSearchSupport
 					listField 'Additional Protocols', cap.optionalProtocol
 					interfaces()
@@ -386,7 +386,7 @@ class CapabilityTagLib {
 					case {it.std == 'ivo://ivoa.net/std/Registry' && it.type =~ /Harvest/}:
 					title 'Registry Harvest'
 					description()
-					field 'Maximum records returned',cap.maxRecords
+					field 'Max. records returned',cap.maxRecords
 					interfaces()
 					break
 					
@@ -484,7 +484,7 @@ class CapabilityTagLib {
 					title (icon:'icon_server_database',txt:'SkyNode')
 					description()
 					field 'Compliance', cap.compliance
-					field 'Maximum Records', cap.maxRecords
+					field 'Max. Records', cap.maxRecords
 					field 'Primary Table', cap.primaryTable
 					field 'Primary Key',cap.primaryKey
 					interfaces()

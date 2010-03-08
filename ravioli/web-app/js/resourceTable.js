@@ -1,5 +1,10 @@
 /** additional javascript based functionality for the resourceTable */
  YAHOO.util.Event.onDOMReady(function () { 
+	 
+	 applyFilter = function(q) {
+		 YAHOO.util.Dom.get('sb').value = q
+		 updateFilter()
+	 };
 	   /*
 	   *search functionality
 	   */
@@ -29,6 +34,10 @@
   YAHOO.util.Event.on('filterButton','click',function (e) { 
 	     updateFilter(); 
 	    }); 
+  // check whether we've already got content in the filter button.
+  if (YAHOO.util.Dom.get('sb').value != '') {
+	  updateFilter()
+  }
   
   var RAVIOLI_COOKIE = 'ravioli_resource_table';
   
