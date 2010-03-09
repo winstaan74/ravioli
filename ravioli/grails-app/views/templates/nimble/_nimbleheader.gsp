@@ -1,11 +1,12 @@
-<div id="banner">
-	<h1><g:message code="nimble.layout.admin.banner.heading" /></h1>
-	
+<div id="top-menu" ><%--defanged - id="banner" --%>
+	   <g:link controller='explore'><img style='float:left;' src="${resource(dir:'images',file:'ravioli.png')}" alt="Ravioli" /></g:link>
+
 	<g:if test="${navigation}">
-		<n:isLoggedIn>
+			<g:render template="/loginMenu"/>
+		<%--<n:isLoggedIn>
 			<div id="userops">
 				<g:message code="nimble.label.usergreeting" /> <n:principalName /> | <g:link controller="auth" action="logout" class=""><g:message code="nimble.link.logout.basic" /></g:link>
 			</div>
-		</n:isLoggedIn>
+		</n:isLoggedIn>--%>
 	</g:if>
 </div>

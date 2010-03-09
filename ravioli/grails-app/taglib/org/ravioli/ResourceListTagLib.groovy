@@ -11,17 +11,17 @@ class ResourceListTagLib {
 		if (! attr.name ) {
 			throw new IllegalArgumentException('no name attribute provided')
 		}
-		out << "<div class='container'>"
+		out << "<div class='leftBlock'>"
 		ListContainer lc = ListContainer.findByName(attr.name)
 		if (! lc) {
 			out << " container '${attr.name}' not found"
 		} else {
 			// header
-			out << "<div class='head "
+			out << "<h3 class='"
 			if (lc.icon) {
 				out << "icon " << lc.icon
 			}  
-			out << "'>" << lc.title << "</div>"
+			out << "'>" << lc.title << "</h3>"
 			
 			// body
 			if (lc.lists) {

@@ -1,5 +1,7 @@
-<div class="localnavigation">
-	<h3><g:message code="nimble.template.sidenavigation.heading" /></h3>
+<div>
+<%--  class="localnavigation">--%>
+	<g:render template="/adminMenu" />
+	<h3>Access Control</h3>
 	<ul>
 		<li>
 			<g:link controller="user" action="list"><g:message code="nimble.link.users" /></g:link>
@@ -111,4 +113,5 @@
 			<g:link controller="admins" action="index"><g:message code="nimble.link.admins" /></g:link>
 		</li>
 	</ul>
+
 </div>

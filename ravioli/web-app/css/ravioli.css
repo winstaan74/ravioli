@@ -308,35 +308,28 @@ td.errors input {
 /** Top menu */
 
 div#top-menu {
-	/*background: red; */
 	padding: 10px;
 }
 
 div#top-menu .login {
 	text-align:right;
 	}
-	
-div#top-menu .admin {
-	position: absolute;
-	top : 20px;
-	left: 250px;
-	}
-	
+
 /** left menu */
-.container {
-	margin-bottom:10px;
+.leftBlock {
+	margin-bottom:20px;
 	}
- .head, legend {
+.leftBlock h3{
 	font-size:larger;
 	color:#347879;
 	white-space: nowrap;
 	}
-.container li {
+.leftBlock li {
 	margin-left:4px;
 	margin-top:3px;
 }
 /*it's all links, so keep the color the same */
-.container a {
+.leftBlock a {
 		color:#347879;
 	}
 

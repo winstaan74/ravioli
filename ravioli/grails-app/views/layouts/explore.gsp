@@ -23,7 +23,7 @@
         </div>
 <%-- header --%>	
    <div id="hd">
-    <g:link controller='explore'><img align='left' src="${resource(dir:'images',file:'ravioli.png')}" alt="Ravioli" /></g:link>
+    <g:link controller='explore'><img style='float:left;' src="${resource(dir:'images',file:'ravioli.png')}" alt="Ravioli" /></g:link>
    	<g:render template="/topMenu" />
    	<g:if test="${flash.message }">
   		<div id="flash">
@@ -43,13 +43,7 @@
 	<div class="yui-b"><g:render template="/leftMenu"/></div>
 	</div>
 <%--footer --%>
-   <div id="ft"><p style='text-align: center; margin-top:50px;'>Ravioli v<g:meta name="app.version" /> 
-      | <a href='http://code.google.com/p/ravioli/wiki/Changes' target='_blank'>Changes</a>
-      | <a href='http://code.google.com/p/ravioli/issues/entry' target='_blank'>Report an issue</a>
-      | <a href="http://code.google.com/p/ravioli/" target='_blank'>Project page</a>
-	  | SAMP integration courtesy of <a href="http://vo.imcce.fr/webservices/samp/">WebSampConnector</a>
-   </p>
-   </div>
+   <div id="ft"><g:render template="/bottom"/></div>
 </div>
 <%--defer as much javascript as possible to here, to improve page appearance time --%>
   <g:javascript src="websampconnector.js" />

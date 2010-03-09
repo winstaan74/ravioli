@@ -16,19 +16,30 @@
  */
 
 nimble {
+	
+	passwords {
+		mustcontain {
+			lowercase = false
+			uppercase = false
+			numbers = false
+			symbols = false
+		}
+		minlength = 6
+	}
+	
     organization {
         name = "Ravioli"
         displayname = "Ravioli Registry Explorer"
-        description = ""
-        logo = ""
-        logosmall = ""
-        url = ""
+        description = "Would like this to appear somwehre."
+        logo = "/images/ravioli.png"
+        logosmall = "/images/ravioli.png"
+        url = "http://localhost:8080/ravioli"
     }
 
 	layout {
-        application = 'app'
-        administration = 'admin'
-		login = 'app'
+        application = 'nimble/ravioli-app'
+        administration = 'nimble/ravioli-admin'
+		login = 'nimble/ravioli-app'
     }
 
     localusers {

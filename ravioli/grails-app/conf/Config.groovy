@@ -153,7 +153,7 @@ environments {
 
 ////Navigation - additional menus
 navigation.admin = [
-		[controller:'admins', title:'Administer']
+		[controller:'admins', title:'Access Control']
 		,[controller:'buildInfo', title:'Build Info']
 		]
 
