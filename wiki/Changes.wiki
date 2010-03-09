@@ -3,7 +3,7 @@
 
 Version at http://astrogrid.roe.ac.uk/ravioli - v0.5
 -----
-==version 0.6, unreleased==
+==version 0.6, 9th March 2010==
 
 ===New features===
    * Added search folders to left hand side of window. Only pre-canned searches for now, until user-login is implemented
