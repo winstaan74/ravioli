@@ -43,6 +43,7 @@ class BootStrap {
 			}
 		}
 		populateListContainers()
+		populateTableViewers()
 	}
 	/** load resources from disk
 	 * 
@@ -203,6 +204,16 @@ class BootStrap {
 				.addToLists( new SmartList(query:'publisher:CDS'
 					,title:'All Vizier'))
 				.save()
+		}
+	}
+	
+	private populateTableViewers() {
+		if (TableViewer.count() == 0) {
+			new TableViewer(
+					buttonText:'Show Data'
+					,tooltip:'Run the query and display as HTML in a new browser window'
+					,url:'http://heasarc.gsfc.nasa.gov/vo/squery//query.sh?viewURL='
+				).save()
 		}
 	}
 	

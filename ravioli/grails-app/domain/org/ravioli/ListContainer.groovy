@@ -9,6 +9,7 @@ class ListContainer {
 
     static mapping = {
 		lists fetch:'join' // make the lists association eager.
+		cache 'nonstrict-read-write'
     }
     
     /** title to display in ui */

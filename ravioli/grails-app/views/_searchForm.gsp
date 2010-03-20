@@ -52,10 +52,10 @@ oh well, live and learn --%>
 <gui:tabView >
     <gui:tab label="Search by Position" active="true">
 		<sf:formField  value="${raVal }" name="RA" id="${raFieldId }"
-			tip="Right Ascension (ICRS decimal degrees)" />
+			tip="Right Ascension (ICRS, decimal degrees, J2000)" />
 		<sf:formField  value="${decVal}" name="DEC" id="${decFieldId }"
 			title='Dec'
-			tip="Declination (ICRS decimal degrees)" />
+			tip="Declination (ICRS, decimal degrees, J2000)" />
 	</gui:tab>
 		
     <gui:tab label="Search by Object Name">
@@ -85,7 +85,7 @@ oh well, live and learn --%>
 </gui:tabView>
 
 		 <sf:formField value="${szVal}" name="${szName}"
-		 	tip="Search Radius"
+		 	tip="Search Radius, in decimal degrees",
 		 	title="Radius"
 		 />
 		<!--  only applies to cone. -->

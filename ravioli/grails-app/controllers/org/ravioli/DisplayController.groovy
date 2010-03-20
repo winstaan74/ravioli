@@ -16,10 +16,16 @@ class DisplayController {
 		} else if (params.ivorn) {
 			r = Resource.findByIvorn(params.ivorn)
 		}
-		if(r) {
-			return [r:r]
-		} else {
+		if (!r) {
 			render(status:404, text:'Failed to find resource')
+		}
+		withFormat {
+			html r:r // passes on to view
+			xml { 
+				render(contentType:"application/xml") {
+					mkp.yieldUnescaped r.rxml.xml
+				}
+			}
 		}
 	}
 	

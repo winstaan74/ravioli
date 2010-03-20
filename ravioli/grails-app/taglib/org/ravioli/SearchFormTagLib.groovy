@@ -49,18 +49,25 @@ class SearchFormTagLib {
 	 * params - formId, isPosParam (boolean)
 	 */
 	def actionButtons = {attr ->
+		// first the static url link.
 		out << "<ul><li>"
 		out << gui.toolTip(text:'Run the query (right-click to download the query results)') {
 			out << """<a href='#' class='main' target='_blank' 
 				onmouseover="this.href = dalQuery('${attr.formId}',${attr.isPosParam});">Get Data</a>"""
 		}
 	
-		out << "</li><li>"
-		out << gui.toolTip(text:"Run the query and display as HTML in a new browser window") {
-			out << """<button type='button'
-				onClick="dalDisplay('${attr.formId}',${attr.isPosParam }); return false;">Show Data</button>"""
+		out << "</li>"
+		// now any table viewers that we've got defined
+		TableViewer.list().each {tv ->
+			out << "<li>"
+			out << gui.toolTip(text:tv.tooltip) {
+				out << """<button type='button'
+					onClick="dalDisplay('${tv.url}','${attr.formId}',${attr.isPosParam }); return false;">${tv.buttonText}</button>"""
+			}
+			out << "</li>"
 		}
-		out << "</li><li>"
+		// finaly the samp viewer/.
+		out << "<li>"
 		out << samp.button(formId:attr.formId,isPosParam:attr.isPosParam)
 		out << "</li></ul>"
 		

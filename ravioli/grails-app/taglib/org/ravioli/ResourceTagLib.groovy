@@ -1,5 +1,8 @@
 package org.ravioli
 
+import org.apache.commons.lang.WordUtils;
+import org.xwiki.rendering.parser.Syntax;
+
 
 /** utilities for formatting resources
  * 
@@ -10,6 +13,7 @@ class ResourceTagLib {
 	def capabilityEncoderService
 	
 	static namespace = 'r'
+	private final dFormatter = new DescriptionFormatter()
 	
 	/** format a resourcetype - remove any leading namespace prefix, and 
 	 * translate a few oddly-named ones.
@@ -40,27 +44,38 @@ class ResourceTagLib {
 		out << pageScope.r.modified?.format('yyyy-MM-dd')
 	}
 	
+	
 	/** format the description, preserving whitespace if possible.*/
 	def description = {
 		out << '<div class="content">'
 		def xml = pageScope.xml
 		def content = xml.content
-		def descr = content.description.text()
-		descr.eachLine{
-			out << '<p>' << it << '</p>'
+		def descr = dFormatter.format(content.description.text())
+		switch (descr) {
+			case String: // wasn't worth splitting.
+				out << descr
+				break;
+			default: // it's been split into a head, and remainder.
+				out << descr[0] << "<div style='margin-bottom:5px'>"
+				out << gui.expandablePanel(title:'more..', expanded:false, bounce:false) {
+					out << descr[1]
+				}
+				out << "</div>"
 		}
+		
 		out << l.condLink(class:'icon icon_world_link main',name:'Further&nbsp;Information') {content.referenceURL.text()}
 		if (! xml.catalog.table.isEmpty() || ! xml.table.isEmpty() ) {
-			 out << ' '
-			 out << gui.toolTip(text:"Show the table descriptions for this resource in a new window") {
+			out << ' '
+			out << gui.toolTip(text:"Show the table descriptions for this resource in a new window") {
 				out << g.link(class:"main icon icon_table_go", action:"tableMetadata", controller:"display", 
-						id:pageScope.r.id, target:"_blank"){'Show Table Metadata'}
-			 }
+				id:pageScope.r.id, target:"_blank"){'Show Table Metadata'}
+			}
 		}
 		out << '</div>'
 	}
 	
-
+	
+	
 	/** format the source, linking to ADS if appropriate */
 	def source = {
 		def xml = pageScope.xml
@@ -93,7 +108,7 @@ class ResourceTagLib {
 		// string of 19 characters, first 4 are the year.
 		return s != null && s.size() == 19 && s[0..3].isInteger()
 	}
-
+	
 	/** format a resourceName-style thing - adding a link to a related ivo-id if provided
 	 * parameters
 	 * xml - an xml node, with a '@ivo-id' attribute
@@ -175,20 +190,20 @@ class ResourceTagLib {
 			capabilityEncoderService.javascriptDecoder()
 		}
 		out << gui.dataTable(
-		id:'resources'
-		,sortedBy:'date'
-		,sortOrder:'desc'
-		,rowsPerPage:30 // later grab this value from user's prefs
-		,columnDefs:columns
-		,rowExpansion:true
-		,draggableColumns:true
-		,controller:"explore"
-		,action:"tableDataAsJSON"
-		,paginatorConfig:[
-		template: '{PreviousPageLink} {PageLinks} {NextPageLink} {CurrentPageReport} ' + tableOptions,
-		pageReportTemplate:'{totalRecords} resources ' 
-		]	
-		)
+				id:'resources'
+				,sortedBy:'date'
+				,sortOrder:'desc'
+				,rowsPerPage:30 // later grab this value from user's prefs
+				,columnDefs:columns
+				,rowExpansion:true
+				,draggableColumns:true
+				,controller:"explore"
+				,action:"tableDataAsJSON"
+				,paginatorConfig:[
+				template: '{PreviousPageLink} {PageLinks} {NextPageLink} {CurrentPageReport} ' + tableOptions,
+				pageReportTemplate:'{totalRecords} resources ' 
+				]	
+			)
 	}
 	
 	

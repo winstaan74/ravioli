@@ -1,14 +1,26 @@
 <%--create an xml slurper to work with. --%>
 <g:set var='xml' value="${r.rxml.createSlurper() }" scope='page' />
 <div class="resourceDetail" id='resourceDetail'>
-<g:if test="${webRequest.actionName == 'inlineResource' }"><%--only display in inlineResource within table. --%>
-	<div style='float:right;'>
+
+<div style='float:right;'><%--display options --%>
+	<ul>
+	<g:if test="${webRequest.actionName == 'inlineResource' }"><%--only display in inlineResource within table. --%>
+	<li>
 	<gui:toolTip text='Open a new tab to display this resource'>
 		<g:link class='icon icon_tab_go' target='_blank' action='resource' controller='display' id="${r.id }" absolute='true'>Open in new tab</g:link>
 	</gui:toolTip>
+	</li>
+	</g:if>
+	
+	<li>
+	<gui:toolTip text="Display raw XML for this resource (your browser may or may not display this correctly">
+			<g:link class='icon icon_page_white_code_red' target='_blank' action='resource' controller='display' params="[format:'xml']" id="${r.id }" absolute='true'>Show XML</g:link>
+	</gui:toolTip>
+	</li>
+	</ul>
 	</div>
-</g:if>
-<h1>${r.titleField}</h1><%--TODO: add capability icons --%>
+
+<h1>${r.titleField}</h1>
 
 <l:field name="IVOA-ID" value="${r.ivorn }" />
 
@@ -57,17 +69,6 @@
 			<r:resourceName xml="${org}"/>
 	</l:field>
 </g:each>
-<%-- 
-<g:if test="${! xml.catalog.table.isEmpty() || ! xml.table.isEmpty() }">
-<div>
- <gui:toolTip text="Show the table descriptions for this resource in a new window">
-	<g:link class="main icon icon_table_go" action="tableMetadata" controller="explore" 
-		id="${r.id }" target="_blank"
-		>Show Table Metadata</g:link>
- </gui:toolTip>
- </div>
-</g:if>
---%>
 <l:seq name="Format" values="${xml.format*.text() }"/>
 <l:seq name="Access Rights" values="${xml.rights*.text() }"/>
 <l:condLink name='Access URL' url="${xml.accessURL.text() }"/>

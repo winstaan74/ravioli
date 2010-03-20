@@ -19,6 +19,7 @@ expects 'rec' to contain an GPathElement of an ADS record element.1
 		,'DATA': 'icon icon_table_link'	
 		
 	]
+	def formatter = new DescriptionFormatter()
 %>
  <g:each var='l' in="${rec.link }"> 	
  	<li><a class="${styles[l.'@type'.text()]  }" target="_blank" href="${l.url}">${l.name }</a></li>
@@ -28,7 +29,7 @@ expects 'rec' to contain an GPathElement of an ADS record element.1
 <gui:expandablePanel title='more..' expanded='false' bounce='false'>
 <l:field name="Journal" value="${rec.journal }"/>
 <l:field name="Authors" value="${rec.author.list()*.text().join(', ') }"/>
-<p class='abstract'>${rec.abstract }</p>
+<%= formatter.tagify(rec.abstract.text()) %>
 </gui:expandablePanel>
 
 

@@ -12,10 +12,10 @@ function dalQuery(formId, isPosParam) {
  * @param referenc to the form, containing all the expected fields
  * @return
  */
-function dalDisplay(formId, isPosParam) {
+function dalDisplay(url,formId, isPosParam) {
 	var qurl = buildQueryUrl(formId, isPosParam)
 	// now encode while thing, as put as a param at end of nvo table viewer
-	var furl = 'http://heasarc.gsfc.nasa.gov/vo/squery//query.sh?viewURL=' + encodeURIComponent(qurl)
+	var furl = url + encodeURIComponent(qurl)
 	window.open(furl)
 
 }

@@ -67,11 +67,12 @@ a.main {
 /*	border: 1px solid gray;*/
 	margin-bottom: 5px;
 	}
-
-.resourceDetail .content p {
-	margin-bottom: 3px;
-/* due to haphazard nature of text, this doesn't look good
-		text-indent:10px;*/
+/* boosted the spacing somewhat, to help legibility */
+.resourceDetail .content p, .ads p {
+	margin-bottom: 5px;
+	text-indent:20px;
+	text-align:justify;
+	line-height:130%;
 	}
 
 .cap-title {
@@ -227,9 +228,6 @@ ul.download li {
 	display:block;
 	margin-bottom: 5px;
 	}
-.ads .abstract {
-		text-indent:20px;
-}
 .ads ul {
 		margin-bottom:10px;
 }
@@ -240,7 +238,7 @@ ul.download li {
 	float:right;
 	margin-left:10px;
 	padding-left:4px;
-	padding-bottom:4x;
+	padding-bottom:4px;
 	border-left:1px solid gray;
 	}
 
@@ -332,7 +330,4 @@ div#top-menu .login {
 .leftBlock a {
 		color:#347879;
 	}
-
-	
-
 
