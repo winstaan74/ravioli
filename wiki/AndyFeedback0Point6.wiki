@@ -25,6 +25,7 @@ popular. I do it all the time in VO Desktop.
  * VO taster has 4/15 cf Vo Desktop list
  * cone search examples has 6 vs 11, image access 6 vs 10...
  * is publisher:CDS the same as "all Vizier" ... ? CDS do other things
+    * Whoops, yes. rectified this
 
  * ability list : yes, nice ... but waht is the difference between an ability and a capability ?
    * NWW: it's all called 'capability' in the UI, isn't it? The only place that 'ability' occurs is in the search box - and this won't be seen once we've got a proper query builder. Implementation-wise, ability allows you to search for more human-readable strings, while capability requires you to match against what's textually in the voresource.
