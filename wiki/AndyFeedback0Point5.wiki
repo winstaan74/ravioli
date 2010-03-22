@@ -1,0 +1,61 @@
+#summary Feedback from Andy on release 0.5
+
+ * overall look and feel : pretty positive. It only really be clear as we use up more real estate putting search stuff in etc, but I think its good. The formatted display of information from resources is I would say already actually better than VO Desktop.
+
+ * on Safari,the SAMP/login parts are inside the same box frame, whereas in Firefox and Opera they are separate... on WinXP/IE
+
+ * opening and closing resources : probably ok, but I just have a wee feeling that an up-down arrow somewhere in the corner would make it clearer.
+
+ * search box acting on click only rather than return : I wouldn't worry. The structure of the search/filter area is going to be crucial ... but I will restrain myself until it starts !
+
+ * there seems to be some inconsistency in whether an opened resource is still open when you go back to it, eg after doing "show table metadata". I am struggling to spot whats going on here, so may get back after more testing
+
+ * collapsing uninteresting things : descriptions can be quite long... how about default of first 5 lines, with a +more button ?
+
+ * "wavebands" should probably in the top right list along with subject, short name etc ?
+
+ * cone search : not clear how important this is if we have SAMP link to Topcat, and filtering by posn in sidebar .. but it does help that there is something you can do with a resource straight away.
+
+  * how about a switch to sexagesimal button ?
+  * tooltip should specify equinox assumed (normally (always?) 2000)
+  * units of radius not specified 
+  * minimal/more/all choice : only appears sometimes ? set by publisher ? 
+  * using the NVO table viewer.. regardless of where it works and doesn't, I can't decide whether this is positively good or positively bad ... what we really need is our own table viewer. As it happens, Bob has been muttering about a STILTS-in-browser version for ages... and it might be something else an MSc student can do. 
+  * maybe we can offer a choice of viewers... makes more sense to decide this once we have searching and SAMP set up ?
+  * it worked ok on safari for me !
+
+ * SIAP search
+  * get/show data is ambiguous here; its returning a list of images, not the images. Maybe it can say just that : "get/show image list" 
+  * "show data" in NVO viewer works ok : clicking on the FITS link downloads the actual image just fine
+  *  "get data" produces an html file that displays in a browser, but not very nicely, and doesn't give you an obvious way to get the images.. somewhat to my surprise, it does open on topcat.. but you still can't do anything with it.
+
+ * SSAP search
+  * show data doesn't even seem to provide clickable links ...
+
+ * TAP search
+
+ * Web service base URL : people will click on this and be puzzled ! It is really for applications, not people.
+
+ * Web Form : fine.
+
+ * SAMP connect : twirly thing for a long time then nothing happens.. ? how do I stop it ?
+
+ * download table from vizier : yup, good 
+ * show table metadata : yup fine
+
+ * ADS stuff : People will soon realise this mostly provides links to the same pages that you get on ADS itself; but thats ok, its still nice; and the straight to PDF bit is one step quicker to what you want.
+
+Regarding what you see when, I suggest completely collapsed at start (as now); but on click authors/abstract box is open by default; but can then be collapsed.
+
+What we really want someday is for someone to find a paper in ADS and see a link that says "show related resource in Ravioli..."
+
+ * what about a "view XML source" option ? Would open in a new tab, like "get data". DC workers and developers would like this.
+
+ * TAP access : 
+  * default : sometimes sensible (eg select top 100 from iras_psc) and sometimes not - as at  ivo://wfau.roe.ac.uk/ssa-dsa where the default table is "field system" ... should maybe be "source". How is this picked ? Can we do anything about this ? Not obvious unless publisher supplies it. 
+  * maybe in this box the "show table metadata" link should be repeated. 
+  * Show data : I tried running a few and got an error on NVO Table viewer and got this error :
+
+Error: Input is not a standard VOTable Root node is {http://www.ivoa.net/xml/VOTable/v1.2} VOTABLE Should be VOTABLE or {http://www.ivoa.net/xml/VOTable/v1.1} VOTABLE
+
+  * get data : returns something Topcat understands just fine, but is called "DirectCone.htm" which seems odd.
