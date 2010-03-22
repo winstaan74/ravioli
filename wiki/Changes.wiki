@@ -23,7 +23,7 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.5
 
 ===Feedback Needed===
    * Try the samp integration, tell me how it works on your browser. I think I need to do some more work with signing the applet, but don't understand the details (have sent a question to the developers)
-
+   * AndyFeedback0Point5
 ===Issues===
    * calendar popup in STAP search form interacts badly with data table. Work-around - open resource in new window
    * Need to understand how to sign the samp applet
