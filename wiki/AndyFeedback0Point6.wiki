@@ -6,10 +6,10 @@ there could be a lot, especially if people start sharing them. So we
 need some structure .. folders ?
    * NWW: would rather not introduce folders - extra complexity in UI, and to implement. Interestingly, Google Mail doesn't use folders on LHS - just a bit of space to delimit different 'kinds' of folder.
 
-"All Vizier" .. or "All Heasarc" which would also be good ... is
+~~"All Vizier" .. or "All Heasarc" which would also be good ... is
 conecptually different. This is as you say a starting point, whereas
-the others are worke examples so you get the idea.
-   * NWW: Ok, I'll group the 'All' items together, slightly below the pre-canned searches. What other 'ALL' do you want?
+the others are worke examples so you get the idea.~~
+   * NWW: Done, I've grouped the 'All' items together, and put the pre-canned searches below. Any other 'ALL' items  you want?
 
 We can re-think the pre-canned lists. OK for nwo.
 
