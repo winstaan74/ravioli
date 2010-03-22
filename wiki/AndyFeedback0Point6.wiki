@@ -24,7 +24,7 @@ popular. I do it all the time in VO Desktop.
 =stuff missing=
  * ~~VO taster has 4/15 cf Vo Desktop list~~
  * ~~cone search examples has 6 vs 11, image access 6 vs 10...~~
-    *fixed
+    * fixed
  * ~~is publisher:CDS the same as "all Vizier" ... ? CDS do other things~~
     * Whoops, yes. rectified this
 
