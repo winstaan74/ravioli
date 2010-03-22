@@ -40,7 +40,7 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.6
 ===Issues===
    * calendar popup in STAP search form interacts badly with data table. Work-around - open resource in new window
    * Need to understand how to sign the samp applet
-   * Samp applet doesn't work on Safari - fine on firefox.
+   * ~~Samp applet doesn't work on Safari - fine on firefox.~~
 
 ===Fixes from 0.4===
    * open-new-tab link is fixed.
@@ -62,7 +62,7 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.6
 ===Feedback Needed===
 	* At the moment, the query of ADS / VOSI availability requires the user to click on the link. Is this appropriate, or is it better to either: always fetch this information, and display it in the resource from the resource (increasing page display time, and load on back-end servers); or fetch this information automatically once the resource had been displayed for a short time (a few seconds) - i.e if the user is lingering over a resource, this suggests that the additional information is worth fetching.
 	
-	* At present, uninteresting capabilities are collapsed, and require a click to display. I think this keeps the display uncluttered. Is it worthwhile collapsing a) other capabilities, b) the resource description in similar click-to-display fields? It would be possible to remember the user's preference via a cookie, and so show any subsequent resources with e.g. description shown.
+	* ~~At present, uninteresting capabilities are collapsed, and require a click to display. I think this keeps the display uncluttered. Is it worthwhile collapsing a) other capabilities, b) the resource description in similar click-to-display fields? It would be possible to remember the user's preference via a cookie, and so show any subsequent resources with e.g. description shown.~~
 	
 	* Bibliography integration - comments please - is this what you were thinking of? I don't display the abstract and authors by default, as __often__ they repeat the resource description and authors. However, in some cases they seem to give useful additional information.
 	
