@@ -11,7 +11,10 @@ What's possible?
   * StateOfVospaceAndCommunity
   * StateOfPublishingLibraries
   * StateOfSampTools
- 
+
+= Finishing Off=
+There's little time left - what shall we do with it?
+   * FinishingOff 
 
 = Requirements / Use Cases =
 Listed in order of priority.
