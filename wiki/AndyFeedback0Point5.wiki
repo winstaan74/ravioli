@@ -5,8 +5,8 @@ _(NWW: I've struck out the items that are now fixed, and added comments)_
 
  * ~~on Safari,the SAMP/login parts are inside the same box frame, whereas in Firefox and Opera they are separate... on WinXP/IE~~
 
- * opening and closing resources : probably ok, but I just have a wee feeling that an up-down arrow somewhere in the corner would make it clearer.
-    * NWW: it's hard to see where to put an arrow - it'd need to be repeated on each row, and would have to be in the left-most column of the table so as to be always visible. (as the table can grow off the right hand side of the screen). However,doing this would take up a lot of important screen space. I notice that GMail doesn't have any kind of visual indicator in it's table either. However, on GMail the mouse does change to a 'clickable' pointer when over a row in the table- the ravioli table doesn't do this at the moment - I'll see if I can add this.
+ * ~~opening and closing resources : probably ok, but I just have a wee feeling that an up-down arrow somewhere in the corner would make it clearer.~~
+    * NWW: it's hard to see where to put an arrow - it'd need to be repeated on each row, and would have to be in the left-most column of the table so as to be always visible. (as the table can grow off the right hand side of the screen). However,doing this would take up prime screen space. I notice that GMail doesn't have any kind of visual indicator in it's table either. However, on GMail the mouse does change to a 'clickable' pointer when over a row in the table- I've now added this to ravioli.
 
  * search box acting on click only rather than return : I wouldn't worry. The structure of the search/filter area is going to be crucial ... but I will restrain myself until it starts !
 
