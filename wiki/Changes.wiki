@@ -11,6 +11,7 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.6
    * indicate that resource table rows can be clicked
    * Separated 'All' searches from sample queries.
    * Fixed static list queries to display all expected results
+   * _improved_ reliability of SAMP with Safari
 
 ==version 0.6, 9th March 2010==
 
