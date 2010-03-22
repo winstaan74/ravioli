@@ -9,7 +9,7 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.6
    * Tooltips for search forms.
    * added 'View XML' button
    * indicate that resource table rows can be clicked
-
+   * Separated 'All' searches from sample queries.
 
 ==version 0.6, 9th March 2010==
 
