@@ -1,8 +1,15 @@
 #labels Featured
 =List of Changes=
 
-Version at http://astrogrid.roe.ac.uk/ravioli - v0.5
+Version at http://astrogrid.roe.ac.uk/ravioli - v0.6
 -----
+
+===version 0.7, unreleased==
+   * Collapsed long descriptions
+   * Tooltips for search forms.
+   * added 'View XML' button
+
+
 ==version 0.6, 9th March 2010==
 
 ===New features===
@@ -13,6 +20,7 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.5
 ===Feedback Needed===
    * pre-canned searches - these are the ones from latest VODesktop - are they all ok here? Note that, unlike searches in VODesktop, there's no upper size limit on a useful search - so we could have searches that return a _lot_ of resources, and which users can use as a basis for further refining their search (as an example, I've added a 'All Vizier' precanned search).
    * AndyFeedback0Point6
+
 ==version 0.5, 3rd March 2010==
 
 ===New features===
