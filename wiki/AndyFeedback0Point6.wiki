@@ -1,0 +1,30 @@
+#summary Andy's feedback for 0.6
+
+=Saved searches=
+Pre-canned searches definietly good, and yes they can be longer. But
+there could be a lot, especially if people start sharing them. So we
+need some structure .. folders ?
+"All Vizier" .. or "All Heasarc" which would also be good ... is
+conecptually different. This is as you say a starting point, whereas
+the others are worke examples so you get the idea.
+
+We can re-think the pre-canned lists. OK for nwo.
+
+For a smart list, you can see how its done in the search box.
+For static lists, I think having a query that says "this AND that AND
+this AND that AND this..." is unhelpful. We need a way to jump to a
+simple ivo-id list.
+This is important. I think build-a-list by drag and drop will be very
+popular. I do it all the time in VO Desktop.
+
+=stuff missing=
+ * VO taster has 4/15 cf Vo Desktop list
+ * cone search examples has 6 vs 11, image access 6 vs 10...
+ * is publisher:CDS the same as "all Vizier" ... ? CDS do other things
+
+ * ability list : yes, nice ... but waht is the difference between an
+ability and a capability ?
+
+=SAMP=
+... before demoing in Heidelberg, it would be really nice if the SAMP
+bit is fixed...
