@@ -22,9 +22,10 @@ popular. I do it all the time in VO Desktop.
    * NWW: agreed. it'll still be doing 'this AND this' behind the scenes - this is only visible because I've not implemented a proper query builder yet.
 
 =stuff missing=
- * VO taster has 4/15 cf Vo Desktop list
- * cone search examples has 6 vs 11, image access 6 vs 10...
- * is publisher:CDS the same as "all Vizier" ... ? CDS do other things
+ * ~~VO taster has 4/15 cf Vo Desktop list~~
+ * ~~cone search examples has 6 vs 11, image access 6 vs 10...~~
+    *fixed
+ * ~~is publisher:CDS the same as "all Vizier" ... ? CDS do other things~~
     * Whoops, yes. rectified this
 
  * ability list : yes, nice ... but waht is the difference between an ability and a capability ?
