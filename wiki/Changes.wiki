@@ -1,10 +1,10 @@
 #labels Featured
 =List of Changes=
 
-Version at http://astrogrid.roe.ac.uk/ravioli - v0.6
+Version at http://astrogrid.roe.ac.uk/ravioli - v0.7
 -----
 
-==version 0.7, unreleased==
+==version 0.7, 22 March==
    * Collapsed long descriptions
    * Tooltips for search forms.
    * added 'View XML' button
