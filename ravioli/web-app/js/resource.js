@@ -107,6 +107,16 @@ function showNotConnected() {
     notconnected.style.display='block';
 }
 
+function showScrewup() {
+    var notconnected= getCSSRule('#NOTCONNECTED');
+    var connected= getCSSRule('#CONNECTED');
+    var connecting = getCSSRule('#CONNECTING');
+    connected.style.display='none';
+    connecting.style.display='none';
+    notconnected.style.display='block';
+}
+
+
 function sampConnect(codebase) {
 	showWorking();
 	WebSampConnector.configure({
@@ -132,27 +142,18 @@ function broadcast(url,el) {
 	el.style.border=orig;
 }
 
+
 function setStatusIcon(args) {
-      if (args != null) {
-         var status = args[0];
-         // show all the samp buttons.
-         var samp = getCSSRule('.samp');
-         if (status == 'connected'){
-        	 //samp.style.visibility='visible';
-        	 samp.style.display='inline';
-        	 showConnected();
-         } else if (status == 'disconnected') {
-        	// samp.style.visibility='hidden';
-        	 samp.style.display='none';
-        	 showNotConnected();
-         } else {
-        	// samp.style.visibility='hidden';
-        	 samp.style.display='none';
-        	 showNotConnected();
-         }
-      } else {
-         WebSampConnector.log("Hub status icon: arg undefined!");
-      }
+		setTimeout(function() {
+	         var samp = getCSSRule('.samp');
+			if(WebSampConnector.getApplet().isConnectedToHub()) {
+	        	 samp.style.display='inline';
+	        	 showConnected();
+			} else {
+	        	 samp.style.display='none';
+	        	 showNotConnected();
+			}
+		},10);
    };
 
 // supporting functions

@@ -245,10 +245,18 @@ class Resource {
 
 	
 	/** search functionality*/
-	/** rewrite query to remove all references to 'ivo://' */
+	/** rewrite query to escape a few common symbols.
+	 * : prefixed by ivo
+	 *  - , + where there's no whitespace either side..
+	 *  */
 	public static String rewriteQuery(String s) {
-		return s?.replaceAll('ivo:', '')
+		return s?.replaceAll(ivoPrefix, /ivo\\:/).replaceAll(nestedOp, /$1\\$2$3/)
 	}
+	/** patterns used to rewrite queries */
+	static final def ivoPrefix = ~/ivo:/
+	/** a + or - nested within text - probably in an ivorn, */
+	static final def nestedOp = /(\S)([-\+])(\S)/
+	
 //	
 //	// delegate methods
 //	public String xpath(String path) {
@@ -295,10 +303,10 @@ class Resource {
 	 * */
 	static def TABLE_COLUMNS =  [
 	                     		//@todo implement mass-selection using checkbox		[key:'check', formatter:'checkbox']
-	                    		[key:'_ivorn', label:'IVOA-ID', width:250]
-	                    		,[key:'_titleField', label:'Title',  width:250]
+	                    		[key:'_titleField', label:'Title',  width:250]
+		                    	,[key:'_shortnameField',label:'Short Name', hidden:true, width:80]  
 								,[key:'capabilityCode', label:'Capability',width:80,formatter:'@formatCapabilities']
-	                    		,[key:'_shortnameField',label:'Short Name', hidden:true, width:80]
+		                    	,[key:'_ivorn', label:'IVOA-ID', width:250]
 								,[key:'_sourceField', label:'Source Reference',hidden:true, width:100]
 	                    		,[key:'_subjects', label:'Subject', hidden:true,width:250]
 	                    		,[key:'_wavebands',label:'Waveband',hidden:true, width:100]

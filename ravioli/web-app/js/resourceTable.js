@@ -39,7 +39,7 @@
 	  updateFilter()
   }
   
-  var RAVIOLI_COOKIE = 'ravioli_resource_table';
+  var RAVIOLI_COOKIE = 'ravioli_resource_table_07';
   
   /** outputs display information to a cookie */
   

@@ -19,7 +19,7 @@ expects 'rec' to contain an GPathElement of an ADS record element.1
 		,'DATA': 'icon icon_table_link'	
 		
 	]
-	def formatter = new DescriptionFormatter()
+	def formatter = new org.ravioli.DescriptionFormatter()
 %>
  <g:each var='l' in="${rec.link }"> 	
  	<li><a class="${styles[l.'@type'.text()]  }" target="_blank" href="${l.url}">${l.name }</a></li>

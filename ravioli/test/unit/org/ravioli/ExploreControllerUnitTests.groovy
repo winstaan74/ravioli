@@ -45,7 +45,7 @@ class ExploreControllerUnitTests extends ControllerUnitTestCase {
 		
 		def resourceControl = mockFor(Resource)
 		resourceControl.demand.static.search() { q, map ->
-			assertEquals('foo AND //foo.bar.choo',q)
+			assertEquals('foo AND ivo\\://foo.bar.choo',q)
 			assertNotNull(map)
 			assertFalse map.max > controller.MAX_QUERY
 			return [total:1,results:[r2]]

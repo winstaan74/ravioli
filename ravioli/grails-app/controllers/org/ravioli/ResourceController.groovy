@@ -10,6 +10,7 @@ class ResourceController {
 	                    ,subItems:[
 						[action:'search']
 						,[action:'list']
+						 ,[action:'reindex',title:'Reindex all resources']
 						
 	                               ]
 	]
@@ -30,6 +31,13 @@ class ResourceController {
 		} catch (e) {
 			return [searchError: e]
 		}
+	}
+
+	def reindex = {
+		def t = new ReindexTask();
+		t.save(); // will now be picked up by the task service.
+		flash.message= 'Reindex started - will take some time to complete'
+		redirect action:'list'
 	}
 
 

@@ -3,7 +3,11 @@
 	<g:render template="/adminMenu" />
 </n:isAdministrator>
 
-<rl:container name="global"/>
+
+<rl:container name="alls" />
+
+<rl:container name="canned"/>
+
 
 
 

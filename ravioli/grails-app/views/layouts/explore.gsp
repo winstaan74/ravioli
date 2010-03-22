@@ -25,12 +25,14 @@
    <div id="hd">
     <g:link controller='explore'><img style='float:left;' src="${resource(dir:'images',file:'ravioli.png')}" alt="Ravioli" /></g:link>
    	<g:render template="/topMenu" />
+   	<%--not used
    	<g:if test="${flash.message }">
   		<div id="flash">
   				${flash.message }
   			</div>
   	</g:if>
    </div>
+    --%>
 <%--body --%>
    <div id="bd">
    <%-- main block --%>

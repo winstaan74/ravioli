@@ -44,7 +44,7 @@ class ResourceControllerUnitTests extends ControllerUnitTestCase {
 		
 		def resourceControl = mockFor(Resource)
 		resourceControl.demand.static.searchEvery() {s,p -> // it's a static - how do I do that?
-			assertEquals('fred AND //foo.bar.choo',s)
+			assertEquals('fred AND ivo\\://foo.bar.choo',s)
 			return [r]
 		}
 		

@@ -44,7 +44,7 @@ class ResourceListTagLib {
 				break
 			case StaticList:
 				def q = l.ivorns.collect {
-					'_ivorn:*' + it // searching against _ivorn index - which is untokenized, so must be an exact match. Furthermore, need to add * at beginning, to get past query rewriter.
+					'_ivorn:' + it // searching against _ivorn index - which is untokenized, so must be an exact match.
 					}.join(" OR ")
 				out << searchLink(class:clazz,query:q) {l.title}
 				break

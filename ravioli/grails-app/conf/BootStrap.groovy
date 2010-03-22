@@ -96,18 +96,19 @@ class BootStrap {
 	}
 	/** populates list containers,and lists, if there's not already some data present */
 	private populateListContainers() {
-		if (! ListContainer.findByName('global')) {
-			ListContainer global= new ListContainer(name:'global',title:'Browse in..')
-				// recent changes?
-			
+		if (! ListContainer.findByName('canned')) {
+			ListContainer global= new ListContainer(name:'canned',title:'Sample Queries')
+
 				.addToLists(new StaticList(title:'VO taster list')
 					.addToIvorns( "ivo://org.astrogrid/MERLINImager" )
 					.addToIvorns( "ivo://irsa.ipac/2MASS-PSC" )
 					.addToIvorns( "ivo://nasa.heasarc/fermilbsl" )
 					.addToIvorns("ivo://wfau.roe.ac.uk/xmm_dsa/wsa")
-					.addToIvorns("ivo://stecf.euro-vo/SSA/HST/FOS" )
+				//	.addToIvorns("ivo://stecf.euro-vo/SSA/HST/FOS" )
+						.addToIvorns("ivo://stecf/HST/FOS" )
 					.addToIvorns("ivo://uk.ac.cam.ast/2dFGRS/object-catalogue/Object_catalogue_2dF_Galaxy_Redshift_Survey")
-					.addToIvorns("ivo://stecf.euro-vo/siap/hst/preview" )
+					//.addToIvorns("ivo://stecf.euro-vo/siap/hst/preview" )
+						.addToIvorns("ivo://stecf/HST/PREVIEW")
 					.addToIvorns("ivo://uk.ac.cam.ast/iphas-dsa-catalog/IDR" )
 					.addToIvorns("ivo://uk.ac.starlink/stilts" )
 					//  ,"ivo://sdss.jhu/services/DR5CONE"
@@ -135,12 +136,12 @@ class BootStrap {
 
 				.addToLists(new StaticList(title:'Image access examples')
 					.addToIvorns("ivo://wfau.roe.ac.uk/sss-siap")
-					.addToIvorns("ivo://nasa.heasarc/skyview/rass")
+					.addToIvorns("ivo://nasa.heasarc/skyview/rass.25kev") //?
 					.addToIvorns("ivo://mast.stsci/siap/vla-first")
 				//   ,"ivo://cadc.nrc.ca/siap/jcmt"
 					.addToIvorns("ivo://cadc.nrc.ca/siap/hst")
 					.addToIvorns("ivo://org.astrogrid/HDFImager")
-					.addToIvorns("ivo://irsa.ipac/2MASS-ASKYW-AT")
+					.addToIvorns("ivo://irsa.ipac/2MASS-ASKYW-AT") //?
 					.addToIvorns("ivo://nasa.heasarc/skyview/nvss")
 					.addToIvorns("ivo://uk.ac.cam.ast/IPHAS/images/SIAP" )
 					.addToIvorns("ivo://mast.stsci/siap-cutout/goods.hst")
@@ -201,8 +202,14 @@ class BootStrap {
 				// "ivo://edit.me",
 					.addToIvorns("ivo://CDS.VizieR/J/AJ/133/1947")  
 				)
-				.addToLists( new SmartList(query:'publisher:CDS'
-					,title:'All Vizier'))
+				.save()
+		}
+		if (! ListContainer.findByName('alls')) {
+			ListContainer alls= new ListContainer(name:'alls',title:'Browse')
+				.addToLists( new SmartList(query:'identifier:CDS.VizieR'
+						,title:'All VizieR'))
+				.addToLists( new SmartList(query:'identifier:nasa.heasarc'
+						, title:'All HEASARC'))
 				.save()
 		}
 	}
