@@ -1,21 +1,20 @@
 #summary One-sentence summary of this page.
 #labels Phase-Requirements
-
+(crossed out what's been implemented)
 = Introduction =
 
 Once the registry has been explored, how are the selected resources consumed?
-  * Samp messaging
-  * integrating other websites
-  * passing to 3rd party applets
+  * ~~Samp messaging~~
+  * ~~integrating other websites~~
+  * ~~passing to 3rd party applets~~
 
-Do we need to implement any 'helper apps' in webpages?
 
 = Details =
 
-We've decided to offer this functionality in-place wherever possible - inline the operations with the resource description, rather than have a separate 'action' pane, as with voexplorer. This means that operations can be more strongly associated with the particular capability they're going to operate upon.
+~~We've decided to offer this functionality in-place wherever possible - inline the operations with the resource description, rather than have a separate 'action' pane, as with voexplorer. This means that operations can be more strongly associated with the particular capability they're going to operate upon.~~
 
 For the minority 'bulk' actions, provide a checkbox column in the resource table, tick the resources of interest, and then trigger an action from a menu along the top (as seen in gmail)
 
-Don't want to provide too much functionality ourselves - instead hand-off to helper applications.
+~~Don't want to provide too much functionality ourselves - instead hand-off to helper applications.~~
 
-Samp messaging - I've restarted the discussion of a samp message for voresources with Yulie and MarkT. Now that topcat provides cone search, etc, I thnk this might go somewhere.
+~~Samp messaging - I've restarted the discussion of a samp message for voresources with Yulie and MarkT. Now that topcat provides cone search, etc, I thnk this might go somewhere.~~
