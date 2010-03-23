@@ -1,4 +1,40 @@
 #summary One month to go - What to do?
-_in progress_
+
 = Choices =
-We're not going to get to do everything we hoped. On this page I'm going to list what absolutely must be done, and things that _could_ be done - then it's up to us to agree what things to do.
+We're not going to get to do everything we hoped. On this page I'm going to list what absolutely must be done, and things that _could_ be done - then it's up to us to agree what things to do. 
+
+Tasks that depends on other tasks are nested - apart from that, there's no ordering constraints.
+
+==Need to be Fixed==
+  * Fix harvesting of resources with '+' in name
+
+==Smallish Things==
+
+  * Add sexagesimal to query forms
+  * Fix registry table glitches - jitters, and spacing.
+
+== Medium Things==
+  * Web-based VOTABLE viewer
+  * User Help pages
+  * Implementation & Dev docs - make it easier for someone else to develop ravioli
+  * Administration Docs - so someone else can keep the ravioli site running
+  * Bulk operations on resources
+
+== Big Things==
+
+  * Registry query builder
+  * User registration and login (half done already)
+      * annotation (comments, tags, flags) of resources
+      * create/edit/delete user's own resource lists
+          * import / export of lists
+      * Public vanity publishing - just a resource
+         * public publishing of tables
+         * public publishing of images
+         * Add Harvest webservice - so other registries can see these resources
+      * create & manage groups
+           * share lists & annotations with groups
+           * vanity publishing to a group
+      * collaboration tools - status, messaging boards, wiki
+
+==Blocked==
+  * SAMP Resource messaging.
