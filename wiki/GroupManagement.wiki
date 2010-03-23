@@ -1,12 +1,12 @@
 #summary Group creation, membership
 #labels Phase-Requirements
-
+(crossed out what we've already done)
 = Introduction =
 Add users and groups to the registry browser
 
 = Functionality =
 user profile used to store 
-   * user's preferences on how to display the UI (which table columns, default number of results, etc)
+   * ~~user's preferences on how to display the UI (which table columns, default number of results, etc)~~
    * user's own set of resource lists
 
 Any content created by a user can be shared - on creation, user is asked which, if any, of his groups to make it available to.
