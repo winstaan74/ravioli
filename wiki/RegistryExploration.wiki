@@ -1,23 +1,24 @@
 #summary Equivalent behaviour to VOExplorer
 #labels Phase-Requirements
+(crossed out what we've already done)
 
 = Introduction =
 A web 2.0 equivalent to the core functionality of VOExplorer.
 AJAX-style interaction - minimizes page refreshes.
 
 = Features =
-A left-hand list of folders - precanned and user-defined - to select from.
+A left-hand list of folders - ~~precanned~~ and user-defined - to select from.
 
 A query builder - displays possible values for each search term, lets users easily add new search terms to refine the search.
    * a novel search term gives astroscope-like functionaity - provides an estimate of how many resources each service will return for a given position.
 
 A 'save' button that allows a query to be saved to the left-hand list of folders.
 
-A table that displays summaries of matching resources
-  * Basic implementation done - later needs a way of altering which columns are shown
+~~A table that displays summaries of matching resources~~
+  * ~~Basic implementation done - later needs a way of altering which columns are shown~~
 
-On clicking on an item in the table, expand to display a formatted description of the resource.
-   * integrate with other web services where possible - e.g. when bibcode, link to pdf found through ADS
+~~On clicking on an item in the table, expand to display a formatted description of the resource.~~
+   * ~~integrate with other web services where possible - e.g. when bibcode, link to pdf found through ADS~~
 
 = Unknowns =
 How to compute the list of possible values, given the user's existing query. Need to investigate this.
