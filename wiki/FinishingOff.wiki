@@ -12,6 +12,9 @@ But note that this would not give us a rich query builder, or any user lists - s
 
 The alternatives would be to either a) concentrate on the registry query builder or b) concentrate on user login/lists/annotations/groups for a week or two, see how much progess I make, and then re-asses. Or you could choose public vanity publishing as the one last feature to add, and I'd just concentrate on that.
 
+-------------
+
+
 ==Must be Fixed==
   * Fix harvesting of resources with '+' in name
 
