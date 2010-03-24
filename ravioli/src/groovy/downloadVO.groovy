@@ -39,7 +39,7 @@ doParseRofr(xml) { ivo, url ->
 				listXML.ListIdentifiers.header.identifier*.text().each { resourceId ->
 					try {
 						// grab the resource
-						def resourceUrl = url + "?verb=GetRecord&metadataPrefix=ivo_vor&identifier=" + resourceId
+						def resourceUrl = url + "?verb=GetRecord&metadataPrefix=ivo_vor&identifier=" + resourceId.encodeAsURL()
 						def resourceFile = new File(regDir,URLEncoder.encode(resourceId))
 						//save(resourceUrl,resourceFile)
 						writer.println "wget '${resourceUrl}' -O '${resourceFile}' -nc"

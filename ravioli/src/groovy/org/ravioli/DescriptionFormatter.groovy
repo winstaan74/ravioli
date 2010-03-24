@@ -30,7 +30,7 @@ class DescriptionFormatter {
 	 * be the heading, the second item will be the following text.
 	 */
 	def format(String d) {
-		String descr = d.trim()
+		String descr = d?.trim()
 		def matches = descr =~ fullstop 
 		if (!matches || matches.start() + HEADING_SIZE > descr.size()) {
 			return tagify(descr)
@@ -38,15 +38,14 @@ class DescriptionFormatter {
 			int ix = matches.start() + 2 // cut at first full stop - +2 from start of match.
 			def head = descr.substring(0,ix)
 			def rest = descr.substring(ix).trim()
-			return [tagify(head),tagify(descr)]
+			return [tagify(head),tagify(rest)]
 		}
 	}
 
 	//splits into <p> tags, and finds any a tags.
 	public String tagify(String s) {
 		return "<p>" +
-			 s.replaceAll(url,'<a href="$0">$0</a>') 
-			 	.replaceAll(blankLine, "</p><p>") +
+			( s?.replaceAll(url,'<a href="$0">$0</a>')?.replaceAll(blankLine, "</p><p>") ?: "") +
 			 "</p>"
 	}
 
