@@ -6,6 +6,8 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.7
 ==version 0.8, unreleased==
   * fixed harvesting of resources where IVO-ID contains '+'
 
+---------
+
 ==version 0.7, 22 March==
    * Collapsed long descriptions
    * Tooltips for search forms.
