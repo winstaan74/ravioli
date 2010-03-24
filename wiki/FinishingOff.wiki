@@ -6,7 +6,7 @@ We're not going to get to do everything we hoped. On this page I'm going to list
 Tasks that depends on other tasks are nested - apart from that, there's no ordering constraints.
 
 = Costs=
-In the last month, I'm confident I could do ALL the 'Must be fixed', 'smallish' and 'medium' things (plus 'Blocked' if the voparis chaps come back to me). 
+In the last month, I'm confident I could do ALL the  'smallish' and 'medium' things (plus 'Blocked' if the voparis chaps come back to me). 
 
 But note that this would not give us a rich query builder, or any user lists - so the result would essentially be a nice, but not-personalized registry browser.
 
@@ -14,9 +14,6 @@ The alternatives would be to either a) concentrate on the registry query builder
 
 -------------
 
-
-==Must be Fixed==
-  * Fix harvesting of resources with '+' in name
 
 ==Smallish Things==
 
