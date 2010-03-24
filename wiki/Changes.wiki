@@ -3,6 +3,8 @@
 
 Version at http://astrogrid.roe.ac.uk/ravioli - v0.7
 -----
+==version 0.8, unreleased==
+  * fixed harvesting of resources where IVO-ID contains '+'
 
 ==version 0.7, 22 March==
    * Collapsed long descriptions
@@ -91,4 +93,4 @@ Version at http://astrogrid.roe.ac.uk/ravioli - v0.7
 ===issues===
    * when using the search box, hitting return doesn't trigger the search - you must click on the 'search' button. As this bit of the UI will be replaced by a search form, it's only a temporary problem./	
    * ~~when clicking on a table row to display a resource body, the table resizes, which is jerky and jarring. I don't think there's a nice way of fixing this,  considering that the table can dynamically alter which rows are being shown.  Unless I can come up with a solution, I think it might be best to display resources in a separate area _below_ the table. (i.e. in a typical email-reader layout).~~
-   * We've only got 6K resources, rather than the expected 8K because I'm having problems harvesting resources that contain a '+' in the ivorn name (this only occurs in CDS). Fixable, just haven't done yet.
+   * ~~We've only got 6K resources, rather than the expected 8K because I'm having problems harvesting resources that contain a '+' in the ivorn name (this only occurs in CDS). Fixable, just haven't done yet~~
