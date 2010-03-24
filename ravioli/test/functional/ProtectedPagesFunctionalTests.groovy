@@ -4,7 +4,12 @@
 @Mixin(RavioliFunctionalAssert)
 class ProtectedPagesFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 	
-	def adminOnly = ['/registry/list', '/resource/list','/buildInfo','/task/list']
+	def adminOnly = ['/registry/list', '/resource/list','/buildInfo','/task/list'
+	                 ,'/taskExecution/list'
+	                 ,'/resourceList/list'
+	                 ,'/listContainer/list'
+	                 ,'/tableViewer/list'
+	                 ]
 	def userOnly = []
 	
 	
@@ -29,10 +34,7 @@ class ProtectedPagesFunctionalTests extends functionaltestplugin.FunctionalTestC
 	
 	void testUserLogin() {
 		loginUser()
-		// go back to root- check we see the admin menu.
-		get('/')
-		assertContentContains 'logout'
-		assertContentContains 'user'		
+		
 		adminOnly.each { // each should be inacessible.
 			println "getting ${it}"
 			get it

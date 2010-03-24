@@ -1,3 +1,5 @@
+import org.ravioli.Resource;
+
 import com.gargoylesoftware.htmlunit.*;
 /** bunch of ravioli-specific utilities */
 
@@ -92,5 +94,22 @@ class RavioliFunctionalAssert {
 	def hasLogo() {
 		WebAssert.assertElementPresentByXPath(page, '''//img[@class='resource-logo']''')
 	}	
+	
+	def displayResource(String ivorn) {
+		Resource r = Resource.findByIvorn(ivorn)
+		assertNotNull "Not Found ${ivorn}",r
+		def id = r.id
+		get("/display/resource/${id}")
+		assertStatus 200
+		// things which will always be here
+		assertTitleContains(r.titleField)
+		fieldContains('ivoa-id',ivorn)
+		def description = r.rxml.createSlurper().content.description.text()
+		if (description) {
+			acc description[0..Math.min(description.size()-1,30)]
+		}
+		acc r.titleField
+		return r
+	}
 	
 }

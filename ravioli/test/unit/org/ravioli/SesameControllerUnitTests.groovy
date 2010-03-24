@@ -49,8 +49,8 @@ class SesameControllerUnitTests extends ControllerUnitTestCase {
 		// parse the JSO N back again, chekc it's what we expect
 		def o =JSON.parse(resp())
 		assertNotNull o 
-		assertEquals '010.67425',o.ra
-		assertEquals '+40.8651667',o.dec
+		assertEquals 10.67425,o.ra
+		assertEquals 40.8651667,o.dec
 	}
 	
 	void testServiceDown() { // simulate the service not being avaliable

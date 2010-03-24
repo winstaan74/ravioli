@@ -20,9 +20,9 @@ class AdsFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 		assertTrue o.title?.startsWith('XAssist')	
     }
 	
-	void testGetUnknownAdsBiblio() {
+	void testGetUnknownAdsBiblioAsJSON() {
 		def bibcode = '1800ASPC..295..465P'
-		get("/ads/${bibcode}")
+		get("/ads/${bibcode}?format=json")
 		assertStatus 404
 	}
 	
@@ -35,4 +35,24 @@ class AdsFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 		acc 'XAssist'
 		
 	}
+	
+	// in case of html, it returns a valid 200 response, still containing an err code.
+	void testGetUnknownAdsBiblioAsHTML() {
+		def bibcode = '1800ASPC..295..465P'
+		get("/ads/${bibcode}")
+		assertStatus 404
+	}
+// no workee - can never get javascript to work. rats.	
+//	void testIntegrationWithResourceDisplay() {
+//		prepareForAjax()
+//		displayResource('ivo://CDS.VizieR/II/85')
+//		def bibcode = '1980RMxAA...5...25J'
+//		hasLink bibcode
+//		click bibcode
+//		client.waitForBackgroundJavaScript(5000)
+//		Thread.sleep(5000)
+//		// this one doesn't actially work, but we've got no other resource with a bibcode in the test set - oh well.
+//		acc 'not found'
+//		
+//	}
 }

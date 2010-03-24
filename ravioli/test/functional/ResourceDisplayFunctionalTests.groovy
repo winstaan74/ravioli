@@ -5,25 +5,7 @@ import com.gargoylesoftware.htmlunit.WebAssert;
 /** test the formatting of resources */
 @Mixin(RavioliFunctionalAssert)
 class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTestCase{
-	
-	
-	
-	def displayResource(String ivorn) {
-		Resource r = Resource.findByIvorn(ivorn)
-		assertNotNull "Not Found ${ivorn}",r
-		def id = r.id
-		get("/explore/resource/${id}")
-		assertStatus 200
-		// things which will always be here
-		assertTitleContains(r.titleField)
-		fieldContains('ivoa-id',ivorn)
-		def description = r.rxml.createSlurper().content.description.text()
-		if (description) {
-			acc description[0..Math.min(description.size()-1,30)]
-		}
-		acc r.titleField
-		return r
-	}
+
 	
 	/** resource 15 */
 	void testCDS() {
@@ -61,7 +43,6 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 		
 		lacks 'HTTP Web Service - Base URL'
 		
-		//@todo add table metadata diusplay, somehow.
 	}
 	
 	/** test the SIAP capability formatting.
@@ -74,13 +55,12 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 		fieldPresent 'created'
 		fieldPresent 'modified'
 		fieldContains 'servicetype', 'Atlas'
-		fieldContains 'maximumfilesize','1008000'
-		fieldContains 'maximumresultsreturned', '50'
-		fieldContains 'maximumimageextent', '12.5,12.5'
-		fieldContains 'maximumimagesize','500,500'
-		fieldContains 'maximumquerysize','12.5,12.5'
+		fieldContains 'max.filesize','1008000'
+		fieldContains 'max.resultsreturned', '50'
+		fieldContains 'max.imageextent', '12.5,12.5'
+		fieldContains 'max.imagesize','500,500'
+		fieldContains 'max.querysize','12.5,12.5'
 		fieldContains 'publisher','NASA/IPAC'
-		//@todo test fr the test query too.
 		hasLink 'NASA/IPAC Infrared Science Archive'
 		
 		fieldContains 'wavebands', 'Infrared'
@@ -106,8 +86,8 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 		// check we're seeing descriptions from two different capabilities..
 		acc 'wsa, glimpse_hrc_inter: cone search'
 		acc 'wsa, glimpse_mca_inter: cone search'
-		fieldContains 'maximumsearchradius','1.5'
-		fieldContains 'maximumresultsreturned','2000000'
+		fieldContains 'max.searchradius','1.5'
+		fieldContains 'max.resultsreturned','2000000'
 		
 		// we've got multiple cone capabilities - problem?
 		
@@ -231,5 +211,6 @@ class ResourceDisplayFunctionalTests extends functionaltestplugin.FunctionalTest
 		WebAssert.assertTextPresentInElement page, 'Remote Application', 'cea-application'
 		fieldContains 'interfaces','pipeline'
 	}
+
 	
 }

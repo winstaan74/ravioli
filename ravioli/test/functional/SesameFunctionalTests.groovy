@@ -8,7 +8,7 @@ import grails.converters.JSON;
 @Mixin(RavioliFunctionalAssert)
 class SesameFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 	void testResolve() {
-		get('/sesame/m42')
+		get('/sesame/?obj=m42')
 		assertStatus 200
 		assertContentType('application/json')
 		// check the content - its' JSON.
@@ -16,12 +16,12 @@ class SesameFunctionalTests extends functionaltestplugin.FunctionalTestCase {
 		assertNotNull o
 	//doesn't work	assertTrue o.containsKey('ra')	
 		assertNotNull o.ra
-		assertEquals '83.82208', o.ra
+		assertEquals 83.8186621, o.ra
 		assertNotNull o.dec
 	}
 	
 	void testResolveUnknown() {
-		get('/sesame/resolve-unknown')
+		get('/sesame/?obj=resolve-unknown')
 		assertStatus 404
 	}
 }

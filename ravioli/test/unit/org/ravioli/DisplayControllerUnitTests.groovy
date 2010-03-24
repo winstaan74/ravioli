@@ -28,6 +28,20 @@ class DisplayControllerUnitTests extends ControllerUnitTestCase {
 		assertEquals r1, model.r
 	}
 	
+	void testResourceAsXML() {
+		Resource r1 = new Resource(ivorn:'ivo://foo.bar',titleField:'title a')
+		r1.rxml.xml ='<foo />'
+		Resource r2 = new Resource(ivorn:'ivo://bee.boo',titleField:'second title')
+		mockDomain(Resource, [r1,r2])
+		controller.request.format='xml';
+		
+		controller.params.id= r1.getId()
+		
+		def model = controller.resource()
+		contentType('application/xml')
+		assertEquals r1.rxml.xml, resp()
+	}
+	
 	void testresourceUnknown() {
 		Resource r1 = new Resource(ivorn:'ivo://foo.bar',titleField:'title a')
 		r1.rxml.xml ='<foo />'

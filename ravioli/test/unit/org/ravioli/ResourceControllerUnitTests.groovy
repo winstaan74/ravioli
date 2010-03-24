@@ -2,6 +2,7 @@ package org.ravioli
 
 import grails.test.*
 
+@Mixin(RavioliAssert)
 class ResourceControllerUnitTests extends ControllerUnitTestCase {
     protected void setUp() {
         super.setUp()
@@ -57,5 +58,16 @@ class ResourceControllerUnitTests extends ControllerUnitTestCase {
 		assertSame(r,sr[0])
 	}
 	
+	
+	void testReindex() {
+		mockDomain(ReindexTask)
+		this.controller.reindex()
+		def l = ReindexTask.list()
+		assertNotNull l
+		assertEquals 1, l.size()
+		assertNotNull l[0]
+		flashContains 'started'
+		redirectsTo('list')
+	}
 	
 }

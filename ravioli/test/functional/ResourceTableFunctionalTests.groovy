@@ -15,6 +15,12 @@ class ResourceTableFunctionalTests extends functionaltestplugin.FunctionalTestCa
 		
 		acc 'Login'
 		acc 'Register'	
+		
+		
+		// check that we've got the footer
+		
+		hasLink 'Changes'
+		acc 'Samp'
     }
 	
 	//@write a test that requiests the JSON table update code.
