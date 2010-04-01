@@ -1,21 +1,91 @@
 #summary Plans of things that could be added in future.
-#labels Featured
+#labels Featured,Phase-Requirements
 
 This page summarizes things that could be added in the future. I'm writing everything up here - even the few things I hope to complete before I leave.
 
 = SAMP Plugin = 
 Waiting on a more reliable [https://launchpad.net/websampconnector SAMP plugin] from the voparis team. I've lodged a [https://blueprints.launchpad.net/websampconnector/+spec/send-arbitrary-samp-messages feature request] to send arbitrary samp messages. Once the SAMP plugin supports this, Ravioli can be extended to send some of the proposed [http://www.ivoa.net/forum/apps-samp/1002/0371.htm voresource mtype] messages.
 
-This would mean that the user can select some resources within Ravioli, and then hand them off to a specialized application for processing (such as Aladin for SIAP querying, VOQuery for TAP qquerying.
+This would mean that the user can select some resources within Ravioli, and then hand them off to a specialized application for processing (such as Aladin for SIAP querying, VOQuery for TAP querying.
 
-= Introduction =
+= Table Viewer = 
+We could write a better version of the [http://heasarc.gsfc.nasa.gov/vo/squery//query.sh?view=1 NVO votable viewer] that improves on the NVO implementation by:
+   * reducing the amount of framing, branding and clutter
+   * keeps the table on the server, rather than parsing the votable in browser javascript
+      * so can handle large tables without crashing the browser.
+   * implement using [http://www.star.bristol.ac.uk/~mbt/stil/ STIL], so it supports all forms and versions of votable
+   * reuse techniques learned in for ravioli resource table
+      * yui datatable (sorting, re-ordering of columns), with column show/hide in a dialogue,
 
-Add your content here.
+This could be implemented as a separate stand-alone grails application - which would be easy for people to install and adapt for their own systems. It would also provide a convenient on-ramp for future developers getting up to speed with grails / ravioli - as the underpinning, and plugins, used are the same. 
+
+Once the basic application is in place, it might be suitable as a starting point for student projects to add other table-processing features (saving as different formats, filtering by expression, graphing, SAMP integration). Much of this functionality is provided by STIL, so it's just the web-integration that is required.
 
 
-= Details =
+= Query Builder = 
+At the moment we've settled for a simple text field to enter the search term used to filter resources in ravioli. This, accompanied with a explanatory note on the query syntax, might be sufficient. However, further work could be done to investigate whether there's use in adding a more GUI query builder - either a form-based one, as seen in VODesktop (when building a 'smart list') - or something more web 2.0ish - such as tag clouds or other visualization techniques (such things seem to be easier to achieve in a browser than in a swing UI).
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+The particular failing of a text field is that it does not enumerate the possible search values for a search clause.
+
+ For example, when searching by `waveband`, there's a fixed set of possible values - `Optical, Infra Red, X-Ray`, etc. In cases of a fixed set, it'd be easy to have a drop-down list that enumerates the possible values.
+
+In other cases, the set of possible values is not fixed - but is constrained by other parts of the query - so there could be some kind of auto-completion / enumeration of possible values - probably by running the existing parts of the query on the server, and so computing the list of possible values for the clause being edited.
+
+
+= Smart List Editing = 
+I plan to add functionality to save a query as a new smart list in the user's collection. Functionality is also needed to allow the deletion (and probably renaming) of existing smart lists.
+
+Later, updating / editing an existing smart list would be a convenient addition - however, saving as new, and then deleting the old, is good enough for now.
+
+= Static List Editing = 
+We plan to allow users to add resources they've found to an existing static list - allowing them to build up these lists- using something like the 'add to my shopping basket' metaphor. This is seen in google maps - the 'save to my maps..' link, from which there's a combo-box to choose which list to save to.
+
+We also need to add functions to remove a resource from a list.
+
+Unsure how to add these features to the UI - maybe a separate checkbox column in the resource table, and a menubar of operations at the top of the table (as in google mail) - in the menubar, we could provide `save these as  list`, and `save these to existing list..`, and so forth.
+
+Also: a way of creating a new static list, and we should hide the search box when displaying a static list (or leave the search box present, but don't popuate it with the query formulated from the static list).
+
+= Outsource Authentication=
+
+Editing a user's lists requires users to _authenticate_, and then have their _authorization_ checked to determine whether they are permitted to edit that particular list.
+
+Ravioli uses the A&A framework provided by the [http://sites.google.com/site/nimbledoc/ nimble plugin]. As well as allowing users to register and login with a site-specific username, nimble also integrates with a number of other authentication systems - OpenID, Facebook Login, Google Login, etc. These aren't configured or tested in Ravioli at the moment.
+
+If we were able to get some of these 3rd party login services working with ravioli, we'd then be able to turn off the local authentication option. This would be beneficial, as it would reduce the admin requirement for Ravioli - no lost user passwords, problems with registration, etc. Additionally, local authentication requires a working mail server - to send registration information to new users, password reminders,etc. Configuring and integrating with the (ROE) mail server will be hard. If we can avoid the need to do this - by using external authentication - this would be a great simplification.
+
+= Sharing content between Groups = 
+
+== Group Management ==
+
+== Sharing Management ==
+
+
+=IVOA SOAP Search Interface=
+
+= VODesktop query integration =
+
+= Annotations = 
+
+== Commenting ==
+
+== Flagging, Tagging, Marking / Rating==
+
+== Just Me / Global / Group Scope ==
+
+
+= Usage Tracking =
+
+= Publishing = 
+
+== Public Publishing ==
+
+== Publishing Data ==
+
+== IVOA SOAP Harvest Interface ==
+
+== Group Publishing==
+
+== Group Data Publishing==
+
+ 
