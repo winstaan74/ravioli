@@ -1,0 +1,21 @@
+#summary Plans of things that could be added in future.
+#labels Featured
+
+This page summarizes things that could be added in the future. I'm writing everything up here - even the few things I hope to complete before I leave.
+
+= SAMP Plugin = 
+Waiting on a more reliable [https://launchpad.net/websampconnector SAMP plugin] from the voparis team. I've lodged a [https://blueprints.launchpad.net/websampconnector/+spec/send-arbitrary-samp-messages feature request] to send arbitrary samp messages. Once the SAMP plugin supports this, Ravioli can be extended to send some of the proposed [http://www.ivoa.net/forum/apps-samp/1002/0371.htm voresource mtype] messages.
+
+This would mean that the user can select some resources within Ravioli, and then hand them off to a specialized application for processing (such as Aladin for SIAP querying, VOQuery for TAP qquerying.
+
+= Introduction =
+
+Add your content here.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
