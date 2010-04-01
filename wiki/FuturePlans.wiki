@@ -3,34 +3,45 @@
 
 This page summarizes things that could be added in the future. I'm writing everything up here - even the few things I hope to complete before I leave.
 
+-----
+
+= Documentation = 
+   * Future Plans (this document)
+   * Administrators Documentation
+   * Developers Documentation
+   * Passwords n stuff (in person)
+   * User documentation (to be written by Andy)
+
+---------
+
 = SAMP Plugin = 
 Waiting on a more reliable [https://launchpad.net/websampconnector SAMP plugin] from the voparis team. I've lodged a [https://blueprints.launchpad.net/websampconnector/+spec/send-arbitrary-samp-messages feature request] to send arbitrary samp messages. Once the SAMP plugin supports this, Ravioli can be extended to send some of the proposed [http://www.ivoa.net/forum/apps-samp/1002/0371.htm voresource mtype] messages.
 
 This would mean that the user can select some resources within Ravioli, and then hand them off to a specialized application for processing (such as Aladin for SIAP querying, VOQuery for TAP querying.
 
-= Table Viewer = 
-We could write a better version of the [http://heasarc.gsfc.nasa.gov/vo/squery//query.sh?view=1 NVO votable viewer] that improves on the NVO implementation by:
-   * reducing the amount of framing, branding and clutter
-   * keeps the table on the server, rather than parsing the votable in browser javascript
-      * so can handle large tables without crashing the browser.
-   * implement using [http://www.star.bristol.ac.uk/~mbt/stil/ STIL], so it supports all forms and versions of votable
-   * reuse techniques learned in for ravioli resource table
-      * yui datatable (sorting, re-ordering of columns), with column show/hide in a dialogue,
+------------
 
-This could be implemented as a separate stand-alone grails application - which would be easy for people to install and adapt for their own systems. It would also provide a convenient on-ramp for future developers getting up to speed with grails / ravioli - as the underpinning, and plugins, used are the same. 
+=IVOA SOAP Search Interface=
 
-Once the basic application is in place, it might be suitable as a starting point for student projects to add other table-processing features (saving as different formats, filtering by expression, graphing, SAMP integration). Much of this functionality is provided by STIL, so it's just the web-integration that is required.
+Ravioli harvests from all known registries, and stores the full XML of each resource it retrieves. An obvious addition is to implement the IVOA-standard registry search interface - i.e. a SOAP web service - so that other applications and clients can access the collection of resources maintained by Ravioli. This in effect turns Ravioli into a full searchable registry.
 
+Note that Ravioli would not support the optional XQuery search language.
 
-= Query Builder = 
-At the moment we've settled for a simple text field to enter the search term used to filter resources in ravioli. This, accompanied with a explanatory note on the query syntax, might be sufficient. However, further work could be done to investigate whether there's use in adding a more GUI query builder - either a form-based one, as seen in VODesktop (when building a 'smart list') - or something more web 2.0ish - such as tag clouds or other visualization techniques (such things seem to be easier to achieve in a browser than in a swing UI).
+However, programmatic access to the Lucene search language could be provided - enabling the same syntax to be used in programs / scripts as is used in the Ravioli search box.
 
-The particular failing of a text field is that it does not enumerate the possible search values for a search clause.
+There are grails plugins that simplify the implementation of SOAP web services.
 
- For example, when searching by `waveband`, there's a fixed set of possible values - `Optical, Infra Red, X-Ray`, etc. In cases of a fixed set, it'd be easy to have a drop-down list that enumerates the possible values.
+= VODesktop Integration =
 
-In other cases, the set of possible values is not fixed - but is constrained by other parts of the query - so there could be some kind of auto-completion / enumeration of possible values - probably by running the existing parts of the query on the server, and so computing the list of possible values for the clause being edited.
+VODesktop uses XQuery to retrieve results from a registry. There is only one known implementation of an XQuery-supporting registry (Astrogrid's), and this is deployed in only a few locations. If these deployments decay, VODesktop will simply stop working.
 
+If Ravioli implemented the IVOA search interface, then a new version of VODesktop could be produced that is configured to query the ravioli registry service. The stumbling block of this is that VODesktop relies on XQuery for searches - yet Ravioli does not support XQuery.
+
+However, the user-facing query language (SRQL) in VODesktop is _very similar_ to the Lucene query language used in Ravioli.  This simple language (SRQL) is translated by the VODesktop client into XQuery before being sent to a registry service. It would be quite straightforward to replace this SRQL-to-XQuery translator with a SRQL-to-Lucene translator: especially given that the querying capabilities of Ravioli are based on Vodesktop.
+
+This would mean that VODesktop could use Ravioli is it's default configured registry - and would ensure that the same results are seen by a user when working with resources on the web and on the desktop.
+
+------------
 
 = Smart List Editing = 
 I plan to add functionality to save a query as a new smart list in the user's collection. Functionality is also needed to allow the deletion (and probably renaming) of existing smart lists.
@@ -54,27 +65,109 @@ Ravioli uses the A&A framework provided by the [http://sites.google.com/site/nim
 
 If we were able to get some of these 3rd party login services working with ravioli, we'd then be able to turn off the local authentication option. This would be beneficial, as it would reduce the admin requirement for Ravioli - no lost user passwords, problems with registration, etc. Additionally, local authentication requires a working mail server - to send registration information to new users, password reminders,etc. Configuring and integrating with the (ROE) mail server will be hard. If we can avoid the need to do this - by using external authentication - this would be a great simplification.
 
+--------------------
+
+
+= Popularity Tracking =
+
+The Ravioli server could count the number of times each resource is displayed, each time it's added to a static list, and also count the number of times an operation (e.g. a cone search) was performed on each service from it's ui. A weighted sum of these values would give a rough measure of the overall popularity of each resource.
+
+This information could be accumulated overall, and/or for the last 30 days - to give a 'popular recently' measure.
+
+Note that no information about individual usage patterns is being tracked.
+
+If would then be possible to add another column to the resource table that displayed this popularity data in some way (maybe 1 to 5 stars?). This would provide a convenient way of visually discriminating between similar resources, and would also allow search results to be sorted by popularity (by clicking on the popularity column heading).
+
+The usage information might also be useful to service providers - giving them a measure of how much traffic / interest their services are seeing from within Ravioli.
+
+--------------------
+
+= Annotations = 
+
+Users could be allowed to add various kinds of supplemental content to registry resources. Depending on the type of content, and the user's preference, the content might be private just to that user, shared with a group of colleagues, or visible to all users.
+
+== Commenting ==
+
+It would be straightforward to allow users to add comments to registry resources. Any comments could then be displayed beneath the resource detail. An example of public comments working very well, and adding value is the [http://www.php.net/manual/en/language.references.return.php php documentation]- where users have added many examples to the documentation.
+
+We could hope that users would do the same in for resources- attaching example queries, or suggestions on how to consume the data?
+
+It seems sensible to allow users the option of keeping a comment private to themselves, sharing it with a group, or making it globally visible. Users would have to authenticate before commenting, and comments would be attributed to that user.
+
+If we could allow richer markup in comments, and even the attachment of supporting files (e.g. a votable of search positions), all the better.
+
+The text of comments should be searchable from the ravioli search form, and smartlists.
+
+There are grails plugins that support the addition of comments to existing resources.
+
+== Flagging & Marking==
+
+It might be useful for users to be able to mark a resource - with a flag, or by changing the display colour of the title, or some other unintrusive way. This would allow them to more easily differentiate between similarly named resources. Maybe retitling of resources too.
+
+These sorts of annotation are probably best kept private to a user.
+
+== Tagging ==
+
+Tags are commonly used in web 2.0 applications, and provide a way for users to categorize the resources that they are working with. The vocabulary of the tags usually evolves through use - a folksonomy. There are grails plugins to support the tagging of resources.
+
+In the case of ravioli, I think that tags should be attributed to the user who applied the tag to a resource. Tags are of limited use when kept private to the user, may be some use just within a group, but are probably best applied globally.
+
+It should be possible to search for specific tags in the ravioli search form, and smartlists.
+
+== Rating == 
+
+== Just Me / Global / Group Scope ==
+
+
+--------------------
+
+
 = Sharing content between Groups = 
 
 == Group Management ==
 
 == Sharing Management ==
 
-
-=IVOA SOAP Search Interface=
-
-= VODesktop query integration =
-
-= Annotations = 
-
-== Commenting ==
-
-== Flagging, Tagging, Marking / Rating==
-
-== Just Me / Global / Group Scope ==
+-------------------
 
 
-= Usage Tracking =
+== Recommendations ==
+
+Popularity tracking just records the total number of uses of a resource - but doesn't allow for different kinds and behaviours of users. (X-ray vs Optical astronomer, novice vs expert).
+
+If we tracked the behaviour of each anonymized user, standard techniques could be used to extract patterns from these behaviours. This would allow ravioli to present suggestions much like Amazon does - for example 'People who used this cone service also used these services', etc. This would provide another way to browse through the resource collection and might encourage serendipitous discoveries of useful resources.
+
+The techniques for extracting usage patterns, and matching the current user against these patterns, are quite involved - I think there'd be quite some work and fine-tuning required to get good results.
+
+
+-----------------
+
+= Table Viewer = 
+We could write a better version of the [http://heasarc.gsfc.nasa.gov/vo/squery//query.sh?view=1 NVO votable viewer] that improves on the NVO implementation by:
+   * reducing the amount of framing, branding and clutter
+   * keeps the table on the server, rather than parsing the votable in browser javascript
+      * so can handle large tables without crashing the browser.
+   * implement using [http://www.star.bristol.ac.uk/~mbt/stil/ STIL], so it supports all forms and versions of votable
+   * reuse techniques learned in for ravioli resource table
+      * yui datatable (sorting, re-ordering of columns), with column show/hide in a dialogue,
+
+This could be implemented as a separate stand-alone grails application - which would be easy for people to install and adapt for their own systems. It would also provide a convenient on-ramp for future developers getting up to speed with grails / ravioli - as the underpinning, and plugins, used are the same. 
+
+Once the basic application is in place, it might be suitable as a starting point for student projects to add other table-processing features (saving as different formats, filtering by expression, graphing, SAMP integration). Much of this functionality is provided by STIL, so it's just the web-integration that is required.
+
+-------------
+
+= Query Builder = 
+At the moment we've settled for a simple text field to enter the search term used to filter resources in ravioli. This, accompanied with a explanatory note on the query syntax, might be sufficient. However, further work could be done to investigate whether there's use in adding a more GUI query builder - either a form-based one, as seen in VODesktop (when building a 'smart list') - or something more web 2.0ish - such as tag clouds or other visualization techniques (such things seem to be easier to achieve in a browser than in a swing UI).
+
+
+The particular failing of a text field is that it does not enumerate the possible search values for a search clause.
+
+ For example, when searching by `waveband`, there's a fixed set of possible values - `Optical, Infra Red, X-Ray`, etc. In cases of a fixed set, it'd be easy to have a drop-down list that enumerates the possible values.
+
+In other cases, the set of possible values is not fixed - but is constrained by other parts of the query - so there could be some kind of auto-completion / enumeration of possible values - probably by running the existing parts of the query on the server, and so computing the list of possible values for the clause being edited.
+
+-------------------------
 
 = Publishing = 
 
@@ -87,5 +180,3 @@ If we were able to get some of these 3rd party login services working with ravio
 == Group Publishing==
 
 == Group Data Publishing==
-
- 
