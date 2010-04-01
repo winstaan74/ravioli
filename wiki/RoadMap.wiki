@@ -1,6 +1,8 @@
 #summary List of things to be done
 #labels Featured
 
+Just kept for historical reasons.
+
 = Feasibility =
 What's possible?
   * ShallWeUseGoogleAppEngine
