@@ -4,6 +4,6 @@ DevelopmentDocs
 
 AdminDocs
 
-Future Plans
+FuturePlans
 
 *[http://astrogrid.roe.ac.uk/ravioli/ alpha site]*
