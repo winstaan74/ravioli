@@ -4,6 +4,7 @@
 Version at http://astrogrid.roe.ac.uk/ravioli - v0.7
 -----
 ==version 0.8, unreleased==
+  * implemented IVOA search soap webservice (accepts adql/x, keyword (including lucene syntax). no XQuery support
   * fixed harvesting of resources where IVO-ID contains '+'
   * tidied up the search input form. (search button now triggered by hitting enter)
 
