@@ -5,7 +5,7 @@ package org.ravioli
 import groovy.util.XmlSlurper;
 import org.xml.sax.SAXParseException;
 
-/** performs vosi checks */
+/** performs VOSI service availability checks */
 class VosiController {
 	
 	def index = { 

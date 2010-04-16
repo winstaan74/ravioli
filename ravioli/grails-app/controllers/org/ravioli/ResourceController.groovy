@@ -1,5 +1,7 @@
 package org.ravioli
-
+/** controller for managing resources
+ *  - this is all protected, and only visible to administrators - {@link ExploreController} is the one that displays resources to users.
+ */
 class ResourceController {
 	static scaffold = true;
 	static layout = 'explore'
@@ -19,6 +21,9 @@ class ResourceController {
 		redirect(action:'list')
 		}
 
+	/** search resources - this is here for historical purposes - might be useful, but doesn't do 
+	 * anything that the user's registry browser does
+	 */
 	def search = {
 
 		if (!params.q) {
@@ -33,6 +38,7 @@ class ResourceController {
 		}
 	}
 
+	/** Rebuild the search index of resources */
 	def reindex = {
 		def t = new ReindexTask();
 		t.save(); // will now be picked up by the task service.

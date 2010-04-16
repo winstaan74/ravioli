@@ -1,11 +1,9 @@
 package org.ravioli
 
-/** scaffolding-dependent controller for the table viewer */
+/** scaffolded controller for the table viewer domain object */
 class TableViewerController {
 
-    def index = { 
-		redirect action:'list'
-		}
+	static defaultAction = 'list'
 	
 	def scaffold = true
 	

@@ -1,6 +1,8 @@
 package org.ravioli
 
-/** displays details of a resource */
+/** Displays formatted details of a Resource
+ * 
+ *  @see Resource */
 class DisplayController {
 	static layout = 'explore'
     def index = { 
@@ -8,7 +10,7 @@ class DisplayController {
 		}
 	
 	
-	// display a single formatted resource
+	/** display a single formatted resource in single page */
 	def resource = {
 		Resource r
 		if (params.id) {
@@ -30,7 +32,7 @@ class DisplayController {
 	}
 	
 	
-	// an action to return the table metadata for a resource
+	/** an action to return the table metadata for a resource */
 	def tableMetadata = {
 		Resource r = Resource.get(params.id)
 		if(r) {
@@ -49,7 +51,7 @@ class DisplayController {
 			render(status:404, text:'Failed to find resource')
 		}
 	}
-	/** returns the metadata for a table in the tabular description */
+	/** returns the metadata for a table in the tabular description  - dynamic request*/
 	def tableMetadataAsJSON = {
 		Resource r = Resource.get(params.id)
 		if (!r) {

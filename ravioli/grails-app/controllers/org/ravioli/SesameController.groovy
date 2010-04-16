@@ -13,35 +13,33 @@ class SesameController {
 	
 	def index = { 
 		try {
-		def obj  = params.obj
-		if (! obj) {
-			render status:400, text:"supply an object name using the 'obj' parameter"
-//		} else if (obj == 'test') {
-//			def result = [ra:"1.0",dec:"2.0"] 
-//			render result as JSON
-		} else {
-			def u = grailsApplication.config.ravioli.sesame.endpoint + obj.encodeAsURL()
-			def xml = new XmlSlurper().parse(u)
-			def t = xml.Target
-			// only interested in object names.
-			if (! t.ERROR.isEmpty()) {
-				def errMessage = xml.Target.ERROR.text()
-				render status:500, text:errMessage
-			} else if (t.Resolver.jradeg.isEmpty() || t.Resolver.jdedeg.isEmpty()) {
-				// nothing found.
-				render status:404, text:"object '${obj}' not known"
+			def obj  = params.obj
+			if (! obj) {
+				render status:400, text:"Supply an object name using the 'obj' parameter"
+				//		} else if (obj == 'test') {
+				//			def result = [ra:"1.0",dec:"2.0"] 
+				//			render result as JSON
 			} else {
-				// take the first.
-				def result = [ra: t.Resolver.jradeg[0].text()
-				,dec : t.Resolver.jdedeg[0].text()
-				]
-				render result as JSON
+				def u = grailsApplication.config.ravioli.sesame.endpoint + obj.encodeAsURL()
+				def xml = new XmlSlurper().parse(u)
+				def t = xml.Target
+				// only interested in object names.
+				if (! t.ERROR.isEmpty()) {
+					def errMessage = xml.Target.ERROR.text()
+					render status:500, text:errMessage
+				} else if (t.Resolver.jradeg.isEmpty() || t.Resolver.jdedeg.isEmpty()) {
+					// nothing found.
+					render status:404, text:"Object '${obj}' not known"
+				} else {
+					// take the first.
+					def result = [ra: t.Resolver.jradeg[0].toDouble()
+					              ,dec : t.Resolver.jdedeg[0].toDouble()
+					]
+					render result as JSON
+				}
 			}
-		}
-		} catch (IOException e) {
-			render status:500, text:e.message
-	} catch (SAXParseException e) {
-		render status:500, text:e.message
+		} catch (Exception e) {
+			render status:500, text:e.toString()
 		}
 	}
 	

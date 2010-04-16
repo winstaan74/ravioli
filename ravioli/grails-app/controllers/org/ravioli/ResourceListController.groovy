@@ -1,5 +1,7 @@
 package org.ravioli
-
+/** controller that manages {@link ResourceLists}.
+ * 
+ */
 class ResourceListController {
 	static layout = 'explore'
 	static scaffold = true;
@@ -12,7 +14,7 @@ class ResourceListController {
 						]
 	]
 	
-    def index = {
-		redirect(action:'list')
-		}
+	
+	static defaultAction = 'list'
+	
 }

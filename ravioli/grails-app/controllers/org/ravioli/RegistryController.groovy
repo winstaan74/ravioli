@@ -1,6 +1,11 @@
 package org.ravioli
 
-//controls the list of known registries.
+/**
+ * Manages registry objects.
+ * All these functions are protected by authentication - only accessible to administrator.
+ * @author noel
+ *
+ */
 //use standard scaffolding to list / view / edit registries.
 class RegistryController {
 	static layout = 'explore'
@@ -23,10 +28,7 @@ class RegistryController {
 	
 	HarvestService harvestService // will be autowired
 	def backgroundService; 
-	
-	def index = {
-		redirect(action:'list')
-	}
+	static defaultAction = 'list'
 	
 	/** update list of registries from the rofr */
 	def updateRofr = {
@@ -41,11 +43,6 @@ class RegistryController {
 		flash.message = "Harvested ${results.created} new, ${results.modified} modified registries from RofR"
 		redirect(action:'list')
 	}
-	
-//	def sample = {
-//		harvestService.sample();
-//		redirect(action:'index')
-//	}
 	
 	
 	/** harvest the named registry */
@@ -71,7 +68,7 @@ class RegistryController {
 			return [:]
 		}
 	}
-	
+	/** trigger a harvest of all registries */
 	def harvestAll = {
 		boolean incremental = params.incremental ? true : false; // converts from groovy truth to flag.
 		

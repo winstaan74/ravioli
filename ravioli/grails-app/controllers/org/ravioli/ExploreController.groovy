@@ -1,16 +1,21 @@
 package org.ravioli
+import org.codehaus.groovy.grails.commons.ConfigurationHolder;
+
 import grails.converters.JSON
-/** controller for exploring lists of resources. */
+/** Main controller - renders the table of {@link Resource} */
 
 class ExploreController {
 	
+	/** display the main view page */
 	def index = {
 		render(view:'table')
 	}
 	
-	public static final int MAX_QUERY = 100;
-	
+	static final int MAX_QUERY = ConfigurationHolder.config?.ravioli?.search?.records?.max ?: 100
+
+	/** serve table data as JSON */
 	def tableDataAsJSON = {
+			
 		response.setHeader("Cache-Control", "no-store")
 		def count
 		def list 
@@ -44,8 +49,7 @@ class ExploreController {
 	}
 	
 	
-	// separate action, with a custom layout, which removes all additional formatting.
-	// although, in time, may need to add in additional stuff there..
+	/** display a Resource inline in the table */
 	def inlineResource = {
 		Resource r = Resource.get(params.id)
 		if(r) {

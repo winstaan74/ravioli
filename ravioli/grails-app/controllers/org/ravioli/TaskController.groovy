@@ -1,9 +1,10 @@
 package org.ravioli
-
+/** admin controller for {@link Task} */
 class TaskController {
 	
 	static layout = 'explore'
 	static scaffold = true
+	static defaultAction = 'list'
 
 	static navigation = [
 	    [title: 'Tasks'
@@ -15,11 +16,8 @@ class TaskController {
 		            ]
 		]
 	]
-	
-    def index = {
-    		redirect(action:'list')
-		}
-	
+
+	/** deletes completed tasks */
 	def cleanup = {
 		Task.findAllByCompleted(true)*.delete()
 		flash.message = 'deleted completed tasks'
