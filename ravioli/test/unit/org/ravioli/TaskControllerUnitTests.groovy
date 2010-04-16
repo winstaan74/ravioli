@@ -10,10 +10,7 @@ class TaskControllerUnitTests extends ControllerUnitTestCase {
     protected void tearDown() {
         super.tearDown()
     }
-	void testIndex() {
-		this.controller.index()
-		redirectsTo('list')
-	}
+
 
 	public void testCleanup() {
 		def l = [

@@ -12,12 +12,12 @@ class SmartListUnitTests extends GrailsUnitTestCase {
     }
 
     void testValidation() {
-		mockDomain(ListContainer)
+		mockDomain(ResourceListBlock)
     	mockForConstraintsTests(SmartList)
 		SmartList l =new SmartList()
 		assertFalse l.validate()
 
-		l.container = new ListContainer()
+		l.container = new ResourceListBlock()
 		
 		assertFalse l.validate()
 

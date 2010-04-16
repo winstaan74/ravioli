@@ -2,7 +2,7 @@ package org.ravioli
 
 import grails.test.*
 
-class StaticListUnitTests extends GrailsUnitTestCase {
+class BookmarkListUnitTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }
@@ -12,12 +12,12 @@ class StaticListUnitTests extends GrailsUnitTestCase {
     }
 
     void testConstraints() {
-    	mockForConstraintsTests(StaticList)
-		StaticList l = new StaticList()
+    	mockForConstraintsTests(BookmarkList)
+		BookmarkList l = new BookmarkList()
 		
 		assertFalse l.validate()
 
-		l.container = new ListContainer()
+		l.container = new ResourceListBlock()
 
     	assertFalse l.validate()
 		

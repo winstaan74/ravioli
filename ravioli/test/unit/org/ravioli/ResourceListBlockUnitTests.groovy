@@ -2,7 +2,7 @@ package org.ravioli
 
 import grails.test.*
 
-class ListContainerUnitTests extends GrailsUnitTestCase {
+class ResourceListBlockUnitTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }
@@ -12,15 +12,12 @@ class ListContainerUnitTests extends GrailsUnitTestCase {
     }
 
     void testConstraints() {
-    	mockForConstraintsTests(ListContainer)
-		ListContainer c = new ListContainer()
+    	mockForConstraintsTests(ResourceListBlock)
+		ResourceListBlock c = new ResourceListBlock()
 		assertFalse c.validate()
 		
 		c.title ='a title'
-		
-		assertFalse c.validate()
 
-		c.name = 'myname'
 	
 		
 		if (! c.validate()) {

@@ -9,7 +9,7 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 	
 	def searchableService
 	
-	static final int TOTAL_NUMBER = 12
+	static final int TOTAL_NUMBER = 13
 	
 	protected void setUp() {
 		super.setUp()
@@ -96,14 +96,14 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 		// this is different to voexplorer..
 		
 		search("identifier:registry");
-		expect(NVO)
+		contains(NVO)
 		
 		search("identifier:reg")
 		expect(0)
 		
 		// can get behaviour back by using a wildcard
 		search("identifier:reg*");
-		expect(NVO)
+		contains(NVO)
 	}
 	
 	void testResourcetype() {
@@ -281,12 +281,12 @@ class ResourceIntegrationTests extends GrailsUnitTestCase {
 		expect(7)
 		
 		search("created:[2006-1-1 TO now]")
-		expect(9)		
+		expect(10)		
 	}
 	
 	void testModified() {
 		search("modified:*")
-		expect(TOTAL_NUMBER)
+		expect(TOTAL_NUMBER-1)
 		
 		search("modified:[2008-1-1 TO 2008-12-30]")
 		expect(6)

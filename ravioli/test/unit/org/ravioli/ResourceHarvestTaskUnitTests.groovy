@@ -12,6 +12,9 @@ class ResourceHarvestTaskUnitTests extends GrailsUnitTestCase {
 		mockForConstraintsTests Registry
 		parserControl = mockFor(RegParserService)
 		mockDomain ResourceHarvestTask
+		
+      String.metaClass.encodeAsURL = {org.codehaus.groovy.grails.plugins.codecs.URLCodec.encode(delegate)}
+
 	}
 	
 	

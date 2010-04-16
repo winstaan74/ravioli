@@ -23,7 +23,7 @@ class ExploreControllerIntegrationTests extends GrailsUnitTestCase {
 		// ok. now parse json back into groovy, and check it's structure.
 		Map o = JSON.parse(js)
 		//println o.dump()
-		assertEquals(11,o.totalRecords)
+		assertEquals(12,o.totalRecords)
 		
 		checkResponse(o)
 
@@ -51,7 +51,7 @@ def checkResponse(def o) {
 		// ok. now parse json back into groovy, and check it's structure.
 		Map o = JSON.parse(js)
 		//println o.dump()
-		assertEquals(11,o.totalRecords)
+		assertEquals(12,o.totalRecords)
 		
 		checkResponse(o)
 	}

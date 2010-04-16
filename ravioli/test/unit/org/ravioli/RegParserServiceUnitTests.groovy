@@ -13,6 +13,8 @@ class RegParserServiceUnitTests extends GrailsUnitTestCase {
 		mockLogging XmlService
 		parser = new RegParserService()
 		parser.xmlService = new XmlService()
+        
+        String.metaClass.encodeAsURL = {org.codehaus.groovy.grails.plugins.codecs.URLCodec.encode(delegate)}
     }
 
     protected void tearDown() {

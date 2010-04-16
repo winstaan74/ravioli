@@ -14,11 +14,7 @@ class RegistryControllerUnitTests extends ControllerUnitTestCase {
     }
 	
 	def harvestControl
-	
-	void testIndex() {
-		this.controller.index()
-		redirectsTo('list')
-	}
+
     void testUpdateRofr() {
 		
 		 harvestControl.demand.readRofr() { incremental -> // number of args has to match the caller, else fails.
