@@ -1,0 +1,66 @@
+<!-- 
+ registration template for ravioli
+
+location to load this file from can be adjusted by changing configuration key 'ravioli.registration.location'
+
+-->
+<ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" 
+xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
+xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:type="vg:Registry" 
+xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VORegistry/v1.0 http://www.ivoa.net/xml/VORegistry/v1.0" 
+status="active" created="2009-11-12T00:00:00">     
+		<title>Ravioli Searchable Registry</title>
+         <shortName>Ravioli</shortName>
+         <identifier>${ivorn}</identifier>
+         
+         <curation>
+            <publisher >Wide Field Astronomy Unit (WFAU)</publisher>
+            <creator>
+               <name>Noel Winstanley</name>
+            </creator>
+            <version>${version}</version>
+            <contact>
+               <name>Mark Holliman</name>
+            </contact>
+         </curation>
+         
+         <content>
+            <subject>Registry</subject>
+            <description>
+            Ravioli is a rich web-based browser for the VO Registry
+            </description>
+            <referenceURL>http://code.google.com/p/ravioli/</referenceURL>
+            <type>Registry</type>
+            <contentLevel>Research</contentLevel>
+         </content>
+         
+         <capability>
+         	<description>Web Browser Interface</description>
+         	<interface xsi:type="vr:WebBrowser">
+         		<accessURL>${serverURL}</accessURL>
+         	</interface>
+         </capability>
+         <!-- not yet..
+         <capability xsi:type="vg:Harvest" standardID="ivo://ivoa.net/std/Registry">            
+        	 <interface xsi:type="vg:OAIHTTP" role="std" version="1.0">               
+        	 	<accessURL>${serverURL}/fillthisin</accessURL>
+			</interface>
+		</capability>
+		 -->
+		 
+		<capability xsi:type="vg:Search" standardID="ivo://ivoa.net/std/Registry">
+			<interface xsi:type="vr:WebService" role="std" >
+				<accessURL>${serverURL}/services</accessURL>
+			</interface>
+			<maxRecords>${maxSearchRecords}</maxRecords>
+			<extensionSearchSupport>partial</extensionSearchSupport>
+			<optionalProtocol>lucene</optionalProtocol>
+		</capability>
+
+         <full>true</full>
+         <!--  not until ravioli starts publishing..
+         <managedAuthority>${manages}</managedAuthority>
+          -->
+</ri:Resource>

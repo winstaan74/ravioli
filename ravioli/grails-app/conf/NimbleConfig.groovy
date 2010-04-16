@@ -17,6 +17,12 @@
 
 nimble {
 	
+	// provide some table names that are missing..
+	tablenames {
+		socialmediaaccount = 'socialmediaaccount'
+		socialmediaservice = 'socialmediaservice'
+	}
+	
 	passwords {
 		mustcontain {
 			lowercase = false
@@ -69,15 +75,7 @@ nimble {
     }
 
     messaging {
-		enabled = false
-		
-        registration {
-            subject = "Your new account is ready!"
-        }
-        passwordreset {
-            subject = "Your password has been reset"
-            external.subject = "Your password reset request"
-        }
+
 
         mail {
             from = "App <app@company.com>"

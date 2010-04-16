@@ -19,7 +19,8 @@ class UrlMappings {
 		// nice mappings for ads and sesame.
 		
 		"/ads/${bib}"(controller:'ads')
-		//seems to foul up the ajax call."/sesame/${obj}"(controller:'sesame')
+		//seems to foul up the ajax call, as it comes from a form.
+		//"/sesame/${obj}"(controller:'sesame')
 		
 		
 	}

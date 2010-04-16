@@ -23,6 +23,8 @@ import grails.plugins.nimble.core.Role
 import grails.plugins.nimble.core.Group
 import grails.plugins.nimble.core.AdminsService
 import grails.plugins.nimble.core.UserService
+
+import org.ravioli.RavioliConstants;
 import org.ravioli.User;
 
 /*
@@ -47,6 +49,23 @@ class NimbleBootStrap {
 		
 		// Execute any custom Nimble related BootStrap for your application below
 		if (User.count() ==0) {
+			//NWW - create a guest role too. 
+			def guest = new Role(name:RavioliConstants.GUEST_ROLE
+					,protect:true
+					,description:"Role for users who haven't authenticated").save()
+			
+			// create a 'guest' user - might be useful.
+			def guser = InstanceGenerator.user()
+			guser.username="guest"
+			guser.enabled = false;
+			
+			def gprofile = InstanceGenerator.profile()
+			gprofile.fullName='Guest User'
+			gprofile.owner = guser
+			guser.profile = gprofile
+			userService.createUser(guser)
+			
+			
 			// Create example User account
 			def user = InstanceGenerator.user()
 			user.username = "user"

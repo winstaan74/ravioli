@@ -1,14 +1,19 @@
+import org.codehaus.groovy.grails.commons.ApplicationHolder;
+
 // locations to search for config files that get merged into the main config
 // config files can either be Java properties files or ConfigSlurper scripts
-
-// grails.config.locations = [ "classpath:${appName}-config.properties",
-//                             "classpath:${appName}-config.groovy",
+/* @todo externalized config
+ grails.config.locations = [
+//                            "classpath:${appName}-config.properties",
+                             "classpath:${appName}-config.groovy",
 //                             "file:${userHome}/.grails/${appName}-config.properties",
-//                             "file:${userHome}/.grails/${appName}-config.groovy"]
+                             "file:${userHome}/${appName}-config.groovy"
+                             ]
 
-// if(System.properties["${appName}.config.location"]) {
-//    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
-// }
+ if(System.properties["${appName}.config.location"]) {
+    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
+ }
+ */
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
 grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
@@ -179,12 +184,13 @@ grails.json.legacy.builder=false
 //	}
 //	production {
 //		grails.mail {
-//			//@todo configure.
 //			jndiName = ""
 //		}
 //	}
 //}
 
+//use the yui javascript library, not prototype
+grails.views.javascript.library="yui"
 
 //Ravioli Application Configuration
 ///////////////////////////
@@ -196,9 +202,24 @@ ravioli.sesame.endpoint='http://cdsweb.u-strasbg.fr/cgi-bin/nph-sesame/-ox/NSV?'
 
 ravioli.ads.endpoint='http://adsabs.harvard.edu/cgi-bin/nph-bib_query?data_type=XML&bibcode='
 
+//ivorn to call this service in it's registration.
+ravioli.registration.ivorn= 'ivo://org.ravioli/registry'
+// maximum number of records returned by a search query (via soap iface, or ui)
+ravioli.search.records.max =100
+// values to pass to registration template
+ravioli.registration.map = [
+          ivorn: ravioli.registration.ivorn
+          , version: "${appVersion}" //ApplicationHolder.application.metadata['app.version']
+          , serverURL : grails.serverURL
+          , manages: 'org.ravioli'
+          , maxSearchRecords: ravioli.search.records.max
+          ]
+// location of template to use to generate registration document.
+ravioli.registration.location= 'classpath:registration.xml' 
+
+	
 //only meaningful in development
 ravioli.stubRegistry.basedir="/Users/noel/tinkering/mock-registry"
 
-// use the yui javascript library, not prototype
-grails.views.javascript.library="yui"
+
 

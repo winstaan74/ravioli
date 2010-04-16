@@ -1,3 +1,8 @@
+/** controller just used for in development - serves up contents of the stub registry
+ * @todo fine a way to remove this from deployment
+ * @author noel
+ *
+ */
 class StubRegistryController {
 	
 	def grailsApplication

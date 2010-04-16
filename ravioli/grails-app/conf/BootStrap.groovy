@@ -1,8 +1,11 @@
+import groovy.text.XmlTemplateEngine;
+
 
 import org.springframework.context.ApplicationContext;
 import org.codehaus.groovy.grails.commons.*
 import org.ravioli.*
 import grails.util.Environment;
+import groovy.text.SimpleTemplateEngine;
 import groovy.util.XmlSlurper;
 
 import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes;
@@ -13,11 +16,16 @@ class BootStrap {
 	def regParserService 
 	def searchableService
 	ApplicationContext ctx
+	def config = ConfigurationHolder.config
 	def init = { servletContext ->
 		ctx = servletContext.getAttribute(GrailsApplicationAttributes.APPLICATION_CONTEXT)
 		
+		// augment selected domain classes with Permissionable support..
+		// each of these domain classes must have a 'permissionName' static field.
+		Permissionable.mixinMethods([Resource,ResourceListBlock,ResourceList])
+		
 		switch (Environment.current) {
-			case Environment.DEVELOPMENT:
+			case Environment.DEVELOPMENT: // when runing in dev mode, populate with 140 resources or so.
 			populateRegistries()
 			populateResources(1..<140)
 			break;
@@ -27,7 +35,7 @@ class BootStrap {
 			populateResources([5,15,25,35,45,55,65,75,85,95,92]) // smaller set of resources.
 			break;
 			
-			case Environment.CUSTOM :
+			case Environment.CUSTOM : 
 			if (Registry.count() ==0) {
 				if (System.getProperty('grails.env') == 'alpha') {
 					populateRegistries('classpath:/exampledata/stubRegistries.xml') // rofr description with mangled endpoints.
@@ -37,13 +45,14 @@ class BootStrap {
 			}
 			
 			break;
-			default:
+			default: // what happens in a production environment - set up a list of registries, if none availabl;e.
 			if (Registry.count() ==0) {
 				populateRegistries()
 			}
 		}
 		populateListContainers()
 		populateTableViewers()
+		describeMyself()
 	}
 	/** load resources from disk
 	 * 
@@ -72,6 +81,25 @@ class BootStrap {
 		searchableService.index()
 	}
 	
+	
+	/** ensure that registry DB contains resource describing this service */
+	private describeMyself() {
+		if (Resource.findByIvorn(config.ravioli.registration.ivorn)) {
+			// already configured..
+			return
+		}
+		// load the template location from config (allows deployer to provide more detailed template..
+		def templateURL = ctx.getResource(config.ravioli.registration.location).getURL()
+		def engine = new XmlTemplateEngine();
+		def template = engine.createTemplate(templateURL)
+		Resource me = Resource.buildResource(template.make(config.ravioli.registration.map).toString())
+		if (me.validate()) {
+			me.save()
+		} else {
+			log.error(me.errors)
+		}
+	}
+	
 	/**
 	 * load registry information from disk.
 	 * @return
@@ -96,10 +124,10 @@ class BootStrap {
 	}
 	/** populates list containers,and lists, if there's not already some data present */
 	private populateListContainers() {
-		if (! ListContainer.findByName('canned')) {
-			ListContainer global= new ListContainer(name:'canned',title:'Sample Queries')
+		if (! ResourceListBlock.findByName('canned')) {
+			ResourceListBlock canned= new ResourceListBlock(name:'canned',title:'Sample Queries',everyone:true)
 
-				.addToLists(new StaticList(title:'VO taster list')
+				.addToLists(new BookmarkList(title:'VO taster list',everyone:true)
 					.addToIvorns( "ivo://org.astrogrid/MERLINImager" )
 					.addToIvorns( "ivo://irsa.ipac/2MASS-PSC" )
 					.addToIvorns( "ivo://nasa.heasarc/fermilbsl" )
@@ -120,7 +148,7 @@ class BootStrap {
 					.addToIvorns("ivo://wfau.roe.ac.uk/ukidssDR3-dsa/wsa")
 				)
 							
-				.addToLists(new StaticList(title:'Cone search examples')
+				.addToLists(new BookmarkList(title:'Cone search examples',everyone:true)
 					.addToIvorns("ivo://fs.usno/cat/usnob")
 					.addToIvorns("ivo://irsa.ipac/2MASS-PSC")
 					.addToIvorns( "ivo://nasa.heasarc/first" )
@@ -134,7 +162,7 @@ class BootStrap {
 					.addToIvorns("ivo://wfau.roe.ac.uk/ukidssDR3-dsa/wsa")
 				)
 
-				.addToLists(new StaticList(title:'Image access examples')
+				.addToLists(new BookmarkList(title:'Image access examples',everyone:true)
 					.addToIvorns("ivo://wfau.roe.ac.uk/sss-siap")
 					.addToIvorns("ivo://nasa.heasarc/skyview/rass.25kev") //?
 					.addToIvorns("ivo://mast.stsci/siap/vla-first")
@@ -149,20 +177,20 @@ class BootStrap {
 				)
 			
 				.addToLists(new SmartList(query:'ability:spectrum'
-					,title:'Spectrum access examples'))
+					,title:'Spectrum access examples',everyone:true))
 				.addToLists(new SmartList(query:'resourcetype:CeaApplication'
-					,title:'Remote applications'))
+					,title:'Remote applications',everyone:true))
 				.addToLists( new SmartList(query:'ability:TAP'
-					, title:"Table/Database services"))
+					, title:"Table/Database services",everyone:true))
 				.addToLists(new SmartList(query:'subject:solar'
-					,title:'Solar services'))
+					,title:'Solar services',everyone:true))
 				.addToLists(new SmartList(query:'voevent'
-					,title:'VOEvent services'))
+					,title:'VOEvent services',everyone:true))
 				
 				// from the sandbox
 				.addToLists(new SmartList(query:'ucd:*REDSHIFT* AND waveband:infrared'
-					,title:'IR redshift'))
-				.addToLists(new StaticList(title:'SWIFT follow up')
+					,title:'IR redshift',everyone:true))
+				.addToLists(new BookmarkList(title:'SWIFT follow up',everyone:true)
 					.addToIvorns("ivo://fs.usno/cat/usnob")
 					.addToIvorns("ivo://nasa.heasarc/rassvars")
 					.addToIvorns("ivo://nasa.heasarc/rassbsc")
@@ -175,10 +203,10 @@ class BootStrap {
 				)
 				
 				.addToLists(new SmartList(query:'ability:image AND waveband:radio'
-					, title:'Radio images'))
+					, title:'Radio images',everyone:true))
 				.addToLists(new SmartList(query:'publisher:CDS AND subject:agn AND NOT subject:magnetic'
-					,title:'Vizier AGN tables'))
-				.addToLists(new StaticList(title:'Blazar selection')
+					,title:'Vizier AGN tables',everyone:true))
+				.addToLists(new BookmarkList(title:'Blazar selection',everyone:true)
 					.addToIvorns("ivo://nasa.heasarc/iraspsc")
 					.addToIvorns("ivo://CDS.VizieR/VIII/71")
 					.addToIvorns("ivo://nasa.heasarc/xmmssc")
@@ -204,16 +232,16 @@ class BootStrap {
 				)
 				.save()
 		}
-		if (! ListContainer.findByName('alls')) {
-			ListContainer alls= new ListContainer(name:'alls',title:'Browse')
+		if (! ResourceListBlock.findByName('alls')) {
+			ResourceListBlock alls= new ResourceListBlock(name:'alls',title:'Browse',everyone:true)
 				.addToLists( new SmartList(query:'identifier:CDS.VizieR'
-						,title:'All VizieR'))
+						,title:'All VizieR',everyone:true))
 				.addToLists( new SmartList(query:'identifier:nasa.heasarc'
-						, title:'All HEASARC'))
+						, title:'All HEASARC',everyone:true))
 				.save()
 		}
 	}
-	
+	/** populate the table viewer table */
 	private populateTableViewers() {
 		if (TableViewer.count() == 0) {
 			new TableViewer(
@@ -224,7 +252,7 @@ class BootStrap {
 		}
 	}
 	
-	
+
 	def destroy = {
 	}
 } 

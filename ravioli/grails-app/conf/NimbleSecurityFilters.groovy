@@ -33,7 +33,7 @@ public class NimbleSecurityFilters extends grails.plugins.nimble.security.Nimble
                 }
             }
         }
-
+//unsurer wheteher I want this one..
         profilesecure(controller: "profile") {
             before = {
                 if(!actionName.equals('miniprofile')) {
@@ -53,8 +53,8 @@ public class NimbleSecurityFilters extends grails.plugins.nimble.security.Nimble
             }
         }
 
-        // This should be extended as the application adds more administrative functionality
-        administration(controller: "(admins|user|group|role|registry|resource|task|taskExecution)") {
+        // This should be extended as the application adds more administrative functionality //|listContainer
+        administration(controller: "(admins|user|group|role|registry|resource|task|taskExecution|resourceList|tableViewer)") {
             before = {
                 accessControl {
                     role(AdminsService.ADMIN_ROLE)
