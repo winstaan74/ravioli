@@ -10,7 +10,7 @@ package org.ravioli;
  *
  */
 class DescriptionFormatter {
-	// 'constant' to be set during initialization. - will be the minimum size of the heading.
+	/** 'constant' to be set during initialization. - will be the minimum size of the heading.*/
 	 int HEADING_SIZE = 200
 	
 	// static patterns, safe to share between threads.
@@ -18,7 +18,7 @@ class DescriptionFormatter {
 	/** find a blank line */
 	static final def blankLine =  ~/\n\s*\n/
 	
-	/* find a fullstop, preceded and followed by a not-digit */
+	/** find a fullstop, preceded and followed by a not-digit */
 	static final def fullstop = ~/\D\.\D/ 
 
 	/** detect a url - http  */
@@ -42,7 +42,7 @@ class DescriptionFormatter {
 		}
 	}
 
-	//splits into <p> tags, and finds any a tags.
+	/** splits into &lt;p&gt; tags, and finds any a tags. */
 	public String tagify(String s) {
 		return "<p>" +
 			( s?.replaceAll(url,'<a href="$0">$0</a>')?.replaceAll(blankLine, "</p><p>") ?: "") +
