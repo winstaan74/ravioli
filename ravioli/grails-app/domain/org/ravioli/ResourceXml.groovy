@@ -20,10 +20,11 @@ import org.hibernate.Hibernate;
 
 
 
-/** xml that defines a resource
- * in a separate domain class, so that it can be lazily loaded
+/** The XML that defines a resource.
+ * 
+ * Stored in a separate domain class from {@link Resource}, so that it can be lazily loaded
  * separate to the resource it defines
- * properties in this object are only required for search indexing, or resource details display
+ * properties in this object are only required for search indexing, or resource details display.
  * 
  * which means for quick lookups in the resource, this large CLOB (sometimes some megs)
  * doesn't need to be loaded from db.
@@ -32,18 +33,19 @@ import org.hibernate.Hibernate;
  *  */
 class ResourceXml {
 	
-
+/** make a lot of space for the xml */
 	static constraints = {
 		xml(nullable:true,blank:true,maxSize: 2147483647) // max size for a long text in mysql.
 
 	}
-
+/** unused - remove */
 	static mapping ={
 		clob type: 'clob'
 	}
 	
 	static transients = ['xmlService','vals']
-	static belongsTo = Resource // means deletes and updates to resource will be cascaded here
+	 /** belongs to a reosurce - deletes and updates cascade */
+	static belongsTo = Resource 
 	
 	
 	String xml
@@ -59,7 +61,11 @@ class ResourceXml {
 		return xmlService.xpathList(getXml(),"//@*|//text()").join(' ')
 	}
 
-	// some of these are currently unused, but do no harm being there. 
+	/**
+	 * properties that are defined using XPATH.
+	 * 
+	 *  some of these are currently unused, but do no harm being there. 
+	 */
 	private final static Map DYNAMIC_PROPERTIES = [
 //	titleField: '/node()/title'
 //	, shortnameField:'/node()/shortName'
@@ -72,7 +78,10 @@ class ResourceXml {
 //	, date: '/node()/curation/date' // strictly speaking, this can be a list, but really never is.
 	]
 
-	// these are used during indexing..
+	/** 
+	 * List-valued properties, defined using XPATH.
+	 * 
+	 * these are used during indexing.. */
 	private final static Map DYNAMIC_LISTS = [
 	subject: '/node()/content/subject/text()'
 	,waveband: '/node()/coverage/waveband/text()'
@@ -89,18 +98,23 @@ class ResourceXml {
 	//future: validationLevel?
 	]
 	
-/*s*/	static { // this is defined in terms of other ones - so do it after the map creation
+	static { // this is defined in terms of other ones - so do it after the map creation
 		// so we can refer to the map.
 		DYNAMIC_LISTS.type = DYNAMIC_LISTS.capability + 
 		" | " + DYNAMIC_LISTS.contenttype +
 		" | " + DYNAMIC_PROPERTIES.resourcetype
 	}
 	
-	/** utility to provide convenient access to xpath-defined fields
+	/** Implements Dynamic properties, by applying XPaths to the XML.
+	 * 
+	 * This is a tility to provide convenient access to xpath-defined fields
 	 * means we can adjust the implementation later, without letting the details leak out.
 	 * 
-	 * first time one dynamic property is requested, all are computed and loaded.
-	 * @param name
+	 * first time one dynamic property is requested, all are computed and loaded. This is sensible,
+	 * as the dynamic properties are onlyl accessed during search indexing - and if one is seen, then all the rest 
+	 * are going to be seen very soon. By computing all these properties at once, the XML only needs to be fetched from database, and parsed, once.
+	 * 
+	 * @param name - one of the keys in {@link DYNAMIC_LISTS} or {@lnk DYNAMIC_PROPERTIES}
 	 * @return
 	 */
 	def propertyMissing(String name) {
@@ -123,6 +137,7 @@ class ResourceXml {
 		throw new MissingPropertyException(name)
 	}
 	
+	/** temporary storage space for the dyanmic values */
 	def vals = [:]
 
 	public GPathResult createSlurper() {

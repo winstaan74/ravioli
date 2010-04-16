@@ -1,6 +1,6 @@
 package org.ravioli;
 
-/** domain object that represents a pending task 
+/** A Pending Task.
  * 
  * extendors should implement 'run()'
  * 
@@ -11,7 +11,7 @@ package org.ravioli;
 //abstract
 class Task {
 	
-	// when the task was created
+	/** when the task was created */
 	Date creation = new Date()
 	
 	/** reference to a bunch of records of execution */
@@ -33,7 +33,6 @@ class Task {
 	 * catch exceptions that can't be recovered from, and return a 'failed'.
 	 * 
 	 */
-	//abstract 
 	Outcome run(PrintStream out) {
 		out.println('warning - called "run()" on Task baseclass - does nothing')
 		return Outcome.COMPLETED

@@ -1,5 +1,5 @@
 package org.ravioli
-/** task to reindex all the resources */
+/** task to rebuild the search index for all the resources */
 class ReindexTask extends Task {
 
 	Outcome run(PrintStream run) {

@@ -1,6 +1,6 @@
 package org.ravioli
 
-/** domain class that handles configuration / integration with external table viewer web apps */
+/** Represts the integration with an external table viewer web application */
 class TableViewer {
 
     static constraints = {

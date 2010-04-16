@@ -1,6 +1,7 @@
 package org.ravioli
-/** a list of resources */
-class StaticList extends ResourceList{
+/** A list of resources, determined by their ivorns
+ * @see SmartList  */
+class BookmarkList extends ResourceList{
 
 	
 	static constraints = {

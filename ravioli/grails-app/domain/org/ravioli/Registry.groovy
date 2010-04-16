@@ -1,6 +1,7 @@
 package org.ravioli
 
-/** Represents a registry - something we harvest from
+/** A Registry that ravioli harvests from
+ * 
 * used to keep track of who've we've harvested from, and when.
 */
 class Registry {
@@ -13,22 +14,25 @@ class Registry {
     }
 
 
-    
+    // extends the size of the ivorn column, to ensure all ivorns fit.
     static mapping = {
 		ivorn column: 'ivorn', sqlType:'varchar(1000)', unique:true
     }
 
-
+    /** date last harvested */
     Date lastHarvest
+    /** the url of the harvest web interface */
     String endpoint
+    /** the ivo identifier of this registry */
     String ivorn
+    /** the title of this registry */
     String name
+    /** a set of the authority ids that this registry manages */
 	Set<String> manages
     static hasMany = [manages:String] // list of authorities it manages.
 
 
-    // assume this overrides the setter
-    /** strip any trailing ? */
+    /** overrides the setter for endpoint to strip any trailing '?'*/
     public void setEndpoint(String u) {
         this.endpoint = u.endsWith('?') ? u - '?' : u
     }

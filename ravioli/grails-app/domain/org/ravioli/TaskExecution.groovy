@@ -1,7 +1,7 @@
 package org.ravioli;
 
 
-/** represents an execution of a task */
+/** A record of one execution of a {@link Task} */
 class TaskExecution {
 	
 	static constraints = {

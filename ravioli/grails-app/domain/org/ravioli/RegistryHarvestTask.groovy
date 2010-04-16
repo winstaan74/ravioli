@@ -8,11 +8,11 @@ class RegistryHarvestTask extends Task {
 	}
 
 	
-	// the registry to harvest from.
+	/** the registry to harvest from. */
 	Registry reg
-	// flag whether to perform an incremental harvest
+	/** flag whether to perform an incremental harvest */
 	boolean incremental = true
-	// a resumptionToken, if we'rte not harvesting from startpoint.
+	/** a resumptionToken, if we'rte not harvesting from startpoint. */
 	String resumptionToken
 
 	def regParserService

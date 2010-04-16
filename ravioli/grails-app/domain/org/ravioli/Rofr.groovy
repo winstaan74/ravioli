@@ -1,7 +1,8 @@
 package org.ravioli
 
-/** singleton domain class, used to track last update of registry of registries
- *  - can't use the lasUpdated field of Rofr Registry instance, as this is used when harvesting other resources from Rofr.
+/** A singleton domain class, used to track last update of registry of registries
+ *  - can't use the lasUpdated field of Rofr Registry instance, as this is used when harvesting other resources from Rofr. (as well as listing all reg, it publishes some resourrces
+ *  of it's own).
  * @author noel
  *
  */

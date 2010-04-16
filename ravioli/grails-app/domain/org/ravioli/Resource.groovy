@@ -12,7 +12,7 @@ import groovy.xml.StreamingMarkupBuilder;
 
 /**
  * 
- * Representation of a voresource.
+ *A VOResource
  * 
  * 3 kinds of property / data element
  * <ul>
@@ -20,6 +20,9 @@ import groovy.xml.StreamingMarkupBuilder;
  * <li>search elements - used once, computed on demand, when indexing with lucene</li>
  * <li>resource detail elements - used to display the resource details. stored within ResourceXml object. </li>
  * </ul>
+ * 
+ * Lots of integration here with the Searchable plugin - the various search fields are defined by annotations.
+ * 
  * 
  */
 @Searchable
@@ -108,6 +111,8 @@ import groovy.xml.StreamingMarkupBuilder;
 ]) 
 class Resource {
 	
+	static permissionName = 'resource'
+	
 	def capabilityEncoderService
 	
 	static constraints = {
@@ -125,7 +130,7 @@ class Resource {
 		publishers(nullable:true, maxSize:1000)
 		creators(nullable:true, maxSize:1000)
 	}
-
+	/** ensure the ivorn field is large enough */
 	static mapping = {
 		ivorn column: 'ivorn', sqlType:'varchar(1000)', unique:true
 	}
@@ -134,56 +139,63 @@ class Resource {
 		 *   */	
 		ResourceXml rxml= new ResourceXml()
 
-		// used in table row, so must be stored.
+		/** used in table row, so must be stored. */
 		@SearchableId(store=Store.YES)
 		Long id
 		
-		// used in table row.
+		/** used in table row.
 		// made this un-tokenoized, rather than not-analyzed, 
-		// so I can query against exact ivorn matches - used when retrieving static lists.
+		// so I can query against exact ivorn matches - used when displaying a BookmarkList
+		 *
+		 */
 		@SearchableProperty(name="_ivorn",index=Index.UN_TOKENIZED,store=Store.YES)
 		String ivorn // $r/identifier 
 		
-		String status // not searchable.
+		/** active | deleted - not searchable */
+		String status 
 		
-		// used in table row.
+		/** used in resource table row. - not searchable, but stored, so can be retrieved and displayed in table row */
 		@SearchableProperty(name="_shortnameField",index=Index.NOT_ANALYZED,store=Store.YES)
 		String shortnameField
-		
+		/** used in resource table row. - not searchable, but stored, so can be retrieved and displayed in table row */		
 		@SearchableProperty(name="_sourceField",index=Index.NOT_ANALYZED, store=Store.YES) 
 		String sourceField
 		
-
+		/** used in resource table row. - not searchable, but stored, so can be retrieved and displayed in table row */
 		@SearchableProperty(name="_titleField",index=Index.NOT_ANALYZED, store=Store.YES)
 		String titleField 
 		
 		@SearchableProperty(format="yyyy-MM-dd", store=Store.NO)
 		Date created
+		
 		@SearchableProperty(format="yyyy-MM-dd", store=Store.NO)
 		Date modified
 		
-		// date used in table.
+		/** a combination of created and mofieid - used in table row */
 		@SearchableProperty(format="yyyy-MM-dd", store=Store.YES)		
 		Date date // combination of modified and created
 		
-	// pre-formatted fields used in resource table.
+	/** pre-formatted fields used in resource table.
 	// not indexed: lucene has indexed the raw text elsewhere.
 	// but are stored: so that they can be used to populate table from search results.
 	// using the dynamic property in the singular - e.g. r.subject, 
-	// while r.subjects gives the formatted version.
+	// while r.subjects gives the formatted version. */
 		@SearchableProperty(name='_subjects',index=Index.NOT_ANALYZED, store=Store.YES)
 		String subjects
+		/** See subjects */
 		@SearchableProperty(name='_wavebands',index=Index.NOT_ANALYZED, store=Store.YES)
 		String wavebands
+		/** See subjects */
 		@SearchableProperty(name='_publishers',index=Index.NOT_ANALYZED, store=Store.YES)
 		String publishers
+		/** See subjects */
 		@SearchableProperty(name='_creators',index=Index.NOT_ANALYZED, store=Store.YES)
 		String creators
 		
 		
-		// different requirements here
-		// encoding of the 'capabilities' of this resource
-		// want it to be available when revived from search indexes
+		/** 
+		// encoding of the 'capabilities' of this resource. Used to determine which capability icons to display
+		// want it to be available when revived from search indexes */
 		@SearchableProperty(name='capabilityCode',index=Index.NOT_ANALYZED, store=Store.YES)
 		int capabilityCode;
 
@@ -244,7 +256,6 @@ class Resource {
 	}
 
 	
-	/** search functionality*/
 	/** rewrite query to escape a few common symbols.
 	 * : prefixed by ivo
 	 *  - , + where there's no whitespace either side..
@@ -257,22 +268,8 @@ class Resource {
 	/** a + or - nested within text - probably in an ivorn, */
 	static final def nestedOp = /(\S)([-\+])(\S)/
 	
-//	
-//	// delegate methods
-//	public String xpath(String path) {
-//		return rxml.xpath(path)
-//	}
-//	
-//	public List xpathList(String path) {
-//		return rxml.xpathList(path)
-//	}
-//	
-//	def propertyMissing(String name) {
-//		return rxml.propertyMissing(name)
-//	}
-//	
 	
-	/* return the row of data used in the resource table
+	/* project the row of data used in the resource table
 	 * returns a map, with a key for each of TABLE_COLUMNS.
 	 * used in ExploreController to generate json.
 	 *

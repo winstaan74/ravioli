@@ -1,5 +1,7 @@
 package org.ravioli
-/* a stored query */
+/*A list of resources defined by a stored Lucene query.
+ * @see ResourceList
+ * @see BookmarkList */
 class SmartList extends ResourceList {
 
 	// constyraints block doesn't appear to inherit - need to repeat.
@@ -8,6 +10,6 @@ class SmartList extends ResourceList {
 	}
 	
 	
-	// could model this as a structure at some point in the future.
+	/** the lucene query that populates this list */
 	String query
 }
