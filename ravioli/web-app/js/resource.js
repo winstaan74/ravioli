@@ -19,7 +19,7 @@ function dalDisplay(url,formId, isPosParam) {
 	window.open(furl)
 
 }
-
+/** broadcast a DAL query result over SAMP */
 function broadcastDal(formId, isPosParam,el) {
 	var qurl = buildQueryUrl(formId,isPosParam);
 	broadcast(qurl,el);
@@ -81,6 +81,7 @@ function buildQueryUrl(formId, isPosParam) {
 	
 }
 
+/** show the connected block for SAMP */
 function showConnected() {
     var notconnected= getCSSRule('#NOTCONNECTED');
     var connected= getCSSRule('#CONNECTED');
@@ -89,6 +90,8 @@ function showConnected() {
     connecting.style.display='none';
     connected.style.display='block';
 }
+
+/* show the 'working' block for SAMP */
 function showWorking() {
     var notconnected= getCSSRule('#NOTCONNECTED');
     var connected= getCSSRule('#CONNECTED');
@@ -98,6 +101,7 @@ function showWorking() {
     connecting.style.display='block';
 }
 
+/** show the 'not connected' info display for SAMP */
 function showNotConnected() {
     var notconnected= getCSSRule('#NOTCONNECTED');
     var connected= getCSSRule('#CONNECTED');
@@ -107,6 +111,7 @@ function showNotConnected() {
     notconnected.style.display='block';
 }
 
+/** show that something has gone wrong with SAMP */
 function showScrewup() {
     var notconnected= getCSSRule('#NOTCONNECTED');
     var connected= getCSSRule('#CONNECTED');
@@ -116,7 +121,7 @@ function showScrewup() {
     notconnected.style.display='block';
 }
 
-
+/** connect to SAMP */
 function sampConnect(codebase) {
 	showWorking();
 	WebSampConnector.configure({
@@ -124,7 +129,7 @@ function sampConnect(codebase) {
 		});
 	WebSampConnector.start();
 }
-
+/** disconnect from SAMP */
 function sampDisconnect() {
 	showWorking();
 	WebSampConnector.stop(true);
@@ -142,7 +147,7 @@ function broadcast(url,el) {
 	el.style.border=orig;
 }
 
-
+/** overridden from SAMP library to integrate with our UI */
 function setStatusIcon(args) {
 		setTimeout(function() {
 	         var samp = getCSSRule('.samp');
@@ -157,6 +162,7 @@ function setStatusIcon(args) {
    };
 
 // supporting functions
+   /** get a CSS rule */
 function getCSSRule(ruleName, deleteFlag) {               // Return requested style obejct
 	   ruleName=ruleName.toLowerCase();                       // Convert test string to lower case.
 	   if (document.styleSheets) {                            // If browser can play with stylesheets

@@ -1,6 +1,9 @@
 /** additional javascript based functionality for the resourceTable */
  YAHOO.util.Event.onDOMReady(function () { 
 	 
+	 //set focus.
+	 YAHOO.util.Dom.get('sb').focus()
+	 
 	 applyFilter = function(q) {
 		 YAHOO.util.Dom.get('sb').value = q
 		 updateFilter()
