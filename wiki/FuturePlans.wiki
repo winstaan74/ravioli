@@ -21,7 +21,8 @@ This would mean that the user can select some resources within Ravioli, and then
 
 ------------
 
-=IVOA SOAP Search Interface=
+= ~~IVOA SOAP Search Interface~~ =
+(done)
 
 Ravioli harvests from all known registries, and stores the full XML of each resource it retrieves. An obvious addition is to implement the IVOA-standard registry search interface - i.e. a SOAP web service - so that other applications and clients can access the collection of resources maintained by Ravioli. This in effect turns Ravioli into a full searchable registry.
 
@@ -29,7 +30,6 @@ Note that Ravioli would not support the optional XQuery search language.
 
 However, programmatic access to the Lucene search language could be provided - enabling the same syntax to be used in programs / scripts as is used in the Ravioli search box.
 
-There are grails plugins that simplify the implementation of SOAP web services.
 
 = VODesktop Integration =
 
