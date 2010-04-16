@@ -1,5 +1,5 @@
 package org.ravioli
-/** taglib supporting the various search forms */
+/** taglib supporting the search forms for various DAL services.*/
 class SearchFormTagLib {
 	static namespace = 'sf'
 	
@@ -18,6 +18,7 @@ class SearchFormTagLib {
 		out << "</span>"
 	}
 
+	/** field to input a date */
 	def dateField ={attr, body ->
 	out << "<span class='formfield'>"
 	if (attr.tip) {
@@ -30,7 +31,7 @@ class SearchFormTagLib {
 	out << gui.datePicker(id:attr.id, includeTime:attr.includeTime, formatString:attr.formatString)
 	out << "</span>"
 }
-
+	/** large text area */
 	def formTextArea ={attr, body ->
 	out << "<span class='formfield'>"
 	if (attr.tip) {
@@ -45,7 +46,9 @@ class SearchFormTagLib {
 	out << "</span>"
 }
 
-	/** format the button to action the form
+	/** format the buttons to action the form
+	 * 
+	 * This tag draws together buttons from various places - table viewer domain objects, samp buttons, etc/
 	 * params - formId, isPosParam (boolean)
 	 */
 	def actionButtons = {attr ->

@@ -6,7 +6,7 @@ import org.xwiki.rendering.parser.Syntax;
 
 /** utilities for formatting resources
  * 
- *  expects a resource to be in page scope under the key 'r'
+ *  expects a resource to be in page scope under the key 'r', and the xml to be in pagescope under the key 'xml'
  *  */
 class ResourceTagLib {
 	
@@ -92,7 +92,8 @@ class ResourceTagLib {
 				out << g.remoteLink(controller:'ads', class:'main', params:[bib:s]
 				,onLoading:"${sf.spinnerStart(id:spinnerId)}"
 				,onComplete:"${sf.spinnerStop(id:spinnerId)}"
-				,update:[success:s,failure:s] 
+				,onFailure:"YAHOO.util.Dom.get('${s}').innerHTML= o.responseText;"
+				,update:[success:s] 
 				, method:'get'                                                 
 				){s}
 			}
@@ -103,7 +104,7 @@ class ResourceTagLib {
 		}
 	}
 	
-	// does it look like a bibcode, according to http://en.wikipedia.org/wiki/Bibcode
+	/** does it look like a bibcode, according to http://en.wikipedia.org/wiki/Bibcode */
 	private boolean looksLikeBibcode(String s) {
 		// string of 19 characters, first 4 are the year.
 		return s != null && s.size() == 19 && s[0..3].isInteger()

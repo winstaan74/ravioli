@@ -1,3 +1,7 @@
+ <%--
+ block used at top of the main display.
+ 
+  --%>
  <div id="top-menu">
 
 <%--SAMP integration --%>

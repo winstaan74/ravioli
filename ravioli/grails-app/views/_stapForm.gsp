@@ -1,4 +1,4 @@
-<%-- template for STAP services --%>
+<%-- template for DAL form for STAP services --%>
 <%@ page import="org.joda.time.DateTime" %>
 <sf:form id="${formId}" className="stap">
 	<sf:accessURL iface="${iface }" />

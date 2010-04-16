@@ -3,9 +3,9 @@
 
 <html>
   <head>
-   <link rel="stylesheet" href="${resource(dir:'css',file:'reset-fonts-grids.css')}" />
-  
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+       <link rel="stylesheet" href="${resource(dir:'css',file:'reset-fonts-grids.css')}" />
+  
     <title><g:message code="nimble.layout.admin.title" /> <g:layoutTitle default="Grails"/></title>
 
   	<nh:nimblecore/>

@@ -1,3 +1,6 @@
+<%--
+Main view of Ravioli - the resource search table.
+ --%>
 <html>
 <head>
 	<title>Registry Resources</title>
@@ -93,17 +96,24 @@ cursor:pointer;
 #dt_div_resources > table {
 	width:800px;
 	}
-----</style>
+</style>
 </head>
 <body>
-	<%-- search form --%>
-	<input type="text" id="sb" value="${params.query}"/>
-	<button type='button' id="filterButton">Search</button>
-	<%-- if we've already got a query, trigger it once the page has loaded --%>
+	<%-- search form  
+	 '#' action, and return false, cause it not to submit to server.--%>
+	<form action='#'>
+	<g:textField name='sb' value="${params.query }" size='50' tabindex='1' title='Ravioli Search' maxlength='2048' style="font-size:larger;padding:2px;" />
+	 <g:submitButton name='filterButton' value='Search' onclick='return false;' style="font-size:larger;margin-left:10px;"/><%--there's an event handler in resourceTable.js that listens for clicks to this button --%>
+	</form>
+	<n:isLoggedIn><%--variant with saving --%>
+		<a href='#' class='main yui-tip' style="display:none;" title="Store this search to 'My Lists'" id='saveButton'>Save..</a>
+	</n:isLoggedIn>
 
+<%-- the table itself --%>
 <div id='resourcesParent'>
 	<r:resourceTable />
 </div>
+
 <%--popup dialogue for selecting columns. --%>
 <div id="dt-dlg">
     <span class="corner_tr"></span>
@@ -120,7 +130,7 @@ cursor:pointer;
 loading last means faster page display.
  --%>
  <g:javascript>
- <%--using grails to compute the link back - so this bit of javascript is inline --%>
+ <%--using grails to compute value of some links back - so this bit of javascript is inline --%>
  function mkOpenResourceUrl(id) {
  	base = '<g:createLink controller="explore" action="resource"/>'
  	return base + "/" + id

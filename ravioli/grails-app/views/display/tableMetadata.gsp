@@ -1,3 +1,5 @@
+<%-- display the table metadata for a resource
+ --%>
 <html>
 <head>
 	<title>Table Metadata for ${r.titleField }</title>

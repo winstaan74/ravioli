@@ -1,4 +1,4 @@
-<%-- search form template for tap --%>
+<%-- search form for TAP services. --%>
 <sf:form id="${formId}" className="tap">
 	<sf:accessURL iface="${iface }" suffix="/sync"/>
 	<%

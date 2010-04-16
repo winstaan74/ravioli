@@ -1,5 +1,5 @@
 package org.ravioli
-/** taglib for working with samp */
+/** taglib for working with SAMP */
 class SampTagLib {
 	static namespace = 'samp'
 
@@ -8,7 +8,9 @@ class SampTagLib {
 	 * 
 	 * 
 	 */
-		/** expects an attr: url */
+		/**
+		 * Add a broadcast link (indicated with icon) 
+		 *  expects an attr: url */
 	def broadcast = {attr ->
 		out << "<span class='samp'>"
 		out << gui.toolTip(text:'Broadcast this table to SAMP applications') {
@@ -17,7 +19,10 @@ class SampTagLib {
 		out << "</span>"
 	}
 
-	/** expects an attr: formId - id of the form; isPosParam */
+	/** 
+	 * Add a broadcast button 
+	 * 
+	 * expects an attr: formId - id of the form; isPosParam */
 	def button = {attr->
 		out << "<span class='samp'>"
 		out << gui.toolTip(text:'Broadcast this search result to SAMP applications') {

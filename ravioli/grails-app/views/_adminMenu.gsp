@@ -1,3 +1,8 @@
+<%--
+
+block of navigation links shown on the left of the main view.
+
+ --%>
 <div class="leftBlock">
 	<h3>Administer</h3>
 	<ul>

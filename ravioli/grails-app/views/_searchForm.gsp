@@ -1,4 +1,4 @@
-<%-- attempt at rendering a search form using GSP rather than builder
+<%-- attempt at rendering a DAL query form using GSP rather than builder
 oh well, live and learn --%>
 <sf:form id="${formId}" class="${className}">
 	<sf:accessURL iface="${iface }" }/>
@@ -63,9 +63,9 @@ oh well, live and learn --%>
 			<gui:toolTip text="Resolve an object name to position using the Sesame service from CDS">
 			<g:submitToRemote value="Resolve" name="${formId }"
 				url="[controller:'sesame']" method="get"
-				update="[failure:resultsId]"
 				onLoading="${sf.spinnerStart(id:spinnerId)}"
 				onComplete="${sf.spinnerStop(id:spinnerId)}"
+				onFailure="YAHOO.util.Dom.get('${resultsId }').innerHTML= o.responseText;"
 				onSuccess="var pos = YAHOO.lang.JSON.parse(o.responseText);
 					var res = YAHOO.util.Dom.get('${resultsId }');
 					res.innerHTML = 'Resolves to ' + pos.ra + ', ' + pos.dec;

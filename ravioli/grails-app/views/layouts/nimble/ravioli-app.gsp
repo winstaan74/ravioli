@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="${resource(dir:'css',file:'ravioli.css')}" />
 </head>
 
-<body>
+<body class="yui-skin-sam">
 
 <div id="doc3" >
   <div id="hd">
@@ -31,7 +31,7 @@
   </div>
 
   <div id="ft">
-	<g:render template='/bottom' />
+	<g:render template='/bottom' contextPath="/"/>
   </div>
 </div>
 

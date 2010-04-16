@@ -1,16 +1,23 @@
+<%--
+default layout for ravioli - uses yahoo layout
+
+ --%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
  "http://www.w3.org/TR/html4/strict.dtd">
- <%--page template for all explore functionality. --%>
 <html>
 <head>
    <title>Ravioli &raquo; <g:layoutTitle /></title>
   <link rel="stylesheet" href="${resource(dir:'css',file:'reset-fonts-grids.css')}" />
   <link rel="stylesheet" href="${resource(dir:'css',file:'famfamfam.css',plugin:'nimble')}" />  
+  <%-- this list here is all controllers that use scaffolding (i.e. all the admin ones) - these require some additional resorurces to be loaded
+   --%>
   <g:if test="${['resource','registry','task','taskExecution','resourceList','listContainer','tableViewer'].contains(params.controller)  }">
     <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}" /><%--default grails styling.. --%>
   </g:if>
   <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
-  <g:javascript library="yui" />	
+  <g:javascript library="yui" />
+  	<%-- gui components occuring on every page --%>	
+   	<gui:resources components="draggableList" />
   <g:layoutHead />
   <%--add our own custom stylesheet last of all - can only help. --%>
   <link rel="stylesheet" href="${resource(dir:'css',file:'ravioli.css')}" />
@@ -31,8 +38,8 @@
   				${flash.message }
   			</div>
   	</g:if>
-   </div>
     --%>
+   </div>
 <%--body --%>
    <div id="bd">
    <%-- main block --%>

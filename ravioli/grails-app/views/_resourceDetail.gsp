@@ -1,4 +1,10 @@
-<%--create an xml slurper to work with. --%>
+<%--
+Display the full, formatted details of a Resource.
+
+
+create an xml slurper to work with.
+
+ --%>
 <g:set var='xml' value="${r.rxml.createSlurper() }" scope='page' />
 <div class="resourceDetail" id='resourceDetail'>
 

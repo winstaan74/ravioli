@@ -1,3 +1,6 @@
+<%--
+Format a resource in a separate HTML page.
+ --%>
 <html>
 <head>
 <title>
