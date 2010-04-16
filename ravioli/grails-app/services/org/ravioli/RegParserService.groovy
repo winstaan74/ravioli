@@ -13,7 +13,7 @@ package org.ravioli
 import groovy.util.slurpersupport.GPathResult
 
 /**
- *
+ * Parses the resource response from a harvestable registry 
  * @author noel 
  */
 class RegParserService  {
@@ -76,6 +76,13 @@ class RegParserService  {
 		return parseListIdentifiers(url)
 	}
 	
+	/** list identifiers of resources - using a resumption token to continue from a previous list
+	 * 
+	 * @param reg the registry to interrogate
+	 * @param token a resumption token
+	 * @return
+	 * @see #listIdentifiers
+	 */
 	def listResumedIdentifiers(Registry reg, String token) {
 		log.info("Resuming List Identifier for ${reg.ivorn}")
 		def url = constructResumeListQuery(reg,token)
@@ -106,7 +113,7 @@ class RegParserService  {
 	/** helper method - expects to be passed the xml of the resumption token element, 
 	 * and returns a map of the parsed bits.
 	 * @param xml
-	 * @return
+	 * @return map containing resumptionToken, and totalSize fields.
 	 */
 	private Map parseResumptionToken(def resumptionToken) {
 		assert resumptionToken.name() == 'resumptionToken',"input must be the resumption token, but was ${resumptionToken.dump()}"
@@ -128,12 +135,11 @@ class RegParserService  {
 	 * @param reg registry to harvest from
 	 * @param ivorn record id to load
 	 * @preturn the GPath of the Resource document, for further processing. - i.e result will have name() == 'Resource'
- 	* @todo spend some time debugging behaviour of url encoding of ivorn parameter.
- 	* @todo remove - unused.
+
 	 */
 	String harvest(Registry reg, String ivorn) {
 		log.info "Harvesting ${ivorn} from ${reg.ivorn}"
-		def url = reg.endpoint + "?verb=GetRecord&metadataPrefix=ivo_vor&identifier=" + ivorn
+		def url = reg.endpoint + "?verb=GetRecord&metadataPrefix=ivo_vor&identifier=" + ivorn.encodeAsURL()
 		debugUrl(url)
 		// test for occurrence of error, and if see it, halt with a transform exception
 		// else just cut out the resource part of the response.
@@ -157,30 +163,7 @@ class RegParserService  {
 		}
 		return output.toString();
 	}
-	
-	/** harvest a record from a registry 
-	 * 
-	 * @param reg registry to harvest from
-	 * @param ivorn record id to load
-	 * @preturn the GPath of the Resource document, for further processing. - i.e result will have name() == 'Resource'
-	 * @todo spend some time debugging behaviour of url encoding of ivorn parameter.
-	 * sadly doesn't work :(
-	 */
-//	GPathResult harvestSlurp(Registry reg, String ivorn) {
-//		log.info "Harvesting ${ivorn} from ${reg.ivorn}"
-//		def url = reg.endpoint + "?verb=GetRecord&metadataPrefix=ivo_vor&identifier=" + ivorn
-//		debugUrl(url)
-//		def gp = new XmlSlurper().parse(url)
-//		// test for an error..
-//		if (gp.error.size() != 0) {
-//			throw new HarvestServiceException(gp.error.text())
-//		}
-//		def resource = gp.GetRecord.record.metadata.Resource
-//		if (resource.size() != 1) {
-//			throw new UnknownResourceException(regIvorn:reg.ivorn, ivorn:ivorn)
-//		}
-//		return resource
-//	}
+
 	
 	/** construct the reg of reg list records query. - either incrmental, or no */
 	private String constructRofrQuery(Registry r, incremental=true,query= "?verb=ListRecords&metadataPrefix=ivo_vor&set=ivoa_publishers") {

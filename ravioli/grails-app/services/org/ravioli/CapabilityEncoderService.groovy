@@ -3,7 +3,7 @@ package org.ravioli
 import grails.converters.JSON;
 import groovy.util.slurpersupport.GPathResult;
 
-/** service that centralizes the logic relating to detection, representaiotn
+/** Logic relating to detection, representaiotn
  * and formatting of different capabiltieis.
  * @author noel
  *
@@ -12,9 +12,9 @@ class CapabilityEncoderService {
 
     boolean transactional = false
 	
-	// list of rules to apply to test for different capabilities.
+	/** list of rules to apply to test for different capabilities. */
 	@Newify(Rule)
-	private static def rules = [
+	private static final def rules = [
 	  Rule ("Catalog cone search service",'icon_table'){
 		  it.capability.'@standardID' =~ "ivo://ivoa.net/std/ConeSearch" ||
 		  it.capability.'@xsi:type' =~ /Cone/
@@ -100,7 +100,7 @@ class CapabilityEncoderService {
 	/** emit javascript code to decode a number into 
 	 * a formatted string.
 	 * 
-	 * Here, to keep it close to the encoding code.
+	 * This is here, to keep it close to the encoding code.
 	 * @return
 	 */
 	public String javascriptDecoder() {

@@ -12,8 +12,7 @@ public class HarvestResults {
 }
 
 
-/** service that takes care of the harvesting
- side of things
+/** Harvests Resources from Registries
  */
 class HarvestService {
 	

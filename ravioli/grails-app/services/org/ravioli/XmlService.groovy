@@ -102,7 +102,7 @@ class XmlService  {
 	
 	
 	// api to XSLT transformations
-	/**
+	/** Tansform xml using a XSLT stylesheet
 	 * @param stylesheet the stylesheet to use
 	 * @param the input - may be String xml content, or URL, or InputStream, or Reader
 	 * @param output - may be writer, outputstream, or URL
