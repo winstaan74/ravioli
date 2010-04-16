@@ -21,8 +21,8 @@ class CapabilityTagLib {
 	private String nextId() {
 		return grailsApplication.mainContext.idGenService.next()
 	}
-//	ApplicationContext applicationContext
 	//def idGenService - can't access this as a request-scoped service - work-around is to call through applicationContext (above) every time.
+
 	/** check that a field in the xml exists, is an integer, and is non-zero */
 	private boolean isNonZero(def path) {
 		def txt = path?.text()
@@ -170,24 +170,6 @@ class CapabilityTagLib {
 									out << ' '
 									a(target:'_blank',href:ws,class:'icon icon_script_code_red','wsdl')
 								}
-							/*} commented out until wsdllibrary starts working.
-							def wsdlFormId = nextId()//aurl.text().encodeAsMD5()
-							def failureId = wsdlFormId + "-failure"
-							def spinnerId = wsdlFormId + "-spinner"
-							div(class:'right',id:wsdlFormId) {
-								out << g.remoteLink(action:'buildForm', method='get'
-									,update:[success:wsdlFormId,failure:failureId]
-									,controller:'externalSoap'
-									,id:pageScope.r.id
-									,params:[aurl:aurl.text(), wsdl:ws]
-									,onLoading:sf.spinnerStart(id:spinnerId)
-									,onComplete:sf.spinnerStop(id:spinnerId)
-									){
-										'Build a form for this service'
-									}
-								out << sf.spinner(id:spinnerId)
-								div(id:failureId){}
-							}*/
 							break
 							case ~/.*ParamHTTP/:
 							case ~/.*UWS-PA/:
