@@ -26,7 +26,7 @@ class SampTagLib {
 	def button = {attr->
 		out << "<span class='samp'>"
 		out << gui.toolTip(text:'Broadcast this search result to SAMP applications') {
-			out << """<button type='button' onclick="broadcastDal('${attr.formId}','${attr.isPosParam}',this)">"""
+			out << """<button type='button' onclick="broadcastDal('${attr.formId}',${attr.isPosParam},this)">"""
 			out << "<span class='icon icon_transmit'>Broadcast</span>"
 			out <<"</button>"
 		}
