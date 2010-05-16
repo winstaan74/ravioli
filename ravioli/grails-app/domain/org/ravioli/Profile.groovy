@@ -1,11 +1,17 @@
-
 package org.ravioli
+
+
+import grails.plugins.nimble.core.ProfileBase;
+
+
+
 
 import grails.plugins.nimble.core.Permission;
 import grails.plugins.nimble.core.PermissionService;
 /** More information about a user */
 
-class Profile extends grails.plugins.nimble.social.SocialProfileBase {
+class Profile extends ProfileBase {
+// regress to just basic profile grails.plugins.nimble.social.SocialProfileBase {
 
 	static constraints = {
 		userBlock nullable:true
