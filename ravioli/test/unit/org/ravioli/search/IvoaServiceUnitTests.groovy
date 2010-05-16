@@ -56,6 +56,6 @@ class IvoaServiceUnitTests extends GrailsUnitTestCase {
     			"""
     	def slurp = new XmlSlurper().parseText(q)
     	def op = serv.translateWhere(slurp)
-    	assertEquals "description:'*quasar*'",op
+    	assertEquals "description:*quasar*",op
     }
 }
