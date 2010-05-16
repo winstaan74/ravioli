@@ -1,12 +1,13 @@
 #labels Featured
 =List of Changes=
 
-Version at http://astrogrid.roe.ac.uk/ravioli - v0.7
+Version at http://astrogrid.roe.ac.uk/ravioli - v0.8
 -----
-==version 0.8, unreleased==
+==version 0.8, 16 May==
   * implemented IVOA search soap webservice (accepts adql/x, keyword (including lucene syntax). no XQuery support
   * fixed harvesting of resources where IVO-ID contains '+'
   * tidied up the search input form. (search button now triggered by hitting enter)
+  * fixed bug on passing cone search url to SAMP application.
 
 ---------
 
