@@ -1,0 +1,48 @@
+# Introduction #
+
+Build a basic system, to test whether our choice of database (exist), server (grails) and presentation (GWT) is efficient enough to give a slick experience in a voexplorer-like interface.
+
+In particular, we want to see a responsive UI that handles a large amount of data, incrementally updating.
+
+At first, I can develop the prototype on my own computer - but for a proper test, we need a server (ideally the production server) to deploy the prototype onto - and then see what the performance is like when access from elsewhere in the UK.
+
+# Developments #
+After much more reading about grails and javascriipt toolkits, I think a quicker win would be to produce a basic UI using one of the standard javascript AJAX toolkits (e.g. prototype, or yahoo UI), and see how performant this is. It's unclear to me, yet, whether we need to go for the full-blown GWT application front-end. I think I should test out the performance of the UI with a more basic toolkit first.
+
+# Progress #
+I've developed a basic ui - an ajax-displaying table, linked to a search box. This is available at http://astrogrid.roe.ac.uk/ravioli/. Running over an (almost) fully populated registry of over 6000 items, queries come back swiftly enough - certainly comparable to VOExplorer.
+
+## Sample Queries ##
+The search box accepts the [lucene query syntax](http://lucene.apache.org/java/2_3_2/queryparsersyntax.html). This is similar to the voexplorer syntax, but note that search fields are tokenized (which means you're searching for a whole word, unless you add wildcard such as '**')**
+
+I've not configured all the search fields yet (and the set of search fields are still liable to change), but some of the critera that can be queries upon are:
+```
+identifier:CDS   // resources where the identifier is CDS
+identifier:CDS* // resources where the identifier _contains_ CDS
+
+resourcetype:DataCollection
+resourcetype:Registry
+
+abell // search for the whole word 'abell' in title, description, identifier, and a few other common fields
+all:abell // search for the whole word 'abell' anywhere in the resource document
+
+waveband:optical
+
+capability:SIA
+capability:SimpleImageAccess // equivalent
+capability:Image // worked in vodesktop, doesn't work here - as it's searching for a while word. should be capability:*Image*
+
+creator:smith
+
+modified:[2008-1-1 TO 2008-12-30] // search in a range of dates.
+
+name:glimpse // searches title and shortname
+
+ucd:pos_eq_ra_main // search by ucd (case insensitive)
+```
+
+and of course, there's AND, OR, NOT plus a bunch of other operators - see http://lucene.apache.org/java/2_3_2/queryparsersyntax.html lucene query syntax]
+
+
+# Decision #
+YUI seems to be performant enough, and is pretty easy to work with. - stick with this, rather than having to learn the details of GWT

@@ -1,0 +1,5 @@
+# Introduction #
+
+I'm trialing [http://sites.google.com/site/nimbledoc/ Nimble} at the moment, which is a plugin for grails which integrates all kinds of auth mechanisms - such OpenId, and also site-local account management.
+
+Later, will need to integrate with IVOA accounts and communities.

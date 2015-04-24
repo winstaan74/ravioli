@@ -1,0 +1,41 @@
+Just kept for historical reasons.
+
+# Feasibility #
+What's possible?
+  * ShallWeUseGoogleAppEngine
+    * Nope - deploy to our own server
+      * http://astrogrid.roe.ac.uk/ravioli - alpha deployment
+  * PerformanceExperimentsWithGwt
+    * YUI and Lucene search engine - fast enough
+  * StateOfVospaceAndCommunity
+  * StateOfPublishingLibraries
+  * StateOfSampTools
+
+# Finishing Off #
+There's little time left - what shall we do with it?
+  * FinishingOff
+
+# Requirements / Use Cases #
+Listed in order of priority.
+
+  * RegistryExploration
+  * ResourceConsumption
+  * GroupManagement
+  * SharedTagging
+  * BookmarkSharing
+  * PublicPublishing
+  * ConsortiumScopedPublishing
+  * FurtherCollaborationTools
+  * ImportExport
+  * RichDesktopClients
+
+
+# Design #
+  * ThinkOfaSiteName
+> will be more here later, about the design of the UI.
+
+# Implementation Choices #
+  * <strike>XmlDb</strike> RelationalDatabase and LuceneSearchEngine
+  * GrailsServer
+  * <strike>GoogleWebToolkit</strike> YahooUserInterface (YUI)
+  * HowToManageUsers

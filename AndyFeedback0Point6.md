@@ -1,0 +1,31 @@
+# Saved searches #
+Pre-canned searches definietly good, and yes they can be longer. But
+there could be a lot, especially if people start sharing them. So we
+need some structure .. folders ?
+  * NWW: would rather not introduce folders - extra complexity in UI, and to implement. Interestingly, Google Mail doesn't use folders on LHS - just a bit of space to delimit different 'kinds' of folder.
+
+~~"All Vizier" .. or "All Heasarc" which would also be good ... is
+conecptually different. This is as you say a starting point, whereas
+the others are worke examples so you get the idea.~~
+  * NWW: Done, I've grouped the 'All' items together, and put the pre-canned searches below. Any other 'ALL' items  you want?
+
+We can re-think the pre-canned lists. OK for nwo.
+
+For a smart list, you can see how its done in the search box.
+For static lists, I think having a query that says "this AND that AND
+this AND that AND this..." is unhelpful. We need a way to jump to a
+simple ivo-id list.
+This is important. I think build-a-list by drag and drop will be very
+popular. I do it all the time in VO Desktop.
+  * NWW: agreed. it'll still be doing 'this AND this' behind the scenes - this is only visible because I've not implemented a proper query builder yet.
+
+# stuff missing #
+  * ~~VO taster has 4/15 cf Vo Desktop list~~
+  * ~~cone search examples has 6 vs 11, image access 6 vs 10...~~
+    * fixed
+  * ~~is publisher:CDS the same as "all Vizier" ... ? CDS do other things~~
+    * Whoops, yes. rectified this
+
+  * ability list : yes, nice ... but waht is the difference between an ability and a capability ?
+    * NWW: it's all called 'capability' in the UI, isn't it? The only place that 'ability' occurs is in the search box - and this won't be seen once we've got a proper query builder. Implementation-wise, ability allows you to search for more human-readable strings, while capability requires you to match against what's textually in the voresource.
+    * For example. I can search for `ability: spectrum`, which matches the terminology used to describe a SSAP resource in the UI - even though the word 'spectrum' doesn't occur in the resource itself - I'd have to do something like `capability:*Spectral*` (wildcards necessary). I'll probably encourage users to query by 'ability', but keep 'capability' around for backwards compatability with voexplorer.

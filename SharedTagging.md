@@ -1,0 +1,13 @@
+# Resource Tagging #
+allow the user to add tags, notes, comments, flag, even attach files (e.g. sample inputs, queries) to resources.
+
+Once we have GroupManagement, each annotation may be shared with none or more of the groups the user belongs to.
+  * if a user leaves a group, their annotations are no longer available to members of that group.
+
+annotations from others in your group are attributed - you can see who made the annotation.
+
+is a 'don't show annotations from this user'  option necessary - if the groups become very large?
+
+# Tagging of other things #
+Could we use ravioli to enable users to tag/point to other things? - particular db tables, or even rows in db tables?
+  * links in with idea of named subsets in topcat

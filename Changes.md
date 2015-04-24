@@ -1,0 +1,112 @@
+# List of Changes #
+
+Version at http://astrogrid.roe.ac.uk/ravioli - v0.8
+
+---
+
+## version 0.8, 16 May ##
+  * implemented IVOA search soap webservice (accepts adql/x, keyword (including lucene syntax). no XQuery support
+  * fixed harvesting of resources where IVO-ID contains '+'
+  * tidied up the search input form. (search button now triggered by hitting enter)
+  * fixed bug on passing cone search url to SAMP application.
+
+
+---
+
+
+## version 0.7, 22 March ##
+  * Collapsed long descriptions
+  * Tooltips for search forms.
+  * added 'View XML' button
+  * indicate that resource table rows can be clicked
+  * Separated 'All' searches from sample queries.
+  * Fixed static list queries to display all expected results
+  * _improved_ reliability of SAMP with Safari
+  * Changed 'Title' to be first column, not ivoa-id
+
+
+---
+
+
+## version 0.6, 9th March 2010 ##
+
+### New features ###
+  * Added search folders to left hand side of window. Only pre-canned searches for now, until user-login is implemented
+  * Added a 'capabilities' column to the table, that displays icons of different abilities of the resource (download table, SSAP, etc). Also possible to search using these terms, rather than the obscure resource terminology
+
+
+### Feedback Needed ###
+  * pre-canned searches - these are the ones from latest VODesktop - are they all ok here? Note that, unlike searches in VODesktop, there's no upper size limit on a useful search - so we could have searches that return a _lot_ of resources, and which users can use as a basis for further refining their search (as an example, I've added a 'All Vizier' precanned search).
+  * AndyFeedback0Point6
+
+
+---
+
+
+## version 0.5, 3rd March 2010 ##
+
+### New features ###
+  * SAMP support - connect/disconnect hub buttons in top left, after which any additional buttons appear so that any search result / votable link can be broadcast to SAMP apps.
+  * builds rudimentary form for unknown paramHTTP capabilities - useful in calling NED.
+  * search form for STAP
+  * search form for synchronous ADQL TAP (a text box, not a query builder)
+  * table metadata display (in separate window)
+
+### Feedback Needed ###
+  * Try the samp integration, tell me how it works on your browser. I think I need to do some more work with signing the applet, but don't understand the details (have sent a question to the developers)
+  * AndyFeedback0Point5
+### Issues ###
+  * calendar popup in STAP search form interacts badly with data table. Work-around - open resource in new window
+  * Need to understand how to sign the samp applet
+  * ~~Samp applet doesn't work on Safari - fine on firefox.~~
+
+### Fixes from 0.4 ###
+  * open-new-tab link is fixed.
+
+
+---
+
+
+## version 0.4, 1st March 2010 ##
+
+### New Features ###
+  * Search form for Cone, SIAP, SSAP capabilities - by position, and by object name (using sesame)
+    * presents link to votable, and button to display result in NVO's html votable-viewer
+  * visual styling improvements - colour scheme and spacing, tooltips
+  * collapsing of less interesting resource capabilities.
+  * clicking on bibcode field triggers AJAX query to ADS
+  * clicking on Availability link triggers an AJAX VOSI availability query.
+  * Table download links for CDS resources.
+  * Fixed issue with resource body causing table to judder and resize width-ways. Table is always at least as wide as the resource body, and the resource body has a fixed width
+
+### Feedback Needed ###
+  * At the moment, the query of ADS / VOSI availability requires the user to click on the link. Is this appropriate, or is it better to either: always fetch this information, and display it in the resource from the resource (increasing page display time, and load on back-end servers); or fetch this information automatically once the resource had been displayed for a short time (a few seconds) - i.e if the user is lingering over a resource, this suggests that the additional information is worth fetching.
+
+  * ~~At present, uninteresting capabilities are collapsed, and require a click to display. I think this keeps the display uncluttered. Is it worthwhile collapsing a) other capabilities, b) the resource description in similar click-to-display fields? It would be possible to remember the user's preference via a cookie, and so show any subsequent resources with e.g. description shown.~~
+
+  * Bibliography integration - comments please - is this what you were thinking of? I don't display the abstract and authors by default, as often they repeat the resource description and authors. However, in some cases they seem to give useful additional information.
+
+### Issues ###
+  * The NVO table viewer doesn't work with the Safari browser on OSX. Works fine with firefox. I can't fix this - is there a alternate table viewer we could use?
+
+  * ~~The 'open new tab' link is broken at present.~~
+
+### FIxed from 0.3 ###
+  * Fixed the size of table, and inline resource display - should prevent the jerkiness.
+
+
+---
+
+
+## version 0.3, 23rd Feb 2010 ##
+
+### New Features ###
+  * the table columns to be shown can be altered, and choice is remembered by cookie (click on 'table options' link)
+  * formatted display of resource details.
+  * stability - should stay up longer than the previous snapshot
+  * more reliable harvesting and handling of large resources
+
+### issues ###
+  * ~~~when using the search box, hitting return doesn't trigger the search - you must click on the 'search' button. As this bit of the UI will be replaced by a search form, it's only a temporary problem.~~~
+  * ~~when clicking on a table row to display a resource body, the table resizes, which is jerky and jarring. I don't think there's a nice way of fixing this,  considering that the table can dynamically alter which rows are being shown.  Unless I can come up with a solution, I think it might be best to display resources in a separate area _below_ the table. (i.e. in a typical email-reader layout).~~
+  * ~~We've only got 6K resources, rather than the expected 8K because I'm having problems harvesting resources that contain a '+' in the ivorn name (this only occurs in CDS). Fixable, just haven't done yet~~
